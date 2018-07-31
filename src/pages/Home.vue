@@ -1,8 +1,10 @@
 <template>
-  <q-page class="flex flex-center">
-    <div class="">
+  <q-page class="">
+    <state-banner :stateData="stateData" />
+    <div class="flex">
       
     </div>
+
   </q-page>
 </template>
 
@@ -11,11 +13,16 @@
 
 <script>
 import { QPage } from 'quasar'
+import { mapActions } from 'vuex'
 
 export default {
   name: 'Home',
   components: {
     QPage
+  },
+  mounted() {},
+  methods: {
+    ...mapActions(['getMoreAssets', 'getAsset'])
   }
 }
 </script>
