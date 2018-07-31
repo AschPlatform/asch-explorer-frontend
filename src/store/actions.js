@@ -3,10 +3,10 @@ import api from '../utils/api'
 // import { getCache } from '../utils/util'
 
 export default {
-  getMainAccountInfo: ({
+  getAccount: ({
     commit,
     state
-  }, args) => {
-    return api.account(args)
+  }, address) => {
+    return api.account(address)
   }
 }

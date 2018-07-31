@@ -42,16 +42,17 @@ const fetch = (url, data, method, postHeaders) => {
 
 const api = {}
 
+// 账户查询
+api.accounts = address => {
+  return fetch(urls.accounts, address, 'get')
+}
+
 // 获取最新区块 params => generatorPublicKey
 api.blocks = params => {
   return fetch(urls.blocks, params, 'get')
 }
 api.blockDetail = params => {
   return fetch(urls.blocksDetail, params, 'get')
-}
-// 账户查询
-api.accounts = params => {
-  return fetch(urls.accounts, params, 'get')
 }
 
 // 获取交易列表
