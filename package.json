@@ -9,11 +9,13 @@
   "scripts": {
     "lint": "eslint --ext .js,.vue src",
     "build:tw": "./node_modules/.bin/tailwind build ./src/css/tailwind.css -c ./tailwind.js -o ./src/css/tailwindOutput.css",
-    "test": "echo \"No test specified\" && exit 0"
+    "test": "echo \"No test specified\" && exit 0",
+    "dev": "quasar dev -t ios"
   },
   "dependencies": {
     "axios": "^0.18.0",
     "lodash": "^4.17.10",
+    "moment": "^2.22.2",
     "vue-i18n": "^7.3.3"
   },
   "devDependencies": {

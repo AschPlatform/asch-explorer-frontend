@@ -9,6 +9,11 @@ const I18N_OPT = [{
   }
 ]
 
+const REGEX = {
+  hash: /([a-fA-F0-9]{64})/,
+  height: /^\+?[1-9][0-9]*$/,
+  address: /^A[\w]{32,34}$/
+}
 // const STATE_MAP = {
 //   1: 'CHARGE',
 //   2: 'WITHDRAW',
@@ -111,7 +116,8 @@ const urls = {
 
 export {
   I18N_OPT,
-  urls
+  urls,
+  REGEX
   // MARKET_STATE,
   // SELECTION_MAP,
 }

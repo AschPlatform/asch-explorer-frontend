@@ -5,9 +5,6 @@ import {
   Dialog,
   Platform
 } from 'quasar'
-import {
-  BigNumber
-} from 'bignumber.js'
 import moment from 'moment'
 
 // confirm compontent
@@ -178,14 +175,4 @@ export const isDesktop = () => {
 }
 export const isCordova = () => {
   return Platform.is.cordova
-}
-export const countMargin = (len, precision, total) => {
-  let mathTotal = BigNumber(total * Math.pow(10, precision))
-  let mo = Math.log(len).toFixed(precision) * Math.pow(10, precision)
-  return Math.floor((mathTotal / mo).toFixed(precision))
-}
-export const countTotal = (len, precision) => {
-  let preMargin = BigNumber(100)
-  let mo = Math.log(len)
-  return Number(Math.ceil(preMargin * mo).toFixed(0))
 }

@@ -9,6 +9,7 @@ const lang = {
   FOOTER_LINKS: '友情链接',
   HOMEPAGE: '官网',
   FORUM: '社区论坛',
-  ONLINE_WALLET: '在线钱包'
+  ONLINE_WALLET: '在线钱包',
+  ERR_INVALID_SEARCH: '查询条件无效'
 }
 export default lang
