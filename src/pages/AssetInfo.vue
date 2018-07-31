@@ -1,7 +1,7 @@
 <template>
   <q-page class="flex flex-center">
     <div class="">
-      
+      AssetInfo
     </div>
   </q-page>
 </template>
@@ -13,7 +13,7 @@
 import { QPage } from 'quasar'
 
 export default {
-  name: 'Home',
+  name: 'AssetInfo',
   components: {
     QPage
   }

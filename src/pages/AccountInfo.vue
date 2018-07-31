@@ -1,8 +1,6 @@
 <template>
   <q-page class="flex flex-center">
-    <div class="">
-      
-    </div>
+   AccountInfo
   </q-page>
 </template>
 
@@ -13,7 +11,7 @@
 import { QPage } from 'quasar'
 
 export default {
-  name: 'Home',
+  name: 'AccountInfo',
   components: {
     QPage
   }

@@ -42,8 +42,82 @@ const fetch = (url, data, method, postHeaders) => {
 
 const api = {}
 
-api.getAccount = params => {
-  return fetch(urls.userApi, params, 'get')
+// 账户查询
+api.accounts = address => {
+  return fetch(urls.accounts, address, 'get')
+}
+
+// 获取最新区块 params => generatorPublicKey
+api.blocks = params => {
+  return fetch(urls.blocks, params, 'get')
+}
+api.blockDetail = params => {
+  return fetch(urls.blocksDetail, params, 'get')
+}
+
+// 获取交易列表
+api.transactions = params => {
+  return fetch(urls.transactions, params, 'get')
+}
+
+// 根据 tid 获取交易详情
+api.transaction = params => {
+  return fetch(urls.transaction, params, 'get')
+}
+
+// 获取账户余额
+api.balances = params => {
+  return fetch(urls.balances, params, 'get')
+}
+
+// 获取指定币种账户余额
+api.balance = params => {
+  return fetch(urls.balance, params, 'get')
+}
+// 获取所有发行商
+api.issuers = params => {
+  return fetch(urls.issuers, params, 'get')
+}
+// 获取指定发行商
+api.issuer = params => {
+  return fetch(urls.issuer, params, 'get')
+}
+// 获取用户发行资产
+api.addressAssets = params => {
+  return fetch(urls.addressAssets, params, 'get')
+}
+
+// 获取所有资产
+api.assets = params => {
+  return fetch(urls.assets, params, 'get')
+}
+
+// 获取转账记录
+api.getTransfers = params => {
+  return fetch(urls.transfers, params, 'get')
+}
+// 获取指定账户发行的资产
+// api.addressAsset = params => {
+//   return fetch(urls.addressAsset, params, 'get')
+// }
+
+// 受托人列表
+api.delegates = params => {
+  return fetch(urls.delegates, params, 'get')
+}
+
+api.uiaAssetList = params => {
+  return fetch(urls.uiaAssetList, params, 'get')
+}
+
+//  获取资产
+api.uiaAsset = params => {
+  return fetch(urls.uiaAsset, params, 'get')
+}
+
+// 账户查询
+api.accounts = params => {
+  return fetch(urls.accounts, params, 'get')
 }
 
 // api.deposit = params => {

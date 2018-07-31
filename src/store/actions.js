@@ -1,11 +1,12 @@
-// import api from '../utils/api'
+import api from '../utils/api'
 // import _ from 'lodash'
 // import { getCache } from '../utils/util'
 
 export default {
-  getMainAccountInfo: ({
+  getAccount: ({
     commit,
     state
-  }, args) => {
+  }, address) => {
+    return api.account(address)
   }
 }
