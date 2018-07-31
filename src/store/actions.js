@@ -1,4 +1,4 @@
-// import api from '../utils/api'
+import api from '../utils/api'
 // import _ from 'lodash'
 // import { getCache } from '../utils/util'
 
@@ -7,5 +7,6 @@ export default {
     commit,
     state
   }, args) => {
+    return api.account(args)
   }
 }

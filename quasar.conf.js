@@ -8,8 +8,8 @@ module.exports = function (ctx) {
       'axios'
     ],
     css: [
-      'app.styl',
-      'tailwindOutput.css'
+      'tailwindOutput.css',
+      'app.styl'
     ],
     extras: [
       ctx.theme.mat ? 'roboto-font' : null,

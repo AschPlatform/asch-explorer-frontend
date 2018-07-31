@@ -8,7 +8,7 @@
   "private": true,
   "scripts": {
     "lint": "eslint --ext .js,.vue src",
-    "build:tw": "./node_modules/.bin/tailwind build ./src/css/tailwind.css -o ./src/css/tailwindOutput.css",
+    "build:tw": "./node_modules/.bin/tailwind build ./src/css/tailwind.css -c ./tailwind.js -o ./src/css/tailwindOutput.css",
     "test": "echo \"No test specified\" && exit 0"
   },
   "dependencies": {

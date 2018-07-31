@@ -41,9 +41,67 @@ const urls = {
   //   production: `${host.production}/api/dapps/${dappId.production}`
   // },
 
-  mainUserBalanceApi: {
+  mainUserBalance: {
     url: '/api/uia/balances/'
+  },
+  // 账户查询 ps: name params is avaliable now
+  accounts: {
+    url: '/api/v2/accounts/:address'
+  },
+  // 获取交易列表
+  transactions: {
+    url: '/api/v2/transactions'
+  },
+  // 根据 tid 获取交易详情
+  transaction: {
+    url: '/api/v2/transactions/:tid'
+  },
+  uiaAssetApi: {
+    mock: '',
+    url: '/api/uia/assets/:name'
+  },
+  uiaAssetList: {
+    mock: '',
+    url: '/api/uia/assets'
+  },
+  delegates: {
+    mock: '/data/vote/delegates.json',
+    url: '/api/delegates'
+  },
+  // 获取转账记录
+  transfers: {
+    url: '/api/v2/transfers'
+  },
+  // 获取所有发行商
+  issuers: {
+    url: '/api/v2/uia/issuers'
+  },
+  // 获取指定发行商
+  issuer: {
+    url: '/api/v2/uia/issuers/:address'
+  },
+  // 获取所有资产
+  assets: {
+    url: '/api/v2/uia/assets'
+  },
+  // 获取指定账户发行的资产
+  addressAssets: {
+    url: '/api/v2/uia/issuers/:address/assets'
+  },
+  // 获取账户余额
+  balances: {
+    url: '/api/v2/balances/:address'
+  },
+  // 获取指定币种账户余额
+  balance: {
+    url: '/api/v2/balances/:address/:currency'
+  },
+  // 详情基本信息
+  blocksDetail: {
+    mock: '/data/blockDetail/getblocks.json',
+    url: '/api/blocks/get'
   }
+
   // 区分 local 与 mainnet 的请求头参数
   // magics: {
   //   development: '5f5b3cf5',

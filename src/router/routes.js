@@ -12,13 +12,63 @@ export default [{
     // redirect: 'overall',
     children: [{
         path: '/',
-        name: 'index',
-        component: load('Index')
+        name: 'home',
+        component: load('Home')
       },
       {
-        path: 'somepage/:id',
-        name: 'marketDetail',
-        component: load('MarketDetail')
+        path: 'address/:address',
+        name: 'address',
+        component: load('AccountInfo')
+      },
+      {
+        path: 'account/:nickname',
+        name: 'nickname',
+        component: load('AccountInfo')
+      },
+      {
+        path: 'blocks',
+        name: 'blocks',
+        component: load('Blocks')
+      },
+      {
+        path: 'blocks_id/:id',
+        name: 'blockId',
+        component: load('BlockInfo')
+      },
+      {
+        path: 'blocks_height/:height',
+        name: 'blockHeight',
+        component: load('BlockInfo')
+      },
+      {
+        path: 'transactions',
+        name: 'transactions',
+        component: load('Transactions')
+      },
+      {
+        path: 'transaction/:id',
+        name: 'transaction',
+        component: load('TransactionInfo')
+      },
+      {
+        path: 'delegates',
+        name: 'delegates',
+        component: load('Delegates')
+      },
+      {
+        path: 'delegate/:name',
+        name: 'delegate',
+        component: load('DelegateInfo')
+      },
+      {
+        path: 'assets',
+        name: 'assets',
+        component: load('Assets')
+      },
+      {
+        path: 'asset/:name',
+        name: 'asset',
+        component: load('AssetInfo')
       }
     ]
   },
