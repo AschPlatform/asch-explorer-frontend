@@ -16,6 +16,8 @@
 import { openURL, QLayout, QLayoutHeader, QPageContainer, QLayoutFooter } from 'quasar'
 import FooterBar from '../components/FooterBar'
 import StateBanner from '../components/StateBanner.vue'
+import { REGEX } from '../utils/constants'
+import { toastError } from '../utils/util'
 
 export default {
   name: 'MyLayout',
@@ -29,11 +31,37 @@ export default {
   },
   data() {
     return {
-      leftDrawerOpen: this.$q.platform.is.desktop
+      searchForbidden: false
     }
   },
   methods: {
-    openURL
+    openURL,
+    doSearch(str) {
+      if (this.searchForbidden) return
+      const { hash, address, height } = REGEX
+      const router = this.$router
+      this.searchForbidden = true
+      this._.delay(() => (this.searchForbidden = false), 2000)
+      if (hash.test(str)) {
+        router.push(`/transaction/${str}`)
+        return
+      }
+      if (address.test(str)) {
+        router.push(`/address/${str}`)
+        return
+      }
+      if (height.test(str)) {
+        router.push(`/blocks_height/${str}`)
+        return
+      }
+      toastError(this.$t('ERR_INVALID_SEARCH'))
+    }
+  },
+  created() {
+    this.$root.$on('doSearch', this.doSearch)
+  },
+  beforeDestroy() {
+    this.$root.$off('doSearch', this.doSearch)
   },
   computed: {
     stateData() {
