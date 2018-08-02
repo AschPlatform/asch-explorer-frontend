@@ -1,6 +1,7 @@
 import axios from './axiosWrap'
 import {
-  urls
+  urls,
+  host
 } from './constants'
 // import {
 //   createInTransfer
@@ -27,7 +28,7 @@ const fetch = (url, data, method, postHeaders) => {
   }
 
   // let realUrl = urls.server.caos + url
-  let realUrl = urls.server[process.env.NODE_ENV] + url
+  let realUrl = host[process.env.NODE_ENV] + url
   let type = method.toLowerCase()
   let res = {}
   if (type === 'get') {
@@ -70,6 +71,24 @@ api.balances = params => {
   return fetch(urls.balances, params, 'get')
 }
 
+// //////////////////////////// 以下是频繁调用
+// 获取区块高度
+api.blockHeight = () => {
+  return fetch(urls.getHeight, null, 'get')
+}
+
+// 获取总用户数
+api.users = () => {
+  return fetch(urls.getUsers, null, 'get')
+}
+
+// 获取总token数
+api.tokens = () => {
+  return fetch(urls.getXas, null, 'get')
+}
+// ////////////////////////////
+// 获取区块高度
+// ↑以上为简化版API
 // 获取指定币种账户余额
 api.balance = params => {
   return fetch(urls.balance, params, 'get')

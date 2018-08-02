@@ -6,10 +6,10 @@
       </div>
       <div class="ml-2">
         <div class="text-light-grey text-13">
-          {{state.label}}
+          {{$t(state.label)}}
         </div>
-        <div class="text-black text-14">
-          {{state.value}}
+        <div>
+          <ICountUp :endVal="state.value||0" />
         </div>
       </div>
     </div>
@@ -18,12 +18,14 @@
 
 <script>
 import { QIcon } from 'quasar'
+import ICountUp from 'vue-countup-v2'
 
 export default {
   name: 'StateBanner',
   props: ['stateData'],
   components: {
-    QIcon
+    QIcon,
+    ICountUp
   },
   data() {
     return {}

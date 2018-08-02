@@ -6,6 +6,7 @@ import {
   Platform
 } from 'quasar'
 import moment from 'moment'
+import { BigNumber } from 'bignumber'
 
 // confirm compontent
 export const confirm = (conf, cancel = () => {}, confirm = () => {}) => {
@@ -175,4 +176,45 @@ export const isDesktop = () => {
 }
 export const isCordova = () => {
   return Platform.is.cordova
+}
+
+export const convertFee = (fee, precision = 8) => {
+  if (!fee) {
+    return 0
+  }
+  fee = fee.toString()
+  var clearView = false
+  while (fee.length < (precision + 1)) {
+    fee = '0'.concat(fee)
+  }
+  if (precision !== 0) {
+    fee = fee.slice(0, -precision).concat('.', fee.slice(-precision))
+    while (!clearView) {
+      if (fee[fee.length - 1] === '0') {
+        fee = fee.slice(0, fee.length - 1)
+      } else {
+        clearView = true
+      }
+    }
+  }
+
+  if (fee[fee.length - 1] === '.') {
+    fee = fee.slice(0, fee.length - 1)
+  }
+  return fee
+}
+export const dealBigNumber = num => {
+  let dealNumB = new BigNumber(num)
+  let dealNum = dealNumB.toFormat(0).toString()
+  return dealNum.replace(/,/g, '')
+}
+export const dealGiantNumber = (num, precision) => {
+  let bunch = ''
+  let tail = (function () {
+    for (let i = 0; i < precision; i++) {
+      bunch = bunch + '0'
+    }
+    return bunch
+  })()
+  return num + tail
 }

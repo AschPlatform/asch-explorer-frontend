@@ -18,7 +18,7 @@ import FooterBar from '../components/FooterBar'
 import StateBanner from '../components/StateBanner.vue'
 import { REGEX } from '../utils/constants'
 import { toastError } from '../utils/util'
-
+import { mapGetters, mapActions } from 'vuex'
 export default {
   name: 'MyLayout',
   components: {
@@ -31,10 +31,12 @@ export default {
   },
   data() {
     return {
-      searchForbidden: false
+      searchForbidden: false,
+      intervalStats: null
     }
   },
   methods: {
+    ...mapActions(['getHeight', 'getUsers', 'getXas']),
     openURL,
     doSearch(str) {
       if (this.searchForbidden) return
@@ -57,37 +59,26 @@ export default {
       toastError(this.$t('ERR_INVALID_SEARCH'))
     }
   },
+  mounted() {
+    // init state
+    this.getUsers()
+    this.getXas()
+    this.getHeight()
+
+    // Intervel functions
+    this.intervalStats = setInterval(() => this.getHeight(), 10000)
+  },
   created() {
     this.$root.$on('doSearch', this.doSearch)
   },
   beforeDestroy() {
+    clearInterval(this.intervalStats)
     this.$root.$off('doSearch', this.doSearch)
   },
   computed: {
+    ...mapGetters(['getRunState']),
     stateData() {
-      const t = this.$t
-      return [
-        {
-          icon: 'insert_chart_outlined',
-          value: 591936,
-          label: t('BLOCK_HEIGHT')
-        },
-        {
-          icon: 'bubble_chart',
-          value: 591936,
-          label: t('TOTAL_SUPPLY')
-        },
-        {
-          icon: 'people_outline',
-          value: 591936,
-          label: t('USERS_NUMBER')
-        },
-        {
-          icon: 'bar_chart',
-          value: 591936,
-          label: t('RUNNING_DAYS')
-        }
-      ]
+      return this.getRunState
     }
   }
 }
