@@ -8,7 +8,7 @@
         </div>
       </div>
       <div class="flex mb-4 justify-center">
-        <q-input class="shadow appearance-none border rounded w-1/2 h-12 border-solid border-1 border-black pt-2 pb-2 px-3 text-grey-darker leading-tight"
+        <q-input class="shadow appearance-none border rounded xs:w-4/5 sm:w-1/2 h-12 border-solid border-1 border-black pt-2 pb-2 px-3 text-grey-darker leading-tight"
         v-model="searchStr" @keyup.enter="search" :after="searchIcon"
         type="text" :placeholder="$t('HOME_PLACEHOLDER')" hide-underline	/>
       </div>
