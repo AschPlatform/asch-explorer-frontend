@@ -28,13 +28,14 @@
 import { QPage, QInput } from 'quasar'
 import { mapActions } from 'vuex'
 import aschLogo from '../assets/asch_logo.png'
+import Breadcrumb from '../components/Breadcrumb'
 
 export default {
   name: 'Home',
   components: {
     QPage,
-    QInput
-    // aschLogo
+    QInput,
+    Breadcrumb
   },
   data() {
     return {

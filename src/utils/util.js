@@ -42,7 +42,7 @@ export const prompt = (config, cb = () => {}, cbCancel = () => {}) => {
 export const toast = (message, timeout = 1500) => {
   const type = 'positive'
   const color = 'positive'
-  const position = 'center'
+  const position = 'bottom'
   Notify.create({
     message,
     type,
@@ -55,7 +55,7 @@ export const toast = (message, timeout = 1500) => {
 export const toastError = (message, timeout = 1500) => {
   const type = 'negative'
   const color = 'negative'
-  const position = 'center'
+  const position = 'bottom'
 
   Notify.create({
     message,
@@ -69,7 +69,7 @@ export const toastError = (message, timeout = 1500) => {
 export const toastWarn = (message, timeout = 1500) => {
   const type = 'warning'
   const color = 'warning'
-  const position = 'center'
+  const position = 'bottom'
   Notify.create({
     message,
     type,
