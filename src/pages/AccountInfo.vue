@@ -2,7 +2,7 @@
   <q-page padding class="">
     <breadcrumb />
     <div class=" rounded overflow-hidden">
-      <info-panel  />
+      <info-panel :panelData="panelData" />
     </div>
   </q-page>
 </template>
@@ -39,11 +39,13 @@ export default {
     }
   },
   async mounted() {
-    
+    // let result = await this.getAccount(this.address)
+    // TODO: due with result
+    // console.log(result)
   },
   computed: {
     address() {
-      console.log(this.$route.params)
+      // console.log(this.$route.params)
       return this.$route.params.address || 0
     }
   },

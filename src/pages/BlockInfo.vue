@@ -2,7 +2,7 @@
   <q-page padding class="">
     <breadcrumb />
     <div class=" rounded overflow-hidden">
-      <info-panel  />
+      <info-panel :panelData="panelData" />
     </div>
   </q-page>
 </template>
@@ -25,7 +25,7 @@ export default {
       panelData: [
         {
           label: 'BLOCK_HEIGHT',
-          value: blockHeight,
+          value: this.blockHeight,
           type: 'number'
         },
         {
@@ -56,25 +56,25 @@ export default {
         },
         {
           label: 'PRODUCER_TIME',
-          value: '',
-        },
+          value: ''
+        }
       ]
     }
   },
   async mounted() {
-    let result = await this.getBlockInfo(this.blockHeight)
+    // let result = await this.getBlockInfo(this.blockHeight)
     // TODO: due with result
-    console.log(result, 'result')
+    // console.log(result, 'result')
   },
   computed: {
     blockHeight() {
-      console.log(this.$route.params)
+      // console.log(this.$route.params)
       return this.$route.params.height || 0
     }
   },
   methods: {
     ...mapActions(['getBlockInfo'])
-  },
+  }
 }
 </script>
 

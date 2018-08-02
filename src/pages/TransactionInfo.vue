@@ -2,7 +2,7 @@
   <q-page class="">
     <breadcrumb />
     <div class=" rounded overflow-hidden">
-      <info-panel  />
+      <info-panel :panelData="panelData" />
     </div>
   </q-page>
 </template>
@@ -54,14 +54,14 @@ export default {
         {
           label: 'TRANS_TIME',
           value: ''
-        },
+        }
       ]
     }
   },
   async mounted() {
-    let result = await this.getTransactionInfo(this.tid)
+    // let result = await this.getTransactionInfo(this.tid)
     // TODO: due with result
-    console.log(result)
+    // console.log(result)
   },
   computed: {
     tid() {
