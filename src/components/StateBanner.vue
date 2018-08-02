@@ -9,7 +9,7 @@
           {{state.label}}
         </div>
         <div>
-          {{state.value}}
+          <ICountUp :endVal="state.value||0" />
         </div>
       </div>
     </div>
@@ -18,12 +18,14 @@
 
 <script>
 import { QIcon } from 'quasar'
+import ICountUp from 'vue-countup-v2'
 
 export default {
   name: 'StateBanner',
   props: ['stateData'],
   components: {
-    QIcon
+    QIcon,
+    ICountUp
   },
   data() {
     return {}
