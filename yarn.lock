@@ -1782,6 +1782,10 @@ cosmiconfig@^5.0.0:
     js-yaml "^3.9.0"
     parse-json "^4.0.0"
 
+countup.js@^1.9.3:
+  version "1.9.3"
+  resolved "http://registry.npm.taobao.org/countup.js/download/countup.js-1.9.3.tgz#ce3e50cd7160441e478f07da31895edcc0f1c9dd"
+
 create-ecdh@^4.0.0:
   version "4.0.3"
   resolved "http://registry.npm.taobao.org/create-ecdh/download/create-ecdh-4.0.3.tgz#c9111b6f33045c4697f144787f9254cdc77c45ff"
@@ -3926,7 +3930,7 @@ lodash@^3.3.1:
   version "3.10.1"
   resolved "http://registry.npm.taobao.org/lodash/download/lodash-3.10.1.tgz#5bf45e8e49ba4189e17d482789dfd15bd140b7b6"
 
-lodash@^4.17.10, lodash@^4.17.3, lodash@^4.17.4, lodash@^4.17.5, lodash@^4.2.0, lodash@^4.3.0:
+lodash@^4.17.10, lodash@^4.17.3, lodash@^4.17.4, lodash@^4.17.5, lodash@^4.2.0, lodash@^4.3.0, lodash@latest:
   version "4.17.10"
   resolved "http://registry.npm.taobao.org/lodash/download/lodash-4.17.10.tgz#1b7793cf7259ea38fb3661d4d38b3260af8ae4e7"
 
@@ -4192,6 +4196,10 @@ mkdirp@0.5.1, mkdirp@0.5.x, mkdirp@^0.5.0, mkdirp@^0.5.1, mkdirp@~0.5.0, mkdirp@
   resolved "http://registry.npm.taobao.org/mkdirp/download/mkdirp-0.5.1.tgz#30057438eac6cf7f8c4767f38648d6697d75c903"
   dependencies:
     minimist "0.0.8"
+
+moment@^2.22.2:
+  version "2.22.2"
+  resolved "http://registry.npm.taobao.org/moment/download/moment-2.22.2.tgz#3c257f9839fc0e93ff53149632239eb90783ff66"
 
 move-concurrently@^1.0.1:
   version "1.0.1"
@@ -6047,7 +6055,7 @@ string_decoder@~0.10.x:
   version "0.10.31"
   resolved "http://registry.npm.taobao.org/string_decoder/download/string_decoder-0.10.31.tgz#62e203bc41766c6c28c9fc84301dab1c5310fa94"
 
-strip-ansi@^3.0.0, strip-ansi@^3.0.1:
+strip-ansi@=3.0.1, strip-ansi@^3.0.0, strip-ansi@^3.0.1:
   version "3.0.1"
   resolved "http://registry.npm.taobao.org/strip-ansi/download/strip-ansi-3.0.1.tgz#6a385fb8853d952d5ff05d0e8aaf94278dc63dcf"
   dependencies:
@@ -6505,6 +6513,12 @@ vm-browserify@0.0.4:
   dependencies:
     indexof "0.0.1"
 
+vue-countup-v2@^1.0.3:
+  version "1.0.3"
+  resolved "http://registry.npm.taobao.org/vue-countup-v2/download/vue-countup-v2-1.0.3.tgz#8e64d9be34dbe16e2dafe694a6973005251de362"
+  dependencies:
+    lodash latest
+
 vue-eslint-parser@^2.0.3:
   version "2.0.3"
   resolved "http://registry.npm.taobao.org/vue-eslint-parser/download/vue-eslint-parser-2.0.3.tgz#c268c96c6d94cfe3d938a5f7593959b0ca3360d1"
@@ -6943,3 +6957,7 @@ yargs@11.0.0:
     which-module "^2.0.0"
     y18n "^3.2.1"
     yargs-parser "^9.0.2"
+
+yarn@^1.9.2:
+  version "1.9.2"
+  resolved "http://r.cnpmjs.org/yarn/download/yarn-1.9.2.tgz#7666c6db0fed8dc090ae0dce11a8a28b1d82e391"
