@@ -18,7 +18,7 @@ import FooterBar from '../components/FooterBar'
 import StateBanner from '../components/StateBanner.vue'
 import { REGEX } from '../utils/constants'
 import { toastError } from '../utils/util'
-
+import { mapGetters } from 'vuex'
 export default {
   name: 'MyLayout',
   components: {
@@ -66,28 +66,7 @@ export default {
   computed: {
     stateData() {
       const t = this.$t
-      return [
-        {
-          icon: 'insert_chart_outlined',
-          value: 591936,
-          label: t('BLOCK_HEIGHT')
-        },
-        {
-          icon: 'bubble_chart',
-          value: 591936,
-          label: t('TOTAL_SUPPLY')
-        },
-        {
-          icon: 'people_outline',
-          value: 591936,
-          label: t('USERS_NUMBER')
-        },
-        {
-          icon: 'bar_chart',
-          value: 591936,
-          label: t('RUNNING_DAYS')
-        }
-      ]
+      return 
     }
   }
 }
