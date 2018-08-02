@@ -8,5 +8,11 @@ export default {
     state
   }, address) => {
     return api.account(address)
+  },
+  getRunState: ({
+    commit,
+    state
+  }) => {
+    return api.account()
   }
 }

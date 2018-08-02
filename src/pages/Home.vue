@@ -1,6 +1,6 @@
 <template>
   <q-page padding class="flex items-center">
-    <div class="block w-full mb-1">
+    <div class="block w-full mb-32 xs:mb-0 sm:mb-32">
       <div class="flex justify-center mb-10">
         <div class="w-64">
           <img class="w-full"  :src="aschLogo" alt="">
@@ -26,13 +26,15 @@ import { QPage, QInput } from 'quasar'
 import { mapActions } from 'vuex'
 import aschLogo from '../assets/asch_logo.png'
 import StateBanner from '../components/StateBanner.vue'
+import Breadcrumb from '../components/Breadcrumb'
 
 export default {
   name: 'Home',
   components: {
     QPage,
     QInput,
-    StateBanner
+    StateBanner,
+    Breadcrumb
   },
   data() {
     return {

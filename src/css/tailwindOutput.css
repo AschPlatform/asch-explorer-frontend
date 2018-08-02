@@ -857,6 +857,10 @@
   border-right-color: #b8c2cc;
 }
 
+.border-r-transparent {
+  border-right-color: transparent !important;
+}
+
 .border-transparent {
   border-color: transparent;
 }
@@ -4033,6 +4037,10 @@
 
 .text-black-dark {
   color: #333333;
+}
+
+.text-black-absolute {
+  color: #000000;
 }
 
 .text-blue-dark {
@@ -9612,6 +9620,12 @@
   .sm\:bg-contain {
     background-size: contain;
   }
+
+  .sm\:border-r-grey-1 {
+    border: 1px solid transparent;
+    border-right-color: #b8c2cc;
+  }
+  
   .sm\:border-transparent {
     border-color: transparent;
   }

@@ -1,0 +1,69 @@
+<template>
+  <div class="flex flex-wrap justify-center items-center w-full h-16 xs:h-32 sm:h-16">
+    <div class="asch-logo h-8 mr-8">
+      <img class="h-full" :src="aschLogo" alt="">
+    </div>
+    <div class="search-container w-1/2 h-1/2 xs:w-5/6 sm:w-1/2">
+      <q-input class="shadow appearance-none border rounded w-full h-full border-solid border-1 border-black pt-2 pb-2 px-3 text-grey-darker leading-tight" v-model="searchStr" @keyup.enter="search" :after="searchIcon" type="text" :placeholder="$t('HOME_PLACEHOLDER')"
+        hide-underline />
+    </div>
+    <div class="desktop-only flex xs:w-1/2 sm:w-1/2 md:w-1/4 lg:w-1/4 justify-center items-center h-16">
+      <div>
+        <q-icon class="text-5xl" name="insert_chart_outlined" />
+      </div>
+      <div class="ml-2">
+        <div class="text-light-grey text-13">
+          {{$t('BLOCK_HEIGHT')}}
+        </div>
+        <div class="text-14 text-black-absolute">
+          <ICountUp :endVal="blockHeight||0" />
+        </div>
+      </div>
+    </div>
+  </div>
+</template>
+
+<script>
+import { QInput, QIcon } from 'quasar'
+import aschLogo from '../assets/asch_logo.png'
+import ICountUp from 'vue-countup-v2'
+
+export default {
+  name: 'SearchBanner',
+  components: {
+    QInput,
+    QIcon,
+    ICountUp
+  },
+  data() {
+    return {
+      searchStr: '',
+      aschLogo,
+      blockHeight: 56789432
+    }
+  },
+  methods: {
+    search() {
+      this.$root.$emit('doSearch', this.searchStr)
+    }
+  },
+  computed: {
+    searchIcon() {
+      return [
+        {
+          icon: 'search',
+          // required function to call when
+          // icon is clicked/tapped
+          handler: () => this.$root.$emit('doSearch', this.searchStr),
+          // Optional. Show icon button
+          // if model has a value
+          content: true
+        }
+      ]
+    }
+  }
+}
+</script>
+
+<style lang="stylus" scoped>
+</style>

@@ -1,7 +1,8 @@
 <template>
   <q-layout view="lHh Lpr lFf">
     <q-layout-header>
-      <state-banner class="desktop-only"  :stateData="stateData" />
+      <state-banner v-show="isHome" class="desktop-only"  :stateData="stateData" />
+      <search-banner v-show="!isHome"/>
     </q-layout-header>
     <q-page-container>
       <router-view />
@@ -16,9 +17,10 @@
 import { openURL, QLayout, QLayoutHeader, QPageContainer, QLayoutFooter } from 'quasar'
 import FooterBar from '../components/FooterBar'
 import StateBanner from '../components/StateBanner.vue'
+import SearchBanner from '../components/SearchBanner.vue'
 import { REGEX } from '../utils/constants'
 import { toastError } from '../utils/util'
-
+// import { mapGetters } from 'vuex'
 export default {
   name: 'MyLayout',
   components: {
@@ -27,11 +29,13 @@ export default {
     QPageContainer,
     QLayoutFooter,
     FooterBar,
-    StateBanner
+    StateBanner,
+    SearchBanner
   },
   data() {
     return {
-      searchForbidden: false
+      searchForbidden: false,
+      isHomeFlg: true
     }
   },
   methods: {
@@ -64,6 +68,9 @@ export default {
     this.$root.$off('doSearch', this.doSearch)
   },
   computed: {
+    isHome() {
+      return this.$route.name === 'home' ? this.isHomeFlg : !this.isHomeFlg
+    },
     stateData() {
       const t = this.$t
       return [

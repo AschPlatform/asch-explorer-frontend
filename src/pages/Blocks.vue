@@ -1,7 +1,8 @@
 <template>
   <q-page class="flex flex-center">
+    <breadcrumb />
     <div class="">
-    Blocks
+      Blocks
     </div>
   </q-page>
 </template>
@@ -11,11 +12,13 @@
 
 <script>
 import { QPage } from 'quasar'
+import Breadcrumb from '../components/Breadcrumb'
 
 export default {
   name: 'Blocks',
   components: {
-    QPage
+    QPage,
+    Breadcrumb
   }
 }
 </script>
