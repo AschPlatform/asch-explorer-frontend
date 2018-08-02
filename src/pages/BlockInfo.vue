@@ -1,7 +1,11 @@
 <template>
   <q-page padding class="">
     <breadcrumb />
+
     <div class=" rounded overflow-hidden">
+      <div class="">
+        {{this.$t('BLOCK_INFO')}}
+      </div>
       <info-panel  />
     </div>
   </q-page>

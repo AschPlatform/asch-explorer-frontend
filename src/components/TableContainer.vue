@@ -1,8 +1,9 @@
 <template>
 </template>
 <script>
+import { QTable, QTr, QTableColumns } from 'quasar'
 export default {
-  name: 'TableContainer',
+  name: 'TableContaine',
   data() {
     return {}
   }

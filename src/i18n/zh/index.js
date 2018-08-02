@@ -15,8 +15,7 @@ const lang = {
   LANGUAGE_CONTEXT: '语言环境:',
   LANGUAGE_ZH: '中文',
   LANGUAGE_EN: 'English',
-
-  // panel
+  // block
   BLOCK: '区块',
   PRODUCER: '锻造者',
   FORGE_REWARD: '锻造奖励',
@@ -25,7 +24,7 @@ const lang = {
   PRODUCER_TIME: '出块时间',
   PRE_BLOCK: '前一个块',
   ADDRESS: '地址',
-
+  BLOCK_INFO: '区块信息概览',
   // tips
   TIPS_COPY_SUCCESS: '复制成功',
   // errorS
