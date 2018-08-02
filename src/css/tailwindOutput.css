@@ -5207,7 +5207,7 @@
     background-color: transparent;
   }
   .xs\:bg-black {
-    background-color: #22292f;
+    background-color: #22292f!important;
   }
   .xs\:bg-grey-darkest {
     background-color: #3d4852;

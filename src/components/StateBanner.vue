@@ -1,6 +1,6 @@
 <template>
   <div class="flex flex-wrap">
-    <div class="flex xs:w-1/2 sm:w-1/2 md:w-1/4 lg:w-1/4 justify-center items-center h-16 border-r-grey-1" v-for="(state,idx) in stateData" :key="idx">
+    <div class="flex xs:w-1/2 sm:w-1/2 md:w-1/4 lg:w-1/4 justify-center items-center h-16 border-r-grey-1 xs:border-none" v-for="(state,idx) in stateData" :key="idx">
       <div>
         <q-icon class="text-5xl" :name="state.icon" />
       </div>

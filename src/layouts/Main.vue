@@ -1,7 +1,7 @@
 <template>
   <q-layout view="lHh Lpr lFf">
     <q-layout-header>
-      <state-banner  :stateData="stateData" />
+      <state-banner class="desktop-only"  :stateData="stateData" />
     </q-layout-header>
     <q-page-container>
       <router-view />
