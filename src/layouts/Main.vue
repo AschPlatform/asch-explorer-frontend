@@ -18,7 +18,7 @@ import FooterBar from '../components/FooterBar'
 import StateBanner from '../components/StateBanner.vue'
 import { REGEX } from '../utils/constants'
 import { toastError } from '../utils/util'
-import { mapGetters } from 'vuex'
+// import { mapGetters } from 'vuex'
 export default {
   name: 'MyLayout',
   components: {
@@ -65,8 +65,7 @@ export default {
   },
   computed: {
     stateData() {
-      const t = this.$t
-      return 
+      return {}
     }
   }
 }
