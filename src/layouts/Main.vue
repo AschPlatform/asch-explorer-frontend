@@ -1,7 +1,7 @@
 <template>
   <q-layout view="lHh Lpr lFf">
     <q-layout-header>
-      <state-banner  :stateData="stateData" />
+      <state-banner  :stateData="getRunState" />
     </q-layout-header>
     <q-page-container>
       <router-view />
@@ -76,10 +76,7 @@ export default {
     this.$root.$off('doSearch', this.doSearch)
   },
   computed: {
-    ...mapGetters(['getRunState']),
-    stateData() {
-      return this.getRunState
-    }
+    ...mapGetters(['getRunState'])
   }
 }
 </script>
