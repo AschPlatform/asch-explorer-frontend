@@ -17,7 +17,8 @@ const lang = {
   LANGUAGE_EN: 'English',
 
   // panel
-  BLOCK: '区块ID',
+  BLOCK: '区块',
+  BLOCK_ID: '区块ID',
   PRODUCER: '锻造者',
   FORGE_REWARD: '锻造奖励',
   TRANS_NUM: '交易次数',
@@ -33,7 +34,7 @@ const lang = {
   TRANS_TIME: '交易时间',
 
   // accountInfo
-  NICK: '昵称',
+  NICKNAME: '昵称',
   ACCOUNT_LEFT: '账户余额',
   ACCOUNT_ADDRESS: '账户地址',
 

@@ -24,7 +24,7 @@ export default {
     return {
       panelData: [
         {
-          label: 'NICK',
+          label: 'NICKNAME',
           value: ''
         },
         {

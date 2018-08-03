@@ -63,7 +63,7 @@ export default {
           type: 'number'
         },
         {
-          label: 'BLOCK',
+          label: 'BLOCK_ID',
           value: this.block
         },
         {
