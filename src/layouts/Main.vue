@@ -62,6 +62,7 @@ export default {
       }
       toastError(this.$t('ERR_INVALID_SEARCH'))
     },
+    // Set the language when you refresh
     setLang() {
       if (window.localStorage && window.localStorage.getItem('lang')) {
         let lang = window.localStorage.getItem('lang')
