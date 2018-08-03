@@ -3,17 +3,17 @@ export default {
     const runState = state.runState
     return [{
         icon: 'insert_chart_outlined',
-        value: runState.blockHeight,
+        value: Number(runState.blockHeight),
         label: 'BLOCK_HEIGHT'
       },
       {
         icon: 'bubble_chart',
-        value: runState.totalSupply,
+        value: Number(runState.totalSupply),
         label: 'TOTAL_SUPPLY'
       },
       {
         icon: 'people_outline',
-        value: runState.accountCount,
+        value: Number(runState.accountCount),
         label: 'USERS_NUMBER'
       },
       {

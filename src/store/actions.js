@@ -39,7 +39,7 @@ export default {
     commit,
     state
   }, height) => {
-    return api.blocksDetail(height)
+    return api.blockDetail(height)
   },
   // 获取交易列表
   getTransactions: ({
