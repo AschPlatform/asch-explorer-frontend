@@ -1,6 +1,7 @@
 <template>
   <q-page padding class="">
     <breadcrumb />
+    <table-container :type="'trans'" :params="params" />
 
     <div class=" rounded overflow-hidden">
       <div class="">
@@ -18,6 +19,7 @@
 import { QPage } from 'quasar'
 import Breadcrumb from '../components/Breadcrumb'
 import InfoPanel from '../components/InfoPanel'
+import TableContainer from '../components/TableContainer'
 
 export default {
   name: 'BlockInfo',
@@ -25,6 +27,14 @@ export default {
     QPage,
     Breadcrumb,
     InfoPanel
+  },
+  computed: {
+    params() {
+      let height = this.$route.params.height
+      let params = { height }
+      // diffrent params in table list
+      return params
+    }
   }
 }
 </script>

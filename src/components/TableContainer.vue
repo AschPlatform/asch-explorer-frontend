@@ -51,10 +51,11 @@ import { mapActions } from 'vuex'
 
 export default {
   name: 'TableContaine',
-  props: ['type'],
+  props: ['type', 'params'],
   components: {
     QTable,
-    QTr
+    QTr,
+    QTd
   },
   data() {
     return {
@@ -82,14 +83,16 @@ export default {
         offset: (pageNo - 1) * limit
       }
       if (this.type === 'trans') {
-        condition.senderId = this.address
-        res = await this.getTransactions(condition)
-      } else if(this.type === 'block'){
-        condition.height = this.height
-        res = await this.getTransactions(condition)
+        // trans type with address
+        // TODO nickname support
+        condition.senderId = this.params.address
+      } else if (this.type === 'block') {
+        // block table
+        condition.height = this.params.height
       }
-
-      this.datas = res
+      res = await this.getTransactions(condition)
+      this.datas = res.transactions
+      this.pagination.rowsNumber = res.count
     }
   },
   computed: {
