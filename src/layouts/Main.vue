@@ -1,7 +1,7 @@
 <template>
   <q-layout view="lHh Lpr lFf">
     <q-layout-header>
-      <state-banner  :stateData="stateData" />
+      <state-banner  :stateData="getRunState" />
     </q-layout-header>
     <q-page-container>
       <router-view />
@@ -18,7 +18,7 @@ import FooterBar from '../components/FooterBar'
 import StateBanner from '../components/StateBanner.vue'
 import { REGEX } from '../utils/constants'
 import { toastError } from '../utils/util'
-// import { mapGetters } from 'vuex'
+import { mapGetters, mapActions } from 'vuex'
 export default {
   name: 'MyLayout',
   components: {
@@ -31,10 +31,12 @@ export default {
   },
   data() {
     return {
-      searchForbidden: false
+      searchForbidden: false,
+      intervalStats: null
     }
   },
   methods: {
+    ...mapActions(['getHeight', 'getUsers', 'getXas']),
     openURL,
     doSearch(str) {
       if (this.searchForbidden) return
@@ -57,16 +59,24 @@ export default {
       toastError(this.$t('ERR_INVALID_SEARCH'))
     }
   },
+  mounted() {
+    // init state
+    this.getUsers()
+    this.getXas()
+    this.getHeight()
+
+    // Intervel functions
+    this.intervalStats = setInterval(() => this.getHeight(), 10000)
+  },
   created() {
     this.$root.$on('doSearch', this.doSearch)
   },
   beforeDestroy() {
+    clearInterval(this.intervalStats)
     this.$root.$off('doSearch', this.doSearch)
   },
   computed: {
-    stateData() {
-      return {}
-    }
+    ...mapGetters(['getRunState'])
   }
 }
 </script>

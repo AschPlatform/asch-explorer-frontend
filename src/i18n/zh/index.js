@@ -25,9 +25,23 @@ const lang = {
   PRE_BLOCK: '前一个块',
   ADDRESS: '地址',
   BLOCK_INFO: '区块信息概览',
+
+  // trans
+  TRANS: '交易',
+  TRANS_SENDER: '发送者',
+  TRANS_TYPE: '交易类型',
+  TRANS_RECRIVER: '接受者',
+  TRANS_TIME: '时间',
+  AMOUNT: '金额',
+  FEE: '手续费',
   // tips
   TIPS_COPY_SUCCESS: '复制成功',
+
   // errorS
-  ERR_INVALID_SEARCH: '查询条件无效'
+  ERR_INVALID_SEARCH: '查询条件无效',
+
+  // table type
+  TRANS_TITLE: '交易记录',
+  BLOCK_TITLE: '区块记录'
 }
 export default lang
