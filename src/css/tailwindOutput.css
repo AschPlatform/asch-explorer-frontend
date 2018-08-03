@@ -857,6 +857,10 @@
   border-right-color: #b8c2cc;
 }
 
+.border-r-transparent {
+  border-right-color: transparent !important;
+}
+
 .border-transparent {
   border-color: transparent;
 }
@@ -4035,6 +4039,10 @@
   color: #333333;
 }
 
+.text-black-absolute {
+  color: #000000;
+}
+
 .text-blue-dark {
   color: #0033ff;
 }
@@ -5207,7 +5215,7 @@
     background-color: transparent;
   }
   .xs\:bg-black {
-    background-color: #22292f;
+    background-color: #22292f!important;
   }
   .xs\:bg-grey-darkest {
     background-color: #3d4852;
@@ -9612,6 +9620,12 @@
   .sm\:bg-contain {
     background-size: contain;
   }
+
+  .sm\:border-r-grey-1 {
+    border: 1px solid transparent;
+    border-right-color: #b8c2cc;
+  }
+  
   .sm\:border-transparent {
     border-color: transparent;
   }
