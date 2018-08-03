@@ -1,14 +1,13 @@
 <template>
   <q-page padding class="flex items-center">
-    <div class="block w-full mb-32">
+    <div class="block w-full mb-32 xs:mb-0 sm:mb-32">
       <div class="flex justify-center mb-10">
-        <!-- LOGO -->
         <div class="w-64">
           <img class="w-full"  :src="aschLogo" alt="">
         </div>
       </div>
       <div class="flex mb-4 justify-center">
-        <q-input class="shadow appearance-none border rounded xs:w-4/5 sm:w-1/2 h-12 border-solid border-1 border-black pt-2 pb-2 px-3 text-grey-darker leading-tight"
+        <q-input class="shadow appearance-none border rounded xs:w-5/6 sm:w-1/2 h-12 border-solid border-1 border-black pt-2 pb-2 px-3 text-grey-darker leading-tight"
         v-model="searchStr" @keyup.enter="search" :after="searchIcon"
         type="text" :placeholder="$t('HOME_PLACEHOLDER')" hide-underline	/>
       </div>
@@ -18,16 +17,15 @@
           <button class="border-none bg-transparent text-blue-dark hover:text-blue text-13 cursor-pointer" @click="changeLang('en')">{{$t('LANGUAGE_EN')}}</button>
       </div>
     </div>
+    <state-banner class="mobile-only mb-8" :stateData="stateData" />
   </q-page>
 </template>
-
-<style>
-</style>
 
 <script>
 import { QPage, QInput } from 'quasar'
 import { mapActions } from 'vuex'
 import aschLogo from '../assets/asch_logo.png'
+import StateBanner from '../components/StateBanner.vue'
 import Breadcrumb from '../components/Breadcrumb'
 
 export default {
@@ -35,6 +33,7 @@ export default {
   components: {
     QPage,
     QInput,
+    StateBanner,
     Breadcrumb
   },
   data() {
@@ -70,7 +69,35 @@ export default {
           content: true
         }
       ]
+    },
+    stateData() {
+      const t = this.$t
+      return [
+        {
+          icon: 'insert_chart_outlined',
+          value: 591936,
+          label: t('BLOCK_HEIGHT')
+        },
+        {
+          icon: 'bubble_chart',
+          value: 591936,
+          label: t('TOTAL_SUPPLY')
+        },
+        {
+          icon: 'people_outline',
+          value: 591936,
+          label: t('USERS_NUMBER')
+        },
+        {
+          icon: 'bar_chart',
+          value: 591936,
+          label: t('RUNNING_DAYS')
+        }
+      ]
     }
   }
 }
 </script>
+
+<style>
+</style>
