@@ -65,7 +65,6 @@ export default {
     setLang() {
       if (window.localStorage && window.localStorage.getItem('lang')) {
         let lang = window.localStorage.getItem('lang')
-        console.log(lang)
         this.$i18n.locale = lang
         this.$store.commit('SET_LANG', lang)
       }
