@@ -27,6 +27,7 @@ import { mapActions } from 'vuex'
 import aschLogo from '../assets/asch_logo.png'
 import StateBanner from '../components/StateBanner.vue'
 import Breadcrumb from '../components/Breadcrumb'
+import { setCache } from '../utils/util'
 
 export default {
   name: 'Home',
@@ -53,7 +54,8 @@ export default {
       this.$i18n.locale = lan
       this.$store.commit('SET_LANG', this.$i18n.locale)
       if (window.localStorage) {
-        window.localStorage.setItem('lang', this.$i18n.locale)
+        setCache('lang', this.$i18n.locale)
+        // window.localStorage.setItem('lang', this.$i18n.locale)
       }
     }
   },
