@@ -19,7 +19,7 @@ import FooterBar from '../components/FooterBar'
 import StateBanner from '../components/StateBanner.vue'
 import SearchBanner from '../components/SearchBanner.vue'
 import { REGEX } from '../utils/constants'
-import { toastError } from '../utils/util'
+import { toastError, getCache } from '../utils/util'
 import { mapGetters, mapActions } from 'vuex'
 export default {
   name: 'MyLayout',
@@ -61,6 +61,14 @@ export default {
         return
       }
       toastError(this.$t('ERR_INVALID_SEARCH'))
+    },
+    // Set the language when you refresh
+    setLang() {
+      if (window.localStorage && getCache('lang')) {
+        let lang = getCache('lang')
+        this.$i18n.locale = lang
+        this.$store.commit('SET_LANG', lang)
+      }
     }
   },
   mounted() {
@@ -68,6 +76,7 @@ export default {
     this.getUsers()
     this.getXas()
     this.getHeight()
+    this.setLang()
 
     // Intervel functions
     this.intervalStats = setInterval(() => this.getHeight(), 10000)
