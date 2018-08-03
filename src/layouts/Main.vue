@@ -1,7 +1,7 @@
 <template>
   <q-layout view="lHh Lpr lFf">
     <q-layout-header>
-      <state-banner v-show="isHome" class="desktop-only"  :stateData="stateData" />
+      <state-banner v-show="isHome" class="desktop-only"  :stateData="getRunState" />
       <search-banner v-show="!isHome"/>
     </q-layout-header>
     <q-page-container>
@@ -20,7 +20,7 @@ import StateBanner from '../components/StateBanner.vue'
 import SearchBanner from '../components/SearchBanner.vue'
 import { REGEX } from '../utils/constants'
 import { toastError } from '../utils/util'
-// import { mapGetters } from 'vuex'
+import { mapGetters, mapActions } from 'vuex'
 export default {
   name: 'MyLayout',
   components: {
@@ -35,10 +35,12 @@ export default {
   data() {
     return {
       searchForbidden: false,
-      isHomeFlg: true
+      isHomeFlg: true,
+      intervalStats: null
     }
   },
   methods: {
+    ...mapActions(['getHeight', 'getUsers', 'getXas']),
     openURL,
     doSearch(str) {
       if (this.searchForbidden) return
@@ -61,40 +63,26 @@ export default {
       toastError(this.$t('ERR_INVALID_SEARCH'))
     }
   },
+  mounted() {
+    // init state
+    this.getUsers()
+    this.getXas()
+    this.getHeight()
+
+    // Intervel functions
+    this.intervalStats = setInterval(() => this.getHeight(), 10000)
+  },
   created() {
     this.$root.$on('doSearch', this.doSearch)
   },
   beforeDestroy() {
+    clearInterval(this.intervalStats)
     this.$root.$off('doSearch', this.doSearch)
   },
   computed: {
+    ...mapGetters(['getRunState']),
     isHome() {
       return this.$route.name === 'home' ? this.isHomeFlg : !this.isHomeFlg
-    },
-    stateData() {
-      const t = this.$t
-      return [
-        {
-          icon: 'insert_chart_outlined',
-          value: 591936,
-          label: t('BLOCK_HEIGHT')
-        },
-        {
-          icon: 'bubble_chart',
-          value: 591936,
-          label: t('TOTAL_SUPPLY')
-        },
-        {
-          icon: 'people_outline',
-          value: 591936,
-          label: t('USERS_NUMBER')
-        },
-        {
-          icon: 'bar_chart',
-          value: 591936,
-          label: t('RUNNING_DAYS')
-        }
-      ]
     }
   }
 }
