@@ -22,7 +22,8 @@ export default {
   components: {
     QPage,
     Breadcrumb,
-    InfoPanel
+    InfoPanel,
+    TableContainer
   },
   data() {
     return {
