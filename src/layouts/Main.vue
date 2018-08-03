@@ -61,6 +61,14 @@ export default {
         return
       }
       toastError(this.$t('ERR_INVALID_SEARCH'))
+    },
+    setLang() {
+      if (window.localStorage && window.localStorage.getItem('lang')) {
+        let lang = window.localStorage.getItem('lang')
+        console.log(lang)
+        this.$i18n.locale = lang
+        this.$store.commit('SET_LANG', lang)
+      }
     }
   },
   mounted() {
@@ -68,6 +76,7 @@ export default {
     this.getUsers()
     this.getXas()
     this.getHeight()
+    this.setLang()
 
     // Intervel functions
     this.intervalStats = setInterval(() => this.getHeight(), 10000)
