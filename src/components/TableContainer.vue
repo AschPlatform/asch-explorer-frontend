@@ -5,13 +5,13 @@
         <span class="text-italic">{{ props.row.id }}</span>
       </q-td>
       <q-td v-if="props.row.type" key="type" :props="props" >
-        <span class="text-italic">{{ props.row.type }}</span>
+        <span class="text-italic">{{ getTransType(props.row) }}</span>
       </q-td>
       <q-td v-if="props.row.senderId" key="senderId" :props="props" >
         <span class="text-italic">{{ props.row.senderId }}</span>
       </q-td>
-      <q-td v-if="props.row.recipientId" key="recipientId" :props="props" >
-        <span class="text-italic">{{ props.row.recipientId }}</span>
+      <q-td v-if="props.row.args" key="recipientId" :props="props" >
+        <span class="text-italic">{{ getRecipient(props.row) }}</span>
       </q-td>
       <q-td v-if="props.row.amount" key="amount" :props="props" >
         <span class="text-italic">{{ props.row.amount }}</span>
@@ -48,6 +48,7 @@
 <script>
 import { QTable, QTr, QTd } from 'quasar'
 import { mapActions } from 'vuex'
+import { transTypes } from '../utils/constants'
 
 export default {
   name: 'TableContaine',
@@ -93,6 +94,30 @@ export default {
       res = await this.getTransactions(condition)
       this.datas = res.transactions
       this.pagination.rowsNumber = res.count
+    },
+    // get locale trans type
+    getTransType(trans) {
+      const { type, args } = trans
+      let currencySymbol = 'XAS'
+      let transType = this.$t(transTypes[type])
+      // type that need fill with currency symbol
+      const filterTransType = [1, 103]
+      if (filterTransType.indexOf(type) >= 0) {
+        if (args && args.length === 3) currencySymbol = args[1]
+        return currencySymbol + ' ' + transType
+      } else {
+        return transType
+      }
+    },
+    getRecipient(trans) {
+      const { args } = trans
+      const len = args.length
+      return args[len - 1]
+    },
+    getAmount(trans) {
+      const { args } = trans
+      const len = args.length
+      return args[len - 2]
     }
   },
   computed: {
