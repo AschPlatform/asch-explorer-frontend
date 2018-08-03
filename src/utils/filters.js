@@ -55,6 +55,13 @@ const filters = {
   formatTimestamp: (timestamp) => {
     let time = new Date(timestamp).getTime()
     return moment(time).format('YYYY/MM/DD HH:mm:ss')
+  },
+  eclipse: (str, num = 5) => {
+    if (num > 0 && num < Math.floor(str.length / 2)) {
+      return str.slice(0, num) + '...' + str.slice(-num)
+    } else {
+      return str
+    }
   }
 }
 export default filters
