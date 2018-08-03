@@ -9,7 +9,7 @@
           {{$t(state.label)}}
         </div>
         <div class="text-14 text-black-absolute">
-          <ICountUp :endVal="state.value||0" />
+          <ICountUp :endVal="Number(state.value)||0" />
         </div>
       </div>
     </div>

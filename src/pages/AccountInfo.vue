@@ -3,6 +3,8 @@
     <breadcrumb />
     <div class=" rounded overflow-hidden">
       <info-panel :panelData="panelData" />
+          <table-container :type="'trans'" :params="params" />
+
     </div>
   </q-page>
 </template>
@@ -11,6 +13,8 @@
 import { QPage } from 'quasar'
 import Breadcrumb from '../components/Breadcrumb'
 import InfoPanel from '../components/InfoPanel'
+import TableContainer from '../components/TableContainer'
+
 import { mapActions } from 'vuex'
 
 export default {
@@ -18,7 +22,8 @@ export default {
   components: {
     QPage,
     Breadcrumb,
-    InfoPanel
+    InfoPanel,
+    TableContainer
   },
   data() {
     return {
@@ -38,11 +43,19 @@ export default {
       ]
     }
   },
-  async mounted() {
-  },
+  async mounted() {},
   computed: {
     address() {
       return this.$route.params.address || 0
+    },
+    params() {
+      let address = this.$route.params.address
+      let nickname = this.$route.params.nickname
+      let params = {}
+      // diffrent params in table list
+      if (address) params.address = address
+      if (nickname) params.nickname = nickname
+      return params
     }
   },
   methods: {
@@ -52,5 +65,4 @@ export default {
 </script>
 
 <style scoped>
-
 </style>
