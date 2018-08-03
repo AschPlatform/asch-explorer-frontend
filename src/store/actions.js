@@ -25,7 +25,7 @@ export default {
   },
   // 获取区块详情
   getBlockInfo: ({commit, state}, height) => {
-    return api.blocksDetail(height)
+    return api.blockDetail(height)
   },
   // 获取交易列表
   getTransactions: ({commit, state}, params) => {
