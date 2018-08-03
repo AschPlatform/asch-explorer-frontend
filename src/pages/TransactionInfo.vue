@@ -41,7 +41,6 @@ export default {
     let result = await this.getTransactionInfo({
       tid: this.tid
     })
-    console.log(result)
     if (result.success) {
       this.transSender = result.transaction.senderId
       this.transReceiver = result.transaction.generatorPublicKey
@@ -57,7 +56,6 @@ export default {
       return this.$route.params.id || 0
     },
     transType() {
-      console.log(transTypes[this.transID])
       return transTypes[this.transID]
     },
     panelData() {
