@@ -25,6 +25,7 @@ const lang = {
   PRODUCER_TIME: '出块时间',
   PRE_BLOCK: '前一个块',
   ADDRESS: '地址',
+  BLOCK_INFO: '区块信息概览',
 
   // transactionsInfo
   SENDER: '发送者',
@@ -40,7 +41,12 @@ const lang = {
 
   // tips
   TIPS_COPY_SUCCESS: '复制成功',
+
   // errorS
-  ERR_INVALID_SEARCH: '查询条件无效'
+  ERR_INVALID_SEARCH: '查询条件无效',
+
+  // table type
+  TRANS_TITLE: '交易记录',
+  BLOCK_TITLE: '区块记录'
 }
 export default lang
