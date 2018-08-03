@@ -24,5 +24,8 @@ export default {
         label: 'RUNNING_DAYS'
       }
     ]
+  },
+  blockHeight: state => {
+    return state.runState.blockHeight
   }
 }
