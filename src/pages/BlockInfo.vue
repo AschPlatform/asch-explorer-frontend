@@ -12,7 +12,6 @@
 </template>
 
 <script>
-/* eslint-disable */
 import { QPage } from 'quasar'
 import Breadcrumb from '../components/Breadcrumb'
 import InfoPanel from '../components/InfoPanel'
@@ -40,7 +39,6 @@ export default {
     let result = await this.getBlockInfo({
       height: this.blockHeight
     })
-    let obj = this.panelData
     if (result.success) {
       this.block = result.block.id
       this.producer = result.block.generatorPublicKey

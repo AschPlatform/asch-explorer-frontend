@@ -59,9 +59,6 @@ export default {
     }
   },
   async mounted() {
-    // let result = await this.getTransactionInfo(this.tid)
-    // TODO: due with result
-    // console.log(result)
   },
   computed: {
     tid() {

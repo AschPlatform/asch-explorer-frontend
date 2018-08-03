@@ -28,8 +28,6 @@ const lang = {
   BLOCK_INFO: '区块信息概览',
 
   // transactionsInfo
-  SENDER: '发送者',
-  RECEIVER: '接受者',
   TRANS_TYPE: '交易类型',
   AMOUNT: '金额',
   TRANS_TIME: '交易时间',
@@ -39,6 +37,11 @@ const lang = {
   ACCOUNT_LEFT: '账户余额',
   ACCOUNT_ADDRESS: '账户地址',
 
+  // trans
+  TRANS: '交易',
+  TRANS_SENDER: '发送者',
+  TRANS_RECRIVER: '接受者',
+  FEE: '手续费',
   // tips
   TIPS_COPY_SUCCESS: '复制成功',
 

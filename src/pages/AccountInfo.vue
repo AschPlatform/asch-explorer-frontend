@@ -39,13 +39,9 @@ export default {
     }
   },
   async mounted() {
-    // let result = await this.getAccount(this.address)
-    // TODO: due with result
-    // console.log(result)
   },
   computed: {
     address() {
-      // console.log(this.$route.params)
       return this.$route.params.address || 0
     }
   },
