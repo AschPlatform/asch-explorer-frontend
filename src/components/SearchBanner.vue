@@ -1,6 +1,6 @@
 <template>
-  <div class="flex flex-wrap justify-center items-center w-full h-16 xs:h-32 sm:h-16">
-    <div class="asch-logo h-8 mr-8">
+  <div class="flex flex-wrap justify-between xs:justify-center sm:justify-between items-center bg-white w-full h-16 xs:h-32 sm:h-16 max-w-1200 m-auto">
+    <div class="asch-logo h-8 mr-8 cursor-pointer" @click="toHome">
       <img class="h-full" :src="aschLogo" alt="">
     </div>
     <div class="search-container w-1/2 h-1/2 xs:w-5/6 sm:w-1/2">
@@ -45,6 +45,9 @@ export default {
   methods: {
     search() {
       this.$root.$emit('doSearch', this.searchStr)
+    },
+    toHome() {
+      this.$router.push('/')
     }
   },
   computed: {

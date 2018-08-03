@@ -3,6 +3,8 @@
 
 const lang = {
   // home
+  HOME: '首页',
+  BLOCKHEIGHT: '区块高度',
   BLOCK_HEIGHT: '区块高度',
   TOTAL_SUPPLY: '代币总量',
   USERS_NUMBER: '用户数',
@@ -29,6 +31,7 @@ const lang = {
   BLOCK_INFO: '区块信息概览',
 
   // transactionsInfo
+  TRANSACTION: '哈希值',
   TRANS_TYPE: '交易类型',
   AMOUNT: '金额',
   TRANS_TIME: '交易时间',

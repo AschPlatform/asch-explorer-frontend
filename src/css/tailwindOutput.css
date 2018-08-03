@@ -2799,6 +2799,10 @@
   max-height: 100vh;
 }
 
+.max-w-1200 {
+  max-width: 1200px;
+}
+
 .max-w-xs {
   max-width: 20rem;
 }
@@ -3644,7 +3648,7 @@
 }
 
 .pb-2 {
-  padding-bottom: .5rem!important;
+  padding-bottom: .5rem !important;
 }
 
 .pl-2 {
@@ -5215,7 +5219,7 @@
     background-color: transparent;
   }
   .xs\:bg-black {
-    background-color: #22292f!important;
+    background-color: #22292f !important;
   }
   .xs\:bg-grey-darkest {
     background-color: #3d4852;
@@ -7672,7 +7676,7 @@
     overflow: visible;
   }
   .xs\:overflow-scroll {
-    overflow: scroll;
+    overflow: scroll!important;
   }
   .xs\:overflow-x-auto {
     overflow-x: auto;
@@ -9620,12 +9624,10 @@
   .sm\:bg-contain {
     background-size: contain;
   }
-
   .sm\:border-r-grey-1 {
     border: 1px solid transparent;
     border-right-color: #b8c2cc;
   }
-  
   .sm\:border-transparent {
     border-color: transparent;
   }
@@ -11502,7 +11504,7 @@
     overflow: auto;
   }
   .sm\:overflow-hidden {
-    overflow: hidden;
+    overflow: hidden!important;
   }
   .sm\:overflow-visible {
     overflow: visible;
