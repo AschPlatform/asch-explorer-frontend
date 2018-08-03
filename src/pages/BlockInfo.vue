@@ -8,10 +8,12 @@
 </template>
 
 <script>
+/* eslint-disable */
 import { QPage } from 'quasar'
 import Breadcrumb from '../components/Breadcrumb'
 import InfoPanel from '../components/InfoPanel'
 import { mapActions } from 'vuex'
+import { convertFee, fulltimestamp } from '../utils/util'
 
 export default {
   name: 'BlockInfo',
@@ -22,7 +24,37 @@ export default {
   },
   data() {
     return {
-      panelData: [
+      block: '',
+      producer: '',
+      transNum: 0,
+      transFee: '',
+      preBlock: '',
+      produceTime: ''
+    }
+  },
+  async mounted() {
+    let result = await this.getBlockInfo({
+      height: this.blockHeight
+    })
+    let obj = this.panelData
+    if (result.success) {
+      this.block = result.block.id
+      this.producer = result.block.generatorPublicKey
+      this.transNum = result.block.numberOfTransactions
+      this.transFee = convertFee(result.block.totalFee) + ' XAS'
+      this.preBlock = result.block.previousBlock
+      this.produceTime = fulltimestamp(result.block.timestamp)
+    }
+  },
+  computed: {
+    blockHeight() {
+      return Number(this.$route.params.height) || 0
+    },
+    rewardCount() {
+      return '3.5 XAS'
+    },
+    panelData() {
+      return [
         {
           label: 'BLOCK_HEIGHT',
           value: this.blockHeight,
@@ -30,46 +62,34 @@ export default {
         },
         {
           label: 'BLOCK',
-          value: ''
+          value: this.block
         },
         {
           label: 'PRODUCER',
-          value: ''
+          value: this.producer
         },
         {
           label: 'FORGE_REWARD',
-          value: ''
+          value: this.rewardCount
         },
         {
           label: 'TRANS_NUM',
-          value: '',
+          value: this.transNum,
           type: 'number'
         },
         {
           label: 'TRANS_FEE',
-          value: ''
+          value: this.transFee
         },
         {
           label: 'PRE_BLOCK',
-          value: '',
-          type: 'number'
+          value: this.preBlock
         },
         {
           label: 'PRODUCER_TIME',
-          value: ''
+          value: this.produceTime
         }
       ]
-    }
-  },
-  async mounted() {
-    // let result = await this.getBlockInfo(this.blockHeight)
-    // TODO: due with result
-    // console.log(result, 'result')
-  },
-  computed: {
-    blockHeight() {
-      // console.log(this.$route.params)
-      return this.$route.params.height || 0
     }
   },
   methods: {
