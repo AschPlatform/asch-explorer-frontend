@@ -127,6 +127,7 @@ export default {
       }
     },
     async getData(trans) {
+      this.reset()
       let result = await this.getTransactionInfo({
         tid: this.tid
       })
@@ -136,6 +137,16 @@ export default {
         this.transID = result.transaction.type
         this.blockHeight = result.transaction.height
       }
+    },
+    reset() {
+      this.transSender = null
+      this.transReceiver = null
+      this.transID = null
+      this.amount = null
+      this.transFee = null
+      this.blockHeight = 0
+      this.transTime = null
+      this.argStr = null
     }
   },
   watch: {
