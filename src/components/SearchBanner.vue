@@ -16,7 +16,7 @@
           {{$t('BLOCK_HEIGHT')}}
         </div>
         <div class="text-14 text-black-absolute">
-          <ICountUp :endVal="blockHeight||0" />
+          <ICountUp :endVal="blockHeightCount||0" />
         </div>
       </div>
     </div>
@@ -27,6 +27,7 @@
 import { QInput, QIcon } from 'quasar'
 import aschLogo from '../assets/asch_logo.png'
 import ICountUp from 'vue-countup-v2'
+import { mapGetters } from 'vuex'
 
 export default {
   name: 'SearchBanner',
@@ -38,8 +39,7 @@ export default {
   data() {
     return {
       searchStr: '',
-      aschLogo,
-      blockHeight: 56789432
+      aschLogo
     }
   },
   methods: {
@@ -48,6 +48,7 @@ export default {
     }
   },
   computed: {
+    ...mapGetters(['blockHeight']),
     searchIcon() {
       return [
         {
@@ -60,6 +61,9 @@ export default {
           content: true
         }
       ]
+    },
+    blockHeightCount() {
+      return this.blockHeight
     }
   }
 }

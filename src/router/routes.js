@@ -32,12 +32,12 @@ export default [{
       },
       {
         path: 'blocks_id/:id',
-        name: 'blockId',
+        name: 'block_id',
         component: load('BlockInfo')
       },
       {
         path: 'blocks_height/:height',
-        name: 'blockHeight',
+        name: 'block_height',
         component: load('BlockInfo')
       },
       {

@@ -8,6 +8,7 @@ const lang = {
   USERS_NUMBER: '用户数',
   RUNNING_DAYS: '运行天数',
   FOOTER_LINKS: '友情链接:',
+  HOME: '主页',
   HOMEPAGE: '官网',
   FORUM: '社区论坛',
   ONLINE_WALLET: '在线钱包',

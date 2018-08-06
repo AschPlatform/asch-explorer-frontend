@@ -1,10 +1,9 @@
 <template>
   <q-page padding class="">
     <breadcrumb />
-    <div class=" rounded overflow-hidden">
+    <div class="rounded">
       <info-panel :panelData="panelData" />
           <table-container :type="'trans'" :params="params" />
-
     </div>
   </q-page>
 </template>
