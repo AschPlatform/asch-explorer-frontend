@@ -144,7 +144,6 @@ export default {
       toast(msg)
     },
     doSearch(str) {
-      debugger
       this.$root.$emit('doSearch', str)
     }
   },
