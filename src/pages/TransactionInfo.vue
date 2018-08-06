@@ -34,13 +34,14 @@ export default {
   },
   data() {
     return {
-      transSender: '',
-      transReceiver: '',
-      transID: 0,
-      amount: 0,
-      transFee: 0,
+      transSender: null,
+      transReceiver: null,
+      transID: null,
+      amount: null,
+      transFee: null,
       blockHeight: 0,
-      transTime: 0
+      transTime: null,
+      argStr: null
     }
   },
   async mounted() {
@@ -49,11 +50,11 @@ export default {
     })
     if (result.success) {
       // TODO: change to reactive function
-      // transDetail(result.transaction.type)
-      this.transSender = result.transaction.senderId
-      this.transReceiver = result.transaction.generatorPublicKey || '--'
-      this.transNum = convertFee(result.transaction.args[0]) + ' XAS'
-      this.transFee = convertFee(result.transaction.fee) + ' XAS'
+      this.transDetail(result.transaction)
+      // this.transSender = result.transaction.senderId
+      // this.transReceiver = result.transaction.generatorPublicKey || '--'
+      // this.transNum = convertFee(result.transaction.args[0]) + ' XAS'
+      // this.transFee = convertFee(result.transaction.fee) + ' XAS'
       this.transTime = fulltimestamp(result.transaction.timestamp)
       this.transID = result.transaction.type
       this.blockHeight = result.transaction.height
@@ -94,6 +95,10 @@ export default {
           type: 'number'
         },
         {
+          label: 'ARGUMENTS',
+          value: this.argStr
+        },
+        {
           label: 'TRANS_TIME',
           value: this.transTime
         }
@@ -101,7 +106,28 @@ export default {
     }
   },
   methods: {
-    ...mapActions(['getTransactionInfo'])
+    ...mapActions(['getTransactionInfo']),
+    transDetail(trans) {
+      switch (trans.type) {
+        case 1:
+            this.transSender = trans.senderId
+            this.transReceiver = trans.args[1] || '--'
+            this.transNum = convertFee(trans.args[0]) + ' XAS'
+            this.transFee = convertFee(trans.fee) + ' XAS'
+          break;
+        case 103:
+            // TODO: set global precision map
+            // let precision = 
+            this.transSender = trans.senderId
+            this.transReceiver = trans.args[2] || '--'
+            this.transNum = convertFee(trans.args[0]) + trans.args[0]
+        // case 
+        default:
+            this.transSender = trans.senderId
+            this.argStr = trans.args.join(', ')
+          break;
+      }
+    }
   }
 }
 </script>
