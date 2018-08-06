@@ -57,7 +57,7 @@ export default {
         return
       }
       if (height.test(str)) {
-        router.push(`/blocks_height/${str}`)
+          router.push(`/blocks_height/${str}`)
         return
       }
       toastError(this.$t('ERR_INVALID_SEARCH'))

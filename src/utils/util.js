@@ -6,7 +6,9 @@ import {
   Platform
 } from 'quasar'
 import moment from 'moment'
-import { BigNumber } from 'bignumber'
+import {
+  BigNumber
+} from 'bignumber'
 
 // confirm compontent
 export const confirm = (conf, cancel = () => {}, confirm = () => {}) => {
@@ -217,7 +219,7 @@ export const dealGiantNumber = (num, precision) => {
   })()
   return num + tail
 }
-export const fulltimestamp = (timeStamp) => {
+export const fulltimestamp = (timeStamp, short = false) => {
   let timestamp1 = new Date(Date.UTC(2016, 5, 27, 20, 0, 0, 0))
   timestamp1 = timestamp1 / 1000
   timeStamp += timestamp1
@@ -228,6 +230,7 @@ export const fulltimestamp = (timeStamp) => {
   m = m < 10 ? ('0' + m) : m
   var d = date.getDate()
   d = d < 10 ? ('0' + d) : d
+  if (short) return y + '-' + m + '-' + d
   var h = date.getHours()
   h = h < 10 ? ('0' + h) : h
   var minute = date.getMinutes()
