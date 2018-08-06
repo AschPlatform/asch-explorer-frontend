@@ -34,6 +34,7 @@ const lang = {
   TRANS_TYPE: '交易类型',
   AMOUNT: '金额',
   TRANS_TIME: '交易时间',
+  ARGUMENTS: '参数',
 
   // accountInfo
   NICKNAME: '昵称',
