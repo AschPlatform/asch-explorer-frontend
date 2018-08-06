@@ -4,7 +4,6 @@
 const lang = {
   // home
   HOME: '首页',
-  BLOCKHEIGHT: '区块高度',
   BLOCK_HEIGHT: '区块高度',
   TOTAL_SUPPLY: '代币总量',
   USERS_NUMBER: '用户数',

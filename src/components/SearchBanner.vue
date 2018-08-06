@@ -7,7 +7,7 @@
       <q-input class="shadow appearance-none border rounded w-full h-full border-solid border-1 border-black pt-2 pb-2 px-3 text-grey-darker leading-tight" v-model="searchStr" @keyup.enter="search" :after="searchIcon" type="text" :placeholder="$t('HOME_PLACEHOLDER')"
         hide-underline />
     </div>
-    <div class="desktop-only flex xs:w-1/2 sm:w-1/2 md:w-1/4 lg:w-1/4 justify-center items-center h-16">
+    <div class="desktop-only flex xs:w-1/2 sm:w-1/2 md:w-1/4 lg:w-1/4 justify-end items-center h-16">
       <div>
         <q-icon class="text-5xl" name="insert_chart_outlined" />
       </div>
