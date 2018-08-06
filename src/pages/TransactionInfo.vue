@@ -50,7 +50,6 @@ export default {
     if (result.success) {
       // TODO: change to reactive function
       // transDetail(result.transaction.type)
-      console.log(result.transaction)
       this.transSender = result.transaction.senderId
       this.transReceiver = result.transaction.generatorPublicKey || '--'
       this.transNum = convertFee(result.transaction.args[0]) + ' XAS'
