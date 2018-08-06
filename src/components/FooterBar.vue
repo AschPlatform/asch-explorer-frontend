@@ -22,11 +22,11 @@ export default {
     links() {
       const t = this.$t
       return [
-        { label: 'API', href: '' },
-        { label: 'Github', href: '' },
-        { label: t('HOMEPAGE'), href: '' },
-        { label: t('FORUM'), href: '' },
-        { label: t('ONLINE_WALLET'), href: '' }
+        { label: 'API', href: 'https://github.com/AschPlatform/asch/blob/master/docs/asch_http_interface.md' },
+        { label: 'Github', href: 'https://github.com/AschPlatform/asch' },
+        { label: t('HOMEPAGE'), href: 'https://www.asch.io' },
+        { label: t('FORUM'), href: 'https://bbs.asch.io' },
+        { label: t('ONLINE_WALLET'), href: 'https://wallet.asch.io/#/login' }
       ]
     }
   }
