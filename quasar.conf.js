@@ -6,7 +6,8 @@ module.exports = function (ctx) {
     plugins: [
       'i18n',
       'axios',
-      'tools'
+      'tools',
+      'filters'
     ],
     css: [
       'tailwindOutput.css',
