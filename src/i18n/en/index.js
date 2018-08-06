@@ -2,6 +2,8 @@
 // so you can safely delete all default props below
 
 const lang = {
+  HOME: 'Home',
+  BLOCKHEIGHT: 'Block Height',
   failed: 'Action failed',
   success: 'Action was successful',
   PERSONAL: 'personal',
