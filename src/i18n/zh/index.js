@@ -3,12 +3,12 @@
 
 const lang = {
   // home
+  HOME: '首页',
   BLOCK_HEIGHT: '区块高度',
   TOTAL_SUPPLY: '代币总量',
   USERS_NUMBER: '用户数',
   RUNNING_DAYS: '运行天数',
   FOOTER_LINKS: '友情链接:',
-  HOME: '主页',
   HOMEPAGE: '官网',
   FORUM: '社区论坛',
   ONLINE_WALLET: '在线钱包',
@@ -30,6 +30,7 @@ const lang = {
   BLOCK_INFO: '区块信息概览',
 
   // transactionsInfo
+  TRANSACTION: '哈希值',
   TRANS_TYPE: '交易类型',
   AMOUNT: '金额',
   TRANS_TIME: '交易时间',

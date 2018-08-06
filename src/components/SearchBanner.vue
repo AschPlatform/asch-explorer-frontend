@@ -1,13 +1,13 @@
 <template>
-  <div class="flex flex-wrap justify-center items-center w-full h-16 xs:h-32 sm:h-16">
-    <div class="asch-logo h-8 mr-8">
+  <div class="flex flex-wrap justify-between xs:justify-center sm:justify-between items-center bg-white w-full h-16 xs:h-32 sm:h-16 max-w-1200 m-auto">
+    <div class="asch-logo h-8 mr-8 cursor-pointer" @click="toHome">
       <img class="h-full" :src="aschLogo" alt="">
     </div>
     <div class="search-container w-1/2 h-1/2 xs:w-5/6 sm:w-1/2">
       <q-input class="shadow appearance-none border rounded w-full h-full border-solid border-1 border-black pt-2 pb-2 px-3 text-grey-darker leading-tight" v-model="searchStr" @keyup.enter="search" :after="searchIcon" type="text" :placeholder="$t('HOME_PLACEHOLDER')"
         hide-underline />
     </div>
-    <div class="desktop-only flex xs:w-1/2 sm:w-1/2 md:w-1/4 lg:w-1/4 justify-center items-center h-16">
+    <div class="desktop-only flex xs:w-1/2 sm:w-1/2 md:w-1/4 lg:w-1/4 justify-end items-center h-16">
       <div>
         <q-icon class="text-5xl" name="insert_chart_outlined" />
       </div>
@@ -45,6 +45,9 @@ export default {
   methods: {
     search() {
       this.$root.$emit('doSearch', this.searchStr)
+    },
+    toHome() {
+      this.$router.push('/')
     }
   },
   computed: {
