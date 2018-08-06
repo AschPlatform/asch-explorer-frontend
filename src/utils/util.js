@@ -241,8 +241,8 @@ export const fulltimestamp = (timeStamp, short = false) => {
   return y + '-' + m + '-' + d + ' ' + h + ':' + minute + ':' + second
 }
 
-// get Symbol by transaction
-export const getSymbol = (trans, t) => {
+// get translated type by transaction arg
+export const getTransType = (trans, t) => {
   let { type, args } = trans
   let typeFilters = [1, 103, 204, 205]
   let symbol
