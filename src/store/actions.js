@@ -86,11 +86,12 @@ export default {
     return api.delegates(params)
   },
   // 获取资产列表
-  getAssets: ({
+  getAssets: async ({
     commit,
     state
   }, params) => {
-    return api.assets(params)
+    let result = await api.assets()
+    commit('SET_ASSET_MAP', result.assets)
   },
   // 获取资产详情
   getAssetInfo: ({
