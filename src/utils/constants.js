@@ -30,7 +30,7 @@ const REGEX = {
 // }
 
 const host = {
-  development: 'http://192.168.1.78:7800',
+  development: 'http://47.75.26.200:8192',
   production: 'http://47.75.26.200:8192'
 }
 // const dappId = {

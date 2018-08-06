@@ -7,6 +7,7 @@ import {
 } from 'quasar'
 import moment from 'moment'
 import { BigNumber } from 'bignumber'
+import { transTypes } from '../utils/constants'
 
 // confirm compontent
 export const confirm = (conf, cancel = () => {}, confirm = () => {}) => {
@@ -217,6 +218,8 @@ export const dealGiantNumber = (num, precision) => {
   })()
   return num + tail
 }
+
+// Non-aschJS support really time computed
 export const fulltimestamp = (timeStamp) => {
   let timestamp1 = new Date(Date.UTC(2016, 5, 27, 20, 0, 0, 0))
   timestamp1 = timestamp1 / 1000
@@ -235,4 +238,26 @@ export const fulltimestamp = (timeStamp) => {
   minute = minute < 10 ? ('0' + minute) : minute
   second = second < 10 ? ('0' + second) : second
   return y + '-' + m + '-' + d + ' ' + h + ':' + minute + ':' + second
+}
+
+// get Symbol by transaction
+export const getSymbol = (trans, t) => {
+  let { type, args } = trans
+  let typeFilters = [1, 103, 204, 205]
+  let symbol
+  if (typeFilters.indexOf(type)) {
+    switch (type) {
+      case 1:
+        return 'XAS' + t(transTypes[type])
+      case 103:
+        symbol = args[0]
+        return symbol + t(transTypes[type])
+      case 204:
+        symbol = args[1]
+        return symbol + t(transTypes[type])
+      case 205:
+        return t(transTypes[type])
+    }
+  }
+  return t(transTypes[type])
 }

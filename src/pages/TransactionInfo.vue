@@ -42,8 +42,11 @@ export default {
       tid: this.tid
     })
     if (result.success) {
+      // TODO: change to reactive function
+      // transDetail(result.transaction.type)
+      console.log(result.transaction)
       this.transSender = result.transaction.senderId
-      this.transReceiver = result.transaction.generatorPublicKey
+      this.transReceiver = result.transaction.generatorPublicKey || '--'
       this.transNum = convertFee(result.transaction.args[0]) + ' XAS'
       this.transFee = convertFee(result.transaction.fee) + ' XAS'
       this.transTime = fulltimestamp(result.transaction.timestamp)
