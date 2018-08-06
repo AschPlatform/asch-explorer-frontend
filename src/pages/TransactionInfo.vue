@@ -23,6 +23,7 @@ import InfoPanel from '../components/InfoPanel'
 import { mapActions } from 'vuex'
 import { convertFee, fulltimestamp } from '../utils/util'
 import { transTypes } from '../utils/constants'
+import { mapGetters } from 'vuex'
 
 export default {
   name: 'TransactionsInfo',
@@ -45,22 +46,10 @@ export default {
     }
   },
   async mounted() {
-    let result = await this.getTransactionInfo({
-      tid: this.tid
-    })
-    if (result.success) {
-      // TODO: change to reactive function
-      this.transDetail(result.transaction)
-      // this.transSender = result.transaction.senderId
-      // this.transReceiver = result.transaction.generatorPublicKey || '--'
-      // this.transNum = convertFee(result.transaction.args[0]) + ' XAS'
-      // this.transFee = convertFee(result.transaction.fee) + ' XAS'
-      this.transTime = fulltimestamp(result.transaction.timestamp)
-      this.transID = result.transaction.type
-      this.blockHeight = result.transaction.height
-    }
+    this.getData()
   },
   computed: {
+    ...mapGetters(['getPrecision']),
     tid() {
       return this.$route.params.id || 0
     },
@@ -103,6 +92,12 @@ export default {
           value: this.transTime
         }
       ]
+    },
+    params() {
+      let address = this.$route.params.address
+      let params = {}
+      if (address) params.address = address
+      return params
     }
   },
   methods: {
@@ -117,16 +112,35 @@ export default {
           break;
         case 103:
             // TODO: set global precision map
-            // let precision = 
+            let precision = this.getPrecision(trans.args[0])
             this.transSender = trans.senderId
             this.transReceiver = trans.args[2] || '--'
-            this.transNum = convertFee(trans.args[0]) + trans.args[0]
+            this.transNum = convertFee(trans.args[1], precision) + trans.args[0]
         // case 
         default:
             this.transSender = trans.senderId
-            this.argStr = trans.args.join(', ')
+            this.transFee = convertFee(trans.fee) + ' XAS'
+            if (trans.args) {
+              this.argStr = trans.args.join(', ')
+            }
           break;
       }
+    },
+    async getData(trans) {
+      let result = await this.getTransactionInfo({
+        tid: this.tid
+      })
+      if (result.success) {
+        this.transDetail(result.transaction)
+        this.transTime = fulltimestamp(result.transaction.timestamp)
+        this.transID = result.transaction.type
+        this.blockHeight = result.transaction.height
+      }
+    }
+  },
+  watch: {
+    params() {
+      this.getData()
     }
   }
 }

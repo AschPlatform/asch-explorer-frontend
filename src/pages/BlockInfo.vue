@@ -51,17 +51,7 @@
       }
     },
     async mounted() {
-      let result = await this.getBlockInfo({
-        height: this.blockHeight
-      })
-      if (result.success) {
-        this.block = result.block.id
-        this.producer = result.block.generatorPublicKey
-        this.transNum = result.block.numberOfTransactions
-        this.transFee = convertFee(result.block.totalFee) + ' XAS'
-        this.preBlock = result.block.previousBlock
-        this.produceTime = fulltimestamp(result.block.timestamp)
-      }
+      this.envalueData()
     },
     computed: {
       blockHeight() {
@@ -117,7 +107,26 @@
       }
     },
     methods: {
-      ...mapActions(['getBlockInfo'])
+      ...mapActions(['getBlockInfo']),
+      async envalueData(trans) {
+        let result = await this.getBlockInfo({
+          height: this.blockHeight
+        })
+        if (result.success) {
+          this.envalueData(result.block)
+        }
+        this.block = trans.id
+        this.producer = trans.generatorPublicKey
+        this.transNum = trans.numberOfTransactions
+        this.transFee = convertFee(trans.totalFee) + ' XAS'
+        this.preBlock = trans.previousBlock
+        this.produceTime = fulltimestamp(trans.timestamp)
+      }
+    },
+    watch: {
+      params() {
+        this.envalueData()
+      }
     }
   }
 </script>
