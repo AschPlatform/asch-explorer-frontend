@@ -53,7 +53,6 @@
 
 </template>
 
-</template>
 <script>
 import { QTable, QTr, QTd, QTooltip } from 'quasar'
 import { mapActions } from 'vuex'
