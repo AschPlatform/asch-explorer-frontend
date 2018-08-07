@@ -9,8 +9,8 @@
             <span :class="data.link?`text-primary cursor-pointer`:''" @click="data.link?$router.push(data.link+data.value):null">
                     <span v-if="data.type==='number'" >{{data.value | numSeparator}}</span>
                     <span v-else-if="data.type==='timestamp'">{{data.value | formatTimestamp}}</span>
-                    <span v-else-if="data.type==='address'" @click="toAddress(data.value)">{{data.value}}</span>
-                    <!-- <span v-else-if="data.type==='block'" @click="toBlock(data.value)">{{data.value}}</span> -->
+                    <span v-else-if="data.type==='address'" class="text-primary cursor-pointer" @click="toAddress(data.value)">{{data.value}}</span>
+                    <span v-else-if="data.type==='block'" class="text-primary cursor-pointer" @click="toBlock(data.value)">{{data.value}}</span>
             <span v-else> {{data.value}} </span>
             </span>
           </td>
@@ -60,7 +60,7 @@ export default {
       this.$router.push(`/address/${data}`)
     },
     toBlock(data) {
-      this.$router.push(`/blocks_id/${data}`)
+      this.$router.push(`/blocks_height/${data}`)
     }
   },
   computed: {
