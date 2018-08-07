@@ -52,6 +52,13 @@ export default {
   }, params) => {
     return api.transactions(params)
   },
+  // 获取转账列表‘
+  getTransfers: ({
+    commit,
+    state
+  }, params) => {
+    return api.getTransfers(params)
+  },
   // 获取区块高度
   getHeight: async ({
     commit,

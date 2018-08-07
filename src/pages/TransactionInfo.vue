@@ -113,8 +113,10 @@ export default {
         case 103:
             // TODO: set global precision map
             let precision = this.getPrecision(trans.args[0])
+            console.log(precision)
             this.transSender = trans.senderId
             this.transReceiver = trans.args[2] || '--'
+            console.log('answer:  ', convertFee(trans.args[1], precision))
             this.transNum = convertFee(trans.args[1], precision) + trans.args[0]
         // case 
         default:
@@ -132,6 +134,7 @@ export default {
         tid: this.tid
       })
       if (result.success) {
+        console.log(result)
         this.transDetail(result.transaction)
         this.transTime = fulltimestamp(result.transaction.timestamp)
         this.transID = result.transaction.type

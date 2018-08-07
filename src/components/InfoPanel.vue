@@ -7,10 +7,10 @@
           <td class="w-1/6">{{$t(data.label)}}</td>
           <td>
             <span :class="data.link?`text-primary cursor-pointer`:''" @click="data.link?$router.push(data.link+data.value):null">
-                    <span v-if="data.type==='number'" >{{data.value | numSeparator}}</span>
-                    <span v-else-if="data.type==='timestamp'">{{data.value | formatTimestamp}}</span>
-                    <span v-else-if="data.type==='address'" class="text-primary cursor-pointer" @click="toAddress(data.value)">{{data.value}}</span>
-                    <span v-else-if="data.type==='block'" class="text-primary cursor-pointer" @click="toBlock(data.value)">{{data.value}}</span>
+              <span v-if="data.type==='number'" >{{data.value | numSeparator}}</span>
+              <span v-else-if="data.type==='timestamp'">{{data.value | formatTimestamp}}</span>
+              <span v-else-if="data.type==='address'" class="text-primary cursor-pointer" @click="doSearch(data.value)">{{data.value}}</span>
+              <span v-else-if="data.type==='block'" class="text-primary cursor-pointer" @click="doSearch(data.value)">{{data.value}}</span>
             <span v-else> {{data.value}} </span>
             </span>
           </td>
@@ -56,11 +56,8 @@ export default {
       }, 3000)
       toast(msg)
     },
-    toAddress(data) {
-      this.$router.push(`/address/${data}`)
-    },
-    toBlock(data) {
-      this.$router.push(`/blocks_height/${data}`)
+    doSearch(str) {
+      this.$root.$emit('doSearch', str)
     }
   },
   computed: {
