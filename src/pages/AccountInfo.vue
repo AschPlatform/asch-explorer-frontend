@@ -69,7 +69,8 @@ export default {
 
         datas.push({
           label: 'address',
-          value: this.account.address
+          value: this.account.address,
+        type: 'address'
         })
         return datas
       }
@@ -96,7 +97,6 @@ export default {
             )
           }
         })
-        debugger
         this.balances = this.balances.concat(balances)
       }
     },

@@ -1,10 +1,12 @@
 <template>
   <div>
-    <q-btn-group>
-      <q-btn :label="$t('TRANSACTION_TABLE')" @click="isTransaction = true"></q-btn>
-      <q-btn :label="$t('TRANS_TABLE')" @click="isTransaction = false"></q-btn>
-    </q-btn-group>
     <q-table class="no-shadow table-top-border" :title="title" :data="datas" :columns="columns" :pagination.sync="pagination" row-key="name">
+      <template v-if="showSwitch" slot="top-left" slot-scope="props">
+        <q-btn-group>
+          <q-btn :label="$t('TRANSACTION_TABLE')" @click="isTransaction = true"></q-btn>
+          <q-btn :label="$t('TRANS_TABLE')" @click="isTransaction = false"></q-btn>
+        </q-btn-group>
+      </template>
       <q-tr slot="body" slot-scope="props" :props="props">
         <q-td v-if="props.row.id" key="id" :props="props" >
           <div class="text-italic text-primary cursor-pointer" @click="doSearch(props.row.id)">
@@ -12,7 +14,6 @@
             <q-tooltip>{{ props.row.id }}</q-tooltip>
           </div>
         </q-td>
-        <!-- Transfer Type -->
         <q-td v-if="props.row.type" key="type" :props="props" >
           <span class="">{{ getTransType(props.row) }}</span>
         </q-td>
@@ -38,27 +39,6 @@
         <q-td v-if="props.row.timestamp > -1" key="timestamp" :props="props" >
           <span class="text-italic">{{ fulltimestamp(props.row.timestamp) }}</span>
         </q-td>
-        <!-- <q-td key="calories" :props="props">
-          <div class="row items-center justify-between no-wrap">
-            <q-btn size="sm" round dense color="secondary" icon="remove" @click="props.row.calories--" class="q-mr-xs" />
-            <q-btn size="sm" round dense color="tertiary" icon="add" @click="props.row.calories++" class="q-mr-sm" />
-            <div>{{ props.row.calories }}</div>
-          </div>
-        </q-td>
-        <q-td key="fat" :props="props">{{ props.row.fat }}</q-td>
-        <q-td key="carbs" :props="props">
-          <q-chip small square color="amber">{{ props.row.carbs }}</q-chip>
-        </q-td>
-        <q-td key="protein" :props="props">{{ props.row.protein }}</q-td>
-        <q-td key="sodium" :props="props">{{ props.row.sodium }}</q-td>
-        <q-td key="calcium" :props="props">{{ props.row.calcium }}</q-td>
-        <q-td key="iron" :props="props">
-          {{ props.row.iron }}
-        </q-td> -->
-      </q-tr>
-      <!-- Transaction Type -->
-      <q-tr slot="body" slot-scope="props" :props="props">
-
       </q-tr>
     </q-table>
   </div>
@@ -66,6 +46,7 @@
 </template>
 
 <script>
+/* eslint-disable */
 import { QTable, QTr, QTd, QTooltip, QBtnGroup, QBtn } from 'quasar'
 import { mapActions } from 'vuex'
 import { transTypes } from '../utils/constants'
@@ -100,10 +81,10 @@ export default {
   methods: {
     fulltimestamp,
     ...mapActions(['getTransactions', 'getTransfers']),
-    async getData() {
+    async getData(props = null) {
       let res = []
-      let limit = this.pagination.rowsPerPage
-      let pageNo = this.pagination.page
+      let limit = props ? props.pagination.rowsPerPage : this.pagination.rowsPerPage
+      let pageNo = props ? props.pagination.page : this.pagination.page
       let condition = {
         // TODO 参数 bug
         orderBy: 'timestamp:desc',
@@ -114,18 +95,23 @@ export default {
         // trans type with address
         // TODO nickname support
         // ownerID for transfers
-        condition.senderId = this.params.address
+        if (!this.isTransaction) {
+          condition.ownerId = this.params.address
+        } else {
+          condition.senderId = this.params.address
+        }
       } else if (this.type === 'block') {
         // block table
         condition.height = this.params.height
       }
       if (this.isTransaction) {
         res = await this.getTransactions(condition)
+        this.datas = res.transactions
       } else {
         // TODO: what it need for query?
         res = await this.getTransfers(condition)
+        this.datas = res.transfers
       }
-      this.datas = res.transactions
       this.pagination.rowsNumber = res.count
     },
     // get locale trans type
@@ -166,6 +152,9 @@ export default {
     },
     doSearch(str) {
       this.$root.$emit('doSearch', str)
+    },
+    request(props) {
+      this.getData(props)
     }
   },
   computed: {
@@ -261,6 +250,14 @@ export default {
     },
     height() {
       return this.$route.params.height
+    },
+    showSwitch() {
+      switch (this.type) {
+        case 'trans':
+          return true
+        case 'block':
+          return false
+      }
     }
   },
   watch: {
