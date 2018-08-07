@@ -44,8 +44,8 @@ const fetch = (url, data, method, postHeaders) => {
 const api = {}
 
 // 账户查询
-api.accounts = address => {
-  return fetch(urls.accounts, address, 'get')
+api.accounts = params => {
+  return fetch(urls.accounts, params, 'get')
 }
 
 // 获取最新区块 params => generatorPublicKey
@@ -68,7 +68,8 @@ api.transaction = params => {
 
 // 获取账户余额
 api.balances = params => {
-  return fetch(urls.balances, params, 'get')
+  return fetch(urls.balances,
+    params, 'get')
 }
 
 // //////////////////////////// 以下是频繁调用

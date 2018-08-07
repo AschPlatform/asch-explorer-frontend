@@ -56,12 +56,25 @@ const filters = {
     let time = new Date(timestamp).getTime()
     return moment(time).format('YYYY/MM/DD HH:mm:ss')
   },
-  eclipse: (str, head = 5, tail = 5) => {
+  eclipse: (str='', head = 5, tail = 5) => {
     if (str.length > head + tail) {
       return str.slice(0, head) + '...' + str.slice(-tail)
     } else {
       return str
     }
+  },
+  numSeparator: (num) => {
+    var decimal = String(num).split('.')[1] || ''; //小数部分
+    var tempArr = [];
+    var revNumArr = String(num).split('.')[0].split("").reverse(); //倒序
+    for (let i in revNumArr) {
+      tempArr.push(revNumArr[i]);
+      if ((i + 1) % 3 === 0 && i != revNumArr.length - 1) {
+        tempArr.push(',');
+      }
+    }
+    var zs = tempArr.reverse().join(''); //整数部分
+    return decimal ? zs + '.' + decimal : zs;
   }
 }
 export default filters

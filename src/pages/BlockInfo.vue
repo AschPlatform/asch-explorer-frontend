@@ -10,8 +10,6 @@
       <info-panel :panelData="panelData" />
       <table-container :type="'trans'" :params="params" />
     </div>
-    <!-- <boundary-line /> -->
-    <!-- <table-container :type="'trans'" :params="params" /> -->
   </q-page>
 </template>
 
@@ -61,13 +59,13 @@
       rewardCount() {
         return '3.5 XAS'
       },
+      height() {
+        return this.$route.params.height
+      },
       params() {
-        let height = this.$route.params.height
-        let params = {
-          height
+        return {
+          height: this.height
         }
-        // diffrent params in table list
-        return params
       },
       panelData() {
         return [{
@@ -126,8 +124,8 @@
       }
     },
     watch: {
-      params() {
-        this.envalueData()
+      height() {
+       this.envalueData()
       }
     }
   }
