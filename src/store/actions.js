@@ -11,14 +11,18 @@ export default {
     commit,
     state
   }, address) => {
-    return api.account(address)
+    return api.accounts({
+      address
+    })
   },
   // 获取账户侧链资产
   getBalance: ({
     commit,
     state
   }, address) => {
-    return api.balances(address)
+    return api.balances({
+      address
+    })
   },
   // HASH 值查询
   getTransactionInfo: ({

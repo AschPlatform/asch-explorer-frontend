@@ -37,7 +37,7 @@ const lang = {
 
   // accountInfo
   NICKNAME: '昵称',
-  ACCOUNT_LEFT: '账户余额',
+  ACCOUNT_BALANCE: '账户余额',
   ACCOUNT_ADDRESS: '账户地址',
 
   // trans

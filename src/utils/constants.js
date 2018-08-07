@@ -12,7 +12,7 @@ const I18N_OPT = [{
 const REGEX = {
   hash: /([a-fA-F0-9]{64})/,
   height: /^\+?[1-9][0-9]*$/,
-  address: /^A[\w]{32,34}$/
+  address: /^[A|G|C][\w]{32,34}$/
 }
 // const STATE_MAP = {
 //   1: 'CHARGE',
@@ -30,7 +30,7 @@ const REGEX = {
 // }
 
 const host = {
-  development: 'http://47.75.26.200:8192',
+  development: 'http://mainnet.asch.cn',
   production: 'http://47.75.26.200:8192'
 }
 // const dappId = {

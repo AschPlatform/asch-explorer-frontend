@@ -5,9 +5,9 @@
       <tbody class='info-tbody'>
         <tr v-for="(data, idx) in panelData" :key="idx">
           <td class="w-1/6">{{$t(data.label)}}</td>
-          <td v-clipboard="' '" @success="info($t('TIPS_COPY_SUCCESS'))">
-            <span :class="data.link?`text-secondary cursor-pointer`:''" @click="data.link?$router.push(data.link+data.value):null">
-                    <ICountUp v-if="data.type==='number'" :startVal="data.value" :endVal="data.value" :duration="0" />
+          <td>
+            <span :class="data.link?`text-primary cursor-pointer`:''" @click="data.link?$router.push(data.link+data.value):null">
+                    <span v-if="data.type==='number'" >{{data.value | numSeparator}}</span>
                     <span v-else-if="data.type==='timestamp'">{{data.value | formatTimestamp}}</span>
             <span v-else> {{data.value}} </span>
             </span>
