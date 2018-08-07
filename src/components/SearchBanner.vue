@@ -45,6 +45,7 @@ export default {
   methods: {
     search() {
       this.$root.$emit('doSearch', this.searchStr)
+      this.searchStr = ''
     },
     toHome() {
       this.$router.push('/')
