@@ -8,133 +8,129 @@
       </div>
       <boundary-line class="mt-2" />
       <info-panel :panelData="panelData" />
-      <table-container :type="'block'" :params="params" />
+      <table-container :type="'trans'" :params="params" />
     </div>
   </q-page>
 </template>
 
 <script>
-import { QPage } from 'quasar'
-import Breadcrumb from '../components/Breadcrumb'
-import BoundaryLine from '../components/BoundaryLine'
-import InfoPanel from '../components/InfoPanel'
-import TableContainer from '../components/TableContainer'
-import { mapActions } from 'vuex'
-import { convertFee, fulltimestamp } from '../utils/util'
-
-export default {
-  name: 'BlockInfo',
-  components: {
-    QPage,
-    BoundaryLine,
-    Breadcrumb,
-    InfoPanel,
-    TableContainer
-  },
-  data() {
-    return {
-      block: '',
-      producer: '',
-      transNum: 0,
-      transFee: '',
-      preBlock: '',
-      produceTime: ''
-    }
-  },
-  async mounted() {
-    let result = await this.getBlockInfo({
-      height: this.blockHeight
-    })
-    if (result.success) {
-      this.block = result.block.id
-      this.producer = result.block.generatorPublicKey
-      this.transNum = result.block.numberOfTransactions
-      this.transFee = convertFee(result.block.totalFee) + ' XAS'
-      this.preBlock = result.block.previousBlock
-      this.produceTime = fulltimestamp(result.block.timestamp)
-    }
-  },
-  computed: {
-    blockHeight() {
-      return Number(this.$route.params.height) || 0
+  import {
+    QPage
+  } from 'quasar'
+  import Breadcrumb from '../components/Breadcrumb'
+  import BoundaryLine from '../components/BoundaryLine'
+  import InfoPanel from '../components/InfoPanel'
+  import TableContainer from '../components/TableContainer'
+  import {
+    mapActions
+  } from 'vuex'
+  import {
+    convertFee,
+    fulltimestamp,
+    getAddress
+  } from '../utils/util'
+  
+  export default {
+    name: 'BlockInfo',
+    components: {
+      QPage,
+      BoundaryLine,
+      Breadcrumb,
+      InfoPanel,
+      TableContainer
     },
-    rewardCount() {
-      return '3.5 XAS'
+    data() {
+      return {
+        block: '',
+        producer: '',
+        transNum: 0,
+        transFee: '',
+        preBlock: '',
+        produceTime: ''
+      }
     },
     async mounted() {
       this.envalueData()
     },
-    panelData() {
-      return [
-        {
-          label: 'BLOCK_HEIGHT',
-          value: this.blockHeight,
-          type: 'number'
-        },
-        {
-          label: 'BLOCK_ID',
-          value: this.block
-        },
-        {
-          label: 'PRODUCER',
-          value: this.producer
-        },
-        {
-          label: 'FORGE_REWARD',
-          value: this.rewardCount
-        },
-        {
-          label: 'TRANS_NUM',
-          value: this.transNum,
-          type: 'number'
-        },
-        {
-          label: 'TRANS_FEE',
-          value: this.transFee
-        },
-        {
-          label: 'PRE_BLOCK',
-          value: this.preBlock
-        },
-        {
-          label: 'PRODUCER_TIME',
-          value: this.produceTime
+    computed: {
+      blockHeight() {
+        return Number(this.$route.params.height) || 0
+      },
+      rewardCount() {
+        return '3.5 XAS'
+      },
+      height() {
+        return this.$route.params.height
+      },
+      params() {
+        return {
+          height: this.height
         }
-      ]
-    },
-    height() {
-      return this.$route.params.height
-    },
-    params() {
-      return {
-        height: this.height
+      },
+      panelData() {
+        return [{
+            label: 'BLOCK_HEIGHT',
+            value: this.blockHeight,
+            type: 'number'
+          },
+          {
+            label: 'BLOCK_ID',
+            value: this.block
+          },
+          {
+            label: 'PRODUCER',
+            value: this.producer,
+            type: 'address'
+          },
+          {
+            label: 'FORGE_REWARD',
+            value: this.rewardCount
+          },
+          {
+            label: 'TRANS_NUM',
+            value: this.transNum,
+            type: 'number'
+          },
+          {
+            label: 'TRANS_FEE',
+            value: this.transFee
+          },
+          {
+            label: 'PRE_BLOCK',
+            value: this.preBlock
+          },
+          {
+            label: 'PRODUCER_TIME',
+            value: this.produceTime
+          }
+        ]
       }
-    }
-  },
-  methods: {
-    ...mapActions(['getBlockInfo']),
-    async envalueData(trans) {
-      let result = await this.getBlockInfo({
-        height: this.blockHeight
-      })
-      if (result.success) {
-        this.envalueData(result.block)
+    },
+    methods: {
+      ...mapActions(['getBlockInfo']),
+      async envalueData() {
+        let result = await this.getBlockInfo({
+          height: this.blockHeight
+        })
+        if (result.success) {
+          let trans = result.block
+          this.block = trans.id
+          this.producer = getAddress(trans.generatorPublicKey)
+          this.transNum = trans.numberOfTransactions
+          this.transFee = convertFee(trans.totalFee) + ' XAS'
+          this.preBlock = trans.previousBlock
+          this.produceTime = fulltimestamp(trans.timestamp)
+        }
       }
-      this.block = trans.id
-      this.producer = trans.generatorPublicKey
-      this.transNum = trans.numberOfTransactions
-      this.transFee = convertFee(trans.totalFee) + ' XAS'
-      this.preBlock = trans.previousBlock
-      this.produceTime = fulltimestamp(trans.timestamp)
-    }
-  },
-  watch: {
-    height() {
-      this.envalueData()
+    },
+    watch: {
+      height() {
+       this.envalueData()
+      }
     }
   }
-}
 </script>
 
 <style scoped>
+  
 </style>
