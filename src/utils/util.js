@@ -6,6 +6,7 @@ import {
   Platform
 } from 'quasar'
 import moment from 'moment'
+import AschJs from 'asch-js'
 import { BigNumber } from 'bignumber'
 import { transTypes } from '../utils/constants'
 
@@ -261,4 +262,8 @@ export const getTransType = (trans, t) => {
     }
   }
   return t(transTypes[type])
+}
+
+export const getAddress = (pubKey) => {
+  return AschJs.crypto.getAddress(pubKey)
 }

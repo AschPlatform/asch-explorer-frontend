@@ -28,7 +28,8 @@
   } from 'vuex'
   import {
     convertFee,
-    fulltimestamp
+    fulltimestamp,
+    getAddress
   } from '../utils/util'
   
   export default {
@@ -80,7 +81,8 @@
           },
           {
             label: 'PRODUCER',
-            value: this.producer
+            value: this.producer,
+            type: 'address'
           },
           {
             label: 'FORGE_REWARD',
@@ -108,19 +110,19 @@
     },
     methods: {
       ...mapActions(['getBlockInfo']),
-      async envalueData(trans) {
+      async envalueData() {
         let result = await this.getBlockInfo({
           height: this.blockHeight
         })
         if (result.success) {
-          this.envalueData(result.block)
+          let trans = result.block
+          this.block = trans.id
+          this.producer = getAddress(trans.generatorPublicKey)
+          this.transNum = trans.numberOfTransactions
+          this.transFee = convertFee(trans.totalFee) + ' XAS'
+          this.preBlock = trans.previousBlock
+          this.produceTime = fulltimestamp(trans.timestamp)
         }
-        this.block = trans.id
-        this.producer = trans.generatorPublicKey
-        this.transNum = trans.numberOfTransactions
-        this.transFee = convertFee(trans.totalFee) + ' XAS'
-        this.preBlock = trans.previousBlock
-        this.produceTime = fulltimestamp(trans.timestamp)
       }
     },
     watch: {

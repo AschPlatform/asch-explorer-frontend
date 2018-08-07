@@ -9,6 +9,8 @@
             <span :class="data.link?`text-secondary cursor-pointer`:''" @click="data.link?$router.push(data.link+data.value):null">
                     <ICountUp v-if="data.type==='number'" :startVal="data.value" :endVal="data.value" :duration="0" />
                     <span v-else-if="data.type==='timestamp'">{{data.value | formatTimestamp}}</span>
+                    <span v-else-if="data.type==='address'" @click="toAddress(data.value)">{{data.value}}</span>
+                    <!-- <span v-else-if="data.type==='block'" @click="toBlock(data.value)">{{data.value}}</span> -->
             <span v-else> {{data.value}} </span>
             </span>
           </td>
@@ -53,6 +55,12 @@ export default {
         this.isDisable = false
       }, 3000)
       toast(msg)
+    },
+    toAddress(data) {
+      this.$router.push(`/address/${data}`)
+    },
+    toBlock(data) {
+      this.$router.push(`/blocks_id/${data}`)
     }
   },
   computed: {
