@@ -3,7 +3,7 @@
   
     <table class="q-table horizontal-separator highlight loose accountinfo-table margin-t-20">
       <tbody class='info-tbody'>
-        <tr v-for="(data, idx) in panelData" :key="idx">
+        <tr v-show="data.value != null" v-for="(data, idx) in panelData" :key="idx">
           <td class="w-1/6">{{$t(data.label)}}</td>
           <td>
             <span :class="data.link?`text-primary cursor-pointer`:''" @click="data.link?$router.push(data.link+data.value):null">

@@ -23,6 +23,7 @@ import InfoPanel from '../components/InfoPanel'
 import { mapActions } from 'vuex'
 import { convertFee, fulltimestamp } from '../utils/util'
 import { transTypes } from '../utils/constants'
+import { mapGetters } from 'vuex'
 
 export default {
   name: 'TransactionsInfo',
@@ -34,30 +35,21 @@ export default {
   },
   data() {
     return {
-      transSender: '',
-      transReceiver: '',
-      transID: 0,
-      amount: 0,
-      transFee: 0,
+      transSender: null,
+      transReceiver: null,
+      transID: null,
+      amount: null,
+      transFee: null,
       blockHeight: 0,
-      transTime: 0
+      transTime: null,
+      argStr: null
     }
   },
   async mounted() {
-    let result = await this.getTransactionInfo({
-      tid: this.tid
-    })
-    if (result.success) {
-      this.transSender = result.transaction.senderId
-      this.transReceiver = result.transaction.generatorPublicKey
-      this.transNum = convertFee(result.transaction.args[0]) + ' XAS'
-      this.transFee = convertFee(result.transaction.fee) + ' XAS'
-      this.transTime = fulltimestamp(result.transaction.timestamp)
-      this.transID = result.transaction.type
-      this.blockHeight = result.transaction.height
-    }
+    this.getData()
   },
   computed: {
+    ...mapGetters(['getPrecision']),
     tid() {
       return this.$route.params.id || 0
     },
@@ -92,14 +84,75 @@ export default {
           type: 'number'
         },
         {
+          label: 'ARGUMENTS',
+          value: this.argStr
+        },
+        {
           label: 'TRANS_TIME',
           value: this.transTime
         }
       ]
+    },
+    params() {
+      let address = this.$route.params.address
+      let params = {}
+      if (address) params.address = address
+      return params
     }
   },
   methods: {
-    ...mapActions(['getTransactionInfo'])
+    ...mapActions(['getTransactionInfo']),
+    transDetail(trans) {
+      switch (trans.type) {
+        case 1:
+            this.transSender = trans.senderId
+            this.transReceiver = trans.args[1] || '--'
+            this.transNum = convertFee(trans.args[0]) + ' XAS'
+            this.transFee = convertFee(trans.fee) + ' XAS'
+          break;
+        case 103:
+            // TODO: set global precision map
+            let precision = this.getPrecision(trans.args[0])
+            this.transSender = trans.senderId
+            this.transReceiver = trans.args[2] || '--'
+            this.transNum = convertFee(trans.args[1], precision) + trans.args[0]
+        // case 
+        default:
+            this.transSender = trans.senderId
+            this.transFee = convertFee(trans.fee) + ' XAS'
+            if (trans.args) {
+              this.argStr = trans.args.join(', ')
+            }
+          break;
+      }
+    },
+    async getData(trans) {
+      this.reset()
+      let result = await this.getTransactionInfo({
+        tid: this.tid
+      })
+      if (result.success) {
+        this.transDetail(result.transaction)
+        this.transTime = fulltimestamp(result.transaction.timestamp)
+        this.transID = result.transaction.type
+        this.blockHeight = result.transaction.height
+      }
+    },
+    reset() {
+      this.transSender = null
+      this.transReceiver = null
+      this.transID = null
+      this.amount = null
+      this.transFee = null
+      this.blockHeight = 0
+      this.transTime = null
+      this.argStr = null
+    }
+  },
+  watch: {
+    params() {
+      this.getData()
+    }
   }
 }
 </script>

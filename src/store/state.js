@@ -7,5 +7,6 @@ export default {
     accountCount: 0,
     assetCount: 0,
     totalSupply: 0
-  }
+  },
+  assetMap: {}
 }

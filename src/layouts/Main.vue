@@ -40,7 +40,7 @@ export default {
     }
   },
   methods: {
-    ...mapActions(['getHeight', 'getUsers', 'getXas']),
+    ...mapActions(['getHeight', 'getUsers', 'getXas', 'getAssets']),
     openURL,
     doSearch(str, type) {
       if (this.searchForbidden) return
@@ -77,7 +77,7 @@ export default {
     this.getXas()
     this.getHeight()
     this.setLang()
-
+    this.getAssets()
     // Intervel functions
     this.intervalStats = setInterval(() => this.getHeight(), 10000)
   },

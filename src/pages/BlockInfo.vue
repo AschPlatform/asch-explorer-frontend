@@ -8,10 +8,8 @@
       </div>
       <boundary-line class="mt-2" />
       <info-panel :panelData="panelData" />
-      <table-container :type="'trans'" :params="params" />
+      <table-container :type="'block'" :params="params" />
     </div>
-    <!-- <boundary-line /> -->
-    <!-- <table-container :type="'trans'" :params="params" /> -->
   </q-page>
 </template>
 
@@ -63,13 +61,8 @@ export default {
     rewardCount() {
       return '3.5 XAS'
     },
-    params() {
-      let height = this.$route.params.height
-      let params = {
-        height
-      }
-      // diffrent params in table list
-      return params
+    async mounted() {
+      this.envalueData()
     },
     panelData() {
       return [
@@ -77,21 +70,19 @@ export default {
           label: 'BLOCK_HEIGHT',
           value: this.blockHeight,
           type: 'number'
-          // link: '/blocks_height/'
         },
         {
           label: 'BLOCK_ID',
-          value: this.block,
-          link: '/blocks_id/'
+          value: this.block
         },
         {
           label: 'PRODUCER',
           value: this.producer
         },
-        // {
-        //   label: 'FORGE_REWARD',
-        //   value: this.rewardCount
-        // },
+        {
+          label: 'FORGE_REWARD',
+          value: this.rewardCount
+        },
         {
           label: 'TRANS_NUM',
           value: this.transNum,
@@ -103,18 +94,44 @@ export default {
         },
         {
           label: 'PRE_BLOCK',
-          value: this.preBlock,
-          link: '/blocks_id/'
+          value: this.preBlock
         },
         {
           label: 'PRODUCER_TIME',
           value: this.produceTime
         }
       ]
+    },
+    height() {
+      return this.$route.params.height
+    },
+    params() {
+      return {
+        height: this.height
+      }
     }
   },
   methods: {
-    ...mapActions(['getBlockInfo'])
+    ...mapActions(['getBlockInfo']),
+    async envalueData(trans) {
+      let result = await this.getBlockInfo({
+        height: this.blockHeight
+      })
+      if (result.success) {
+        this.envalueData(result.block)
+      }
+      this.block = trans.id
+      this.producer = trans.generatorPublicKey
+      this.transNum = trans.numberOfTransactions
+      this.transFee = convertFee(trans.totalFee) + ' XAS'
+      this.preBlock = trans.previousBlock
+      this.produceTime = fulltimestamp(trans.timestamp)
+    }
+  },
+  watch: {
+    height() {
+      this.envalueData()
+    }
   }
 }
 </script>
