@@ -6,10 +6,18 @@
       <div class="text-14 text-black-dark font-bold">
         {{this.$t('BLOCK_INFO')}}
       </div>
-      <boundary-line class="mt-2" />
+      <boundary-line class="mt-2 mb-8" />
+      <transition appear enter-active-class="animated fadeIn"
+      leave-active-class="animated fadeOut" :duration="200">
       <info-panel :panelData="panelData" />
+      </transition>
+
+      <transition appear enter-active-class="animated fadeIn"
+      leave-active-class="animated fadeOut" :duration="200">
       <table-container :type="'trans'" :params="params" />
+      </transition>
     </div>
+
   </q-page>
 </template>
 
@@ -75,7 +83,8 @@
           },
           {
             label: 'BLOCK_ID',
-            value: this.block
+            value: this.block,
+            type: 'id'
           },
           {
             label: 'PRODUCER',
@@ -97,7 +106,8 @@
           },
           {
             label: 'PRE_BLOCK',
-            value: this.preBlock
+            value: this.preBlock,
+            type: 'preBlock'
           },
           {
             label: 'PRODUCER_TIME',

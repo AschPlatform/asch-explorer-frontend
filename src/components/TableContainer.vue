@@ -1,36 +1,38 @@
 <template>
+  <transition appear enter-active-class="animated fadeIn"
+      leave-active-class="animated fadeOut">
   <q-table class="no-shadow table-top-border" :title="title" :data="datas" :columns="columns" :pagination.sync="pagination" row-key="name">
     <q-tr slot="body" slot-scope="props" :props="props">
       <q-td v-if="props.row.id" key="id" :props="props" >
-        <div class="text-italic text-primary cursor-pointer" @click="doSearch(props.row.id)">
+        <div class="text-primary cursor-pointer" @click="doSearch(props.row.id)">
           {{ props.row.id | eclipse }}
           <q-tooltip>{{ props.row.id }}</q-tooltip>
         </div>
       </q-td>
-      <q-td v-if="props.row.type" key="type" :props="props" >
+      <q-td v-if="props.row.type" key="type" class="custom-border-td" :props="props" >
         <span class="">{{ getTransType(props.row) }}</span>
       </q-td>
       <q-td v-if="props.row.senderId" key="senderId" :props="props" >
-        <div class="text-italic text-primary cursor-pointer" @click="doSearch(props.row.senderId)">
+        <div class="text-primary cursor-pointer" @click="doSearch(props.row.senderId)">
           {{ props.row.senderId | eclipse }}
           <q-tooltip>{{ props.row.senderId }}</q-tooltip>
         </div>
       </q-td>
       <q-td key="recipientId" :props="props" >
-        <div v-if="props.row.args" class="text-italic text-primary cursor-pointer" @click="doSearch(getRecipient(props.row))" >
+        <div v-if="props.row.args" class="text-primary cursor-pointer" @click="doSearch(getRecipient(props.row))" >
           {{getRecipient(props.row) | eclipse  }}
           <q-tooltip>{{ getRecipient(props.row) }}</q-tooltip>
         </div>
       </q-td>
       <q-td key="amount" :props="props" >
-        <span v-if="getAmount(props.row)" class="text-italic">{{ getAmount(props.row) }}</span>
+        <span v-if="getAmount(props.row)">{{ getAmount(props.row) }}</span>
       </q-td>
       <q-td key="fee" :props="props" >
-        <span v-if="props.row.fee" class="text-italic">{{ props.row.fee | fee }}</span>
+        <span v-if="props.row.fee">{{ props.row.fee | fee }}</span>
         <span v-else>--</span>
       </q-td>
       <q-td v-if="props.row.timestamp > -1" key="timestamp" :props="props" >
-        <span class="text-italic">{{ fulltimestamp(props.row.timestamp) }}</span>
+        <span>{{ fulltimestamp(props.row.timestamp) }}</span>
       </q-td>
       <!-- <q-td key="calories" :props="props">
         <div class="row items-center justify-between no-wrap">
@@ -51,7 +53,7 @@
       </q-td> -->
     </q-tr>
   </q-table>
-
+  </transition>
 </template>
 
 </template>
