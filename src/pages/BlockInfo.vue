@@ -8,7 +8,7 @@
       </div>
       <boundary-line class="mt-2" />
       <info-panel :panelData="panelData" />
-      <table-container :type="'trans'" :params="params" />
+      <table-container :type="'block'" :params="params" />
     </div>
   </q-page>
 </template>

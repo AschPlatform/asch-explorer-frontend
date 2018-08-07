@@ -1,5 +1,5 @@
 <template>
-  <q-table class="no-shadow table-top-border" :title="title" :data="datas" :columns="columns" :pagination.sync="pagination" row-key="name">
+  <q-table class="no-shadow table-top-border" :title="title" :data="datas" :columns="columns" :pagination.sync="pagination" @request="request" row-key="name">
     <q-tr slot="body" slot-scope="props" :props="props">
       <q-td v-if="props.row.id" key="id" :props="props" >
         <div class="text-italic text-primary cursor-pointer" @click="doSearch(props.row.id)">
@@ -21,9 +21,11 @@
           {{getRecipient(props.row) | eclipse  }}
           <q-tooltip>{{ getRecipient(props.row) }}</q-tooltip>
         </div>
+         <span v-else>--</span>
       </q-td>
       <q-td key="amount" :props="props" >
         <span v-if="getAmount(props.row)" class="text-italic">{{ getAmount(props.row) }}</span>
+         <span v-else>--</span>
       </q-td>
       <q-td key="fee" :props="props" >
         <span v-if="props.row.fee" class="text-italic">{{ props.row.fee | fee }}</span>
@@ -87,10 +89,10 @@ export default {
   methods: {
     fulltimestamp,
     ...mapActions(['getTransactions']),
-    async getData() {
+    async getData(props = null) {
       let res = []
-      let limit = this.pagination.rowsPerPage
-      let pageNo = this.pagination.page
+      let limit = props ? props.pagination.rowsPerPage : this.pagination.rowsPerPage
+      let pageNo = props ? props.pagination.page : this.pagination.page
       let condition = {
         // TODO 参数 bug
         orderBy: 'timestamp:desc',
@@ -147,6 +149,9 @@ export default {
     },
     doSearch(str) {
       this.$root.$emit('doSearch', str)
+    },
+    request(props) {
+      this.getData(props)
     }
   },
   computed: {

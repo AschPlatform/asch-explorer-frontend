@@ -21,7 +21,7 @@ import Breadcrumb from '../components/Breadcrumb'
 import BoundaryLine from '../components/BoundaryLine'
 import InfoPanel from '../components/InfoPanel'
 import { mapActions } from 'vuex'
-import { convertFee, fulltimestamp } from '../utils/util'
+import { convertFee, fulltimestamp, toast } from '../utils/util'
 import { transTypes } from '../utils/constants'
 import { mapGetters } from 'vuex'
 
@@ -105,37 +105,45 @@ export default {
     transDetail(trans) {
       switch (trans.type) {
         case 1:
-            this.transSender = trans.senderId
-            this.transReceiver = trans.args[1] || '--'
-            this.transNum = convertFee(trans.args[0]) + ' XAS'
-            this.transFee = convertFee(trans.fee) + ' XAS'
-          break;
+          this.transSender = trans.senderId
+          this.transReceiver = trans.args[1] || '--'
+          this.transNum = convertFee(trans.args[0]) + ' XAS'
+          this.transFee = convertFee(trans.fee) + ' XAS'
+          break
         case 103:
-            // TODO: set global precision map
-            let precision = this.getPrecision(trans.args[0])
-            this.transSender = trans.senderId
-            this.transReceiver = trans.args[2] || '--'
-            this.transNum = convertFee(trans.args[1], precision) + trans.args[0]
-        // case 
+          // TODO: set global precision map
+          let precision = this.getPrecision(trans.args[0])
+          this.transSender = trans.senderId
+          this.transReceiver = trans.args[2] || '--'
+          this.transNum = convertFee(trans.args[1], precision) + trans.args[0]
+        // case
         default:
-            this.transSender = trans.senderId
-            this.transFee = convertFee(trans.fee) + ' XAS'
-            if (trans.args) {
-              this.argStr = trans.args.join(', ')
-            }
-          break;
+          this.transSender = trans.senderId
+          this.transFee = convertFee(trans.fee) + ' XAS'
+          if (trans.args) {
+            this.argStr = trans.args.join(', ')
+          }
+          break
       }
     },
     async getData(trans) {
       this.reset()
-      let result = await this.getTransactionInfo({
-        tid: this.tid
-      })
-      if (result.success) {
-        this.transDetail(result.transaction)
-        this.transTime = fulltimestamp(result.transaction.timestamp)
-        this.transID = result.transaction.type
-        this.blockHeight = result.transaction.height
+      try {
+        let result = await this.getTransactionInfo({
+          tid: this.tid
+        })
+        if (result.success) {
+          this.transDetail(result.transaction)
+          this.transTime = fulltimestamp(result.transaction.timestamp)
+          this.transID = result.transaction.type
+          this.blockHeight = result.transaction.height
+        } else {
+          toast(this.$t('ERR_INVALID_SEARCH'))
+          this.$router.push('/')
+        }
+      } catch (e) {
+        toast(this.$t('ERR_INVALID_SEARCH'))
+        this._.delay(() => this.$router.push('/'), 1000)
       }
     },
     reset() {
