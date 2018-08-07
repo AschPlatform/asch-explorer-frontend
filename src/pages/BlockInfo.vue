@@ -3,7 +3,7 @@
     <breadcrumb />
   
     <div class="border border-solid border-grey rounded-lg overflow-hidden xs:overflow-scroll sm:overflow-hidden p-4 mb-4">
-      <div class="">
+      <div class="text-14 text-black-dark font-bold">
         {{this.$t('BLOCK_INFO')}}
       </div>
       <boundary-line class="mt-2" />

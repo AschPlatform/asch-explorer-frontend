@@ -1,5 +1,5 @@
 <template>
-  <q-table :title="title" :data="datas" :columns="columns" :pagination.sync="pagination" row-key="name">
+  <q-table class="no-shadow table-top-border" :title="title" :data="datas" :columns="columns" :pagination.sync="pagination" row-key="name">
     <q-tr slot="body" slot-scope="props" :props="props">
       <q-td v-if="props.row.id" key="id" :props="props" >
         <div class="text-italic text-primary cursor-pointer" @click="doSearch(props.row.id)">

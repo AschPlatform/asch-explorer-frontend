@@ -17,13 +17,13 @@
           <button class="border-none bg-transparent text-blue-dark hover:text-blue text-13 cursor-pointer" @click="changeLang('en')">{{$t('LANGUAGE_EN')}}</button>
       </div>
     </div>
-    <state-banner class="mobile-only mb-8" :stateData="stateData" />
+    <state-banner class="mobile-only mb-8" :stateData="getRunState" />
   </q-page>
 </template>
 
 <script>
 import { QPage, QInput } from 'quasar'
-import { mapActions } from 'vuex'
+import { mapGetters, mapActions } from 'vuex'
 import aschLogo from '../assets/asch_logo.png'
 import StateBanner from '../components/StateBanner.vue'
 import Breadcrumb from '../components/Breadcrumb'
@@ -60,6 +60,7 @@ export default {
     }
   },
   computed: {
+    ...mapGetters(['getRunState']),
     searchIcon() {
       return [
         {
@@ -70,31 +71,6 @@ export default {
           // Optional. Show icon button
           // if model has a value
           content: true
-        }
-      ]
-    },
-    stateData() {
-      const t = this.$t
-      return [
-        {
-          icon: 'insert_chart_outlined',
-          value: 591936,
-          label: t('BLOCK_HEIGHT')
-        },
-        {
-          icon: 'bubble_chart',
-          value: 591936,
-          label: t('TOTAL_SUPPLY')
-        },
-        {
-          icon: 'people_outline',
-          value: 591936,
-          label: t('USERS_NUMBER')
-        },
-        {
-          icon: 'bar_chart',
-          value: 591936,
-          label: t('RUNNING_DAYS')
         }
       ]
     }

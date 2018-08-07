@@ -160,6 +160,7 @@ export const getLocal = key => {
 // get storage (session/local) with different device
 export const getStorage = () => {
   return isDesktop() ? SessionStorage : LocalStorage
+  // return SessionStorage
 }
 // sessionstorage functions
 export const setCache = (key, value) => {
@@ -244,7 +245,10 @@ export const fulltimestamp = (timeStamp, short = false) => {
 
 // get translated type by transaction arg
 export const getTransType = (trans, t) => {
-  let { type, args } = trans
+  let {
+    type,
+    args
+  } = trans
   let typeFilters = [1, 103, 204, 205]
   let symbol
   if (typeFilters.indexOf(type)) {

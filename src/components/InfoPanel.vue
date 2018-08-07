@@ -1,7 +1,7 @@
 <template>
   <div v-if="panelData" class="flex w-full">
   
-    <table class="q-table horizontal-separator highlight loose accountinfo-table margin-t-20">
+    <table class="q-table horizontal-separator highlight loose accountinfo-table margin-t-20 table-tr-td-p-0">
       <tbody class='info-tbody'>
         <tr v-show="data.value != null" v-for="(data, idx) in panelData" :key="idx">
           <td class="w-1/6">{{$t(data.label)}}</td>
