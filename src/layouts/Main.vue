@@ -1,5 +1,5 @@
 <template>
-  <q-layout view="lHh Lpr lFf">
+  <q-layout view="lHh Lpr lff">
     <q-layout-header>
       <state-banner v-show="isHome" class="desktop-only"  :stateData="getRunState" />
       <search-banner v-show="!isHome"/>
