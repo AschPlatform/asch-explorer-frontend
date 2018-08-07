@@ -42,22 +42,22 @@ export default {
   methods: {
     ...mapActions(['getHeight', 'getUsers', 'getXas', 'getAssets']),
     openURL,
-    doSearch(str) {
+    doSearch(str, type) {
       if (this.searchForbidden) return
       const { hash, address, height } = REGEX
       const router = this.$router
       this.searchForbidden = true
       this._.delay(() => (this.searchForbidden = false), 2000)
-      if (hash.test(str)) {
+      if (hash.test(str) || type === 'trans') {
         router.push(`/transaction/${str}`)
         return
       }
-      if (address.test(str)) {
+      if (address.test(str) || type === 'account') {
         router.push(`/address/${str}`)
         return
       }
-      if (height.test(str)) {
-          router.push(`/blocks_height/${str}`)
+      if (height.test(str) || type === 'block') {
+        router.push(`/blocks_height/${str}`)
         return
       }
       toastError(this.$t('ERR_INVALID_SEARCH'))

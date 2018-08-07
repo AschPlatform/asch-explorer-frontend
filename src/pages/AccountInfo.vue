@@ -18,7 +18,7 @@ import BoundaryLine from '../components/BoundaryLine'
 import Breadcrumb from '../components/Breadcrumb'
 import InfoPanel from '../components/InfoPanel'
 import TableContainer from '../components/TableContainer'
-
+import { convertFee } from '../utils/util'
 import { mapActions } from 'vuex'
 
 export default {
@@ -32,26 +32,16 @@ export default {
   },
   data() {
     return {
-      panelData: [
-        {
-          label: 'NICKNAME',
-          value: ''
-        },
-        {
-          label: 'ACCOUNT_LEFT',
-          value: []
-        },
-        {
-          label: 'ACCOUNT_ADDRESS',
-          value: ''
-        }
-      ]
+      account: null,
+      balances: []
     }
   },
-  async mounted() {},
+  async mounted() {
+    this.init()
+  },
   computed: {
     address() {
-      return this.$route.params.address || 0
+      return this.$route.params.address || ''
     },
     params() {
       let address = this.$route.params.address
@@ -61,10 +51,58 @@ export default {
       if (address) params.address = address
       if (nickname) params.nickname = nickname
       return params
+    },
+    panelData() {
+      let datas = []
+      if (this.account) {
+        if (this.account.name) {
+          datas.push({
+            label: 'NICKNAME',
+            value: this.account.name
+          })
+        }
+        this.balances.map((balance, idx) => {
+          let balanceItem = { value: balance }
+          if (idx === 0) balanceItem.label = 'ACCOUNT_BALANCE'
+          datas.push(balanceItem)
+        })
+
+        datas.push({
+          label: 'address',
+          value: this.account.address
+        })
+        return datas
+      }
     }
   },
   methods: {
-    ...mapActions(['getAccount'])
+    ...mapActions(['getAccount', 'getBalance']),
+    async getAccountInfo() {
+      let res = await this.getAccount(this.$route.params.address || this.$route.params.nickname)
+      if (res.success && res.account) {
+        this.account = res.account
+        this.balances = [convertFee(res.account.xas) + ' XAS']
+      }
+    },
+    async getAccountBalances() {
+      let res = await this.getBalance(this.$route.params.address)
+      if (res.success) {
+        let balances = res.balances.map(balance => {
+          let { precision } = balance.asset
+          return convertFee(balance.balance, precision) + ' ' + balance.currency.split('.')[1]
+        })
+        this.balances = this.balances.concat(balances)
+      }
+    },
+    init() {
+      this.getAccountInfo()
+      this.getAccountBalances()
+    }
+  },
+  watch: {
+    address(val) {
+      if (val) this.init()
+    }
   }
 }
 </script>

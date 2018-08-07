@@ -205,6 +205,11 @@ export default {
     height() {
       return this.$route.params.height
     }
+  },
+  watch: {
+    params(val) {
+      this.getData()
+    }
   }
 }
 </script>
