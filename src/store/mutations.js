@@ -12,5 +12,12 @@ export default {
   },
   SET_USERS(state, amount) {
     state.runState.accountCount = amount
+  },
+  SET_ASSET_MAP(state, assets) {
+    let assetMap = new Map()
+    assets.forEach(e => {
+      assetMap.set(e.name, e)
+    })
+    state.assetMap = assetMap
   }
 }

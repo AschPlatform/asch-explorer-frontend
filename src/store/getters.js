@@ -27,5 +27,12 @@ export default {
   },
   blockHeight: state => {
     return state.runState.blockHeight
+  },
+  // Assets getter
+  getPrecision: state => (name) => {
+    if (state.assetMap.has(name)) {
+      return state.assetMap.get(name).precision
+    }
+    return null
   }
 }
