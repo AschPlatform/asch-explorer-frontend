@@ -6,12 +6,9 @@ import {
   Platform
 } from 'quasar'
 import moment from 'moment'
-import {
-  BigNumber
-} from 'bignumber'
-import {
-  transTypes
-} from '../utils/constants'
+import AschJs from 'asch-js'
+import { BigNumber } from 'bignumber'
+import { transTypes } from '../utils/constants'
 
 // confirm compontent
 export const confirm = (conf, cancel = () => {}, confirm = () => {}) => {
@@ -269,4 +266,8 @@ export const getTransType = (trans, t) => {
     }
   }
   return t(transTypes[type])
+}
+
+export const getAddress = (pubKey) => {
+  return AschJs.crypto.getAddress(pubKey)
 }

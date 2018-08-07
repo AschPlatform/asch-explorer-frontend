@@ -81,7 +81,7 @@ export default {
         {
           label: 'BLOCK_HEIGHT',
           value: this.blockHeight,
-          type: 'number'
+          type: 'block'
         },
         {
           label: 'ARGUMENTS',
