@@ -16,17 +16,18 @@
           <q-tooltip>{{ props.row.senderId }}</q-tooltip>
         </div>
       </q-td>
-      <q-td v-if="props.row.args" key="recipientId" :props="props" >
-        <div class="text-italic text-primary cursor-pointer" @click="doSearch(getRecipient(props.row))" >
+      <q-td key="recipientId" :props="props" >
+        <div v-if="props.row.args" class="text-italic text-primary cursor-pointer" @click="doSearch(getRecipient(props.row))" >
           {{getRecipient(props.row) | eclipse  }}
           <q-tooltip>{{ getRecipient(props.row) }}</q-tooltip>
         </div>
       </q-td>
-      <q-td v-if="getAmount(props.row)" key="amount" :props="props" >
-        <span class="text-italic">{{ getAmount(props.row) }}</span>
+      <q-td key="amount" :props="props" >
+        <span v-if="getAmount(props.row)" class="text-italic">{{ getAmount(props.row) }}</span>
       </q-td>
-      <q-td v-if="props.row.fee" key="fee" :props="props" >
-        <span class="text-italic">{{ props.row.fee }}</span>
+      <q-td key="fee" :props="props" >
+        <span v-if="props.row.fee" class="text-italic">{{ props.row.fee | fee }}</span>
+        <span v-else>--</span>
       </q-td>
       <q-td v-if="props.row.timestamp > -1" key="timestamp" :props="props" >
         <span class="text-italic">{{ fulltimestamp(props.row.timestamp) }}</span>
@@ -116,7 +117,7 @@ export default {
       // type that need fill with currency symbol
       const filterTransType = [1, 103]
       if (filterTransType.indexOf(type) >= 0) {
-        if (args && args.length === 3) currencySymbol = args[1]
+        if (args && args.length === 3) currencySymbol = args[0].split('.')[1]
         return currencySymbol + ' ' + transType
       } else {
         return transType
@@ -128,8 +129,9 @@ export default {
       return args[len - 1]
     },
     getAmount(trans) {
+      if (!trans.arg) return false
       const { args } = trans
-      const len = args.length
+      const len = args ? args.length : 0
       return args[len - 2]
     },
     // toast with state control
@@ -158,7 +160,8 @@ export default {
         {
           name: 'type',
           label: this.$t('TRANS_TYPE'),
-          field: 'type'
+          field: 'type',
+          align: 'center'
         },
         {
           name: 'senderId',

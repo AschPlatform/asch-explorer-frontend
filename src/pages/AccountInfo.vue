@@ -81,20 +81,28 @@ export default {
       let res = await this.getAccount(this.$route.params.address || this.$route.params.nickname)
       if (res.success && res.account) {
         this.account = res.account
-        this.balances = [convertFee(res.account.xas) + ' XAS']
+        this.balances = [convertFee(res.account.xas) + ' XAS'].concat(this.balances)
       }
     },
     async getAccountBalances() {
       let res = await this.getBalance(this.$route.params.address)
       if (res.success) {
-        let balances = res.balances.map(balance => {
+        let balances = []
+        res.balances.forEach(balance => {
           let { precision } = balance.asset
-          return convertFee(balance.balance, precision) + ' ' + balance.currency.split('.')[1]
+          if (balance.balance >= 1) {
+            balances.push(
+              convertFee(balance.balance, precision) + ' ' + balance.currency.split('.')[1]
+            )
+          }
         })
+        debugger
         this.balances = this.balances.concat(balances)
       }
     },
     init() {
+      this.account = null
+      this.balances = []
       this.getAccountInfo()
       this.getAccountBalances()
     }
