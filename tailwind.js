@@ -239,7 +239,11 @@ module.exports = {
     '2xl': '1.5rem', // 24px
     '3xl': '1.875rem', // 30px
     '4xl': '2.25rem', // 36px
-    '5xl': '3rem' // 48px
+    '5xl': '3rem', // 48px
+    '13': '13px',
+    '14': '14px',
+    '16': '16px',
+    '18': '18px'
   },
 
   /*
@@ -370,6 +374,7 @@ module.exports = {
   borderWidths: {
     default: '1px',
     '0': '0',
+    '1': '1px',
     '2': '2px',
     '4': '4px',
     '8': '8px'
@@ -572,7 +577,8 @@ module.exports = {
     '3xl': '80rem',
     '4xl': '90rem',
     '5xl': '100rem',
-    'full': '100%'
+    'full': '100%',
+    '1200': '1200px'
   },
 
   /*
