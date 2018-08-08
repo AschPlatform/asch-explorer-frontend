@@ -20,7 +20,7 @@
           </tr>
         </tbody>
       </table>
-      <q-inner-loading :visible="loadingFlg">
+      <q-inner-loading :visible="loadingBool">
         <q-spinner-gears size="50px" color="teal-4" />
       </q-inner-loading>
     </div>
@@ -51,15 +51,15 @@ export default {
     this.showLoading()
   },
   methods: {
-    ...mapActions(['setLoadingflg']),
+    ...mapActions(['setLoadingflag']),
     showLoading() {
       if (this.panelData) {
-        this.setLoadingflg(true)
+        this.setLoadingflag(true)
         setTimeout(() => {
-          this.setLoadingflg(false)
+          this.setLoadingflag(false)
         }, 2000)
       }
-      this.setLoadingflg(true)
+      this.setLoadingflag(true)
     },
     info(msg) {
       if (this.isDisable === true) {
@@ -76,10 +76,10 @@ export default {
     }
   },
   computed: {
-    ...mapGetters(['loadingBool']),
-    loadingFlg() {
-      return this.loadingBool
-    }
+    ...mapGetters(['loadingBool'])
+    // loadingFlg() {
+    //   return this.loadingBool
+    // }
   },
   watch: {
     panelData() {

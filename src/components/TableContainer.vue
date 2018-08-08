@@ -51,7 +51,7 @@
           </q-td>
         </q-tr>
       </q-table>
-      <q-inner-loading :visible="loadingFlg">
+      <q-inner-loading :visible="loadingBool">
         <q-spinner-gears size="50px" color="teal-4" />
       </q-inner-loading>
     </div>
@@ -96,15 +96,15 @@ export default {
   },
   methods: {
     fulltimestamp,
-    ...mapActions(['getTransactions', 'getTransfers', 'setLoadingflg']),
+    ...mapActions(['getTransactions', 'getTransfers', 'setLoadingflag']),
     showLoading() {
       if (this.datas) {
-        this.setLoadingflg(true)
+        this.setLoadingflag(true)
         setTimeout(() => {
-          this.setLoadingflg(false)
+          this.setLoadingflag(false)
         }, 2000)
       }
-      this.setLoadingflg(true)
+      this.setLoadingflag(true)
     },
     async getData(props = null) {
       let res = []
@@ -272,9 +272,6 @@ export default {
     },
     height() {
       return this.$route.params.height
-    },
-    loadingFlg() {
-      return this.loadingBool
     },
     buttons() {
       return this.btnGroup
