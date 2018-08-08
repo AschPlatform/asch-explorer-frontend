@@ -77,23 +77,19 @@ export default {
   },
   mounted() {
     this.getData()
-    this.dataShow()
+    this.showLoading()
   },
   methods: {
     fulltimestamp,
     ...mapActions(['getTransactions']),
-    dataShow() {
-      if (this.datas) {
-        this.showLoading()
-      } else {
-        this.$store.state.loadingFlag = true
-      }
-    },
     showLoading() {
-      this.$store.state.loadingFlag = true
-      setTimeout(() => {
-        this.$store.state.loadingFlag = false
-      }, 2000)
+      if (this.datas) {
+        this.$store.commit('SET_LOADING_FLAG', true)
+        setTimeout(() => {
+          this.$store.commit('SET_LOADING_FLAG', false)
+        }, 2000)
+      }
+      this.$store.commit('SET_LOADING_FLAG', true)
     },
     async getData(props = null) {
       let res = []
@@ -116,7 +112,7 @@ export default {
       res = await this.getTransactions(condition)
 
       if (res.success) {
-        this.dataShow()
+        this.showLoading()
       }
       this.datas = res.transactions
       this.pagination.rowsNumber = res.count
@@ -232,7 +228,7 @@ export default {
       this.getData()
     },
     datas() {
-      this.dataShow()
+      this.showLoading()
     }
   }
 }

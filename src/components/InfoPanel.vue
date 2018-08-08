@@ -48,21 +48,16 @@ export default {
   },
   mounted() {
     this.showLoading()
-    this.dataShow()
   },
   methods: {
-    dataShow() {
-      if (this.panelData) {
-        this.showLoading()
-      } else {
-        this.$store.state.loadingFlag = true
-      }
-    },
     showLoading() {
-      this.$store.state.loadingFlag = true
-      setTimeout(() => {
-        this.$store.state.loadingFlag = false
-      }, 2000)
+      if (this.panelData) {
+        this.$store.commit('SET_LOADING_FLAG', true)
+        setTimeout(() => {
+          this.$store.commit('SET_LOADING_FLAG', false)
+        }, 2000)
+      }
+      this.$store.commit('SET_LOADING_FLAG', true)
     },
     info(msg) {
       if (this.isDisable === true) {
@@ -88,7 +83,7 @@ export default {
   },
   watch: {
     panelData() {
-      this.dataShow()
+      this.showLoading()
     }
   }
 }

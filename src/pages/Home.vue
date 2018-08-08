@@ -55,7 +55,6 @@ export default {
       this.$store.commit('SET_LANG', this.$i18n.locale)
       if (window.localStorage) {
         setCache('lang', this.$i18n.locale)
-        // window.localStorage.setItem('lang', this.$i18n.locale)
       }
     }
   },
