@@ -3,10 +3,11 @@
     <breadcrumb />
     <div class="border border-solid border-grey rounded-lg p-4 mb-4">
       <div class="text-14 text-black-dark font-bold">
-        {{this.$t('BLOCK_INFO')}}
+        {{this.$t('ACCOUNT_INFO')}}
       </div>
-      <boundary-line class="mt-2" />
-      <info-panel :panelData="panelData" />
+      <boundary-line class="mt-2 mb-8" />
+      <info-panel v-if="account" :panelData="panelData" />
+      <div v-else class="mt-2 mb-8 px-4 text-xs">{{$t('NO_DATA')}}</div>
       <q-btn-group>
         <q-btn v-for="(item, idx) in btnGroup" :label="item.label" @click="changeType(item.value)" :key="idx"></q-btn>
       </q-btn-group>
@@ -21,7 +22,7 @@ import BoundaryLine from '../components/BoundaryLine'
 import Breadcrumb from '../components/Breadcrumb'
 import InfoPanel from '../components/InfoPanel'
 import TableContainer from '../components/TableContainer'
-import { convertFee } from '../utils/util'
+import { convertFee, toastError } from '../utils/util'
 import { mapActions } from 'vuex'
 
 export default {
@@ -95,9 +96,12 @@ export default {
     ...mapActions(['getAccount', 'getBalance', 'getTransactions', 'getTransfers']),
     async getAccountInfo() {
       let res = await this.getAccount(this.$route.params.address || this.$route.params.nickname)
-      if (res.success && res.account) {
+      if (res.success) {
         this.account = res.account
         this.balances = [convertFee(res.account.xas) + ' XAS'].concat(this.balances)
+      } else {
+        toastError(this.$t('ERR_INVALID_SEARCH'))
+        this._.delay(() => this.$router.push('/'), 1000)
       }
     },
     async getAccountBalances() {

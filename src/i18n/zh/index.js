@@ -12,7 +12,7 @@ const lang = {
   HOMEPAGE: '官网',
   FORUM: '社区论坛',
   ONLINE_WALLET: '在线钱包',
-  HOME_PLACEHOLDER: '请输入您要查询的交易ID',
+  HOME_PLACEHOLDER: '请输入区块高度、地址、或交易ID...',
   LANGUAGE_CONTEXT: '语言环境:',
   LANGUAGE_ZH: '中文',
   LANGUAGE_EN: 'English',
@@ -26,8 +26,10 @@ const lang = {
   TRANS_FEE: '交易费',
   PRODUCER_TIME: '出块时间',
   PRE_BLOCK: '前一个块',
-  ADDRESS: '地址',
+  ADDRESS: '账户地址',
   BLOCK_INFO: '区块信息概览',
+  TRANSACTION_INFO: '交易信息概览',
+  ACCOUNT_INFO: '账户信息概览',
 
   // transactionsInfo
   TRANSACTION: '哈希值',

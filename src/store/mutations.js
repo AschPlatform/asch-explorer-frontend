@@ -19,5 +19,8 @@ export default {
       assetMap.set(e.name, e)
     })
     state.assetMap = assetMap
+  },
+  SET_LOADING_FLAG(state, result) {
+    state.loadingFlag = result
   }
 }
