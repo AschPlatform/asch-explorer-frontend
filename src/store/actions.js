@@ -110,5 +110,11 @@ export default {
     state
   }) => {
     return api.account()
+  },
+  setLoadingflg: ({
+    commit,
+    state
+  }, result) => {
+    commit('SET_LOADING_FLAG', result)
   }
 }

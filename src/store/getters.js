@@ -28,6 +28,9 @@ export default {
   blockHeight: state => {
     return state.runState.blockHeight
   },
+  loadingBool: state => {
+    return state.loadingFlag
+  },
   // Assets getter
   getPrecision: state => (name) => {
     if (state.assetMap.has(name)) {

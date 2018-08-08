@@ -31,6 +31,7 @@
 import { QInnerLoading, QSpinnerGears } from 'quasar'
 import ICountUp from 'vue-countup-v2'
 import { toast } from '../utils/util'
+import { mapActions, mapGetters } from 'vuex'
 
 export default {
   name: 'InfoPanel',
@@ -50,14 +51,15 @@ export default {
     this.showLoading()
   },
   methods: {
+    ...mapActions(['setLoadingflg']),
     showLoading() {
       if (this.panelData) {
-        this.$store.commit('SET_LOADING_FLAG', true)
+        this.setLoadingflg(true)
         setTimeout(() => {
-          this.$store.commit('SET_LOADING_FLAG', false)
+          this.setLoadingflg(false)
         }, 2000)
       }
-      this.$store.commit('SET_LOADING_FLAG', true)
+      this.setLoadingflg(true)
     },
     info(msg) {
       if (this.isDisable === true) {
@@ -77,8 +79,9 @@ export default {
     }
   },
   computed: {
+    ...mapGetters(['loadingBool']),
     loadingFlg() {
-      return this.$store.state.loadingFlag
+      return this.loadingBool
     }
   },
   watch: {

@@ -28,6 +28,8 @@ const lang = {
   PRE_BLOCK: '前一个块',
   ADDRESS: '账户地址',
   BLOCK_INFO: '区块信息概览',
+  TRANSACTION_INFO: '交易信息概览',
+  ACCOUNT_INFO: '账户信息概览',
 
   // transactionsInfo
   TRANSACTION: '哈希值',

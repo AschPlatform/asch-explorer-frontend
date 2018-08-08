@@ -49,7 +49,7 @@
 
 <script>
 import { QTable, QTr, QTd, QTooltip, QInnerLoading, QSpinnerGears } from 'quasar'
-import { mapActions } from 'vuex'
+import { mapActions, mapGetters } from 'vuex'
 import { transTypes } from '../utils/constants'
 import { fulltimestamp, toast } from '../utils/util'
 
@@ -81,15 +81,15 @@ export default {
   },
   methods: {
     fulltimestamp,
-    ...mapActions(['getTransactions']),
+    ...mapActions(['getTransactions', 'setLoadingflg']),
     showLoading() {
       if (this.datas) {
-        this.$store.commit('SET_LOADING_FLAG', true)
+        this.setLoadingflg(true)
         setTimeout(() => {
-          this.$store.commit('SET_LOADING_FLAG', false)
+          this.setLoadingflg(false)
         }, 2000)
       }
-      this.$store.commit('SET_LOADING_FLAG', true)
+      this.setLoadingflg(true)
     },
     async getData(props = null) {
       let res = []
@@ -161,6 +161,7 @@ export default {
     }
   },
   computed: {
+    ...mapGetters(['loadingBool']),
     columns() {
       return [
         {
@@ -220,7 +221,7 @@ export default {
       return this.$route.params.height
     },
     loadingFlg() {
-      return this.$store.state.loadingFlag
+      return this.loadingBool
     }
   },
   watch: {

@@ -44,10 +44,7 @@ module.exports = function (ctx) {
     },
     // framework: 'all' --- includes everything; for dev only!
     framework: {
-      components: [
-        'QInnerLoading',
-        'QSpinnerGears'
-      ],
+      components: [],
       directives: [
         'Ripple'
       ],
@@ -61,8 +58,8 @@ module.exports = function (ctx) {
       // i18n: 'de' // Quasar language
     },
     // includes all animations
-    animations: 'all',
-    // animations: [],
+    // animations: 'all',
+    animations: ['fadeIn', 'fadeOut'],
     ssr: {
       pwa: false
     },

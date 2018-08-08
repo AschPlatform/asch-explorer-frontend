@@ -3,7 +3,7 @@
     <breadcrumb />
     <div class="border border-solid border-grey rounded-lg p-4 mb-4">
       <div class="text-14 text-black-dark font-bold">
-        {{this.$t('BLOCK_INFO')}}
+        {{this.$t('ACCOUNT_INFO')}}
       </div>
       <boundary-line class="mt-2 mb-8" />
       <info-panel :panelData="panelData" />
