@@ -6,7 +6,8 @@
         {{this.$t('ACCOUNT_INFO')}}
       </div>
       <boundary-line class="mt-2 mb-8" />
-      <info-panel :panelData="panelData" />
+      <info-panel v-if="account" :panelData="panelData" />
+      <div v-else class="mt-2 mb-8 px-4 text-xs">{{$t('NO_DATA')}}</div>
       <q-btn-group>
         <q-btn v-for="(item, idx) in btnGroup" :label="item.label" @click="changeType(item.value)" :key="idx"></q-btn>
       </q-btn-group>
@@ -21,7 +22,7 @@ import BoundaryLine from '../components/BoundaryLine'
 import Breadcrumb from '../components/Breadcrumb'
 import InfoPanel from '../components/InfoPanel'
 import TableContainer from '../components/TableContainer'
-import { convertFee } from '../utils/util'
+import { convertFee, toastError } from '../utils/util'
 import { mapActions } from 'vuex'
 
 export default {
@@ -68,22 +69,24 @@ export default {
     },
     panelData() {
       let datas = []
+      const t = this.$t
       if (this.account) {
         if (this.account.name) {
           datas.push({
-            label: 'NICKNAME',
+            label: t('NICKNAME'),
             value: this.account.name
           })
         }
         this.balances.map((balance, idx) => {
           let balanceItem = { value: balance }
-          if (idx === 0) balanceItem.label = 'ACCOUNT_BALANCE'
+          if (idx === 0) balanceItem.label = t('ACCOUNT_BALANCE')
           datas.push(balanceItem)
         })
 
         datas.push({
-          label: 'ADDRESS',
-          value: this.account.address
+          label: t('ADDRESS'),
+          value: this.account.address,
+          type: 'address'
         })
         return datas
       }
@@ -93,9 +96,12 @@ export default {
     ...mapActions(['getAccount', 'getBalance', 'getTransactions', 'getTransfers']),
     async getAccountInfo() {
       let res = await this.getAccount(this.$route.params.address || this.$route.params.nickname)
-      if (res.success && res.account) {
+      if (res.success) {
         this.account = res.account
         this.balances = [convertFee(res.account.xas) + ' XAS'].concat(this.balances)
+      } else {
+        toastError(this.$t('ERR_INVALID_SEARCH'))
+        this._.delay(() => this.$router.push('/'), 1000)
       }
     },
     async getAccountBalances() {
