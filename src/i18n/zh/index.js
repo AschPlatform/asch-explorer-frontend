@@ -58,6 +58,7 @@ const lang = {
   // table type
   TRANS_TITLE: '交易记录',
   BLOCK_TITLE: '区块记录',
+  NO_DATA: '没有数据',
 
   // transaction type filter
   TRS_TYPE_TRANSFER: '转账',

@@ -1,6 +1,6 @@
 <template>
   <div>
-    <q-table class="no-shadow table-top-border" :title="title" :data="data" :columns="columns" :pagination.sync="pagination" @request="request" row-key="name">
+    <q-table class="no-shadow table-top-border" :title="title" :data="data" :columns="columns" :pagination.sync="pagination" :no-data-label="$t('NO_DATA')" @request="request" row-key="name">
       <q-tr slot="body" slot-scope="props" :props="props">
         <q-td v-if="props.row.id" key="id" :props="props" >
           <div class="text-italic text-primary cursor-pointer" @click="doSearch(props.row.id)">
