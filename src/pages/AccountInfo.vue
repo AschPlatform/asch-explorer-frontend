@@ -7,14 +7,16 @@
       </div>
       <boundary-line class="mt-2 mb-8" />
       <info-panel :panelData="panelData" />
-
-      <table-container class="mt-8" :type="'trans'" :params="params" />
+      <q-btn-group>
+        <q-btn v-for="(item, idx) in btnGroup" :label="item.label" @click="changeType(item.value)" :key="idx"></q-btn>
+      </q-btn-group>
+      <table-container class="mt-8" :data="data" :count="count" :isTransaction="this.type === 0 ? true : false" @getData="getData" @changeType="changeType"/>
     </div>
   </q-page>
 </template>
 
 <script>
-import { QPage } from 'quasar'
+import { QPage, QBtnGroup, QBtn } from 'quasar'
 import BoundaryLine from '../components/BoundaryLine'
 import Breadcrumb from '../components/Breadcrumb'
 import InfoPanel from '../components/InfoPanel'
@@ -29,12 +31,32 @@ export default {
     Breadcrumb,
     InfoPanel,
     TableContainer,
-    BoundaryLine
+    BoundaryLine,
+    QBtnGroup,
+    QBtn
   },
   data() {
     return {
       account: null,
-      balances: []
+      balances: [],
+      type: 0,
+      data: [],
+      defaultProps: {
+        orderBy: 'timestamp:desc',
+        limit: 10,
+        offset: 0
+      },
+      count: 0,
+      btnGroup: [
+        {
+          label: this.$t('TRANSACTION_TABLE'),
+          value: 0
+        },
+        {
+          label: this.$t('TRANS_TABLE'),
+          value: 1
+        }
+      ]
     }
   },
   async mounted() {
@@ -43,15 +65,6 @@ export default {
   computed: {
     address() {
       return this.$route.params.address || ''
-    },
-    params() {
-      let address = this.$route.params.address
-      let nickname = this.$route.params.nickname
-      let params = {}
-      // diffrent params in table list
-      if (address) params.address = address
-      if (nickname) params.nickname = nickname
-      return params
     },
     panelData() {
       let datas = []
@@ -77,7 +90,7 @@ export default {
     }
   },
   methods: {
-    ...mapActions(['getAccount', 'getBalance']),
+    ...mapActions(['getAccount', 'getBalance', 'getTransactions', 'getTransfers']),
     async getAccountInfo() {
       let res = await this.getAccount(this.$route.params.address || this.$route.params.nickname)
       if (res.success && res.account) {
@@ -105,6 +118,26 @@ export default {
       this.balances = []
       this.getAccountInfo()
       this.getAccountBalances()
+    },
+    changeType(val) {
+      this.type = val
+      this.getData()
+    },
+    async getData(props = this.defaultProps) {
+      let res
+      if (this.type === 0) {
+        // For transactions
+        props.senderId = this.address
+        res = await this.getTransactions(props)
+        this.data = res.transactions
+        this.count = res.count
+      } else {
+        // For transfers
+        props.ownerId = this.address
+        res = await this.getTransfers(props)
+        this.data = res.transfers
+        this.count = res.count
+      }
     }
   },
   watch: {

@@ -181,6 +181,9 @@ export const isCordova = () => {
 }
 
 export const convertFee = (fee, precision = 8) => {
+  if (precision === null || precision === undefined) {
+    precision = 8
+  }
   if (!fee) {
     return 0
   }

@@ -9,7 +9,7 @@
       <boundary-line class="mt-2 mb-8" />
       <info-panel :panelData="panelData" />
 
-      <table-container :type="'block'" :params="params" />
+        <table-container :data="data" :count="count" isTransaction="true" @getData="getData" />
 
     </div>
   </q-page>
@@ -40,7 +40,14 @@ export default {
       transNum: 0,
       transFee: '',
       preBlock: '',
-      produceTime: ''
+      produceTime: '',
+      data: [],
+      defaultProps: {
+        orderBy: 'timestamp:desc',
+        limit: 10,
+        offset: 0
+      },
+      count: 0
     }
   },
   async mounted() {
@@ -56,11 +63,11 @@ export default {
     height() {
       return this.$route.params.height
     },
-    params() {
-      return {
-        height: this.height
-      }
-    },
+    // params() {
+    //   return {
+    //     height: this.height
+    //   }
+    // },
 
     panelData() {
       return [
@@ -105,7 +112,7 @@ export default {
     }
   },
   methods: {
-    ...mapActions(['getBlockInfo']),
+    ...mapActions(['getBlockInfo', 'getTransactions']),
     async envalueData() {
       let result = await this.getBlockInfo({
         height: this.blockHeight
@@ -119,6 +126,14 @@ export default {
         this.preBlock = trans.previousBlock
         this.produceTime = fulltimestamp(trans.timestamp)
       }
+    },
+    async getData(props = this.defaultProps) {
+      let res
+      // For transactions
+      props.height = this.height
+      res = await this.getTransactions(props)
+      this.data = res.transactions
+      this.count = res.count
     }
   },
   watch: {
