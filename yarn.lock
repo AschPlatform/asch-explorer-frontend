@@ -898,7 +898,11 @@
 
 JSONStream@^1.3.1:
   version "1.3.3"
+<<<<<<< HEAD
+  resolved "https://registry.yarnpkg.com/JSONStream/-/JSONStream-1.3.3.tgz#27b4b8fbbfeab4e71bcf551e7f27be8d952239bf"
+=======
   resolved "http://registry.npm.taobao.org/JSONStream/download/JSONStream-1.3.3.tgz#27b4b8fbbfeab4e71bcf551e7f27be8d952239bf"
+>>>>>>> 54764e1306ea8b217698430cf9ac6fd7030aff08
   dependencies:
     jsonparse "^1.2.0"
     through ">=2.2.7 <3"
@@ -1069,7 +1073,11 @@ arrify@^1.0.0, arrify@^1.0.1:
 
 asch-js@^1.3.10:
   version "1.3.10"
+<<<<<<< HEAD
+  resolved "https://registry.yarnpkg.com/asch-js/-/asch-js-1.3.10.tgz#84792cbdb28a2b6f0c0739226d0e080657df4a39"
+=======
   resolved "http://registry.npm.taobao.org/asch-js/download/asch-js-1.3.10.tgz#84792cbdb28a2b6f0c0739226d0e080657df4a39"
+>>>>>>> 54764e1306ea8b217698430cf9ac6fd7030aff08
   dependencies:
     JSONStream "^1.3.1"
     browserify-bignum "^1.3.0-2"
@@ -1300,7 +1308,11 @@ browserify-aes@^1.0.0, browserify-aes@^1.0.4:
 
 browserify-bignum@^1.3.0-2:
   version "1.3.0-2"
+<<<<<<< HEAD
+  resolved "https://registry.yarnpkg.com/browserify-bignum/-/browserify-bignum-1.3.0-2.tgz#ddc3b6ed607fd6c960966950e2b35a2b0c6fb9bf"
+=======
   resolved "http://registry.npm.taobao.org/browserify-bignum/download/browserify-bignum-1.3.0-2.tgz#ddc3b6ed607fd6c960966950e2b35a2b0c6fb9bf"
+>>>>>>> 54764e1306ea8b217698430cf9ac6fd7030aff08
 
 browserify-cipher@^1.0.0:
   version "1.0.1"
@@ -1373,7 +1385,7 @@ buffer-xor@^1.0.3:
 
 buffer@^4.3.0, buffer@^4.7.0:
   version "4.9.1"
-  resolved "http://registry.npm.taobao.org/buffer/download/buffer-4.9.1.tgz#6d1bb601b07a4efced97094132093027c95bc298"
+  resolved "https://registry.yarnpkg.com/buffer/-/buffer-4.9.1.tgz#6d1bb601b07a4efced97094132093027c95bc298"
   dependencies:
     base64-js "^1.0.2"
     ieee754 "^1.1.4"
@@ -1389,7 +1401,11 @@ builtin-status-codes@^3.0.0:
 
 bytebuffer@^5.0.1:
   version "5.0.1"
+<<<<<<< HEAD
+  resolved "https://registry.yarnpkg.com/bytebuffer/-/bytebuffer-5.0.1.tgz#582eea4b1a873b6d020a48d58df85f0bba6cfddd"
+=======
   resolved "http://registry.npm.taobao.org/bytebuffer/download/bytebuffer-5.0.1.tgz#582eea4b1a873b6d020a48d58df85f0bba6cfddd"
+>>>>>>> 54764e1306ea8b217698430cf9ac6fd7030aff08
   dependencies:
     long "~3"
 
@@ -2776,7 +2792,11 @@ fast-levenshtein@~2.0.4:
 
 fast-sha256@^1.0.0:
   version "1.1.0"
+<<<<<<< HEAD
+  resolved "https://registry.yarnpkg.com/fast-sha256/-/fast-sha256-1.1.0.tgz#b640189403c7ff0d796d1251a1c1f6954c40e7b4"
+=======
   resolved "http://registry.npm.taobao.org/fast-sha256/download/fast-sha256-1.1.0.tgz#b640189403c7ff0d796d1251a1c1f6954c40e7b4"
+>>>>>>> 54764e1306ea8b217698430cf9ac6fd7030aff08
 
 fastclick@1.0.6:
   version "1.0.6"
@@ -3833,7 +3853,11 @@ jsonify@~0.0.0:
 
 jsonparse@^1.2.0:
   version "1.3.1"
+<<<<<<< HEAD
+  resolved "https://registry.yarnpkg.com/jsonparse/-/jsonparse-1.3.1.tgz#3f4dae4a91fac315f71062f8521cc239f1366280"
+=======
   resolved "http://registry.npm.taobao.org/jsonparse/download/jsonparse-1.3.1.tgz#3f4dae4a91fac315f71062f8521cc239f1366280"
+>>>>>>> 54764e1306ea8b217698430cf9ac6fd7030aff08
 
 killable@^1.0.0:
   version "1.0.0"
@@ -4025,7 +4049,7 @@ long@4.0.0:
 
 long@^3.2.0, long@~3:
   version "3.2.0"
-  resolved "http://registry.npm.taobao.org/long/download/long-3.2.0.tgz#d821b7138ca1cb581c172990ef14db200b5c474b"
+  resolved "https://registry.yarnpkg.com/long/-/long-3.2.0.tgz#d821b7138ca1cb581c172990ef14db200b5c474b"
 
 loose-envify@^1.0.0:
   version "1.4.0"
@@ -6265,14 +6289,14 @@ text-table@^0.2.0, text-table@~0.2.0:
 
 through2@^2.0.0, through2@^2.0.3:
   version "2.0.3"
-  resolved "http://registry.npm.taobao.org/through2/download/through2-2.0.3.tgz#0004569b37c7c74ba39c43f3ced78d1ad94140be"
+  resolved "https://registry.yarnpkg.com/through2/-/through2-2.0.3.tgz#0004569b37c7c74ba39c43f3ced78d1ad94140be"
   dependencies:
     readable-stream "^2.1.5"
     xtend "~4.0.1"
 
 "through@>=2.2.7 <3", through@^2.3.6:
   version "2.3.8"
-  resolved "http://registry.npm.taobao.org/through/download/through-2.3.8.tgz#0dd4c9ffaabc357960b1b724115d7e0e86a2e1f5"
+  resolved "https://registry.yarnpkg.com/through/-/through-2.3.8.tgz#0dd4c9ffaabc357960b1b724115d7e0e86a2e1f5"
 
 thunky@^1.0.2:
   version "1.0.2"
@@ -6364,7 +6388,11 @@ tty-browserify@0.0.0:
 
 tweetnacl@^1.0.0:
   version "1.0.0"
+<<<<<<< HEAD
+  resolved "https://registry.yarnpkg.com/tweetnacl/-/tweetnacl-1.0.0.tgz#713d8b818da42068740bf68386d0479e66fc8a7b"
+=======
   resolved "http://registry.npm.taobao.org/tweetnacl/download/tweetnacl-1.0.0.tgz#713d8b818da42068740bf68386d0479e66fc8a7b"
+>>>>>>> 54764e1306ea8b217698430cf9ac6fd7030aff08
 
 type-check@~0.3.2:
   version "0.3.2"
