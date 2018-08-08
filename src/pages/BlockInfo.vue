@@ -58,60 +58,8 @@ export default {
     rewardCount() {
       return '3.5 XAS'
     },
-    computed: {
-      blockHeight() {
-        return Number(this.$route.params.height) || 0
-      },
-      rewardCount() {
-        return '3.5 XAS'
-      },
-      height() {
-        return this.$route.params.height
-      },
-      panelData() {
-        return [{
-            label: 'BLOCK_HEIGHT',
-            value: this.blockHeight,
-            type: 'number'
-          },
-          {
-            label: 'BLOCK_ID',
-            value: this.block
-          },
-          {
-            label: 'PRODUCER',
-            value: this.producer,
-            type: 'address'
-          },
-          {
-            label: 'FORGE_REWARD',
-            value: this.rewardCount
-          },
-          {
-            label: 'TRANS_NUM',
-            value: this.transNum,
-            type: 'number'
-          },
-          {
-            label: 'TRANS_FEE',
-            value: this.transFee
-          },
-          {
-            label: 'PRE_BLOCK',
-            value: this.preBlock
-          },
-          {
-            label: 'PRODUCER_TIME',
-            value: this.produceTime
-          }
-        ]
-      },
-      params() {
-        return this.$route.params
-      },
-      height() {
-        return this.$route.params.height
-      }
+    height() {
+      return this.$route.params.height
     },
     // params() {
     //   return {
