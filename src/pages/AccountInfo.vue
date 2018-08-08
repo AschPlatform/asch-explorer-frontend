@@ -66,15 +66,6 @@ export default {
     address() {
       return this.$route.params.address || ''
     },
-    params() {
-      let address = this.$route.params.address
-      let nickname = this.$route.params.nickname
-      let params = {}
-      // diffrent params in table list
-      if (address) params.address = address
-      if (nickname) params.nickname = nickname
-      return params
-    },
     panelData() {
       let datas = []
       if (this.account) {

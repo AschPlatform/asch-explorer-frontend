@@ -1,13 +1,6 @@
 <template>
   <div>
     <q-table class="no-shadow table-top-border" :title="title" :data="data" :columns="columns" :pagination.sync="pagination" @request="request" row-key="name">
-      <!-- <template slot="top-left" slot-scope="props">
-        <q-btn-group>
-          <q-btn v-for="(item, idx) in buttons" :label="item.label" @click="changeType(item.value)" :key="idx"></q-btn>
-          <q-btn :label="$t('TRANSACTION_TABLE')" @click="isTransaction = true"></q-btn>
-          <q-btn :label="$t('TRANS_TABLE')" @click="isTransaction = false"></q-btn>
-        </q-btn-group>
-      </template> -->
       <q-tr slot="body" slot-scope="props" :props="props">
         <q-td v-if="props.row.id" key="id" :props="props" >
           <div class="text-italic text-primary cursor-pointer" @click="doSearch(props.row.id)">
@@ -39,12 +32,6 @@
             <q-tooltip>{{ props.row.recipientId }}</q-tooltip>
           </div>
         </q-td>
-        <!-- <q-td key="recipientId" :props="props" >
-          <div v-if="props.row.args" class="text-italic text-primary cursor-pointer" @click="doSearch(getRecipient(props.row))" >
-            {{getRecipient(props.row) | eclipse}}
-            <q-tooltip>{{ getRecipient(props.row) }}</q-tooltip>
-          </div>
-        </q-td> -->
         <q-td key="amount" :props="props" >
           <span v-if="getAmount(props.row)" class="text-italic">{{ getAmount(props.row) }}</span>
         </q-td>
@@ -117,28 +104,6 @@ export default {
         this.pagination = props.pagination
       }
       this.$emit('getData', condition)
-      // if (this.type === 'trans') {
-      //   // trans type with address
-      //   // TODO nickname support
-      //   // ownerID for transfers
-      //   if (!this.isTransaction) {
-      //     condition.ownerId = this.params.address
-      //   } else {
-      //     condition.senderId = this.params.address
-      //   }
-      // } else if (this.type === 'block') {
-      //   // block table
-      //   condition.height = this.params.height
-      // }
-      // if (this.isTransaction) {
-      //   res = await this.getTransactions(condition)
-      //   this.datas = res.transactions
-      // } else {
-      //   // TODO: what it need for query?
-      //   res = await this.getTransfers(condition)
-      //   this.datas = res.transfers
-      // }
-      // this.pagination.rowsNumber = res.count
     },
     // get locale trans type
     getTransType(trans) {
@@ -297,11 +262,7 @@ export default {
     params(val) {
       this.getData()
     },
-    // isTransaction() {
-    //   this.getData()
-    // },
     count(val) {
-      console.log('val changed')
       this.pagination.rowsNumber = val
     },
     

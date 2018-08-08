@@ -69,11 +69,6 @@
       height() {
         return this.$route.params.height
       },
-      params() {
-        return {
-          height: this.height
-        }
-      },
       panelData() {
         return [{
             label: 'BLOCK_HEIGHT',
