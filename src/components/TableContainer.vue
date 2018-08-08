@@ -1,12 +1,13 @@
 <template>
   <div>
-    <q-table class="no-shadow table-top-border" :title="title" :data="datas" :columns="columns" :pagination.sync="pagination" row-key="name">
-      <template v-if="showSwitch" slot="top-left" slot-scope="props">
+    <q-table class="no-shadow table-top-border" :title="title" :data="data" :columns="columns" :pagination.sync="pagination" @request="request" row-key="name">
+      <!-- <template slot="top-left" slot-scope="props">
         <q-btn-group>
+          <q-btn v-for="(item, idx) in buttons" :label="item.label" @click="changeType(item.value)" :key="idx"></q-btn>
           <q-btn :label="$t('TRANSACTION_TABLE')" @click="isTransaction = true"></q-btn>
           <q-btn :label="$t('TRANS_TABLE')" @click="isTransaction = false"></q-btn>
         </q-btn-group>
-      </template>
+      </template> -->
       <q-tr slot="body" slot-scope="props" :props="props">
         <q-td v-if="props.row.id" key="id" :props="props" >
           <div class="text-italic text-primary cursor-pointer" @click="doSearch(props.row.id)">
@@ -14,8 +15,17 @@
             <q-tooltip>{{ props.row.id }}</q-tooltip>
           </div>
         </q-td>
+        <q-td v-if="props.row.tid" key="tid" :props="props" >
+          <div class="text-italic text-primary cursor-pointer" @click="doSearch(props.row.tid)">
+            {{ props.row.tid | eclipse }}
+            <q-tooltip>{{ props.row.tid }}</q-tooltip>
+          </div>
+        </q-td>
         <q-td v-if="props.row.type" key="type" :props="props" >
           <span class="">{{ getTransType(props.row) }}</span>
+        </q-td>
+        <q-td v-if="props.row.currency" key="currency" :props="props" >
+          <span class="">{{ (props.row.currency) + $t('TRS_TYPE_TRANSFER') }}</span>
         </q-td>
         <q-td v-if="props.row.senderId" key="senderId" :props="props" >
           <div class="text-italic text-primary cursor-pointer" @click="doSearch(props.row.senderId)">
@@ -23,18 +33,30 @@
             <q-tooltip>{{ props.row.senderId }}</q-tooltip>
           </div>
         </q-td>
-        <q-td key="recipientId" :props="props" >
+        <q-td v-if="props.row.recipientId" key="recipientId" :props="props" >
+          <div class="text-italic text-primary cursor-pointer" @click="doSearch(props.row.recipientId)">
+            {{ props.row.recipientId | eclipse }}
+            <q-tooltip>{{ props.row.recipientId }}</q-tooltip>
+          </div>
+        </q-td>
+        <!-- <q-td key="recipientId" :props="props" >
           <div v-if="props.row.args" class="text-italic text-primary cursor-pointer" @click="doSearch(getRecipient(props.row))" >
             {{getRecipient(props.row) | eclipse}}
             <q-tooltip>{{ getRecipient(props.row) }}</q-tooltip>
           </div>
-        </q-td>
+        </q-td> -->
         <q-td key="amount" :props="props" >
           <span v-if="getAmount(props.row)" class="text-italic">{{ getAmount(props.row) }}</span>
+        </q-td>
+        <q-td key="transferAmount" :props="props" >
+          <span v-if="props.row.amount" class="text-italic">{{ props.row.amount | fee }}</span>
         </q-td>
         <q-td key="fee" :props="props" >
           <span v-if="props.row.fee" class="text-italic">{{ props.row.fee | fee }}</span>
           <span v-else>--</span>
+        </q-td>
+        <q-td key="transferFee" :props="props" >
+          <span class="text-italic">0.1</span>
         </q-td>
         <q-td v-if="props.row.timestamp > -1" key="timestamp" :props="props" >
           <span class="text-italic">{{ fulltimestamp(props.row.timestamp) }}</span>
@@ -48,13 +70,13 @@
 <script>
 /* eslint-disable */
 import { QTable, QTr, QTd, QTooltip, QBtnGroup, QBtn } from 'quasar'
-import { mapActions } from 'vuex'
+import { mapActions, mapGetters } from 'vuex'
 import { transTypes } from '../utils/constants'
-import { fulltimestamp, toast } from '../utils/util'
+import { fulltimestamp, toast, convertFee } from '../utils/util'
 
 export default {
   name: 'TableContaine',
-  props: ['type', 'params'],
+  props: ['isTransaction', 'data', 'count'],
   components: {
     QTable,
     QTr,
@@ -65,7 +87,7 @@ export default {
   },
   data() {
     return {
-      isTransaction: true,
+      // isTransaction: true,
       datas: [],
       pagination: {
         page: 1,
@@ -91,28 +113,32 @@ export default {
         limit: limit,
         offset: (pageNo - 1) * limit
       }
-      if (this.type === 'trans') {
-        // trans type with address
-        // TODO nickname support
-        // ownerID for transfers
-        if (!this.isTransaction) {
-          condition.ownerId = this.params.address
-        } else {
-          condition.senderId = this.params.address
-        }
-      } else if (this.type === 'block') {
-        // block table
-        condition.height = this.params.height
+      if (props) {
+        this.pagination = props.pagination
       }
-      if (this.isTransaction) {
-        res = await this.getTransactions(condition)
-        this.datas = res.transactions
-      } else {
-        // TODO: what it need for query?
-        res = await this.getTransfers(condition)
-        this.datas = res.transfers
-      }
-      this.pagination.rowsNumber = res.count
+      this.$emit('getData', condition)
+      // if (this.type === 'trans') {
+      //   // trans type with address
+      //   // TODO nickname support
+      //   // ownerID for transfers
+      //   if (!this.isTransaction) {
+      //     condition.ownerId = this.params.address
+      //   } else {
+      //     condition.senderId = this.params.address
+      //   }
+      // } else if (this.type === 'block') {
+      //   // block table
+      //   condition.height = this.params.height
+      // }
+      // if (this.isTransaction) {
+      //   res = await this.getTransactions(condition)
+      //   this.datas = res.transactions
+      // } else {
+      //   // TODO: what it need for query?
+      //   res = await this.getTransfers(condition)
+      //   this.datas = res.transfers
+      // }
+      // this.pagination.rowsNumber = res.count
     },
     // get locale trans type
     getTransType(trans) {
@@ -134,10 +160,18 @@ export default {
       return args[len - 1]
     },
     getAmount(trans) {
-      if (!trans.arg) return false
+      if (!trans.args) return false
+      const filterTransType = [1, 103]
       const { args } = trans
       const len = args ? args.length : 0
-      return args[len - 2]
+      if (filterTransType.indexOf(trans.type) >= 0) {
+        if (args && args.length === 3) return convertFee(args[1], this.getPrecision(args[0]))
+        return convertFee(args[0])
+        // return currencySymbol + ' ' + transType
+      } else {
+        return '--'
+      }
+      // return args[len - 2]
     },
     // toast with state control
     info(msg) {
@@ -155,9 +189,13 @@ export default {
     },
     request(props) {
       this.getData(props)
+    },
+    changeType(val) {
+      this.$emit('changeType', val)
     }
   },
   computed: {
+    ...mapGetters(['getPrecision']),
     columns() {
       if (this.isTransaction) {
         return [
@@ -196,14 +234,14 @@ export default {
       }
       return [
         {
-          name: 'id',
+          name: 'tid',
           label: 'ID',
-          field: 'ID'
+          field: 'tid'
         },
         {
-          name: 'type',
+          name: 'currency',
           label: this.$t('TRANS_TYPE'),
-          field: 'type',
+          field: 'currency',
           align: 'center'
         },
         {
@@ -217,12 +255,12 @@ export default {
           field: 'recipientId'
         },
         {
-          name: 'amount',
+          name: 'transferAmount',
           label: this.$t('AMOUNT'),
           field: 'amount'
         },
         {
-          name: 'fee',
+          name: 'transferFee',
           label: this.$t('FEE'),
           field: 'fee'
         },
@@ -251,22 +289,22 @@ export default {
     height() {
       return this.$route.params.height
     },
-    showSwitch() {
-      switch (this.type) {
-        case 'trans':
-          return true
-        case 'block':
-          return false
-      }
+    buttons() {
+      return this.btnGroup
     }
   },
   watch: {
     params(val) {
       this.getData()
     },
-    isTransaction() {
-      this.getData()
-    }
+    // isTransaction() {
+    //   this.getData()
+    // },
+    count(val) {
+      console.log('val changed')
+      this.pagination.rowsNumber = val
+    },
+    
   }
 }
 </script>
