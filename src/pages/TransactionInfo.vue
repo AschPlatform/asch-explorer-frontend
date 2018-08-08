@@ -7,10 +7,7 @@
       </div>
       <boundary-line class="mt-2 mb-8" />
 
-      <transition appear enter-active-class="animated fadeIn"
-      leave-active-class="animated fadeOut">
       <info-panel :panelData="panelData" />
-      </transition>
     </div>
   </q-page>
 </template>
@@ -89,7 +86,8 @@ export default {
         },
         {
           label: 'ARGUMENTS',
-          value: this.argStr
+          value: this.argStr,
+          type: 'argStr'
         },
         {
           label: 'TRANS_TIME',

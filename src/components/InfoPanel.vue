@@ -1,35 +1,30 @@
 <template>
-  <div class="flex w-full relative-position">
-    <table class="q-table horizontal-separator highlight loose accountinfo-table margin-t-20 table-tr-td-p-0">
-      <tbody class='info-tbody'>
-        <tr v-show="data.value != null" v-for="(data, idx) in panelData" :key="idx">
-          <td class="w-1/6">{{$t(data.label)}}</td>
-          <td class="w-2/3 text-xs">
-            <span :class="data.link?`text-primary cursor-pointer`:''" @click="data.link?$router.push(data.link+data.value):null">
-                            <span v-if="data.type==='number'" >{{data.value | numSeparator}}</span>
-            <span v-else-if="data.type==='timestamp'">{{data.value | formatTimestamp}}</span>
-            <span v-else-if="data.type==='address'" class="text-primary cursor-pointer" @click="toAddress(data.value)">{{data.value}}</span>
-            <pre v-else-if="data.type==='id'" class="custom-pre-wrap">{{data.value}}</pre>
-            <pre v-else-if="data.type==='preBlock'" class="custom-pre-wrap">{{data.value}}</pre>
-            <span v-else-if="data.type==='block'" class="text-primary cursor-pointer" @click="toBlock(data.value)">{{data.value}}</span>
-            <span v-else> {{data.value}} </span>
-            </span>
-          </td>
-        </tr>
-      </tbody>
-    </table>
-    <q-inner-loading>
+  <transition appear enter-active-class="animated fadeIn" leave-active-class="animated fadeOut">
+    <div class="flex w-full relative-position">
+      <table class="q-table horizontal-separator highlight loose accountinfo-table margin-t-20 table-tr-td-p-0">
+        <tbody class='info-tbody'>
+          <tr v-show="data.value != null" v-for="(data, idx) in panelData" :key="idx">
+            <td class="w-1/6">{{$t(data.label)}}</td>
+            <td class="w-2/3 text-xs">
+              <span :class="data.link?`text-primary cursor-pointer`:''" @click="data.link?$router.push(data.link+data.value):null">
+                              <span v-if="data.type==='number'" >{{data.value | numSeparator}}</span>
+              <span v-else-if="data.type==='timestamp'">{{data.value | formatTimestamp}}</span>
+              <span v-else-if="data.type==='address'" class="text-primary cursor-pointer" @click="toAddress(data.value)">{{data.value}}</span>
+              <pre v-else-if="data.type==='id'" class="custom-pre-wrap">{{data.value}}</pre>
+              <pre v-else-if="data.type==='preBlock'" class="custom-pre-wrap">{{data.value}}</pre>
+              <pre v-else-if="data.type==='argStr'" class="custom-pre-wrap">{{data.value}}</pre>
+              <span v-else-if="data.type==='block'" class="text-primary cursor-pointer" @click="toBlock(data.value)">{{data.value}}</span>
+              <span v-else> {{data.value}} </span>
+              </span>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <q-inner-loading :visible="loadingFlg">
         <q-spinner-gears size="50px" color="teal-4" />
-    </q-inner-loading>
-  </div>
-  
-  <!-- <div v-else> -->
-    <!-- <transition appear enter-active-class="animated fadeIn" leave-active-class="animated fadeOut"> -->
-      <!-- <q-inner-loading>
-        <q-spinner-gears size="50px" color="teal-4" />
-      </q-inner-loading> -->
-    <!-- </transition> -->
-  <!-- </div> -->
+      </q-inner-loading>
+    </div>
+  </transition>
 </template>
 
 <script>
@@ -47,11 +42,28 @@ export default {
   },
   data() {
     return {
-      // visible:false,
+      visible: true,
       isDisable: false
     }
   },
+  mounted() {
+    this.showLoading()
+    this.dataShow()
+  },
   methods: {
+    dataShow() {
+      if (this.panelData) {
+        this.showLoading()
+      } else {
+        this.$store.state.loadingFlag = true
+      }
+    },
+    showLoading() {
+      this.$store.state.loadingFlag = true
+      setTimeout(() => {
+        this.$store.state.loadingFlag = false
+      }, 2000)
+    },
     info(msg) {
       if (this.isDisable === true) {
         return
@@ -70,33 +82,14 @@ export default {
     }
   },
   computed: {
-    // panelData() {
-    //   return [
-    //     {
-    //       label: 'NAME',
-    //       value: 1234,
-    //       link: '/blocks_height/',
-    //       type: 'number'
-    //     },
-    //     {
-    //       label: 'NAME',
-    //       value: 1234,
-    //       type: 'number'
-    //     },
-    //     {
-    //       label: 'NAME',
-    //       value: 1234
-    //     },
-    //     {
-    //       label: 'NAME',
-    //       value: 1234
-    //     },
-    //     {
-    //       label: 'NAME',
-    //       value: 1234
-    //     }
-    //   ]
-    // }
+    loadingFlg() {
+      return this.$store.state.loadingFlag
+    }
+  },
+  watch: {
+    panelData() {
+      this.dataShow()
+    }
   }
 }
 </script>
