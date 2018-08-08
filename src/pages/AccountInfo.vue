@@ -8,12 +8,12 @@
       <boundary-line class="mt-2 mb-8" />
 
       <transition appear enter-active-class="animated fadeIn"
-      leave-active-class="animated fadeOut" :duration="200">
+      leave-active-class="animated fadeOut">
       <info-panel :panelData="panelData" />
       </transition>
 
       <transition appear enter-active-class="animated fadeIn"
-      leave-active-class="animated fadeOut" :duration="200">
+      leave-active-class="animated fadeOut" mode="out-in" :duration="200">
       <table-container class="mt-8" :type="'trans'" :params="params" />
       </transition>
     </div>
@@ -104,7 +104,6 @@ export default {
             )
           }
         })
-        // debugger
         this.balances = this.balances.concat(balances)
       }
     },

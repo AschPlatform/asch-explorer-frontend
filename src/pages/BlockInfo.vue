@@ -8,16 +8,15 @@
       </div>
       <boundary-line class="mt-2 mb-8" />
       <transition appear enter-active-class="animated fadeIn"
-      leave-active-class="animated fadeOut" :duration="200">
+      leave-active-class="animated fadeOut">
       <info-panel :panelData="panelData" />
       </transition>
 
       <transition appear enter-active-class="animated fadeIn"
-      leave-active-class="animated fadeOut" :duration="200">
-      <table-container :type="'trans'" :params="params" />
+      leave-active-class="animated fadeOut" mode="out-in" :duration="200">
+      <table-container :type="'block'" :params="params" />
       </transition>
     </div>
-
   </q-page>
 </template>
 

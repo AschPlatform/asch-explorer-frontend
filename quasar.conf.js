@@ -44,7 +44,10 @@ module.exports = function (ctx) {
     },
     // framework: 'all' --- includes everything; for dev only!
     framework: {
-      components: [],
+      components: [
+        'QInnerLoading',
+        'QSpinnerGears'
+      ],
       directives: [
         'Ripple'
       ],
@@ -57,8 +60,9 @@ module.exports = function (ctx) {
       // iconSet: ctx.theme.mat ? 'material-icons' : 'ionicons'
       // i18n: 'de' // Quasar language
     },
-    // animations: 'all' --- includes all animations
-    animations: [],
+    // includes all animations
+    animations: 'all',
+    // animations: [],
     ssr: {
       pwa: false
     },
