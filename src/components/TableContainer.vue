@@ -160,7 +160,7 @@ export default {
       return args[len - 1]
     },
     getAmount(trans) {
-      if (!trans.args) return false
+      if (!trans.args) return '--'
       const filterTransType = [1, 103]
       const { args } = trans
       const len = args ? args.length : 0
