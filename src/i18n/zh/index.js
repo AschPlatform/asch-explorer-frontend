@@ -31,7 +31,10 @@ const lang = {
 
   // transactionsInfo
   TRANSACTION: '哈希值',
-  TRANS_TYPE: '交易类型',
+  TRANS_TYPE: '转账类型',
+  TRANS_TABLE: '转账列表',
+  TRANSACTION_TYPE: '交易类型',
+  TRANSACTION_TABLE: '交易列表',
   AMOUNT: '金额',
   TRANS_TIME: '交易时间',
   ARGUMENTS: '参数',
