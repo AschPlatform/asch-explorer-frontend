@@ -10,7 +10,7 @@
       <q-btn-group>
         <q-btn v-for="(item, idx) in btnGroup" :label="item.label" @click="changeType(item.value)" :key="idx"></q-btn>
       </q-btn-group>
-      <table-container class="mt-8" :data="data" :count="count" :isTransaction="this.type === 0 ? true : false" @getData="getData" @changeType="changeType"/>
+      <table-container class="mt-8" :data="data" :count="count" :params="params" :isTransaction="this.type === 0 ? true : false" @getData="getData" @changeType="changeType"/>
     </div>
   </q-page>
 </template>
@@ -88,6 +88,9 @@ export default {
         })
         return datas
       }
+    },
+    params() {
+      return this.$route.params
     }
   },
   methods: {
@@ -125,6 +128,7 @@ export default {
       this.getData()
     },
     async getData(props = this.defaultProps) {
+      this.data = []
       let res
       if (this.type === 0) {
         // For transactions

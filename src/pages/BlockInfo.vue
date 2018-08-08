@@ -8,7 +8,7 @@
       </div>
       <boundary-line class="mt-2" />
       <info-panel :panelData="panelData" />
-      <table-container :data="data" :count="count" isTransaction="true" @getData="getData" />
+      <table-container :data="data" :count="count" isTransaction="true" :params="params" @getData="getData" />
     </div>
   </q-page>
 </template>
@@ -106,6 +106,9 @@
             value: this.produceTime
           }
         ]
+      },
+      params() {
+        return this.$route.params
       }
     },
     methods: {
@@ -125,6 +128,7 @@
         }
       },
       async getData(props = this.defaultProps) {
+        this.data = []
         let res
         // For transactions
         props.height = this.height

@@ -63,7 +63,7 @@ import { fulltimestamp, toast, convertFee } from '../utils/util'
 
 export default {
   name: 'TableContaine',
-  props: ['isTransaction', 'data', 'count'],
+  props: ['isTransaction', 'data', 'count', 'params'],
   components: {
     QTable,
     QTr,
@@ -155,8 +155,12 @@ export default {
     request(props) {
       this.getData(props)
     },
-    changeType(val) {
-      this.$emit('changeType', val)
+    init() {
+      this.pagination = {
+        page: 1,
+        rowsNumber: 0,
+        rowsPerPage: 10
+      }
     }
   },
   computed: {
@@ -260,12 +264,12 @@ export default {
   },
   watch: {
     params(val) {
+      this.init()
       this.getData()
     },
     count(val) {
       this.pagination.rowsNumber = val
-    },
-    
+    } 
   }
 }
 </script>
