@@ -1,62 +1,66 @@
 <template>
-  <div>
-    <q-table class="no-shadow table-top-border" :title="title" :data="data" :columns="columns" :pagination.sync="pagination" @request="request" row-key="name">
-      <q-tr slot="body" slot-scope="props" :props="props">
-        <q-td v-if="props.row.id" key="id" :props="props" >
-          <div class="text-italic text-primary cursor-pointer" @click="doSearch(props.row.id)">
-            {{ props.row.id | eclipse }}
-            <q-tooltip>{{ props.row.id }}</q-tooltip>
-          </div>
-        </q-td>
-        <q-td v-if="props.row.tid" key="tid" :props="props" >
-          <div class="text-italic text-primary cursor-pointer" @click="doSearch(props.row.tid)">
-            {{ props.row.tid | eclipse }}
-            <q-tooltip>{{ props.row.tid }}</q-tooltip>
-          </div>
-        </q-td>
-        <q-td v-if="props.row.type" key="type" :props="props" >
-          <span class="">{{ getTransType(props.row) }}</span>
-        </q-td>
-        <q-td v-if="props.row.currency" key="currency" :props="props" >
-          <span class="">{{ (props.row.currency) + $t('TRS_TYPE_TRANSFER') }}</span>
-        </q-td>
-        <q-td v-if="props.row.senderId" key="senderId" :props="props" >
-          <div class="text-italic text-primary cursor-pointer" @click="doSearch(props.row.senderId)">
-            {{ props.row.senderId | eclipse }}
-            <q-tooltip>{{ props.row.senderId }}</q-tooltip>
-          </div>
-        </q-td>
-        <q-td v-if="props.row.recipientId" key="recipientId" :props="props" >
-          <div class="text-italic text-primary cursor-pointer" @click="doSearch(props.row.recipientId)">
-            {{ props.row.recipientId | eclipse }}
-            <q-tooltip>{{ props.row.recipientId }}</q-tooltip>
-          </div>
-        </q-td>
-        <q-td key="amount" :props="props" >
-          <span v-if="getAmount(props.row)" class="text-italic">{{ getAmount(props.row) }}</span>
-        </q-td>
-        <q-td key="transferAmount" :props="props" >
-          <span v-if="props.row.amount" class="text-italic">{{ props.row.amount | fee }}</span>
-        </q-td>
-        <q-td key="fee" :props="props" >
-          <span v-if="props.row.fee" class="text-italic">{{ props.row.fee | fee }}</span>
-          <span v-else>--</span>
-        </q-td>
-        <q-td key="transferFee" :props="props" >
-          <span class="text-italic">0.1</span>
-        </q-td>
-        <q-td v-if="props.row.timestamp > -1" key="timestamp" :props="props" >
-          <span class="text-italic">{{ fulltimestamp(props.row.timestamp) }}</span>
-        </q-td>
-      </q-tr>
-    </q-table>
-  </div>
-
+  <transition appear enter-active-class="animated fadeIn" leave-active-class="animated fadeOut">
+    <div class="relative-position">
+      <q-table class="no-shadow table-top-border" :title="title" :data="data" :columns="columns" :pagination.sync="pagination" @request="request" row-key="name">
+        <q-tr slot="body" slot-scope="props" :props="props">
+          <q-td v-if="props.row.id" key="id" :props="props">
+            <div class="text-primary cursor-pointer" @click="doSearch(props.row.id)">
+              {{ props.row.id | eclipse }}
+              <q-tooltip>{{ props.row.id }}</q-tooltip>
+            </div>
+          </q-td>
+          <q-td v-if="props.row.tid" key="tid" :props="props">
+            <div class="text-primary cursor-pointer" @click="doSearch(props.row.tid)">
+              {{ props.row.tid | eclipse }}
+              <q-tooltip>{{ props.row.tid }}</q-tooltip>
+            </div>
+          </q-td>
+          <q-td v-if="props.row.type" key="type" :props="props">
+            <span class="">{{ getTransType(props.row) }}</span>
+          </q-td>
+          <q-td v-if="props.row.currency" key="currency" :props="props">
+            <span class="">{{ (props.row.currency) + $t('TRS_TYPE_TRANSFER') }}</span>
+          </q-td>
+          <q-td v-if="props.row.senderId" key="senderId" :props="props">
+            <div class="text-primary cursor-pointer" @click="doSearch(props.row.senderId)">
+              {{ props.row.senderId | eclipse }}
+              <q-tooltip>{{ props.row.senderId }}</q-tooltip>
+            </div>
+          </q-td>
+          <q-td v-if="props.row.recipientId" key="recipientId" :props="props">
+            <div class="text-primary cursor-pointer" @click="doSearch(props.row.recipientId)">
+              {{ props.row.recipientId | eclipse }}
+              <q-tooltip>{{ props.row.recipientId }}</q-tooltip>
+            </div>
+          </q-td>
+          <q-td key="amount" :props="props">
+            <span v-if="getAmount(props.row)">{{ getAmount(props.row) }}</span>
+          </q-td>
+          <q-td key="transferAmount" :props="props">
+            <span v-if="props.row.amount">{{ props.row.amount | fee }}</span>
+          </q-td>
+          <q-td key="fee" :props="props">
+            <span v-if="props.row.fee">{{ props.row.fee | fee }}</span>
+            <span v-else>--</span>
+          </q-td>
+          <q-td key="transferFee" :props="props">
+            <span>0.1</span>
+          </q-td>
+          <q-td v-if="props.row.timestamp > -1" key="timestamp" :props="props">
+            <span>{{ fulltimestamp(props.row.timestamp) }}</span>
+          </q-td>
+        </q-tr>
+      </q-table>
+      <q-inner-loading :visible="loadingBool">
+        <q-spinner-gears size="50px" color="teal-4" />
+      </q-inner-loading>
+    </div>
+  </transition>
 </template>
 
 <script>
 /* eslint-disable */
-import { QTable, QTr, QTd, QTooltip, QBtnGroup, QBtn } from 'quasar'
+import { QTable, QTr, QTd, QTooltip, QBtnGroup, QBtn, QInnerLoading, QSpinnerGears } from 'quasar'
 import { mapActions, mapGetters } from 'vuex'
 import { transTypes } from '../utils/constants'
 import { fulltimestamp, toast, convertFee } from '../utils/util'
@@ -69,6 +73,8 @@ export default {
     QTr,
     QTd,
     QTooltip,
+    QInnerLoading,
+    QSpinnerGears,
     QBtnGroup,
     QBtn
   },
@@ -86,10 +92,20 @@ export default {
   },
   mounted() {
     this.getData()
+    this.showLoading()
   },
   methods: {
     fulltimestamp,
-    ...mapActions(['getTransactions', 'getTransfers']),
+    ...mapActions(['getTransactions', 'getTransfers', 'setLoadingflag']),
+    showLoading() {
+      if (this.datas) {
+        this.setLoadingflag(true)
+        setTimeout(() => {
+          this.setLoadingflag(false)
+        }, 2000)
+      }
+      this.setLoadingflag(true)
+    },
     async getData(props = null) {
       let res = []
       let limit = props ? props.pagination.rowsPerPage : this.pagination.rowsPerPage
@@ -102,6 +118,9 @@ export default {
       }
       if (props) {
         this.pagination = props.pagination
+      }
+      if (res.success) {
+        this.showLoading()
       }
       this.$emit('getData', condition)
     },
@@ -164,7 +183,7 @@ export default {
     }
   },
   computed: {
-    ...mapGetters(['getPrecision']),
+    ...mapGetters(['getPrecision', 'loadingBool']),
     columns() {
       if (this.isTransaction) {
         return [
@@ -267,9 +286,12 @@ export default {
       this.init()
       this.getData()
     },
+    datas() {
+      this.showLoading()
+    },
     count(val) {
       this.pagination.rowsNumber = val
-    } 
+    }
   }
 }
 </script>
