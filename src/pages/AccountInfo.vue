@@ -69,22 +69,21 @@ export default {
     },
     panelData() {
       let datas = []
-      const t = this.$t
       if (this.account) {
         if (this.account.name) {
           datas.push({
-            label: t('NICKNAME'),
+            label: 'NICKNAME',
             value: this.account.name
           })
         }
         this.balances.map((balance, idx) => {
           let balanceItem = { value: balance }
-          if (idx === 0) balanceItem.label = t('ACCOUNT_BALANCE')
+          if (idx === 0) balanceItem.label = 'ACCOUNT_BALANCE'
           datas.push(balanceItem)
         })
 
         datas.push({
-          label: t('ADDRESS'),
+          label: 'ADDRESS',
           value: this.account.address,
           type: 'address'
         })

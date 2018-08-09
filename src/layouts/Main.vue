@@ -57,7 +57,7 @@ export default {
         return
       }
       if (height.test(str) || type === 'block') {
-        if (Number(str) <= this.$store.state.runState.delegateCount) {
+        if (Number(str) <= this.$store.state.runState.blockHeight) {
           router.push(`/blocks_height/${str}`)
           return
         }
