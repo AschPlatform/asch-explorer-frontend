@@ -4,7 +4,7 @@
       <img class="h-full" :src="aschLogo" alt="">
     </div>
     <div class="search-container w-1/2 h-1/2 xs:w-5/6 sm:w-1/2">
-      <q-input class="shadow appearance-none border rounded w-full h-full border-solid border-1 border-black pt-2 pb-2 px-3 text-grey-darker leading-tight" v-model="searchStr" @keyup.enter="search" :after="searchIcon" type="text" :placeholder="$t('HOME_PLACEHOLDER')"
+      <q-input class="shadow appearance-none border rounded w-full h-full border-solid border border-black pt-2 pb-2 px-3 text-grey-darker leading-tight" v-model="searchStr" @keyup.enter="search" :after="searchIcon" type="text" :placeholder="$t('HOME_PLACEHOLDER')"
         hide-underline />
     </div>
     <div class="desktop-only xs:hidden sm:flex xs:w-1/2 sm:w-1/2 md:w-1/4 lg:w-1/4 justify-end items-center h-16">

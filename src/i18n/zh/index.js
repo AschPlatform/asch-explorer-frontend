@@ -12,7 +12,7 @@ const lang = {
   HOMEPAGE: '官网',
   FORUM: '社区论坛',
   ONLINE_WALLET: '在线钱包',
-  HOME_PLACEHOLDER: '请输入区块高度、地址、或交易ID...',
+  HOME_PLACEHOLDER: '请输入区块高度/地址/交易ID...',
   LANGUAGE_CONTEXT: '语言环境:',
   LANGUAGE_ZH: '中文',
   LANGUAGE_EN: 'English',
@@ -20,19 +20,19 @@ const lang = {
   // panel
   BLOCK: '区块',
   BLOCK_ID: '区块ID',
-  PRODUCER: '锻造者',
-  FORGE_REWARD: '锻造奖励',
-  TRANS_NUM: '交易次数',
+  PRODUCER: '生产者',
+  FORGE_REWARD: '产快数量',
+  TRANS_NUM: '交易数',
   TRANS_FEE: '交易费',
   PRODUCER_TIME: '出块时间',
   PRE_BLOCK: '前一个块',
   ADDRESS: '账户地址',
-  BLOCK_INFO: '区块信息概览',
-  TRANSACTION_INFO: '交易信息概览',
-  ACCOUNT_INFO: '账户信息概览',
+  BLOCK_INFO: '区块详情',
+  TRANSACTION_INFO: '交易详情',
+  ACCOUNT_INFO: '账户详情',
 
   // transactionsInfo
-  TRANSACTION: '哈希值',
+  TRANSACTION: '交易ID',
   TRANS_TYPE: '转账类型',
   TRANS_TABLE: '转账列表',
   TRANSACTION_TYPE: '交易类型',
@@ -49,7 +49,7 @@ const lang = {
   // trans
   TRANS: '交易',
   TRANS_SENDER: '发送者',
-  TRANS_RECRIVER: '接受者',
+  TRANS_RECRIVER: '接收者',
   FEE: '手续费',
 
   // tips
