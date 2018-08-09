@@ -33,10 +33,10 @@ const lang = {
 
   // transactionsInfo
   TRANSACTION: '交易ID',
-  TRANS_TYPE: '转账类型',
-  TRANS_TABLE: '转账列表',
+  TRANS_TYPE: '资产类型',
+  TRANS_TABLE: '转账记录',
   TRANSACTION_TYPE: '交易类型',
-  TRANSACTION_TABLE: '交易列表',
+  TRANSACTION_TABLE: '交易记录',
   AMOUNT: '金额',
   TRANS_TIME: '交易时间',
   ARGUMENTS: '参数',
