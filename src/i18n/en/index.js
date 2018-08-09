@@ -2,31 +2,65 @@
 // so you can safely delete all default props below
 
 const lang = {
-  HOME: 'Home',
-  BLOCKHEIGHT: 'Block Height',
-  failed: 'Action failed',
-  success: 'Action was successful',
-  PERSONAL: 'personal',
-  // personal
-  MENU_ASSET: 'my assets',
-  MENU_MARKET: 'my markets',
-  MENU_SHARE: 'my shares',
-  MENU_HISTORY: 'history',
-  MENU_SWITCH_LAUNGUAGE: 'change language',
-  MENU_HELP: 'help',
-  BLOCK_HEIGHT: 'Block Height',
-  TOTAL_SUPPLY: 'Total Supply',
-  USERS_NUMBER: 'Users Number',
-  RUNNING_DAYS: 'Running Days',
-  FOOTER_LINKS: 'Footer links:',
-  HOMEPAGE: 'Website',
-  FORUM: 'Forum',
-  ONLINE_WALLET: 'Online wallet',
-  ERR_INVALID_SEARCH: 'Err invalid search',
-  HOME_PLACEHOLDER: 'please enter ID',
-  LANGUAGE_CONTEXT: 'Language context:',
-  LANGUAGE_ZH: '中文',
-  LANGUAGE_EN: 'English',
+ // home
+ HOME: 'Home',
+ BLOCK_HEIGHT: 'Block Height',
+ TOTAL_SUPPLY: 'Total Supply',
+ USERS_NUMBER: 'Number of Users',
+ RUNNING_DAYS: 'Operational Days',
+ FOOTER_LINKS: 'Links:',
+ HOMEPAGE: 'Official Website',
+ FORUM: 'Forum',
+ ONLINE_WALLET: 'Online Wallet',
+ HOME_PLACEHOLDER: 'Please enter block height/address/transaction ID',
+ LANGUAGE_CONTEXT: 'Language:',
+ LANGUAGE_ZH: '中文',
+ LANGUAGE_EN: 'English',
+
+ // panel
+ BLOCK: 'Block',
+ BLOCK_ID: 'Block ID',
+ PRODUCER: 'Forged by',
+ FORGE_REWARD: 'Forged Quantity',
+ TRANS_NUM: 'Transactions',
+ TRANS_FEE: 'Fee',
+ PRODUCER_TIME: 'Generated Time',
+ PRE_BLOCK: 'Previous Block',
+ ADDRESS: 'Address',
+ BLOCK_INFO: 'Block Info',
+ TRANSACTION_INFO: 'Transaction Info',
+ ACCOUNT_INFO: 'Account Info',
+
+ // transactionsInfo
+ TRANSACTION: 'Transaction ID',
+ TRANS_TYPE: 'Asset Type',
+ TRANS_TABLE: 'Transfer List',
+ TRANSACTION_TYPE: 'Transaction Type',
+ TRANSACTION_TABLE: 'Transaction List',
+ AMOUNT: 'Amount',
+ TRANS_TIME: 'Transaction Time',
+ ARGUMENTS: 'Parameter',
+
+ // accountInfo
+ NICKNAME: 'Nickname',
+ ACCOUNT_BALANCE: 'Account Balance',
+ ACCOUNT_ADDRESS: 'Address',
+
+ // trans
+ TRANS: 'Transaction',
+ TRANS_SENDER: 'Sender',
+ TRANS_RECRIVER: 'Receiver',
+ FEE: 'Fee',
+
+ // tips
+ TIPS_COPY_SUCCESS: 'Copied successfully',
+ // error
+ ERR_INVALID_SEARCH: 'Invalid search',
+
+ // table type
+ TRANS_TITLE: 'Transaction History',
+ BLOCK_TITLE: 'Block History',
+ NO_DATA: 'No data found',
 
   // transaction type filter
   TRS_TYPE_TRANSFER: 'Transfer',
