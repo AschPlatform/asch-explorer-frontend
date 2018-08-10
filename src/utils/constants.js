@@ -31,7 +31,7 @@ const REGEX = {
 
 const host = {
   development: 'http://mainnet.asch.cn',
-  production: 'http://47.75.26.200:8192'
+  production: 'https://webnode.asch.io:443'
 }
 // const dappId = {
 //   development: '91a9aeeaa6609ebd73afc7c542eec02e7510c23a65d2e1db2840c46f74f67ceb',
