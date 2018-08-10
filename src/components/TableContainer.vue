@@ -43,6 +43,13 @@
             <span v-if="props.row.fee">{{ props.row.fee | fee }}</span>
             <span v-else>--</span>
           </q-td>
+         <q-td key="args" :props="props">
+           <div v-if="props.row.args" >
+            <span>{{ props.row.args.join(',') | eclipse }}</span>
+              <q-tooltip>{{ props.row.args }}</q-tooltip>
+           </div>
+            <span v-else>--</span>
+          </q-td>
           <q-td key="transferFee" :props="props">
             <span>0.1</span>
           </q-td>
@@ -215,6 +222,11 @@ export default {
             name: 'fee',
             label: this.$t('FEE'),
             field: 'fee'
+          },
+          {
+            name: 'args',
+            label: this.$t('ARGUMENTS'),
+            field: 'args'
           },
           {
             name: 'timestamp',
