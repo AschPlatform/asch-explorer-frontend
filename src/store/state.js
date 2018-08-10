@@ -8,6 +8,6 @@ export default {
     assetCount: 0,
     totalSupply: 0
   },
-  assetMap: {},
+  assetMap: new Map(),
   loadingFlag: false
 }
