@@ -43,7 +43,8 @@ export default {
       transFee: null,
       blockHeight: 0,
       transTime: null,
-      argStr: null
+      argStr: null,
+      finalType: null
     }
   },
   async mounted() {
@@ -75,7 +76,7 @@ export default {
         },
         {
           label: 'TRANS_TYPE',
-          value: this.$t(this.transType)
+          value: this.finalType
         },
         {
           label: 'AMOUNT',
@@ -115,7 +116,7 @@ export default {
         case 1:
           this.transSender = trans.senderId
           this.transReceiver = trans.args[1] || '--'
-          this.transNum = convertFee(trans.args[0]) + ' XAS'
+          this.transNum = convertFee(trans.args[0])
           this.transFee = convertFee(trans.fee) + ' XAS'
           break
         case 103:
@@ -123,7 +124,7 @@ export default {
           let precision = this.getPrecision(trans.args[0])
           this.transSender = trans.senderId
           this.transReceiver = trans.args[2] || '--'
-          this.transNum = convertFee(trans.args[1], precision) + trans.args[0]
+          this.transNum = convertFee(trans.args[1], precision)
         // case
         default:
           this.transSender = trans.senderId
@@ -143,7 +144,9 @@ export default {
         if (result.success) {
           this.transDetail(result.transaction)
           this.transTime = fulltimestamp(result.transaction.timestamp)
+          this.getTransType(result.transaction)
           this.transID = result.transaction.type
+          console.log(result.transaction)
           this.blockHeight = result.transaction.height
         } else {
           toast(this.$t('ERR_INVALID_SEARCH'))
@@ -152,6 +155,25 @@ export default {
       } catch (e) {
         toast(this.$t('ERR_INVALID_SEARCH'))
         this._.delay(() => this.$router.push('/'), 1000)
+      }
+    },
+    getTransType(trans) {
+      debugger
+      if (trans.args) {
+        const { type, args } = trans
+        let currencySymbol = 'XAS'
+        let transType = this.$t(transTypes[type])
+        // type that need fill with currency symbol
+        const filterTransType = [1, 103]
+        if (filterTransType.indexOf(type) >= 0) {
+          if (args && args.length === 3) currencySymbol = args[0].split('.')[1]
+          this.finalType = currencySymbol + ' ' + transType
+        } else {
+          this.finalType = transType
+        }
+      } else {
+        this.finalType = this.$t(transTypes[trans.type])
+        return 
       }
     },
     reset() {
