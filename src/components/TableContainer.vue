@@ -214,11 +214,6 @@ export default {
             field: 'senderId'
           },
           {
-            name: 'amount',
-            label: this.$t('AMOUNT'),
-            field: 'amount'
-          },
-          {
             name: 'fee',
             label: this.$t('FEE'),
             field: 'fee'
