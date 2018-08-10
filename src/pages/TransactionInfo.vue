@@ -16,15 +16,13 @@
 </style>
 
 <script>
-/* eslint-disable */
 import { QPage } from 'quasar'
 import Breadcrumb from '../components/Breadcrumb'
 import BoundaryLine from '../components/BoundaryLine'
 import InfoPanel from '../components/InfoPanel'
-import { mapActions } from 'vuex'
 import { convertFee, fulltimestamp, toast } from '../utils/util'
 import { transTypes } from '../utils/constants'
-import { mapGetters } from 'vuex'
+import { mapGetters, mapActions } from 'vuex'
 
 export default {
   name: 'TransactionsInfo',
@@ -43,7 +41,8 @@ export default {
       transFee: null,
       blockHeight: 0,
       transTime: null,
-      argStr: null
+      argStr: null,
+      finalType: null
     }
   },
   async mounted() {
@@ -60,6 +59,10 @@ export default {
     panelData() {
       return [
         {
+          label: 'TRANSACTION',
+          value: this.tid
+        },
+        {
           label: 'TRANS_SENDER',
           value: this.transSender,
           type: 'address'
@@ -71,7 +74,7 @@ export default {
         },
         {
           label: 'TRANS_TYPE',
-          value: this.$t(this.transType)
+          value: this.finalType
         },
         {
           label: 'AMOUNT',
@@ -111,7 +114,7 @@ export default {
         case 1:
           this.transSender = trans.senderId
           this.transReceiver = trans.args[1] || '--'
-          this.transNum = convertFee(trans.args[0]) + ' XAS'
+          this.transNum = convertFee(trans.args[0])
           this.transFee = convertFee(trans.fee) + ' XAS'
           break
         case 103:
@@ -119,7 +122,8 @@ export default {
           let precision = this.getPrecision(trans.args[0])
           this.transSender = trans.senderId
           this.transReceiver = trans.args[2] || '--'
-          this.transNum = convertFee(trans.args[1], precision) + trans.args[0]
+          this.transNum = convertFee(trans.args[1], precision)
+          break
         // case
         default:
           this.transSender = trans.senderId
@@ -139,6 +143,7 @@ export default {
         if (result.success) {
           this.transDetail(result.transaction)
           this.transTime = fulltimestamp(result.transaction.timestamp)
+          this.getTransType(result.transaction)
           this.transID = result.transaction.type
           this.blockHeight = result.transaction.height
         } else {
@@ -148,6 +153,23 @@ export default {
       } catch (e) {
         toast(this.$t('ERR_INVALID_SEARCH'))
         this._.delay(() => this.$router.push('/'), 1000)
+      }
+    },
+    getTransType(trans) {
+      if (trans.args) {
+        const { type, args } = trans
+        let currencySymbol = 'XAS'
+        let transType = this.$t(transTypes[type])
+        // type that need fill with currency symbol
+        const filterTransType = [1, 103]
+        if (filterTransType.indexOf(type) >= 0) {
+          if (args && args.length === 3) currencySymbol = args[0].split('.')[1]
+          this.finalType = currencySymbol + ' ' + transType
+        } else {
+          this.finalType = transType
+        }
+      } else {
+        this.finalType = this.$t(transTypes[trans.type])
       }
     },
     reset() {

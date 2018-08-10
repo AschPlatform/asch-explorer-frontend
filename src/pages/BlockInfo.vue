@@ -8,7 +8,7 @@
       </div>
       <boundary-line class="mt-2 mb-8" />
       <info-panel :panelData="panelData" />
-      <table-container :data="data" :count="count" isTransaction="true" :params="params" @getData="getData" />
+      <table-container :data="data" :count="count" isTransaction="true" @getData="getData" />
     </div>
   </q-page>
 </template>
@@ -137,6 +137,7 @@ export default {
   watch: {
     height() {
       this.envalueData()
+      this.getData()
     }
   }
 }

@@ -1,7 +1,7 @@
 <template>
   <transition appear enter-active-class="animated fadeIn" leave-active-class="animated fadeOut">
     <div class="relative-position">
-      <q-table class="no-shadow table-top-border" :title="title" :data="data" :columns="columns" :pagination.sync="pagination" @request="request" row-key="name">
+      <q-table class="no-shadow table-top-border" :title="title" :data="data" :columns="columns" :rows-per-page-options="[3,5,10,50]" :pagination.sync="pagination" @request="request" row-key="name">
         <q-tr slot="body" slot-scope="props" :props="props">
           <q-td v-if="props.row.id" key="id" :props="props">
             <div class="text-primary cursor-pointer" @click="doSearch(props.row.id)">
@@ -37,7 +37,7 @@
             <span v-if="getAmount(props.row)">{{ getAmount(props.row) }}</span>
           </q-td>
           <q-td key="transferAmount" :props="props">
-            <span v-if="props.row.amount">{{ props.row.amount | fee }}</span>
+            <span v-if="getTransAmount(props.row)">{{ getTransAmount(props.row) }}</span>
           </q-td>
           <q-td key="fee" :props="props">
             <span v-if="props.row.fee">{{ props.row.fee | fee }}</span>
@@ -66,7 +66,6 @@
 </template>
 
 <script>
-/* eslint-disable */
 import { QTable, QTr, QTd, QTooltip, QBtnGroup, QBtn, QInnerLoading, QSpinnerGears } from 'quasar'
 import { mapActions, mapGetters } from 'vuex'
 import { transTypes } from '../utils/constants'
@@ -154,7 +153,7 @@ export default {
       if (!trans.args) return '--'
       const filterTransType = [1, 103]
       const { args } = trans
-      const len = args ? args.length : 0
+      // const len = args ? args.length : 0
       if (filterTransType.indexOf(trans.type) >= 0) {
         if (args && args.length === 3) return convertFee(args[1], this.getPrecision(args[0]))
         return convertFee(args[0])
@@ -163,6 +162,9 @@ export default {
         return '--'
       }
       // return args[len - 2]
+    },
+    getTransAmount(trans) {
+      return convertFee(trans.amount, this.getPrecision(trans.currency))
     },
     // toast with state control
     info(msg) {

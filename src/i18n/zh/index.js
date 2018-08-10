@@ -21,7 +21,7 @@ const lang = {
   BLOCK: '区块',
   BLOCK_ID: '区块ID',
   PRODUCER: '生产者',
-  FORGE_REWARD: '产块数量',
+  FORGE_REWARD: '产块奖励',
   TRANS_NUM: '交易数',
   TRANS_FEE: '交易费',
   PRODUCER_TIME: '出块时间',
@@ -33,7 +33,7 @@ const lang = {
 
   // transactionsInfo
   TRANSACTION: '交易ID',
-  TRANS_TYPE: '资产类型',
+  TRANS_TYPE: '交易类型',
   TRANS_TABLE: '转账记录',
   TRANSACTION_TYPE: '交易类型',
   TRANSACTION_TABLE: '交易记录',
@@ -68,7 +68,7 @@ const lang = {
   TRS_TYPE_TRANSFER_RECORD: '转账记录',
   TRS_TYPE_TRANSFER_RECORD_LATELY: '最近转账记录',
   TRS_TYPE_SECOND_PASSWORD: '二级密码',
-  TRS_TYPE_DELEGATE: '受托人',
+  TRS_TYPE_DELEGATE: '注册受托人',
   TRS_TYPE_VOTE: '投票',
   TRS_TYPE_MULTISIGNATURE: '多重签名',
   TRS_TYPE_DAPP: '注册应用',

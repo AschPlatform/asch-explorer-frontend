@@ -1,6 +1,7 @@
 import api from '../utils/api'
 import {
-  convertFee
+  convertFee,
+  getCache
 } from '../utils/util'
 // import _ from 'lodash'
 // import { getCache } from '../utils/util'
@@ -101,8 +102,15 @@ export default {
     commit,
     state
   }, params) => {
-    let result = await api.assets()
-    commit('SET_ASSET_MAP', result.assets)
+    let assetMap = getCache('assetMap')
+    if (assetMap && assetMap.length > 0) {
+      commit('REFRESH_MAP', assetMap)
+    } else {
+      let result = await api.assets({
+        limit: 999
+      })
+      commit('SET_ASSET_MAP', result.assets)
+    }
   },
   // 获取资产详情
   getAssetInfo: ({

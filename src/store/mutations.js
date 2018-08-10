@@ -1,3 +1,5 @@
+import { setCache } from '../utils/util'
+
 export default {
   SET_LANG(state, locale) {
     if (state.locales.indexOf(locale) !== -1) {
@@ -18,6 +20,10 @@ export default {
     assets.forEach(e => {
       assetMap.set(e.name, e)
     })
+    setCache('assetMap', assetMap)
+    state.assetMap = assetMap
+  },
+  REFRESH_MAP(state, assetMap) {
     state.assetMap = assetMap
   },
   SET_LOADING_FLAG(state, result) {
