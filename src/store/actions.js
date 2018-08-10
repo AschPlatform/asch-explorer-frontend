@@ -101,7 +101,9 @@ export default {
     commit,
     state
   }, params) => {
-    let result = await api.assets()
+    let result = await api.assets({
+      limit: 999
+    })
     commit('SET_ASSET_MAP', result.assets)
   },
   // 获取资产详情

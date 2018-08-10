@@ -21,7 +21,7 @@ const lang = {
   BLOCK: '区块',
   BLOCK_ID: '区块ID',
   PRODUCER: '生产者',
-  FORGE_REWARD: '产快数量',
+  FORGE_REWARD: '产块数量',
   TRANS_NUM: '交易数',
   TRANS_FEE: '交易费',
   PRODUCER_TIME: '出块时间',
