@@ -1,7 +1,7 @@
 <template>
   <q-layout view="lHh Lpr lff">
     <q-layout-header>
-      <state-banner v-show="isHome" class="desktop-only"  :stateData="getRunState" />
+      <state-banner v-show="isHome" class="desktop-only xs:hidden sm:flex"  :stateData="getRunState" />
       <search-banner v-show="!isHome"/>
     </q-layout-header>
     <q-page-container>

@@ -61,11 +61,13 @@ export default {
       return [
         {
           label: 'TRANS_SENDER',
-          value: this.transSender
+          value: this.transSender,
+          type: 'address'
         },
         {
           label: 'TRANS_RECRIVER',
-          value: this.transReceiver
+          value: this.transReceiver,
+          type: 'address'
         },
         {
           label: 'TRANS_TYPE',
