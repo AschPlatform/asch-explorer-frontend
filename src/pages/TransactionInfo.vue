@@ -16,15 +16,13 @@
 </style>
 
 <script>
-/* eslint-disable */
 import { QPage } from 'quasar'
 import Breadcrumb from '../components/Breadcrumb'
 import BoundaryLine from '../components/BoundaryLine'
 import InfoPanel from '../components/InfoPanel'
-import { mapActions } from 'vuex'
 import { convertFee, fulltimestamp, toast } from '../utils/util'
 import { transTypes } from '../utils/constants'
-import { mapGetters } from 'vuex'
+import { mapGetters, mapActions } from 'vuex'
 
 export default {
   name: 'TransactionsInfo',
@@ -125,6 +123,7 @@ export default {
           this.transSender = trans.senderId
           this.transReceiver = trans.args[2] || '--'
           this.transNum = convertFee(trans.args[1], precision)
+          break
         // case
         default:
           this.transSender = trans.senderId
@@ -146,7 +145,6 @@ export default {
           this.transTime = fulltimestamp(result.transaction.timestamp)
           this.getTransType(result.transaction)
           this.transID = result.transaction.type
-          console.log(result.transaction)
           this.blockHeight = result.transaction.height
         } else {
           toast(this.$t('ERR_INVALID_SEARCH'))
@@ -158,7 +156,6 @@ export default {
       }
     },
     getTransType(trans) {
-      debugger
       if (trans.args) {
         const { type, args } = trans
         let currencySymbol = 'XAS'
@@ -173,7 +170,6 @@ export default {
         }
       } else {
         this.finalType = this.$t(transTypes[trans.type])
-        return 
       }
     },
     reset() {

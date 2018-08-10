@@ -66,7 +66,6 @@
 </template>
 
 <script>
-/* eslint-disable */
 import { QTable, QTr, QTd, QTooltip, QBtnGroup, QBtn, QInnerLoading, QSpinnerGears } from 'quasar'
 import { mapActions, mapGetters } from 'vuex'
 import { transTypes } from '../utils/constants'
@@ -154,7 +153,7 @@ export default {
       if (!trans.args) return '--'
       const filterTransType = [1, 103]
       const { args } = trans
-      const len = args ? args.length : 0
+      // const len = args ? args.length : 0
       if (filterTransType.indexOf(trans.type) >= 0) {
         if (args && args.length === 3) return convertFee(args[1], this.getPrecision(args[0]))
         return convertFee(args[0])

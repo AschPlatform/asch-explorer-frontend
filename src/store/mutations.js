@@ -1,4 +1,3 @@
-/* eslint-disable */
 import { setCache } from '../utils/util'
 
 export default {
