@@ -15,10 +15,10 @@
               <q-tooltip>{{ props.row.tid }}</q-tooltip>
             </div>
           </q-td>
-          <q-td class="" v-if="props.row.type" key="type" :props="props">
+          <q-td v-if="props.row.type" key="type" :props="props">
             <span class="">{{ getTransType(props.row) }}</span>
           </q-td>
-          <q-td class="" v-if="props.row.currency" key="currency" :props="props">
+          <q-td v-if="props.row.currency" key="currency" :props="props">
             <span class="">{{ (props.row.currency) + $t('TRS_TYPE_TRANSFER') }}</span>
           </q-td>
           <q-td v-if="props.row.senderId" key="senderId" :props="props">

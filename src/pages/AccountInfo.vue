@@ -8,10 +8,11 @@
       <boundary-line class="mt-2 mb-8" />
       <info-panel v-if="account" :panelData="panelData" />
       <div v-else class="mt-2 mb-8 px-4 text-xs">{{$t('NO_DATA')}}</div>
-      <q-btn-group class="mt-8">
-        <q-btn v-for="(item, idx) in btnGroup" :label="item.label" @click="changeType(item.value)" :key="idx"></q-btn>
+      <q-btn-group class="mt-8" outline>
+        <q-btn outline v-for="(item, idx) in btnGroup" :label="item.label" @click="changeType(item.value)" :key="idx"></q-btn>
       </q-btn-group>
-      <table-container class="mt-8" :data="data" :count="count" :params="params" :isTransaction="this.type === 0 ? true : false" @getData="getData" @changeType="changeType"/>
+      <boundary-line class="mt-4 mb-4" />
+      <table-container class="mt-4" :data="data" :count="count" :params="params" :isTransaction="this.type === 0 ? true : false" @getData="getData" @changeType="changeType"/>
     </div>
   </q-page>
 </template>

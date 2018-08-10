@@ -21,7 +21,6 @@ export default {
     assets.forEach(e => {
       assetMap.set(e.name, e)
     })
-    console.log(assetMap)
     setCache('assetMap', assetMap)
     state.assetMap = assetMap
   },
