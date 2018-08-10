@@ -163,7 +163,7 @@ export default {
         // type that need fill with currency symbol
         const filterTransType = [1, 103]
         if (filterTransType.indexOf(type) >= 0) {
-          if (args && args.length === 3) currencySymbol = args[0].split('.')[1]
+          if (args && args.length === 3) currencySymbol = args[0]
           this.finalType = currencySymbol + ' ' + transType
         } else {
           this.finalType = transType
