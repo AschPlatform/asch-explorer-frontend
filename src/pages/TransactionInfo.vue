@@ -60,6 +60,10 @@ export default {
     panelData() {
       return [
         {
+          label: 'TRANSACTION',
+          value: this.tid
+        },
+        {
           label: 'TRANS_SENDER',
           value: this.transSender,
           type: 'address'

@@ -33,7 +33,7 @@ export default {
   },
   // Assets getter
   getPrecision: state => (name) => {
-    if (state.assetMap.has(name)) {
+    if (state.assetMap && state.assetMap.has(name)) {
       return state.assetMap.get(name).precision
     }
     return null

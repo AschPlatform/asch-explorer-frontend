@@ -23,7 +23,7 @@ const lang = {
   FORUM: 'Forum',
   ONLINE_WALLET: 'Online wallet',
   ERR_INVALID_SEARCH: 'Err invalid search',
-  HOME_PLACEHOLDER: 'please enter ID',
+  HOME_PLACEHOLDER: 'please enter ID / ADDRESS / HEIGHT',
   LANGUAGE_CONTEXT: 'Language context:',
   LANGUAGE_ZH: '中文',
   LANGUAGE_EN: 'English',

@@ -1,7 +1,7 @@
 <template>
   <transition appear enter-active-class="animated fadeIn" leave-active-class="animated fadeOut">
     <div class="relative-position">
-      <q-table class="no-shadow table-top-border" :title="title" :data="data" :columns="columns" :pagination.sync="pagination" @request="request" row-key="name">
+      <q-table class="no-shadow table-top-border" :title="title" :data="data" :columns="columns" :rows-per-page-options="[3,5,10,50]" :pagination.sync="pagination" @request="request" row-key="name">
         <q-tr slot="body" slot-scope="props" :props="props">
           <q-td v-if="props.row.id" key="id" :props="props">
             <div class="text-primary cursor-pointer" @click="doSearch(props.row.id)">
@@ -15,10 +15,10 @@
               <q-tooltip>{{ props.row.tid }}</q-tooltip>
             </div>
           </q-td>
-          <q-td class="custom-border-td" v-if="props.row.type" key="type" :props="props">
+          <q-td class="" v-if="props.row.type" key="type" :props="props">
             <span class="">{{ getTransType(props.row) }}</span>
           </q-td>
-          <q-td class="custom-border-td" v-if="props.row.currency" key="currency" :props="props">
+          <q-td class="" v-if="props.row.currency" key="currency" :props="props">
             <span class="">{{ (props.row.currency) + $t('TRS_TYPE_TRANSFER') }}</span>
           </q-td>
           <q-td v-if="props.row.senderId" key="senderId" :props="props">
@@ -37,7 +37,7 @@
             <span v-if="getAmount(props.row)">{{ getAmount(props.row) }}</span>
           </q-td>
           <q-td key="transferAmount" :props="props">
-            <span v-if="props.row.amount">{{ props.row.amount | fee }}</span>
+            <span v-if="getTransAmount(props.row)">{{ getTransAmount(props.row) }}</span>
           </q-td>
           <q-td key="fee" :props="props">
             <span v-if="props.row.fee">{{ props.row.fee | fee }}</span>
@@ -156,6 +156,9 @@ export default {
         return '--'
       }
       // return args[len - 2]
+    },
+    getTransAmount(trans) {
+      return convertFee(trans.amount, this.getPrecision(trans.currency))
     },
     // toast with state control
     info(msg) {
