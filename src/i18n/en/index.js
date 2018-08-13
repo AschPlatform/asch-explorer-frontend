@@ -107,6 +107,9 @@ const lang = {
   TRS_TYPE_GROUP_ACTIVE: 'Council Activate',
   TRS_TYPE_GROUP_ADDMEMBER: 'Council Add Member',
   TRS_TYPE_GROUP_REMOVEMEMBER: 'Council Remove Member',
-  TRS_TYPE_GROUP_REPLACEMEMBER: 'Council Replace Member'
+  TRS_TYPE_GROUP_REPLACEMEMBER: 'Council Replace Member',
+
+  // common
+  LOADING: 'LOADING'
 }
 export default lang

@@ -56,7 +56,25 @@ export default {
       return Number(this.$route.params.height) || 0
     },
     rewardCount() {
-      return '3.5 XAS'
+      let blockHeight = this.blockHeight
+      if (blockHeight) {
+        if (3464500 > blockHeight && blockHeight > 464500) {
+          return '3.5 XAS'
+        } else if (6464500 > blockHeight && blockHeight > 3464500) {
+          return '3.0 XAS'
+        } else if (9464500 > blockHeight && blockHeight > 6464500) {
+          return '2.5 XAS'
+        } else if (12464500 > blockHeight && blockHeight > 9464500) {
+          return '2 XAS'
+        } else if (15464500 > blockHeight && blockHeight > 12464500) {
+          return '1 XAS'
+        } else if (blockHeight > 15464500) {
+          return '0.5 XAS'
+        } else {
+          return '0 XAS'
+        }
+      }
+      return this.$t('LOADING')
     },
     height() {
       return this.$route.params.height

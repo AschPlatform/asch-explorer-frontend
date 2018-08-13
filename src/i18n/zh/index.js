@@ -107,6 +107,9 @@ const lang = {
   TRS_TYPE_GROUP_ACTIVE: '理事会激活',
   TRS_TYPE_GROUP_ADDMEMBER: '理事会添加成员',
   TRS_TYPE_GROUP_REMOVEMEMBER: '理事会移除成员',
-  TRS_TYPE_GROUP_REPLACEMEMBER: '理事会替换成员'
+  TRS_TYPE_GROUP_REPLACEMEMBER: '理事会替换成员',
+
+  // common
+  LOADING: '读取中'
 }
 export default lang
