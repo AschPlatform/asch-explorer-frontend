@@ -54,6 +54,9 @@ const urls = {
   balances: {
     url: '/api/v2/balances/:address'
   },
+  blocks: {
+    url: '/api/v2/blocks'
+  },
   accounts: {
     url: '/api/v2/accounts/:address'
   },
