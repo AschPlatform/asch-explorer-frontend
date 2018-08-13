@@ -130,7 +130,8 @@ export default {
     },
     changeType(val) {
       this.type = val
-      this.getData()
+      this.reset()
+      this.getData(this.defaultProps)
     },
     async getData(props = this.defaultProps) {
       this.data = []
@@ -147,6 +148,13 @@ export default {
         res = await this.getTransfers(props)
         this.data = res.transfers
         this.count = res.count
+      }
+    },
+    reset() {
+      this.defaultProps = {
+        orderBy: 'timestamp:desc',
+        limit: 10,
+        offset: 0
       }
     }
   },
