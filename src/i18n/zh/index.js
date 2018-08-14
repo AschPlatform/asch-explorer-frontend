@@ -52,6 +52,7 @@ const lang = {
   TRANS_SENDER: '发送者',
   TRANS_RECRIVER: '接收者',
   FEE: '手续费',
+  REMARK: '备注',
 
   // tips
   TIPS_COPY_SUCCESS: '复制成功',
@@ -62,6 +63,7 @@ const lang = {
   TRANS_TITLE: '交易记录',
   BLOCK_TITLE: '区块记录',
   NO_DATA: '没有数据',
+  ROWS_PER_PAGE_TIP: '每页长度',
 
   // transaction type filter
   TRS_TYPE_TRANSFER: '转账',
