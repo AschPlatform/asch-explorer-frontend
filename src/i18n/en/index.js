@@ -62,6 +62,7 @@ const lang = {
  TRANS_TITLE: 'Transaction History',
  BLOCK_TITLE: 'Block History',
  NO_DATA: 'No data found',
+ ROWS_PER_PAGE_TIP: 'Rows of page',
 
   // transaction type filter
   TRS_TYPE_TRANSFER: 'Transfer',

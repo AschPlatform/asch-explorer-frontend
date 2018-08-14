@@ -1,7 +1,7 @@
 <template>
   <transition appear enter-active-class="animated fadeIn" leave-active-class="animated fadeOut">
     <div class="relative-position">
-      <q-table class="no-shadow table-top-border" :title="title" :data="data" :columns="columns" :rows-per-page-options="[3,5,10,50]" :pagination.sync="pagination" @request="request" row-key="name">
+      <q-table class="no-shadow table-top-border" :title="title" :data="data" :columns="columns" :rows-per-page-options="[3,5,10,50]" :pagination.sync="pagination" :no-data-label="$t('NO_DATA')" @request="request" row-key="name">
         <q-tr slot="body" slot-scope="props" :props="props">
           <q-td v-if="props.row.id" key="id" :props="props">
             <div class="text-primary cursor-pointer" @click="doSearch(props.row.id)">
