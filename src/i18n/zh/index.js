@@ -32,7 +32,8 @@ const lang = {
   ACCOUNT_INFO: '账户详情',
 
   // transactionsInfo
-  TRANSACTION: '交易ID',
+  TRANSACTION: '交易',
+  TRANSACTION_ID: '交易ID',
   TRANS_TYPE: '交易类型',
   TRANS_TABLE: '转账记录',
   TRANSACTION_TYPE: '交易类型',
@@ -107,6 +108,10 @@ const lang = {
   TRS_TYPE_GROUP_ACTIVE: '理事会激活',
   TRS_TYPE_GROUP_ADDMEMBER: '理事会添加成员',
   TRS_TYPE_GROUP_REMOVEMEMBER: '理事会移除成员',
-  TRS_TYPE_GROUP_REPLACEMEMBER: '理事会替换成员'
+  TRS_TYPE_GROUP_REPLACEMEMBER: '理事会替换成员',
+
+  // added
+  DELEGATES: '受托人',
+  ASSETS: '资产'
 }
 export default lang

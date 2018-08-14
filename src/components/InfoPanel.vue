@@ -9,7 +9,14 @@
               <span :class="data.link?`text-primary cursor-pointer`:''" @click="data.link?$router.push(data.link+data.value):null">
                               <span v-if="data.type==='number'" >{{data.value | numSeparator}}</span>
               <span v-else-if="data.type==='timestamp'">{{data.value | formatTimestamp}}</span>
-              <span v-else-if="data.type==='address'" class="text-primary cursor-pointer" @click="doSearch(data.value)">{{data.value}}</span>
+              <span v-else-if="data.type==='address'" class="text-primary cursor-pointer" @click="doSearch(data.value)">
+                <span v-if="data.nickname">
+                  {{data.nickname}}({{data.value}})
+                </span>
+                <span v-else>
+                  {{data.value}}
+                </span>
+              </span>
               <pre v-else-if="data.type==='id'" class="custom-pre-wrap">{{data.value}}</pre>
               <pre v-else-if="data.type==='preBlock'" class="custom-pre-wrap">{{data.value}}</pre>
               <pre v-else-if="data.type==='argStr'" class="custom-pre-wrap">{{data.value}}</pre>
