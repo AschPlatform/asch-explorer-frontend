@@ -2394,6 +2394,10 @@
   clear: both;
 }
 
+.font-futura {
+  font-family: futura;
+}
+
 .font-sans {
   font-family: system-ui, BlinkMacSystemFont, -apple-system, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
 }
@@ -2658,6 +2662,10 @@
   height: 86px;
 }
 
+.h-90 {
+  height: 90px;
+}
+
 .h-130 {
   height: 130px;
 }
@@ -2820,6 +2828,10 @@
 
 .m-58 {
   margin: 58px;
+}
+
+.m-60 {
+  margin: 60px;
 }
 
 .m-104 {
@@ -3122,6 +3134,16 @@
 .mx-58 {
   margin-left: 58px;
   margin-right: 58px;
+}
+
+.my-60 {
+  margin-top: 60px;
+  margin-bottom: 60px;
+}
+
+.mx-60 {
+  margin-left: 60px;
+  margin-right: 60px;
 }
 
 .my-104 {
@@ -3618,6 +3640,22 @@
   margin-left: 58px;
 }
 
+.mt-60 {
+  margin-top: 60px;
+}
+
+.mr-60 {
+  margin-right: 60px;
+}
+
+.mb-60 {
+  margin-bottom: 60px;
+}
+
+.ml-60 {
+  margin-left: 60px;
+}
+
 .mt-104 {
   margin-top: 104px;
 }
@@ -3672,6 +3710,14 @@
 
 .max-h-screen {
   max-height: 100vh;
+}
+
+.max-w-388 {
+  max-width: 388px;
+}
+
+.max-w-780 {
+  max-width: 780px;
 }
 
 .max-w-1200 {
@@ -3732,6 +3778,10 @@
 
 .min-w-0 {
   min-width: 0;
+}
+
+.min-w-230 {
+  min-width: 230px;
 }
 
 .min-w-full {
@@ -8915,6 +8965,10 @@
     clear: both;
   }
 
+  .xs\:font-futura {
+    font-family: futura;
+  }
+
   .xs\:font-sans {
     font-family: system-ui, BlinkMacSystemFont, -apple-system, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
   }
@@ -9179,6 +9233,10 @@
     height: 86px;
   }
 
+  .xs\:h-90 {
+    height: 90px;
+  }
+
   .xs\:h-130 {
     height: 130px;
   }
@@ -9341,6 +9399,10 @@
 
   .xs\:m-58 {
     margin: 58px;
+  }
+
+  .xs\:m-60 {
+    margin: 60px;
   }
 
   .xs\:m-104 {
@@ -9643,6 +9705,16 @@
   .xs\:mx-58 {
     margin-left: 58px;
     margin-right: 58px;
+  }
+
+  .xs\:my-60 {
+    margin-top: 60px;
+    margin-bottom: 60px;
+  }
+
+  .xs\:mx-60 {
+    margin-left: 60px;
+    margin-right: 60px;
   }
 
   .xs\:my-104 {
@@ -10139,6 +10211,22 @@
     margin-left: 58px;
   }
 
+  .xs\:mt-60 {
+    margin-top: 60px;
+  }
+
+  .xs\:mr-60 {
+    margin-right: 60px;
+  }
+
+  .xs\:mb-60 {
+    margin-bottom: 60px;
+  }
+
+  .xs\:ml-60 {
+    margin-left: 60px;
+  }
+
   .xs\:mt-104 {
     margin-top: 104px;
   }
@@ -10193,6 +10281,14 @@
 
   .xs\:max-h-screen {
     max-height: 100vh;
+  }
+
+  .xs\:max-w-388 {
+    max-width: 388px;
+  }
+
+  .xs\:max-w-780 {
+    max-width: 780px;
   }
 
   .xs\:max-w-1200 {
@@ -10253,6 +10349,10 @@
 
   .xs\:min-w-0 {
     min-width: 0;
+  }
+
+  .xs\:min-w-230 {
+    min-width: 230px;
   }
 
   .xs\:min-w-full {
@@ -15406,6 +15506,10 @@
     clear: both;
   }
 
+  .sm\:font-futura {
+    font-family: futura;
+  }
+
   .sm\:font-sans {
     font-family: system-ui, BlinkMacSystemFont, -apple-system, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
   }
@@ -15670,6 +15774,10 @@
     height: 86px;
   }
 
+  .sm\:h-90 {
+    height: 90px;
+  }
+
   .sm\:h-130 {
     height: 130px;
   }
@@ -15832,6 +15940,10 @@
 
   .sm\:m-58 {
     margin: 58px;
+  }
+
+  .sm\:m-60 {
+    margin: 60px;
   }
 
   .sm\:m-104 {
@@ -16134,6 +16246,16 @@
   .sm\:mx-58 {
     margin-left: 58px;
     margin-right: 58px;
+  }
+
+  .sm\:my-60 {
+    margin-top: 60px;
+    margin-bottom: 60px;
+  }
+
+  .sm\:mx-60 {
+    margin-left: 60px;
+    margin-right: 60px;
   }
 
   .sm\:my-104 {
@@ -16630,6 +16752,22 @@
     margin-left: 58px;
   }
 
+  .sm\:mt-60 {
+    margin-top: 60px;
+  }
+
+  .sm\:mr-60 {
+    margin-right: 60px;
+  }
+
+  .sm\:mb-60 {
+    margin-bottom: 60px;
+  }
+
+  .sm\:ml-60 {
+    margin-left: 60px;
+  }
+
   .sm\:mt-104 {
     margin-top: 104px;
   }
@@ -16684,6 +16822,14 @@
 
   .sm\:max-h-screen {
     max-height: 100vh;
+  }
+
+  .sm\:max-w-388 {
+    max-width: 388px;
+  }
+
+  .sm\:max-w-780 {
+    max-width: 780px;
   }
 
   .sm\:max-w-1200 {
@@ -16744,6 +16890,10 @@
 
   .sm\:min-w-0 {
     min-width: 0;
+  }
+
+  .sm\:min-w-230 {
+    min-width: 230px;
   }
 
   .sm\:min-w-full {
@@ -21897,6 +22047,10 @@
     clear: both;
   }
 
+  .md\:font-futura {
+    font-family: futura;
+  }
+
   .md\:font-sans {
     font-family: system-ui, BlinkMacSystemFont, -apple-system, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
   }
@@ -22161,6 +22315,10 @@
     height: 86px;
   }
 
+  .md\:h-90 {
+    height: 90px;
+  }
+
   .md\:h-130 {
     height: 130px;
   }
@@ -22323,6 +22481,10 @@
 
   .md\:m-58 {
     margin: 58px;
+  }
+
+  .md\:m-60 {
+    margin: 60px;
   }
 
   .md\:m-104 {
@@ -22625,6 +22787,16 @@
   .md\:mx-58 {
     margin-left: 58px;
     margin-right: 58px;
+  }
+
+  .md\:my-60 {
+    margin-top: 60px;
+    margin-bottom: 60px;
+  }
+
+  .md\:mx-60 {
+    margin-left: 60px;
+    margin-right: 60px;
   }
 
   .md\:my-104 {
@@ -23121,6 +23293,22 @@
     margin-left: 58px;
   }
 
+  .md\:mt-60 {
+    margin-top: 60px;
+  }
+
+  .md\:mr-60 {
+    margin-right: 60px;
+  }
+
+  .md\:mb-60 {
+    margin-bottom: 60px;
+  }
+
+  .md\:ml-60 {
+    margin-left: 60px;
+  }
+
   .md\:mt-104 {
     margin-top: 104px;
   }
@@ -23175,6 +23363,14 @@
 
   .md\:max-h-screen {
     max-height: 100vh;
+  }
+
+  .md\:max-w-388 {
+    max-width: 388px;
+  }
+
+  .md\:max-w-780 {
+    max-width: 780px;
   }
 
   .md\:max-w-1200 {
@@ -23235,6 +23431,10 @@
 
   .md\:min-w-0 {
     min-width: 0;
+  }
+
+  .md\:min-w-230 {
+    min-width: 230px;
   }
 
   .md\:min-w-full {
@@ -28388,6 +28588,10 @@
     clear: both;
   }
 
+  .lg\:font-futura {
+    font-family: futura;
+  }
+
   .lg\:font-sans {
     font-family: system-ui, BlinkMacSystemFont, -apple-system, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
   }
@@ -28652,6 +28856,10 @@
     height: 86px;
   }
 
+  .lg\:h-90 {
+    height: 90px;
+  }
+
   .lg\:h-130 {
     height: 130px;
   }
@@ -28814,6 +29022,10 @@
 
   .lg\:m-58 {
     margin: 58px;
+  }
+
+  .lg\:m-60 {
+    margin: 60px;
   }
 
   .lg\:m-104 {
@@ -29116,6 +29328,16 @@
   .lg\:mx-58 {
     margin-left: 58px;
     margin-right: 58px;
+  }
+
+  .lg\:my-60 {
+    margin-top: 60px;
+    margin-bottom: 60px;
+  }
+
+  .lg\:mx-60 {
+    margin-left: 60px;
+    margin-right: 60px;
   }
 
   .lg\:my-104 {
@@ -29612,6 +29834,22 @@
     margin-left: 58px;
   }
 
+  .lg\:mt-60 {
+    margin-top: 60px;
+  }
+
+  .lg\:mr-60 {
+    margin-right: 60px;
+  }
+
+  .lg\:mb-60 {
+    margin-bottom: 60px;
+  }
+
+  .lg\:ml-60 {
+    margin-left: 60px;
+  }
+
   .lg\:mt-104 {
     margin-top: 104px;
   }
@@ -29666,6 +29904,14 @@
 
   .lg\:max-h-screen {
     max-height: 100vh;
+  }
+
+  .lg\:max-w-388 {
+    max-width: 388px;
+  }
+
+  .lg\:max-w-780 {
+    max-width: 780px;
   }
 
   .lg\:max-w-1200 {
@@ -29726,6 +29972,10 @@
 
   .lg\:min-w-0 {
     min-width: 0;
+  }
+
+  .lg\:min-w-230 {
+    min-width: 230px;
   }
 
   .lg\:min-w-full {
@@ -34879,6 +35129,10 @@
     clear: both;
   }
 
+  .xl\:font-futura {
+    font-family: futura;
+  }
+
   .xl\:font-sans {
     font-family: system-ui, BlinkMacSystemFont, -apple-system, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
   }
@@ -35143,6 +35397,10 @@
     height: 86px;
   }
 
+  .xl\:h-90 {
+    height: 90px;
+  }
+
   .xl\:h-130 {
     height: 130px;
   }
@@ -35305,6 +35563,10 @@
 
   .xl\:m-58 {
     margin: 58px;
+  }
+
+  .xl\:m-60 {
+    margin: 60px;
   }
 
   .xl\:m-104 {
@@ -35607,6 +35869,16 @@
   .xl\:mx-58 {
     margin-left: 58px;
     margin-right: 58px;
+  }
+
+  .xl\:my-60 {
+    margin-top: 60px;
+    margin-bottom: 60px;
+  }
+
+  .xl\:mx-60 {
+    margin-left: 60px;
+    margin-right: 60px;
   }
 
   .xl\:my-104 {
@@ -36103,6 +36375,22 @@
     margin-left: 58px;
   }
 
+  .xl\:mt-60 {
+    margin-top: 60px;
+  }
+
+  .xl\:mr-60 {
+    margin-right: 60px;
+  }
+
+  .xl\:mb-60 {
+    margin-bottom: 60px;
+  }
+
+  .xl\:ml-60 {
+    margin-left: 60px;
+  }
+
   .xl\:mt-104 {
     margin-top: 104px;
   }
@@ -36157,6 +36445,14 @@
 
   .xl\:max-h-screen {
     max-height: 100vh;
+  }
+
+  .xl\:max-w-388 {
+    max-width: 388px;
+  }
+
+  .xl\:max-w-780 {
+    max-width: 780px;
   }
 
   .xl\:max-w-1200 {
@@ -36217,6 +36513,10 @@
 
   .xl\:min-w-0 {
     min-width: 0;
+  }
+
+  .xl\:min-w-230 {
+    min-width: 230px;
   }
 
   .xl\:min-w-full {

@@ -1,15 +1,13 @@
 <template>
   <q-page padding class="flex items-center">
     <div class="block w-full mb-32 xs:mb-0 sm:mb-32">
-      <div class="flex justify-center mb-10">
-        <div class="w-388">
-          <img class="w-full"  :src="aschLogo" alt="">
+      <div class="flex justify-center xs:mb-20 sm:mb-60">
+        <div class="xs:w-2/3 sm:max-w-388">
+          <img class="w-full"  :src="aschLogo" alt="ASCH logo">
         </div>
       </div>
       <div class="flex mb-4 justify-center">
-        <q-input class="flex justify-center items-center pl-30 pr-38 shadow appearance-none border xs:w-5/6 sm:w-1/2 h-60 border-solid border-grey-darkest hover:border-blue-light  border-1 border-black rounded-30 text-grey-darker leading-tight custorm-search-icon"
-        v-model="searchStr" @keyup.enter="search" :after="searchIcon"
-        type="text" :placeholder="$t('HOME_PLACEHOLDER')" hide-underline	/>
+        <q-input :class="custormSearchIcon()" v-model="searchStr" @keyup.enter="search" :after="searchIcon" type="text" :placeholder="$t('HOME_PLACEHOLDER')" hide-underline	/>
       </div>
       <div class="flex items-center justify-center mt-26">
           <span class="text-18 text-grey-darkest">{{$t('LANGUAGE_CONTEXT')}}</span>
@@ -43,7 +41,9 @@ export default {
       aschLogo
     }
   },
-  mounted() {},
+  mounted() {
+    this.custormSearchIcon()
+  },
   methods: {
     ...mapActions(['getMoreAssets', 'getAsset']),
     search() {
@@ -55,6 +55,13 @@ export default {
       this.$store.commit('SET_LANG', this.$i18n.locale)
       if (window.localStorage) {
         setCache('lang', this.$i18n.locale)
+      }
+    },
+    custormSearchIcon() {
+      if (window.innerWidth <= 678) {
+        return 'flex justify-center items-center xs:pl-11 sm:pl-30 pr-38 shadow appearance-none border xs:w-5/6 sm:w-1/2 max-w-780 xs:h-36 sm:h-60 border-solid border-grey-darkest hover:border-blue-light  border-1 border-black rounded-30 text-grey-darker leading-tight custorm-search-icon-mobile'
+      } else {
+        return 'flex justify-center items-center xs:pl-11 sm:pl-30 pr-38 shadow appearance-none border xs:w-5/6 sm:w-1/2 max-w-780 xs:h-36 sm:h-60 border-solid border-grey-darkest hover:border-blue-light  border-1 border-black rounded-30 text-grey-darker leading-tight custorm-search-icon'
       }
     }
   },
@@ -77,5 +84,10 @@ export default {
 }
 </script>
 
-<style>
+<style lang="stylus" scoped>
+@media screen and (max-width: 678px) {
+  .custorm-search-icon i.q-icon {
+    border-left: none !important;
+  }
+}
 </style>

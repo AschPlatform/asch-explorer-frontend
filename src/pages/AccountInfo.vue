@@ -9,8 +9,8 @@
       <info-panel v-if="account" class="px-30" :panelData="panelData" />
       <div v-else class="mt-2 mb-8 px-4 text-xs">{{$t('NO_DATA')}}</div>
       <boundary-line class="my-29" />
-      <q-btn-group class="mb-29 pl-30" outline rounded >
-        <q-btn class="text-20" text-color="primary" outline rounded  v-for="(item, idx) in btnGroup" :label="item.label" @click="changeType(item.value)" :key="idx"></q-btn>
+      <q-btn-group class="mb-29 pl-30" outline>
+        <q-btn class="text-20" text-color="primary" outline v-for="(item, idx) in btnGroup" :label="item.label" @click="changeType(item.value)" :key="idx"></q-btn>
       </q-btn-group>
       <boundary-line class="my-28" />
       <table-container class="mt-4" :data="data" :count="count" :params="params" :isTransaction="this.type === 0 ? true : false" @getData="getData" @changeType="changeType"/>

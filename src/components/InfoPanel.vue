@@ -28,7 +28,7 @@
         </tbody>
       </table>
       <q-inner-loading :visible="loadingBool">
-        <q-spinner-gears size="50px" color="teal-4" />
+        <q-spinner-gears size="50px" color="primary" />
       </q-inner-loading>
     </div>
   </transition>

@@ -180,6 +180,7 @@ module.exports = {
   */
 
   fonts: {
+    'futura': ['futura'],
     'sans': [
       'system-ui',
       'BlinkMacSystemFont',
@@ -580,6 +581,7 @@ module.exports = {
     '74': '74px',
     '80': '80px',
     '86': '86px',
+    '90': '90px',
     '130': '130px',
     '160': '160px',
     '230': '230px',
@@ -602,7 +604,8 @@ module.exports = {
 
   minWidth: {
     '0': '0',
-    'full': '100%'
+    'full': '100%',
+    '230': '230px'
   },
 
   /*
@@ -651,6 +654,8 @@ module.exports = {
     '4xl': '90rem',
     '5xl': '100rem',
     'full': '100%',
+    '388': '388px',
+    '780': '780px',
     '1200': '1200px'
   },
 
@@ -769,6 +774,7 @@ module.exports = {
     '54': '54px',
     '55': '55px',
     '58': '58px',
+    '60': '60px',
     '104': '104px'
   },
 
