@@ -51,6 +51,7 @@ const lang = {
   TRANS_SENDER: '发送者',
   TRANS_RECRIVER: '接收者',
   FEE: '手续费',
+  REMARK: '备注',
 
   // tips
   TIPS_COPY_SUCCESS: '复制成功',

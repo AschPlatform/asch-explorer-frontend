@@ -42,7 +42,8 @@ export default {
       blockHeight: 0,
       transTime: null,
       argStr: null,
-      finalType: null
+      finalType: null,
+      message: null
     }
   },
   async mounted() {
@@ -79,6 +80,10 @@ export default {
         {
           label: 'AMOUNT',
           value: this.transNum
+        },
+        {
+          label: 'REMARK',
+          value: this.message
         },
         {
           label: 'TRANS_FEE',
@@ -146,6 +151,11 @@ export default {
           this.getTransType(result.transaction)
           this.transID = result.transaction.type
           this.blockHeight = result.transaction.height
+          if (result.transaction.message) {
+            this.message = result.transaction.message
+          } else {
+            this.message = '--'
+          }
         } else {
           toast(this.$t('ERR_INVALID_SEARCH'))
           this.$router.push('/')

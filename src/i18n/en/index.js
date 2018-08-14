@@ -51,6 +51,7 @@ const lang = {
  TRANS_SENDER: 'Sender',
  TRANS_RECRIVER: 'Receiver',
  FEE: 'Fee',
+ REMARK: 'Remark',
 
  // tips
  TIPS_COPY_SUCCESS: 'Copied successfully',
