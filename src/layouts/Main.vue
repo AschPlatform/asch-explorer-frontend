@@ -1,13 +1,13 @@
 <template>
   <q-layout view="lHh Lpr lff">
-    <q-layout-header>
+    <q-layout-header class="" :class="isHome?'bg-grey-lighter':'bg-black-darker'">
       <state-banner v-show="isHome" class="desktop-only xs:hidden sm:flex"  :stateData="getRunState" />
       <search-banner v-show="!isHome"/>
     </q-layout-header>
     <q-page-container>
       <router-view />
     </q-page-container>
-    <q-layout-footer>
+    <q-layout-footer class="bg-black-darker">
       <footer-bar />
     </q-layout-footer>
   </q-layout>

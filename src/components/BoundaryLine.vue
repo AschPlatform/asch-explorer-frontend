@@ -21,6 +21,6 @@ export default {
 
 <style lang="stylus" scoped>
 .border-bottom {
-  border-bottom: 1px dashed #000000;
+  border-bottom: 1px solid #eaeaea;
 }
 </style>

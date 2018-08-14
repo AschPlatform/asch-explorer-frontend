@@ -1,17 +1,18 @@
 <template>
   <q-page class="max-w-1200 m-auto xs:pl-2 xs:pr-2 sm:pl-0 sm:pr-0 pb-16">
     <breadcrumb />
-    <div class="border border-solid border-grey rounded-lg p-4 mb-4">
-      <div class="text-14 text-black-dark font-bold">
+    <div class="border border-solid  border-ash-light mb-4">
+      <div class="text-20 text-blue-light pl-30 pt-30">
         {{this.$t('ACCOUNT_INFO')}}
       </div>
-      <boundary-line class="mt-2 mb-8" />
-      <info-panel v-if="account" :panelData="panelData" />
+      <boundary-line class="my-30" />
+      <info-panel v-if="account" class="px-30" :panelData="panelData" />
       <div v-else class="mt-2 mb-8 px-4 text-xs">{{$t('NO_DATA')}}</div>
-      <q-btn-group class="mt-8" outline>
-        <q-btn outline v-for="(item, idx) in btnGroup" :label="item.label" @click="changeType(item.value)" :key="idx"></q-btn>
+      <boundary-line class="my-29" />
+      <q-btn-group class="mb-29 pl-30" outline rounded >
+        <q-btn class="text-20" text-color="primary" outline rounded  v-for="(item, idx) in btnGroup" :label="item.label" @click="changeType(item.value)" :key="idx"></q-btn>
       </q-btn-group>
-      <boundary-line class="mt-4 mb-4" />
+      <boundary-line class="my-28" />
       <table-container class="mt-4" :data="data" :count="count" :params="params" :isTransaction="this.type === 0 ? true : false" @getData="getData" @changeType="changeType"/>
     </div>
   </q-page>
