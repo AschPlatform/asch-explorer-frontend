@@ -1,6 +1,6 @@
 <template>
   <q-toolbar color="primary">
-    <div class="asch-logo h-8 mr-8 cursor-pointer" @click="toHome">
+    <div class="asch-logo h-8 mr-8 cursor-pointer" @click="jump('/')">
       <img class="h-full" :src="aschLogo" alt="">
     </div>
     <!-- <q-toolbar-title>
@@ -23,7 +23,7 @@
       <q-search class="shadow appearance-none border rounded w-full h-full border-solid border border-black pt-2 pb-2 px-3 text-grey-darker leading-tight"
        v-model="searchStr" @keyup.enter="search" :after="searchIcon" type="text" :placeholder="getPlaceholder" no-icon hide-underline	
       />
-      <q-select  />
+      <!-- <q-select  /> -->
     </div>
   
   </q-toolbar>
@@ -44,7 +44,8 @@ export default {
   },
   data() {
     return {
-      aschLogo
+      aschLogo,
+      searchStr: ''
     }
   },
   methods: {
@@ -57,6 +58,19 @@ export default {
     }
   },
   computed: {
+    searchIcon() {
+      return [
+        {
+          icon: 'search',
+          // required function to call when
+          // icon is clicked/tapped
+          handler: () => this.$root.$emit('doSearch', this.searchStr),
+          // Optional. Show icon button
+          // if model has a value
+          content: true
+        }
+      ]
+    },
     getPlaceholder() {
       const t = this.$t
       return (

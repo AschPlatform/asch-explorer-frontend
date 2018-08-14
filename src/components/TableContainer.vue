@@ -1,7 +1,8 @@
 <template>
   <transition appear enter-active-class="animated fadeIn" leave-active-class="animated fadeOut">
     <div class="relative-position">
-      <q-table class="no-shadow table-top-border" :title="title" :data="data" :columns="columns" :rows-per-page-options="[3,5,10,50]" :pagination.sync="pagination" @request="request" row-key="name">
+      <q-table class="no-shadow table-top-border" :title="title" :data="data" :columns="columns" :no-data-label="$t('NO_DATA')"
+       :rows-per-page-options="[3,5,10,50]" :pagination.sync="pagination" @request="request" row-key="name">
         <q-tr slot="body" slot-scope="props" :props="props">
           <q-td v-if="props.row.id" key="id" :props="props">
             <div class="text-primary cursor-pointer" @click="doSearch(props.row.id)">
@@ -43,11 +44,11 @@
             <span v-if="props.row.fee">{{ props.row.fee | fee }}</span>
             <span v-else>--</span>
           </q-td>
-         <q-td key="args" :props="props">
-           <div v-if="props.row.args" >
-            <span>{{ props.row.args.join(',') | eclipse }}</span>
+          <q-td key="args" :props="props">
+            <div v-if="props.row.args">
+              <span>{{ props.row.args.join(',') | eclipse }}</span>
               <q-tooltip>{{ props.row.args }}</q-tooltip>
-           </div>
+            </div>
             <span v-else>--</span>
           </q-td>
           <q-td key="transferFee" :props="props">
@@ -57,6 +58,15 @@
             <span>{{ fulltimestamp(props.row.timestamp) }}</span>
           </q-td>
         </q-tr>
+        <div slot="pagination" slot-scope="props" class="row flex-center q-py-sm">
+          <q-btn round dense flat size="sm" icon="first_page"  class="q-mr-sm" :disable="props.isFirstPage" @click="()=>firstPage(props)" />
+          <q-btn round dense flat size="sm" icon="chevron_left"  class="q-mr-sm" :disable="props.isFirstPage" @click="props.prevPage" />
+          <div class="q-mr-sm" style="font-size: small">
+            {{ props.pagination.page }} / {{ props.pagesNumber }}
+          </div>
+          <q-btn round dense flat size="sm" icon="chevron_right" :disable="props.isLastPage" @click="props.nextPage" />
+          <q-btn round dense flat size="sm" icon="last_page" :disable="props.isLastPage" @click="()=>lastPage(props)" />
+        </div>
       </q-table>
       <q-inner-loading :visible="loadingBool">
         <q-spinner-gears size="50px" color="teal-4" />
@@ -189,6 +199,14 @@ export default {
         rowsNumber: 0,
         rowsPerPage: 10
       }
+    },
+    firstPage(props) {
+      this.pagination.page = 1
+      this.request()
+    },
+    lastPage(props) {
+      this.pagination.page = props.pagesNumber
+      this.request()
     }
   },
   computed: {
