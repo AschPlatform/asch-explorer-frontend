@@ -109,7 +109,6 @@ const lang = {
   TRS_TYPE_GROUP_REMOVEMEMBER: 'Council Remove Member',
   TRS_TYPE_GROUP_REPLACEMEMBER: 'Council Replace Member',
 
-  // common
   LOADING: 'LOADING'
 }
 export default lang
