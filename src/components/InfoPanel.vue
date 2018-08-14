@@ -4,7 +4,8 @@
       <table class="q-table horizontal-separator highlight loose accountinfo-table margin-t-20 table-tr-td-p-0">
         <tbody class='info-tbody'>
           <tr v-show="data.value != null" v-for="(data, idx) in panelData" :key="idx">
-            <td class="w-67 text-ash-dark">{{$t(data.label)}}</td>
+            <td v-if="data.label" class="w-67 text-ash-dark">{{$t(data.label)}}:</td>
+            <td v-else class="w-67 text-ash-dark">{{$t(data.label)}}</td>
             <td class="w-auto text-16">
               <span :class="data.link?`text-blue-light cursor-pointer`:''" @click="data.link?$router.push(data.link+data.value):null">
                               <span v-if="data.type==='number'" >{{data.value | numSeparator}}</span>

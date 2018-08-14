@@ -58,7 +58,7 @@ export default {
     panelData() {
       return [
         {
-          label: 'TRANSACTION',
+          label: 'TRANSACTION_ID',
           value: this.tid
         },
         {
