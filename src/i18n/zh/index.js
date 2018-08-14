@@ -24,7 +24,7 @@ const lang = {
   FORGE_REWARD: '产块奖励',
   TRANS_NUM: '交易数',
   TRANS_FEE: '交易费',
-  PRODUCER_TIME: '出块时间',
+  PRODUCER_TIME: '产块时间',
   PRE_BLOCK: '前一个块',
   ADDRESS: '账户地址',
   BLOCK_INFO: '区块详情',
@@ -112,6 +112,8 @@ const lang = {
 
   // added
   DELEGATES: '受托人',
-  ASSETS: '资产'
+  ASSETS: '资产',
+  // common
+  LOADING: '读取中'
 }
 export default lang
