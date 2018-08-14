@@ -16,11 +16,14 @@
 <script>
 import { openURL, QLayout, QLayoutHeader, QPageContainer, QLayoutFooter } from 'quasar'
 import FooterBar from '../components/FooterBar'
-import StateBanner from '../components/StateBanner.vue'
-import SearchBanner from '../components/SearchBanner.vue'
+import StateBanner from '../components/StateBanner'
+import SearchBanner from '../components/SearchBanner'
 import { REGEX } from '../utils/constants'
+import Navbar from '../components/Navbar'
+
 import { toastError, getCache } from '../utils/util'
 import { mapGetters, mapActions } from 'vuex'
+
 export default {
   name: 'MyLayout',
   components: {
@@ -30,7 +33,8 @@ export default {
     QLayoutFooter,
     FooterBar,
     StateBanner,
-    SearchBanner
+    SearchBanner,
+    Navbar
   },
   data() {
     return {
