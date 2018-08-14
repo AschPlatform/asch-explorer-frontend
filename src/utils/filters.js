@@ -63,10 +63,11 @@ const filters = {
     }
   },
   numSeparator: (num) => {
+    debugger
     var decimal = String(num).split('.')[1] || '' // 小数部分
     var tempArr = []
     var revNumArr = String(num).split('.')[0].split('').reverse() // 倒序
-    for (let i in revNumArr) {
+    for (let i = 0; i < revNumArr.length; i++) {
       tempArr.push(revNumArr[i])
       if ((i + 1) % 3 === 0 && i !== revNumArr.length - 1) {
         tempArr.push(',')

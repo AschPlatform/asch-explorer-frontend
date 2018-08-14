@@ -3,61 +3,61 @@
     <div class="relative-position">
       <q-table class="no-shadow table-top-border" :title="title" :data="data" :columns="columns" :no-data-label="$t('NO_DATA')"
        :rows-per-page-options="[3,5,10,50]" :pagination.sync="pagination" @request="request" row-key="name">
-        <q-tr slot="body" slot-scope="props" :props="props">
-          <q-td v-if="props.row.id" key="id" :props="props">
+        <q-tr slot="body" slot-scope="props" >
+          <q-td v-if="props.row.id" key="id" >
             <div class="text-primary cursor-pointer" @click="doSearch(props.row.id)">
               {{ props.row.id | eclipse }}
               <q-tooltip>{{ props.row.id }}</q-tooltip>
             </div>
           </q-td>
-          <q-td v-if="props.row.tid" key="tid" :props="props">
+          <q-td v-if="props.row.tid" key="tid" >
             <div class="text-primary cursor-pointer" @click="doSearch(props.row.tid)">
               {{ props.row.tid | eclipse }}
               <q-tooltip>{{ props.row.tid }}</q-tooltip>
             </div>
           </q-td>
-          <q-td v-if="props.row.type" key="type" :props="props">
+          <q-td v-if="props.row.type" key="type" >
             <span class="">{{ getTransType(props.row) }}</span>
           </q-td>
-          <q-td v-if="props.row.currency" key="currency" :props="props">
+          <q-td v-if="props.row.currency" key="currency" >
             <span class="">{{ (props.row.currency) + $t('TRS_TYPE_TRANSFER') }}</span>
           </q-td>
-          <q-td v-if="props.row.senderId" key="senderId" :props="props">
+          <q-td v-if="props.row.senderId" key="senderId" >
             <div class="text-primary cursor-pointer" @click="doSearch(props.row.senderId)">
               {{ props.row.senderId | eclipse }}
               <q-tooltip>{{ props.row.senderId }}</q-tooltip>
             </div>
           </q-td>
-          <q-td v-if="props.row.recipientId" key="recipientId" :props="props">
+          <q-td v-if="props.row.recipientId" key="recipientId" >
             <div class="text-primary cursor-pointer" @click="doSearch(props.row.recipientId)">
               {{ props.row.recipientId | eclipse }}
               <q-tooltip>{{ props.row.recipientId }}</q-tooltip>
             </div>
           </q-td>
-          <q-td key="amount" :props="props">
+          <q-td key="amount" >
             <span v-if="getAmount(props.row)">{{ getAmount(props.row) }}</span>
           </q-td>
-          <q-td key="transferAmount" :props="props">
+          <q-td key="transferAmount" >
             <span v-if="getTransAmount(props.row)">{{ getTransAmount(props.row) }}</span>
           </q-td>
-          <q-td key="fee" :props="props">
+          <q-td key="fee" >
             <span v-if="props.row.fee">{{ props.row.fee | fee }}</span>
             <span v-else>--</span>
           </q-td>
-          <q-td key="args" :props="props">
+          <q-td key="args" >
             <div v-if="props.row.args">
               <span>{{ props.row.args.join(',') | eclipse }}</span>
               <q-tooltip>{{ props.row.args }}</q-tooltip>
             </div>
             <span v-else>--</span>
           </q-td>
-          <q-td key="transferFee" :props="props">
+          <q-td key="transferFee" >
             <span>0.1</span>
           </q-td>
-          <q-td v-if="props.row.timestamp > -1" key="timestamp" :props="props">
+          <q-td v-if="props.row.timestamp > -1" key="timestamp" >
             <span>{{ fulltimestamp(props.row.timestamp) }}</span>
           </q-td>
-        </q-tr>
+        </q-tr> 
         <div slot="pagination" slot-scope="props" class="row flex-center q-py-sm">
           <q-btn round dense flat size="sm" icon="first_page"  class="q-mr-sm" :disable="props.isFirstPage" @click="()=>firstPage(props)" />
           <q-btn round dense flat size="sm" icon="chevron_left"  class="q-mr-sm" :disable="props.isFirstPage" @click="props.prevPage" />

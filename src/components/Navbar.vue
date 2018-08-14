@@ -1,14 +1,12 @@
 <template>
   <q-toolbar color="primary">
-    <div class="asch-logo h-8 mr-8 cursor-pointer" @click="jump('/')">
+    <div class="xs:hidden sm:flex asch-logo h-8 mr-8 cursor-pointer" @click="jump('/')">
       <img class="h-full" :src="aschLogo" alt="">
     </div>
-    <!-- <q-toolbar-title>
-          Title
-        </q-toolbar-title> -->
-    <div>
+   <q-btn class="xs:flex sm:hidden" icon="menu" @click="toogle" /> 
+    <div class="xs:hidden sm:flex">
       <q-btn :label="$t('HOME')" @click="jump('/')" />
-      <q-btn :label="$t('DELEGATES')" @click="jump('/deletages')" />
+      <q-btn :label="$t('DELEGATES')" @click="jump('/delegates')" />
       <q-btn :label="$t('ASSETS')" @click="jump('/assets')" />
     </div>
   
@@ -19,18 +17,20 @@
           configured as "flat, round, dense" and with an icon,
           but any button will do
         -->
-    <div class="flex">
-      <q-search class="shadow appearance-none border rounded w-full h-full border-solid border border-black pt-2 pb-2 px-3 text-grey-darker leading-tight"
-       v-model="searchStr" @keyup.enter="search" :after="searchIcon" type="text" :placeholder="getPlaceholder" no-icon hide-underline	
+    <div class="flex xs:w-5/6 sm:w-2/3 justify-end items-center">
+      <q-input class="xs:w-full shadow appearance-none border rounded h-full border-solid border border-black pt-2 pb-2 px-3 text-grey-darker leading-tight"
+      :class="stretch?'sm:w-2/3':'sm:w-2/5'"
+       v-model="searchStr" @keyup.enter="search" :after="searchIcon" type="text" :placeholder="getPlaceholder" hide-underline	
+       @focus="stretch=true" @blur="stretch=false"
       />
-      <!-- <q-select  /> -->
+      <q-select class="xs:hidden sm:flex h-full ml-3" v-model="lang" :options="getLangOpts" hide-underline />
     </div>
   
   </q-toolbar>
 </template>
 
 <script>
-import { QToolbar, QToolbarTitle, QBtn, QSearch, QSelect } from 'quasar'
+import { QToolbar, QToolbarTitle, QBtn, QInput, QSelect } from 'quasar'
 import aschLogo from '../assets/asch_logo.png'
 
 export default {
@@ -39,14 +39,19 @@ export default {
     QToolbar,
     QToolbarTitle,
     QBtn,
-    QSearch,
+    QInput,
     QSelect
   },
   data() {
     return {
       aschLogo,
-      searchStr: ''
+      searchStr: '',
+      stretch: false,
+      lang: ''
     }
+  },
+  mounted() {
+    this.lang = this.$store.state.locale
   },
   methods: {
     jump(path = '/') {
@@ -84,6 +89,12 @@ export default {
         '/' +
         t('NICKNAME')
       )
+    },
+    getLangOpts() {
+      const langs = this.$store.state.locales
+      return langs.map(lang => {
+        return { label: lang, value: lang }
+      })
     }
   }
 }
