@@ -63,7 +63,6 @@ const filters = {
     }
   },
   numSeparator: (num) => {
-    debugger
     var decimal = String(num).split('.')[1] || '' // 小数部分
     var tempArr = []
     var revNumArr = String(num).split('.')[0].split('').reverse() // 倒序
