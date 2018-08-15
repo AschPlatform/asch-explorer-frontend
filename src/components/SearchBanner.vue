@@ -13,7 +13,7 @@
           <q-icon class="text-33 text-blue-light w-30 h-30" name="insert_chart_outlined" />
         </div>
         <div class="ml-19">
-          <div class="text-blue-light text-18">
+          <div class="text-blue-light text-18 font-futura">
             {{$t('BLOCK_HEIGHT')}}
             <ICountUp class="ml-16" :endVal="blockHeightCount||0" />
           </div>
