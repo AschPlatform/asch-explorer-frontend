@@ -161,10 +161,11 @@ export default {
       }
     },
     reset() {
-      this.defaultProps = this._.merge(this.defaultProps, {
+      this.defaultProps = {
         orderBy: 'timestamp:desc',
+        limit: 10,
         offset: 0
-      })
+      }
     }
   },
   watch: {
