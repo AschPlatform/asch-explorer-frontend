@@ -1,8 +1,9 @@
 <template>
   <transition appear enter-active-class="animated fadeIn" leave-active-class="animated fadeOut">
     <div class="relative-position">
-      <q-table class="no-shadow table-top-border" :title="title" :data="data" :columns="columns" :rows-per-page-options="[3,5,10,50]" :pagination.sync="pagination" :rows-per-page-label="$t('ROWS_PER_PAGE_TIP')" :no-data-label="$t('NO_DATA')" @request="request" row-key="name">
+      <q-table :class="isTransactionCss" :title="title" :data="data" :columns="columns" :rows-per-page-options="[3,5,10,50]" :pagination.sync="pagination" :rows-per-page-label="$t('ROWS_PER_PAGE_TIP')" :no-data-label="$t('NO_DATA')" @request="request" row-key="name">
         <q-tr slot="body" slot-scope="props" :props="props">
+          <!-- <q-td class="text-left"></q-td> -->
           <q-td v-if="props.row.id" key="id" :props="props">
             <div class="text-blue-light cursor-pointer" @click="doSearch(props.row.id)">
               {{ props.row.id | eclipse }}
@@ -36,7 +37,7 @@
           <q-td key="amount" :props="props">
             <span v-if="getAmount(props.row)">{{ getAmount(props.row) }}</span>
           </q-td>
-          <q-td key="transferAmount" :props="props">
+          <q-td  key="transferAmount" :props="props">
             <span v-if="getTransAmount(props.row)">{{ getTransAmount(props.row) }}</span>
           </q-td>
           <q-td key="fee" :props="props">
@@ -210,6 +211,9 @@ export default {
   },
   computed: {
     ...mapGetters(['getPrecision', 'loadingBool']),
+    isTransactionCss() {
+      return this.isTransaction ? 'no-shadow table-isTransaction' : 'no-shadow table-top-border'
+    },
     columns() {
       if (this.isTransaction) {
         return [
