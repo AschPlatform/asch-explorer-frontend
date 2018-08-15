@@ -220,33 +220,38 @@ export default {
           {
             name: 'id',
             label: 'ID',
-            field: 'ID'
+            field: 'ID',
+            align: 'left'
           },
           {
             name: 'type',
             label: this.$t('TRANSACTION_TYPE'),
             field: 'type',
-            align: 'center'
+            align: 'left'
           },
           {
             name: 'senderId',
             label: this.$t('TRANS_SENDER'),
-            field: 'senderId'
+            field: 'senderId',
+            align: 'left'
           },
           {
             name: 'fee',
             label: this.$t('FEE'),
-            field: 'fee'
+            field: 'fee',
+            align: 'right'
           },
           {
             name: 'args',
             label: this.$t('ARGUMENTS'),
-            field: 'args'
+            field: 'args',
+            align: 'left'
           },
           {
             name: 'timestamp',
             label: this.$t('TRANS_TIME'),
-            field: 'timestamp'
+            field: 'timestamp',
+            align: 'left'
           }
         ]
       }
@@ -254,38 +259,44 @@ export default {
         {
           name: 'tid',
           label: 'ID',
-          field: 'tid'
+          field: 'tid',
+            align: 'left'
         },
         {
           name: 'currency',
           label: this.$t('TRANS_TYPE'),
           field: 'currency',
-          align: 'center'
+          align: 'left'
         },
         {
           name: 'senderId',
           label: this.$t('TRANS_SENDER'),
-          field: 'senderId'
+          field: 'senderId',
+          align: 'left'
         },
         {
           name: 'recipientId',
           label: this.$t('TRANS_RECRIVER'),
-          field: 'recipientId'
+          field: 'recipientId',
+          align: 'left'
         },
         {
           name: 'transferAmount',
           label: this.$t('AMOUNT'),
-          field: 'amount'
+          field: 'amount',
+          align: 'right'
         },
         {
           name: 'transferFee',
           label: this.$t('FEE'),
-          field: 'fee'
+          field: 'fee',
+          align: 'right'
         },
         {
           name: 'timestamp',
           label: this.$t('TRANS_TIME'),
-          field: 'timestamp'
+          field: 'timestamp',
+          align: 'left'
         }
       ]
     },

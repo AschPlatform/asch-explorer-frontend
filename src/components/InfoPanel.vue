@@ -6,7 +6,7 @@
           <tr v-show="data.value != null" v-for="(data, idx) in panelData" :key="idx">
             <td v-if="data.label" class="w-67 text-ash-dark">{{$t(data.label)}}:</td>
             <td v-else class="w-67 text-ash-dark">{{$t(data.label)}}</td>
-            <td class="w-auto text-16 whitespace-normal">
+            <td class="w-auto text-16">
               <span :class="data.link?`text-blue-light cursor-pointer`:''" @click="data.link?$router.push(data.link+data.value):null">
                               <span v-if="data.type==='number'" >{{data.value | numSeparator}}</span>
               <span v-else-if="data.type==='timestamp'">{{data.value | formatTimestamp}}</span>
