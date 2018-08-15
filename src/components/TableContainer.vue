@@ -1,8 +1,9 @@
 <template>
   <transition appear enter-active-class="animated fadeIn" leave-active-class="animated fadeOut">
     <div class="relative-position">
-      <q-table class="no-shadow table-top-border" :title="title" :data="data" :columns="columns" :rows-per-page-options="[3,5,10,50]" :pagination.sync="pagination" :rows-per-page-label="$t('ROWS_PER_PAGE_TIP')" :no-data-label="$t('NO_DATA')" @request="request" row-key="name">
+      <q-table :class="isTransactionCss" :title="title" :data="data" :columns="columns" :rows-per-page-options="[3,5,10,50]" :pagination.sync="pagination" :rows-per-page-label="$t('ROWS_PER_PAGE_TIP')" :no-data-label="$t('NO_DATA')" @request="request" row-key="name">
         <q-tr slot="body" slot-scope="props" :props="props">
+          <!-- <q-td class="text-left"></q-td> -->
           <q-td v-if="props.row.id" key="id" :props="props">
             <div class="text-blue-light cursor-pointer" @click="doSearch(props.row.id)">
               {{ props.row.id | eclipse }}
@@ -36,7 +37,7 @@
           <q-td key="amount" :props="props">
             <span v-if="getAmount(props.row)">{{ getAmount(props.row) }}</span>
           </q-td>
-          <q-td key="transferAmount" :props="props">
+          <q-td  key="transferAmount" :props="props">
             <span v-if="getTransAmount(props.row)">{{ getTransAmount(props.row) }}</span>
           </q-td>
           <q-td key="fee" :props="props">
@@ -210,39 +211,47 @@ export default {
   },
   computed: {
     ...mapGetters(['getPrecision', 'loadingBool']),
+    isTransactionCss() {
+      return this.isTransaction ? 'no-shadow table-isTransaction' : 'no-shadow table-top-border'
+    },
     columns() {
       if (this.isTransaction) {
         return [
           {
             name: 'id',
             label: 'ID',
-            field: 'ID'
+            field: 'ID',
+            align: 'left'
           },
           {
             name: 'type',
             label: this.$t('TRANSACTION_TYPE'),
             field: 'type',
-            align: 'center'
+            align: 'left'
           },
           {
             name: 'senderId',
             label: this.$t('TRANS_SENDER'),
-            field: 'senderId'
+            field: 'senderId',
+            align: 'left'
           },
           {
             name: 'fee',
             label: this.$t('FEE'),
-            field: 'fee'
+            field: 'fee',
+            align: 'right'
           },
           {
             name: 'args',
             label: this.$t('ARGUMENTS'),
-            field: 'args'
+            field: 'args',
+            align: 'left'
           },
           {
             name: 'timestamp',
             label: this.$t('TRANS_TIME'),
-            field: 'timestamp'
+            field: 'timestamp',
+            align: 'left'
           }
         ]
       }
@@ -250,38 +259,44 @@ export default {
         {
           name: 'tid',
           label: 'ID',
-          field: 'tid'
+          field: 'tid',
+            align: 'left'
         },
         {
           name: 'currency',
           label: this.$t('TRANS_TYPE'),
           field: 'currency',
-          align: 'center'
+          align: 'left'
         },
         {
           name: 'senderId',
           label: this.$t('TRANS_SENDER'),
-          field: 'senderId'
+          field: 'senderId',
+          align: 'left'
         },
         {
           name: 'recipientId',
           label: this.$t('TRANS_RECRIVER'),
-          field: 'recipientId'
+          field: 'recipientId',
+          align: 'left'
         },
         {
           name: 'transferAmount',
           label: this.$t('AMOUNT'),
-          field: 'amount'
+          field: 'amount',
+          align: 'right'
         },
         {
           name: 'transferFee',
           label: this.$t('FEE'),
-          field: 'fee'
+          field: 'fee',
+          align: 'right'
         },
         {
           name: 'timestamp',
           label: this.$t('TRANS_TIME'),
-          field: 'timestamp'
+          field: 'timestamp',
+          align: 'left'
         }
       ]
     },

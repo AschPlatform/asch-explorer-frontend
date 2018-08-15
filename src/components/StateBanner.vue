@@ -36,7 +36,7 @@ export default {
 <style lang="stylus" scoped>
 .state-container {
   .state:last-child {
-    border: none;
+    border-right: none;
   }
 
   .state:hover {
@@ -59,7 +59,10 @@ export default {
 }
 
 @media screen and (max-width: 678px) {
-
-  
+  .state-container {
+    .state:last-child {
+      border-right: 1px solid #efeff1;
+    }
+  }
 }
 </style>

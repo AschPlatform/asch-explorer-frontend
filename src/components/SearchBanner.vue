@@ -1,19 +1,18 @@
 <template>
-  <div class="flex flex-wrap justify-between xs:justify-center sm:justify-between items-center bg-black-darker w-full h-74 xs:h-32 sm:h-74 max-w-1200 m-auto">
+  <div class="flex flex-wrap justify-between xs:justify-center sm:justify-between items-center bg-black-darker w-full h-74 xs:h-32 xs:py-10 sm:h-74 max-w-1200 m-auto">
     <div class="asch-logo h-8 mr-8 cursor-pointer" @click="toHome">
       <img class="h-full" :src="aschLogo" alt="">
     </div>
-    <div class="flex items-center justify-end">
+    <div class="flex items-center xs:justify-center sm:justify-end xs:w-full sm:w-auto">
       <div class="search-container w-340 h-36 xs:w-5/6 sm:w-340">
-        <q-input class="flex items-center shadow appearance-none border rounded-30 w-full h-full border-solid border border-white h-full pl-26 pr-21 text-white leading-tight custorm-search-input" v-model="searchStr" @keyup.enter="search" :after="searchIcon" type="text"
-          :placeholder="$t('HOME_PLACEHOLDER')" hide-underline />
+        <q-input class="flex items-center shadow appearance-none border rounded-30 w-full h-full border-solid border border-white h-full pl-26 pr-21 text-white leading-tight custorm-search-input" v-model="searchStr" @keyup.enter="search" :after="searchIcon" type="text" :placeholder="$t('HOME_PLACEHOLDER')" hide-underline />
       </div>
       <div class="desktop-only xs:hidden sm:flex justify-center items-center min-w-230 h-full ml-50">
         <div>
           <q-icon class="text-33 text-blue-light w-30 h-30" name="insert_chart_outlined" />
         </div>
         <div class="ml-19">
-          <div class="text-blue-light text-18">
+          <div class="text-blue-light text-18 font-futura">
             {{$t('BLOCK_HEIGHT')}}
             <ICountUp class="ml-16" :endVal="blockHeightCount||0" />
           </div>

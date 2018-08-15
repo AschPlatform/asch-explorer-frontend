@@ -11,7 +11,7 @@ const lang = {
   FOOTER_LINKS: '友情链接:',
   HOMEPAGE: '官网',
   FORUM: '社区论坛',
-  ONLINE_WALLET: '在线钱包',
+  ONLINE_WALLET: '阿希客户端',
   HOME_PLACEHOLDER: '请输入区块高度/地址/交易ID',
   LANGUAGE_CONTEXT: '语言:',
   LANGUAGE_ZH: '中文',

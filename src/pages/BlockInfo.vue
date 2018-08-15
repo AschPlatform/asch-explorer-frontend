@@ -3,11 +3,11 @@
     <breadcrumb />
   
     <div class="border border-solid border-ash-light overflow-hidden xs:overflow-scroll sm:overflow-hidden mb-4">
-      <div class="text-20 text-blue-light pl-30 pt-30">
+      <div class="text-20 text-blue-light xs:pl-15 sm:pl-30 xs:pt-15 sm:pt-30">
         {{this.$t('BLOCK_INFO')}}
       </div>
-      <boundary-line class="mt-30 mb-15" />
-      <info-panel class="px-30" :panelData="panelData" />
+      <boundary-line class="xs:mt-15 sm:mt-30 mb-15" />
+      <info-panel class="xs:px-15 sm:px-30" :panelData="panelData" />
       <boundary-line class="my-30" />
       <table-container :data="data" :count="count" isTransaction="true" @getData="getData" />
     </div>
