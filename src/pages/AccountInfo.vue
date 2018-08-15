@@ -101,7 +101,7 @@ export default {
       }
     },
     params() {
-      return this.$route.params
+      return this._.merge({ type: this.type }, this.$route.params)
     }
   },
   methods: {
@@ -123,9 +123,7 @@ export default {
         res.balances.forEach(balance => {
           let { precision } = balance.asset
           if (balance.balance >= 1) {
-            balances.push(
-              convertFee(balance.balance, precision) + ' ' + balance.currency
-            )
+            balances.push(convertFee(balance.balance, precision) + ' ' + balance.currency)
           }
         })
         this.balances = this.balances.concat(balances)
