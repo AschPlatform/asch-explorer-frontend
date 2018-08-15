@@ -312,7 +312,7 @@ export default {
       this.init()
       this.getData()
     },
-    datas() {
+    data() {
       this.showLoading()
     },
     count(val) {
