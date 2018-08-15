@@ -153,7 +153,7 @@ export default {
           if (result.transaction.message) {
             this.message = result.transaction.message
           } else {
-            this.message = '--'
+            this.message = null
           }
         } else {
           toast(this.$t('ERR_INVALID_SEARCH'))
