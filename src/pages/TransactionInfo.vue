@@ -2,11 +2,11 @@
   <q-page class="max-w-1200 m-auto xs:pl-2 xs:pr-2 sm:pl-0 sm:pr-0 pb-16">
     <breadcrumb />
     <div class="border border-solid border-ash-light overflow-hidden xs:overflow-scroll sm:overflow-hidden pb-30 mb-4">
-      <div class="text-20 text-blue-light pl-30 pt-30">
+      <div class="text-20 text-blue-light xs:pl-15 sm:pl-30 xs:pt-15 sm:pt-30">
         {{this.$t('TRANSACTION_INFO')}}
       </div>
-      <boundary-line class="my-30" />
-      <info-panel class="px-30" :panelData="panelData" />
+      <boundary-line class="xs:my-15 sm:my-30" />
+      <info-panel class="xs:px-15 sm:px-30" :panelData="panelData" />
     </div>
   </q-page>
 </template>

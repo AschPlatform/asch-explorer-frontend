@@ -1,6 +1,6 @@
 <template>
-  <q-page padding class="flex items-center">
-    <div class="block w-full mb-32 xs:mb-0 sm:mb-32">
+  <q-page class="flex items-center">
+    <div class="block w-full mb-32 xs:mb-0 xs:mt-30 sm:mb-32">
       <div class="flex justify-center xs:mb-20 sm:mb-60">
         <div class="xs:w-2/3 sm:max-w-388">
           <img class="w-full"  :src="aschLogo" alt="ASCH logo">

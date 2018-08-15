@@ -1,13 +1,13 @@
 <template>
-  <div class="flex flex-row xs:flex-col sm:flex-row flex-wrap justify-between text-center h-86 xs:h-48 sm:h-86 bg-black-darker w-full max-w-1200 m-auto">
-    <div class="flex justify-left ">
-      <div class="text-16 text-white flex items-center justify-center xs:mb-2 sm:mb-0">{{$t('FOOTER_LINKS')}}</div>
-      <div class="flex justify-center items-center" v-for="(link,idx) in links" :key="idx">
-        <a class="text-16 text-ash-darker hover:text-blue-light no-underline ml-30" :href="link.href" target="_blank">{{link.label}}</a>
+  <div class="flex flex-row xs:flex-col sm:flex-row flex-wrap justify-between text-center sm:h-86 bg-black-darker w-full max-w-1200 m-auto">
+    <div class="flex xs:flex-col sm:flex-row xs:justify-center sm:justify-left ">
+      <div class="text-16 text-white flex items-center justify-center xs:mt-2 sm:mb-0">{{$t('FOOTER_LINKS')}}</div>
+      <div class="flex justify-center items-center xs:mt-10" v-for="(link,idx) in links" :key="idx">
+        <a class="text-16 text-ash-darker hover:text-blue-light no-underline xs:ml-0 sm:ml-30" :href="link.href" target="_blank">{{link.label}}</a>
       </div>
     </div>
-    <div class="w-163 flex justify-center items-center cursor-pointer" @click="toHome">
-      <img class="w-full" :src="aschLogo" alt="">
+    <div class="xs:w-full sm:w-163 flex justify-center items-center cursor-pointer xs:py-10 sm:py-0" @click="toHome">
+      <img class="xs:1/2 sm:w-full" :src="aschLogo" alt="">
     </div>
   </div>
 </template>
@@ -37,7 +37,7 @@ export default {
       return [
         {
           label: 'API',
-          href: 'https://github.com/AschPlatform/asch/blob/master/docs/asch_http_interface.md'
+          href: 'https://github.com/AschPlatform/asch-docs/blob/master/http_api/zh_cn_1.4.md'
         },
         {
           label: 'Github',

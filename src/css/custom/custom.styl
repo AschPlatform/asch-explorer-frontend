@@ -1,4 +1,7 @@
 .table-top-border{
+  .q-table-bottom{
+    border-top: none;
+  }
   .q-table-top{
     border-bottom: 1px dashed #000000;
     padding-left: 0;
@@ -19,11 +22,21 @@
     th{
       font-size: 18px;
       color: #666666;
-      text-align: left ;
+    }
+     th:nth-child(5){
+      padding-right: 60px;
+    }
+    td:nth-child(5){
+      padding-right: 60px;
+    }
+    th:nth-child(6){
+      padding-right: 60px;
+    }
+    td:nth-child(6){
+      padding-right: 60px;
     }
     td{
       font-size: 16px;
-      text-align: left;
       padding: 24px;
       span{
         color: #666666;
@@ -32,17 +45,61 @@
   }
 }
 
+.table-isTransaction{
+  .q-table-bottom{
+    border-top: none;
+  }
+  .q-table-top{
+    border-bottom: 1px dashed #000000;
+    padding-left: 0;
+    margin-bottom: 20px;
+    .q-table-title{
+      font-size: 14px;
+      font-weight: 600;
+      color: #333333;
+    }
+  }
+  tr{
+    th:nth-child(1){
+      padding-left: 30px;
+    }
+    td:nth-child(1){
+      padding-left: 30px;
+    }
+    th{
+      font-size: 18px;
+      color: #666666;
+    }
+    th:nth-child(4){
+      padding-right: 70px;
+    }
+    td{
+      font-size: 16px;
+      padding: 24px;
+      span{
+        color: #666666;
+      }
+    }
+    td:nth-child(4){
+      padding-right: 70px;
+    }
+  }
+}
+
 .table-tr-td-p-0{
    tr{
      td{
-      //  height: 26px;
-      //  line-height: 26px;
        font-size: 16px;
        color: #666666;
        padding: 0 24px;
      }
     td:nth-child(1){
       padding-left: 0;
+    }
+    td:nth-child(2){
+      white-space: normal;
+      word-wrap: break-word;
+      word-break: break-all;
     }
   }
 }
@@ -78,7 +135,7 @@
 
 
 .custom-pre-wrap{
-  width: 60%;
+  // width: 60%;
   color: #666666;
   font-size: 16px;
   font-family: '-apple-system', 'Helvetica Neue', Helvetica, Arial, sans-serif;
