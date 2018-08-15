@@ -3,7 +3,7 @@
     <div class="xs:hidden sm:flex asch-logo h-8 mr-8 cursor-pointer" @click="jump('/')">
       <img class="h-full" :src="aschLogo" alt="">
     </div>
-   <q-btn class="xs:flex sm:hidden" icon="menu" @click="toogle" /> 
+   <q-btn class="xs:flex sm:hidden" icon="menu" @click="toggle" /> 
     <div class="xs:hidden sm:flex">
       <q-btn :label="$t('HOME')" @click="jump('/')" />
       <q-btn :label="$t('DELEGATES')" @click="jump('/delegates')" />
@@ -60,7 +60,8 @@ export default {
     search() {
       this.$root.$emit('doSearch', this.searchStr)
       this.searchStr = ''
-    }
+    },
+    toggle() {}
   },
   computed: {
     searchIcon() {
@@ -95,6 +96,12 @@ export default {
       return langs.map(lang => {
         return { label: lang, value: lang }
       })
+    }
+  },
+  watch: {
+    lang(val) {
+      this.$i18n.locale = val
+      this.$store.commit('SET_LANG', val)
     }
   }
 }
