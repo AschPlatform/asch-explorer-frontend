@@ -13,7 +13,7 @@ const lang = {
   FORUM: '社区论坛',
   ONLINE_WALLET: '在线钱包',
   HOME_PLACEHOLDER: '请输入区块高度/地址/交易ID',
-  LANGUAGE_CONTEXT: '语言环境:',
+  LANGUAGE_CONTEXT: '语言:',
   LANGUAGE_ZH: '中文',
   LANGUAGE_EN: 'English',
 

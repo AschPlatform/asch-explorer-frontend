@@ -1,22 +1,22 @@
 <template>
-  <div class="flex flex-wrap justify-between xs:justify-center sm:justify-between items-center bg-white w-full h-16 xs:h-32 sm:h-16 max-w-1200 m-auto">
+  <div class="flex flex-wrap justify-between xs:justify-center sm:justify-between items-center bg-black-darker w-full h-74 xs:h-32 sm:h-74 max-w-1200 m-auto">
     <div class="asch-logo h-8 mr-8 cursor-pointer" @click="toHome">
       <img class="h-full" :src="aschLogo" alt="">
     </div>
-    <div class="search-container w-1/2 h-1/2 xs:w-5/6 sm:w-1/2">
-      <q-input class="shadow appearance-none border rounded w-full h-full border-solid border border-black pt-2 pb-2 px-3 text-grey-darker leading-tight" v-model="searchStr" @keyup.enter="search" :after="searchIcon" type="text" :placeholder="$t('HOME_PLACEHOLDER')"
-        hide-underline />
-    </div>
-    <div class="desktop-only xs:hidden sm:flex xs:w-1/2 sm:w-1/2 md:w-1/4 lg:w-1/4 justify-end items-center h-16">
-      <div>
-        <q-icon class="text-5xl" name="insert_chart_outlined" />
+    <div class="flex items-center justify-end">
+      <div class="search-container w-340 h-36 xs:w-5/6 sm:w-340">
+        <q-input class="flex items-center shadow appearance-none border rounded-30 w-full h-full border-solid border border-white h-full pl-26 pr-21 text-white leading-tight custorm-search-input" v-model="searchStr" @keyup.enter="search" :after="searchIcon" type="text"
+          :placeholder="$t('HOME_PLACEHOLDER')" hide-underline />
       </div>
-      <div class="ml-2">
-        <div class="text-light-grey text-13">
-          {{$t('BLOCK_HEIGHT')}}
+      <div class="desktop-only xs:hidden sm:flex justify-center items-center min-w-230 h-full ml-50">
+        <div>
+          <q-icon class="text-33 text-blue-light w-30 h-30" name="insert_chart_outlined" />
         </div>
-        <div class="text-14 text-black-absolute">
-          <ICountUp :endVal="blockHeightCount||0" />
+        <div class="ml-19">
+          <div class="text-blue-light text-18">
+            {{$t('BLOCK_HEIGHT')}}
+            <ICountUp class="ml-16" :endVal="blockHeightCount||0" />
+          </div>
         </div>
       </div>
     </div>
@@ -25,7 +25,7 @@
 
 <script>
 import { QInput, QIcon } from 'quasar'
-import aschLogo from '../assets/asch_logo.png'
+import aschLogo from '../assets/asch_logo1.png'
 import ICountUp from 'vue-countup-v2'
 import { mapGetters } from 'vuex'
 
@@ -74,4 +74,5 @@ export default {
 </script>
 
 <style lang="stylus" scoped>
+
 </style>

@@ -2,12 +2,13 @@
   <q-page class="max-w-1200 m-auto xs:pl-2 xs:pr-2 sm:pl-0 sm:pr-0 pb-16">
     <breadcrumb />
   
-    <div class="border border-solid border-grey rounded-lg overflow-hidden xs:overflow-scroll sm:overflow-hidden p-4 mb-4">
-      <div class="text-14 text-black-dark font-bold">
+    <div class="border border-solid border-ash-light overflow-hidden xs:overflow-scroll sm:overflow-hidden mb-4">
+      <div class="text-20 text-blue-light pl-30 pt-30">
         {{this.$t('BLOCK_INFO')}}
       </div>
-      <boundary-line class="mt-2 mb-8" />
-      <info-panel :panelData="panelData" />
+      <boundary-line class="mt-30 mb-15" />
+      <info-panel class="px-30" :panelData="panelData" />
+      <boundary-line class="my-30" />
       <table-container :data="data" :count="count" isTransaction="true" @getData="getData" />
     </div>
   </q-page>

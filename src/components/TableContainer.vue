@@ -4,13 +4,13 @@
       <q-table class="no-shadow table-top-border" :title="title" :data="data" :columns="columns" :rows-per-page-options="[3,5,10,50]" :pagination.sync="pagination" :rows-per-page-label="$t('ROWS_PER_PAGE_TIP')" :no-data-label="$t('NO_DATA')" @request="request" row-key="name">
         <q-tr slot="body" slot-scope="props" :props="props">
           <q-td v-if="props.row.id" key="id" :props="props">
-            <div class="text-primary cursor-pointer" @click="doSearch(props.row.id)">
+            <div class="text-blue-light cursor-pointer" @click="doSearch(props.row.id)">
               {{ props.row.id | eclipse }}
               <q-tooltip>{{ props.row.id }}</q-tooltip>
             </div>
           </q-td>
           <q-td v-if="props.row.tid" key="tid" :props="props">
-            <div class="text-primary cursor-pointer" @click="doSearch(props.row.tid)">
+            <div class="text-blue-light cursor-pointer" @click="doSearch(props.row.tid)">
               {{ props.row.tid | eclipse }}
               <q-tooltip>{{ props.row.tid }}</q-tooltip>
             </div>
@@ -22,13 +22,13 @@
             <span class="">{{ (props.row.currency) + $t('TRS_TYPE_TRANSFER') }}</span>
           </q-td>
           <q-td v-if="props.row.senderId" key="senderId" :props="props">
-            <div class="text-primary cursor-pointer" @click="doSearch(props.row.senderId)">
+            <div class="text-blue-light cursor-pointer" @click="doSearch(props.row.senderId)">
               {{ props.row.senderId | eclipse }}
               <q-tooltip>{{ props.row.senderId }}</q-tooltip>
             </div>
           </q-td>
           <q-td v-if="props.row.recipientId" key="recipientId" :props="props">
-            <div class="text-primary cursor-pointer" @click="doSearch(props.row.recipientId)">
+            <div class="text-blue-light cursor-pointer" @click="doSearch(props.row.recipientId)">
               {{ props.row.recipientId | eclipse }}
               <q-tooltip>{{ props.row.recipientId }}</q-tooltip>
             </div>
@@ -68,7 +68,7 @@
         </div>
       </q-table>
       <q-inner-loading :visible="loadingBool">
-        <q-spinner-gears size="50px" color="teal-4" />
+        <q-spinner-gears size="50px" color="primary" />
       </q-inner-loading>
     </div>
   </transition>

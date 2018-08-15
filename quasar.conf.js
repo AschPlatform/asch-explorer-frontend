@@ -11,6 +11,7 @@ module.exports = function (ctx) {
     ],
     css: [
       'tailwindOutput.css',
+      'font-style.css',
       'app.styl'
     ],
     extras: [
