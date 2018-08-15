@@ -2,15 +2,15 @@
   <q-page class="max-w-1200 m-auto xs:pl-2 xs:pr-2 sm:pl-0 sm:pr-0 pb-16">
     <breadcrumb />
     <div class="border border-solid  border-ash-light mb-4">
-      <div class="text-20 text-blue-light pl-30 pt-30">
+      <div class="text-20 text-blue-light xs:pl-15 sm:pl-30 xs:pt-15 sm:pt-30">
         {{this.$t('ACCOUNT_INFO')}}
       </div>
-      <boundary-line class="my-30" />
+      <boundary-line class="xs:my-15 sm:my-30" />
       <info-panel v-if="account" class="xs:px-15 sm:px-30" :panelData="panelData" />
       <div v-else class="mt-2 mb-8 px-4 text-xs">{{$t('NO_DATA')}}</div>
       <boundary-line class="my-29" />
   
-      <q-btn-toggle v-model="model" class="mb-29 pl-30" outline color="tertiary" taggle-color="primary" text-color="tertiary" toggle-text-color="primary" @input="changeType" :options="btnGroup">
+      <q-btn-toggle v-model="model" class="mb-29 xs:pl-15 sm:pl-30" outline color="tertiary" taggle-color="primary" text-color="tertiary" toggle-text-color="primary" @input="changeType" :options="btnGroup">
       </q-btn-toggle>
   
       <!-- <q-btn-group class="mb-29 pl-30" outline>
