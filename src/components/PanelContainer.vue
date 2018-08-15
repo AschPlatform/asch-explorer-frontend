@@ -1,5 +1,7 @@
 <template>
-  <panel-item v-if="data" :type="type" :data="data" />
+<div>
+  <panel-item v-for="(data, idx) in datas" :key="idx" :type="type" :data="data" />
+</div>
 </template>
 <script>
 import PanelItem from './PanelItem'
@@ -11,7 +13,7 @@ export default {
   props: ['type'],
   components: { PanelItem },
   data() {
-    return { data: null }
+    return { datas: null }
   },
   mounted() {
     this.getData()
@@ -30,7 +32,7 @@ export default {
       }
 
       if (res.success) {
-        this.data = this.type === 'trans' ? res.transactions : res.blocks
+        this.datas = this.type === 'trans' ? res.transactions : res.blocks
       } else {
         toastError(this.$t('NO_DATA'))
       }
