@@ -1,9 +1,9 @@
 <template>
-  <div class="flex flex-wrap justify-between xs:justify-center sm:justify-between items-center bg-black-darker w-full h-74 xs:h-32 sm:h-74 max-w-1200 m-auto">
+  <div class="flex flex-wrap justify-between xs:justify-center sm:justify-between items-center bg-black-darker w-full h-74 xs:h-32 xs:py-10 sm:h-74 max-w-1200 m-auto">
     <div class="asch-logo h-8 mr-8 cursor-pointer" @click="toHome">
       <img class="h-full" :src="aschLogo" alt="">
     </div>
-    <div class="flex items-center justify-end">
+    <div class="flex items-center xs:justify-center sm:justify-end xs:w-full sm:w-auto">
       <div class="search-container w-340 h-36 xs:w-5/6 sm:w-340">
         <q-input class="flex items-center shadow appearance-none border rounded-30 w-full h-full border-solid border border-white h-full pl-26 pr-21 text-white leading-tight custorm-search-input" v-model="searchStr" @keyup.enter="search" :after="searchIcon" type="text" :placeholder="$t('HOME_PLACEHOLDER')" hide-underline />
       </div>
