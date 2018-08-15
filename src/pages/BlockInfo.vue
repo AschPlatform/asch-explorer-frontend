@@ -6,7 +6,7 @@
       <div class="text-20 text-blue-light pl-30 pt-30">
         {{this.$t('BLOCK_INFO')}}
       </div>
-      <boundary-line class="my-30" />
+      <boundary-line class="mt-30 mb-15" />
       <info-panel class="px-30" :panelData="panelData" />
       <boundary-line class="my-30" />
       <table-container :data="data" :count="count" isTransaction="true" @getData="getData" />

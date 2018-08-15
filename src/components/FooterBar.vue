@@ -3,7 +3,7 @@
     <div class="flex justify-left ">
       <div class="text-16 text-white flex items-center justify-center xs:mb-2 sm:mb-0">{{$t('FOOTER_LINKS')}}</div>
       <div class="flex justify-center items-center" v-for="(link,idx) in links" :key="idx">
-        <a class="text-16 text-grey hover:text-blue-light no-underline ml-30" :href="link.href" target="_blank">{{link.label}}</a>
+        <a class="text-16 text-ash-darker hover:text-blue-light no-underline ml-30" :href="link.href" target="_blank">{{link.label}}</a>
       </div>
     </div>
     <div class="w-163 flex justify-center items-center cursor-pointer" @click="toHome">
@@ -63,6 +63,6 @@ export default {
 
 <style lang="stylus" scoped>
 a:hover {
-  color: #3A9FFE !important;
+  // color: #3A9FFE !important;
 }
 </style>
