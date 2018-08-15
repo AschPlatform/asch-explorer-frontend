@@ -11,7 +11,7 @@
 
 <script>
 import { QPage, QTd, QTooltip } from 'quasar'
-import { mapActions } from 'vuex'
+// import { mapActions } from 'vuex'
 import TableContainer from '../components/TableContainer'
 
 export default {

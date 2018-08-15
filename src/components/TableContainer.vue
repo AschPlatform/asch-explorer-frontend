@@ -5,6 +5,15 @@
         <q-tr slot="body" slot-scope="props" :props="props">
           <slot name="content" slot-scope="props" :props="props.row"></slot>
         </q-tr>
+        <div slot="pagination" slot-scope="props" class="row flex-center q-py-sm">
+          <q-btn round dense flat size="sm" icon="first_page"  class="q-mr-sm" :disable="props.isFirstPage" @click="()=>firstPage(props)" />
+          <q-btn round dense flat size="sm" icon="chevron_left"  class="q-mr-sm" :disable="props.isFirstPage" @click="props.prevPage" />
+          <div class="q-mr-sm" style="font-size: small">
+            {{ props.pagination.page }} / {{ props.pagesNumber }}
+          </div>
+          <q-btn round dense flat size="sm" icon="chevron_right" :disable="props.isLastPage" @click="props.nextPage" />
+          <q-btn round dense flat size="sm" icon="last_page" :disable="props.isLastPage" @click="()=>lastPage(props)" />
+        </div>
       </q-table>
       <q-inner-loading :visible="loadingBool">
         <q-spinner-gears size="50px" color="teal-4" />
@@ -96,6 +105,14 @@ export default {
         rowsNumber: 0,
         rowsPerPage: 10
       }
+    },
+    firstPage(props) {
+      this.pagination.page = 1
+      this.request()
+    },
+    lastPage(props) {
+      this.pagination.page = props.pagesNumber
+      this.request()
     }
   },
   computed: {
