@@ -12,9 +12,9 @@
         <q-btn outline v-for="(item, idx) in btnGroup" :label="item.label" @click="changeType(item.value)" :key="idx"></q-btn>
       </q-btn-group>
       <boundary-line class="mt-4 mb-4" />
-      <table-container class="mt-4" :data="data" :count="count" :params="params" :columnsData="columnsData" :isTransaction="this.type === 0 ? true : false" @getData="getData" @changeType="changeType">
+      <table-container class="mt-4" :data="data" :count="count" :params="params" :columnsData="columnsData" @getData="getData">
         <template slot="content" slot-scope="props" v-if="props.props">
-          <q-td key="id">
+          <q-td v-if="props.props.id" key="id">
             <!-- {{props.props}} -->
             <div class="text-primary cursor-pointer" @click="doSearch(props.props.id)">
               {{ props.props.id | eclipse }}
@@ -27,11 +27,16 @@
               <q-tooltip>{{ props.props.tid }}</q-tooltip>
             </div>
           </q-td>
+          <q-td v-if="props.props.height" key="height" >
+            <div class="text-primary cursor-pointer" @click="doSearch(props.props.height)">
+              {{ props.props.height }}
+            </div>
+          </q-td>
+          <q-td v-if="props.props.timestamp > -1" key="timestamp" >
+            <span>{{ fulltimestamp(props.props.timestamp) }}</span>
+          </q-td>
           <q-td v-if="props.props.type" key="type" >
             <span class="">{{ getTransType(props.props) }}</span>
-          </q-td>
-          <q-td v-if="props.props.currency" key="currency" >
-            <span class="">{{ (props.props.currency) + $t('TRS_TYPE_TRANSFER') }}</span>
           </q-td>
           <q-td v-if="props.props.senderId" key="senderId" >
             <div class="text-primary cursor-pointer" @click="doSearch(props.props.senderId)">
@@ -46,28 +51,31 @@
             </div>
           </q-td>
           <q-td v-if="props.props.amount" key="amount" >
-            <span v-if="getAmount(props.props)">{{ getAmount(props.props) }}</span>
+            <span v-if="getAmount(props.props.transaction)">{{ getAmount(props.props.transaction) }}</span>
           </q-td>
-          <q-td v-if="props.props.transferAmount" key="transferAmount" >
+          <q-td v-if="props.props.transferAmount" key="transferAmount">
             <span v-if="getTransAmount(props.props)">{{ getTransAmount(props.props) }}</span>
           </q-td>
-          <q-td v-if="props.props.fee" key="fee" >
-            <span v-if="props.props.fee">{{ props.props.fee | fee }}</span>
-            <span v-else>--</span>
+          <q-td v-if="props.props.currency" key="currency" >
+            <span class="">{{ (props.props.currency) + $t('TRS_TYPE_TRANSFER') }}</span>
           </q-td>
-         <q-td v-if="props.props.args" key="args" >
-           <div v-if="props.props.args.length > 0" >
+         <q-td v-if="props.props.args || props.props.args === null" key="args" >
+           <div v-if="props.props.args && props.props.args.length > 0" >
             <span>{{ props.props.args.join(',') | eclipse }}</span>
               <q-tooltip>{{ props.props.args }}</q-tooltip>
            </div>
             <span v-else>--</span>
           </q-td>
-          <q-td v-if="props.props.transferFee" key="transferFee" >
+          <q-td v-if="props.props.fee" key="fee" >
+            <span v-if="props.props.fee">{{ props.props.fee | fee }}</span>
+            <span v-else>--</span>
+          </q-td>
+          <q-td v-if="props.props.transaction && props.props.transaction.fee" key="transferFee" >
             <span>0.1</span>
           </q-td>
-          <q-td v-if="props.props.timestamp > -1" key="timestamp" >
+          <!-- <q-td v-if="props.props.timestamp > -1" key="timestamp" >
             <span>{{ fulltimestamp(props.props.timestamp) }}</span>
-          </q-td>
+          </q-td> -->
         </template>
       </table-container>
     </div>
@@ -160,7 +168,20 @@ export default {
           {
             name: 'id',
             label: 'ID',
-            field: 'ID'
+            field: 'ID',
+            align: 'center'
+          },
+          {
+            name: 'height',
+            label: this.$t('HEIGHT'),
+            field: 'height',
+            align: 'center'
+          },
+          {
+            name: 'timestamp',
+            label: this.$t('TRANS_TIME'),
+            field: 'timestamp',
+            align: 'center'
           },
           {
             name: 'type',
@@ -171,22 +192,20 @@ export default {
           {
             name: 'senderId',
             label: this.$t('TRANS_SENDER'),
-            field: 'senderId'
-          },
-          {
-            name: 'fee',
-            label: this.$t('FEE'),
-            field: 'fee'
+            field: 'senderId',
+            align: 'center'
           },
           {
             name: 'args',
             label: this.$t('ARGUMENTS'),
-            field: 'args'
+            field: 'args',
+            align: 'center'
           },
           {
-            name: 'timestamp',
-            label: this.$t('TRANS_TIME'),
-            field: 'timestamp'
+            name: 'fee',
+            label: this.$t('FEE'),
+            field: 'fee',
+            align: 'center'
           }
         ]
       } else {
@@ -194,7 +213,38 @@ export default {
           {
             name: 'tid',
             label: 'ID',
-            field: 'tid'
+            field: 'tid',
+            align: 'center'
+          },
+          {
+            name: 'height',
+            label: this.$t('HEIGHT'),
+            field: 'height',
+            align: 'center'
+          },
+          {
+            name: 'timestamp',
+            label: this.$t('TRANS_TIME'),
+            field: 'timestamp',
+            align: 'center'
+          },
+          {
+            name: 'senderId',
+            label: this.$t('TRANS_SENDER'),
+            field: 'senderId',
+            align: 'center'
+          },
+          {
+            name: 'recipientId',
+            label: this.$t('TRANS_RECRIVER'),
+            field: 'recipientId',
+            align: 'center'
+          },
+          {
+            name: 'transferAmount',
+            label: this.$t('AMOUNT'),
+            field: 'amount',
+            align: 'center'
           },
           {
             name: 'currency',
@@ -203,29 +253,10 @@ export default {
             align: 'center'
           },
           {
-            name: 'senderId',
-            label: this.$t('TRANS_SENDER'),
-            field: 'senderId'
-          },
-          {
-            name: 'recipientId',
-            label: this.$t('TRANS_RECRIVER'),
-            field: 'recipientId'
-          },
-          {
-            name: 'transferAmount',
-            label: this.$t('AMOUNT'),
-            field: 'amount'
-          },
-          {
             name: 'transferFee',
             label: this.$t('FEE'),
-            field: 'fee'
-          },
-          {
-            name: 'timestamp',
-            label: this.$t('TRANS_TIME'),
-            field: 'timestamp'
+            field: 'fee',
+            align: 'center'
           }
         ]
       }

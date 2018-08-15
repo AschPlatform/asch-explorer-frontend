@@ -45,6 +45,7 @@ const lang = {
   NICKNAME: '昵称',
   ACCOUNT_BALANCE: '账户余额',
   ACCOUNT_ADDRESS: '账户地址',
+  HEIGHT: '高度',
 
   // trans
   TRANS: '交易',

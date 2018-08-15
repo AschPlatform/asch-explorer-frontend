@@ -10,12 +10,16 @@
 </style>
 
 <script>
-import { QPage } from 'quasar'
+import { QPage, QTd, QTooltip } from 'quasar'
+import { mapActions } from 'vuex'
+import TableContainer from '../components/TableContainer'
 
 export default {
   name: 'Delegates',
   components: {
-    QPage
+    QPage,
+    QTd,
+    QTooltip
   }
 }
 </script>

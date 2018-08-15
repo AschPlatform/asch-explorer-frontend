@@ -11,6 +11,7 @@
 
 <script>
 import { QPage } from 'quasar'
+import { mapActions } from 'vuex'
 
 export default {
   name: 'DelegateInfo',

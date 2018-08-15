@@ -1,7 +1,7 @@
 <template>
   <transition appear enter-active-class="animated fadeIn" leave-active-class="animated fadeOut">
     <div class="relative-position">
-      <q-table class="no-shadow table-top-border" :title="title" :data="data" :columns="columns" :rows-per-page-options="[3,5,10,50]" :pagination.sync="pagination" @request="request" row-key="name">
+      <q-table class="no-shadow table-top-border" :data="data" :columns="columns" :rows-per-page-options="[3,5,10,50]" :pagination.sync="pagination" @request="request" row-key="name">
         <q-tr slot="body" slot-scope="props" :props="props">
           <slot name="content" slot-scope="props" :props="props.row"></slot>
         </q-tr>
@@ -20,7 +20,7 @@ import { fulltimestamp } from '../utils/util'
 
 export default {
   name: 'TableContaine',
-  props: ['isTransaction', 'data', 'count', 'params', 'columnsData'],
+  props: ['data', 'count', 'params', 'columnsData'],
   components: {
     QTable,
     QTr,
@@ -33,7 +33,6 @@ export default {
   },
   data() {
     return {
-      // isTransaction: true,
       datas: [],
       pagination: {
         page: 1,
