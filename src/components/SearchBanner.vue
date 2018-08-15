@@ -5,8 +5,7 @@
     </div>
     <div class="flex items-center justify-end">
       <div class="search-container w-340 h-36 xs:w-5/6 sm:w-340">
-        <q-input class="flex items-center shadow appearance-none border rounded-30 w-full h-full border-solid border border-white h-full pl-26 pr-21 text-white leading-tight custorm-search-input" v-model="searchStr" @keyup.enter="search" :after="searchIcon" type="text"
-          :placeholder="$t('HOME_PLACEHOLDER')" hide-underline />
+        <q-input class="flex items-center shadow appearance-none border rounded-30 w-full h-full border-solid border border-white h-full pl-26 pr-21 text-white leading-tight custorm-search-input" v-model="searchStr" @keyup.enter="search" :after="searchIcon" type="text" :placeholder="$t('HOME_PLACEHOLDER')" hide-underline />
       </div>
       <div class="desktop-only xs:hidden sm:flex justify-center items-center min-w-230 h-full ml-50">
         <div>

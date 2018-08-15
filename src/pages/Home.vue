@@ -7,7 +7,7 @@
         </div>
       </div>
       <div class="flex mb-4 justify-center">
-        <q-input class="flex justify-center items-center xs:pl-11 sm:pl-30 pr-38 shadow appearance-none border xs:w-5/6 sm:w-1/2 max-w-780 xs:h-36 sm:h-60 border-solid border-grey-darkest hover:border-blue-light  border-1 border-black rounded-30 text-grey-darker leading-tight" :class="custormSearchIcon" v-model="searchStr" @keyup.enter="search" :after="searchIcon" type="text" :placeholder="$t('HOME_PLACEHOLDER')" hide-underline	/>
+        <q-input :class="custormSearchIcon" v-model="searchStr" @keyup.enter="search" :after="searchIcon" type="text" :placeholder="$t('HOME_PLACEHOLDER')" hide-underline	/>
       </div>
       <div class="flex items-center justify-center mt-26">
           <span class="text-18 text-grey-darkest">{{$t('LANGUAGE_CONTEXT')}}</span>
@@ -25,7 +25,7 @@ import { mapGetters, mapActions } from 'vuex'
 import aschLogo from '../assets/asch_logo.png'
 import StateBanner from '../components/StateBanner.vue'
 import Breadcrumb from '../components/Breadcrumb'
-import { setCache, isDesktop } from '../utils/util'
+import { setCache } from '../utils/util'
 
 export default {
   name: 'Home',
@@ -41,9 +41,7 @@ export default {
       aschLogo
     }
   },
-  mounted() {
-    // this.custormSearchIcon()
-  },
+  mounted() {},
   methods: {
     ...mapActions(['getMoreAssets', 'getAsset']),
     search() {
@@ -61,7 +59,13 @@ export default {
   computed: {
     ...mapGetters(['getRunState']),
     custormSearchIcon() {
-      return this.isDesktop ? 'custorm-search-icon' : 'custorm-search-icon-mobile'
+      let searchClass =
+        'flex justify-center items-center xs:pl-11 sm:pl-30 pr-38 shadow appearance-none border xs:w-5/6 sm:w-1/2 max-w-780 xs:h-36 sm:h-60 border-solid border-grey-darkest hover:border-blue-light  border-1 border-black rounded-30 text-grey-darker leading-tight'
+      if (window.innerWidth <= 678) {
+        return searchClass + ' custorm-search-icon-mobile'
+      } else {
+        return searchClass + ' custorm-search-icon'
+      }
     },
     searchIcon() {
       return [
