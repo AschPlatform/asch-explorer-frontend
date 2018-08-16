@@ -56,8 +56,7 @@ export default {
   },
   methods: {
     getAddress,
-    getRecievr(trans){ // get rec address
-
+    getRecievr(trans) { // get rec address
     }
   }
 }

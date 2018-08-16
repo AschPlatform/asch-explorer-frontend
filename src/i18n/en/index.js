@@ -45,6 +45,7 @@ const lang = {
  NICKNAME: 'Nickname',
  ACCOUNT_BALANCE: 'Account Balance',
  ACCOUNT_ADDRESS: 'Address',
+ HEIGHT: 'Height',
 
  // trans
  TRANS: 'Transaction',
