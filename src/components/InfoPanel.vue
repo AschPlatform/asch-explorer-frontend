@@ -1,12 +1,12 @@
 <template>
   <transition appear enter-active-class="animated fadeIn" leave-active-class="animated fadeOut">
     <div class="flex w-full relative-position">
-      <table class="q-table horizontal-separator highlight loose accountinfo-table margin-t-20 table-tr-td-p-0">
-        <tbody class='info-tbody'>
+      <table class="q-table horizontal-separator highlight loose accountinfo-table margin-t-20">
+        <tbody :class='tableTbodyMobile'>
           <tr v-show="data.value != null" v-for="(data, idx) in panelData" :key="idx">
             <td v-if="data.label" class="w-67 text-ash-dark">{{$t(data.label)}}:</td>
             <td v-else class="w-67 text-ash-dark">{{$t(data.label)}}</td>
-            <td class="w-auto text-16">
+            <td class="w-auto text-16 xs:text-right sm:text-left xs:py-30 sm:py-20">
               <span :class="data.link?`text-blue-light cursor-pointer`:''" @click="data.link?$router.push(data.link+data.value):null">
                               <span v-if="data.type==='number'" >{{data.value | numSeparator}}</span>
               <span v-else-if="data.type==='timestamp'">{{data.value | formatTimestamp}}</span>
@@ -38,7 +38,7 @@
 <script>
 import { QInnerLoading, QSpinnerGears } from 'quasar'
 import ICountUp from 'vue-countup-v2'
-import { toast } from '../utils/util'
+import { toast, isDesktop } from '../utils/util'
 import { mapActions, mapGetters } from 'vuex'
 
 export default {
@@ -84,10 +84,13 @@ export default {
     }
   },
   computed: {
-    ...mapGetters(['loadingBool'])
-    // loadingFlg() {
-    //   return this.loadingBool
-    // }
+    ...mapGetters(['loadingBool']),
+    tableTbodyMobile() {
+      return this.isDesktop ? 'info-tbody table-tr-td-p-0' : 'info-tbody table-mobile'
+    },
+    isDesktop() {
+      return isDesktop()
+    }
   },
   watch: {
     panelData() {

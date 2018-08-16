@@ -37,7 +37,7 @@ export default {
       return [
         {
           label: 'API',
-          href: 'https://github.com/AschPlatform/asch-docs/blob/master/http_api/zh_cn_1.4.md'
+          href: 'https://github.com/AschPlatform/asch-docs/tree/master/http_api'
         },
         {
           label: 'Github',

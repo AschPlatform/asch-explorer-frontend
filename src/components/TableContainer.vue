@@ -4,13 +4,13 @@
       <q-table :class="isTransactionCss" :title="title" :data="data" :columns="columns" :rows-per-page-options="[3,5,10,50]" :pagination.sync="pagination" :rows-per-page-label="$t('ROWS_PER_PAGE_TIP')" :no-data-label="$t('NO_DATA')" @request="request" row-key="name">
         <q-tr slot="body" slot-scope="props" :props="props">
           <!-- <q-td class="text-left"></q-td> -->
-          <q-td v-if="props.row.id" key="id" :props="props">
+          <q-td class="pl-30" v-if="props.row.id" key="id" :props="props">
             <div class="text-blue-light cursor-pointer" @click="doSearch(props.row.id)">
               {{ props.row.id | eclipse }}
               <q-tooltip>{{ props.row.id }}</q-tooltip>
             </div>
           </q-td>
-          <q-td v-if="props.row.tid" key="tid" :props="props">
+          <q-td class="pl-30" v-if="props.row.tid" key="tid" :props="props">
             <div class="text-blue-light cursor-pointer" @click="doSearch(props.row.tid)">
               {{ props.row.tid | eclipse }}
               <q-tooltip>{{ props.row.tid }}</q-tooltip>
@@ -34,13 +34,13 @@
               <q-tooltip>{{ props.row.recipientId }}</q-tooltip>
             </div>
           </q-td>
-          <q-td key="amount" :props="props">
+          <q-td class="pr-60" key="amount" :props="props">
             <span v-if="getAmount(props.row)">{{ getAmount(props.row) }}</span>
           </q-td>
-          <q-td  key="transferAmount" :props="props">
+          <q-td class="pr-60" key="transferAmount" :props="props">
             <span v-if="getTransAmount(props.row)">{{ getTransAmount(props.row) }}</span>
           </q-td>
-          <q-td key="fee" :props="props">
+          <q-td class="pr-60" key="fee" :props="props">
             <span v-if="props.row.fee">{{ props.row.fee | fee }}</span>
             <span v-else>--</span>
           </q-td>
@@ -51,16 +51,51 @@
             </div>
             <span v-else>--</span>
           </q-td>
-          <q-td key="transferFee" :props="props">
+          <q-td class="pr-60" key="transferFee" :props="props">
             <span>0.1</span>
           </q-td>
           <q-td v-if="props.row.timestamp > -1" key="timestamp" :props="props">
             <span>{{ fulltimestamp(props.row.timestamp) }}</span>
           </q-td>
         </q-tr>
+        <tr slot="header" slot-scope="props" :props="props">
+          <q-th class="pl-30" key="id" :props="props">
+            ID
+          </q-th>
+          <q-th class="pl-30" key="tid" :props="props">
+            ID
+          </q-th>
+          <q-th key="type" :props="props">
+            {{$t('TRANSACTION_TYPE')}}
+          </q-th>
+          <q-th key="currency" :props="props">
+            {{$t('TRANSACTION_TYPE')}}
+          </q-th>
+          <q-th key="senderId" :props="props">
+            {{$t('TRANS_SENDER')}}
+          </q-th>
+          <q-th class="pr-60" key="fee" :props="props">
+            {{$t('FEE')}}
+          </q-th>
+          <q-th key="args" :props="props">
+            {{$t('ARGUMENTS')}}
+          </q-th>
+          <q-th key="recipientId" :props="props">
+            {{$t('TRANS_RECRIVER')}}
+          </q-th>
+          <q-th class="pr-60" key="transferAmount" :props="props">
+            {{$t('AMOUNT')}}
+          </q-th>
+          <q-th class="pr-60" key="transferFee" :props="props">
+            {{$t('FEE')}}
+          </q-th>
+          <q-th key="timestamp" :props="props">
+            {{$t('TRANS_TIME')}}
+          </q-th>
+        </tr>
         <div slot="pagination" slot-scope="props" class="row flex-center q-py-sm">
-          <q-btn round dense flat size="sm" icon="first_page"  class="q-mr-sm" :disable="props.isFirstPage" @click="()=>firstPage(props)" />
-          <q-btn round dense flat size="sm" icon="chevron_left"  class="q-mr-sm" :disable="props.isFirstPage" @click="props.prevPage" />
+          <q-btn round dense flat size="sm" icon="first_page" class="q-mr-sm" :disable="props.isFirstPage" @click="()=>firstPage(props)" />
+          <q-btn round dense flat size="sm" icon="chevron_left" class="q-mr-sm" :disable="props.isFirstPage" @click="props.prevPage" />
           <div class="q-mr-sm" style="font-size: small">
             {{ props.pagination.page }} / {{ props.pagesNumber }}
           </div>
@@ -76,7 +111,17 @@
 </template>
 
 <script>
-import { QTable, QTr, QTd, QTooltip, QBtnGroup, QBtn, QInnerLoading, QSpinnerGears } from 'quasar'
+import {
+  QTable,
+  QTr,
+  QTd,
+  QTh,
+  QTooltip,
+  QBtnGroup,
+  QBtn,
+  QInnerLoading,
+  QSpinnerGears
+} from 'quasar'
 import { mapActions, mapGetters } from 'vuex'
 import { transTypes } from '../utils/constants'
 import { fulltimestamp, toast, convertFee } from '../utils/util'
@@ -87,6 +132,7 @@ export default {
   components: {
     QTable,
     QTr,
+    QTh,
     QTd,
     QTooltip,
     QInnerLoading,
@@ -260,7 +306,7 @@ export default {
           name: 'tid',
           label: 'ID',
           field: 'tid',
-            align: 'left'
+          align: 'left'
         },
         {
           name: 'currency',

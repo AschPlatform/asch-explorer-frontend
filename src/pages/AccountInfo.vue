@@ -6,7 +6,7 @@
         {{this.$t('ACCOUNT_INFO')}}
       </div>
       <boundary-line class="xs:my-15 sm:my-30" />
-      <info-panel v-if="account" class="xs:px-15 sm:px-30" :panelData="panelData" />
+      <info-panel v-if="account" class="xs:pr-0 xs:pl-15 sm:px-30" :panelData="panelData" />
       <div v-else class="mt-2 mb-8 px-4 text-xs">{{$t('NO_DATA')}}</div>
       <boundary-line class="my-29" />
   
