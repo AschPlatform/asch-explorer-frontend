@@ -40,7 +40,7 @@ import BoundaryLine from '../components/BoundaryLine'
 import InfoPanel from '../components/InfoPanel'
 import TableContainer from '../components/TableContainer'
 import { mapActions } from 'vuex'
-import { convertFee, fulltimestamp, getAddress } from '../utils/util'
+import { convertFee, fulltimestamp, getAddress, rewardCount } from '../utils/util'
 
 export default {
   name: 'DelegateInfo',
@@ -134,7 +134,7 @@ export default {
         },
         {
           label: 'FORGE_REWARD',
-          value: this.rewardCount
+          value: rewardCount(this.blockHeight)
         },
         {
           label: 'TRANS_NUM',
@@ -149,6 +149,7 @@ export default {
     }
   },
   methods: {
+    rewardCount,
     fulltimestamp,
     ...mapActions(['getBlocks']),
     async envalueData() {
@@ -176,28 +177,6 @@ export default {
     },
     doSearch(str) {
       this.$root.$emit('doSearch', str)
-    },
-    rewardCount(val) {
-      let blockHeight = val
-      if (blockHeight) {
-        switch (true) {
-          case (blockHeight <= 3464500 && blockHeight >= 464500):
-            return '3.5 XAS'
-          case (blockHeight < 6464500 && blockHeight >= 3464500):
-            return '3.0 XAS'
-          case (blockHeight < 9464500 && blockHeight >= 6464500):
-            return '2.5 XAS'
-          case (blockHeight < 12464500 && blockHeight >= 9464500):
-            return '2 XAS'
-          case (blockHeight < 15464500 && blockHeight >= 12464500):
-            return '1 XAS'
-          case (blockHeight > 15464500):
-            return '0.5 XAS'
-          default:
-            return '0 XAS'
-        }
-      }
-      return this.$t('LOADING')
     }
   },
   watch: {

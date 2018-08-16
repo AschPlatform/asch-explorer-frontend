@@ -1,6 +1,6 @@
 <template>
-  <q-page padding class="flex items-center">
-    <div class="block w-full mb-32 xs:mb-0 sm:mb-32">
+  <q-page padding class="flex justify-center">
+    <!-- <div class="block w-full mb-32 xs:mb-0 sm:mb-32">
       <div class="flex justify-center mb-10">
         <div class="w-64">
           <img class="w-full"  :src="aschLogo" alt="">
@@ -16,8 +16,12 @@
           <button class="border-none bg-transparent text-blue-dark hover:text-blue text-13 cursor-pointer ml-8 mr-8" @click="changeLang('zh')">{{$t('LANGUAGE_ZH')}}</button>
           <button class="border-none bg-transparent text-blue-dark hover:text-blue text-13 cursor-pointer" @click="changeLang('en')">{{$t('LANGUAGE_EN')}}</button>
       </div>
-    </div>
+    </div> -->
     <state-banner class="flex xs:flex sm:hidden mb-8" :stateData="getRunState" />
+    <div class="flex w-4/5">
+      <panel-container class="w-1/2" type="blocks" />
+      <panel-container class="w-1/2" type="trans" />
+    </div>
   </q-page>
 </template>
 
@@ -27,6 +31,7 @@ import { mapGetters, mapActions } from 'vuex'
 import aschLogo from '../assets/asch_logo.png'
 import StateBanner from '../components/StateBanner.vue'
 import Breadcrumb from '../components/Breadcrumb'
+import PanelContainer from '../components/PanelContainer'
 import { setCache } from '../utils/util'
 
 export default {
@@ -35,7 +40,8 @@ export default {
     QPage,
     QInput,
     StateBanner,
-    Breadcrumb
+    Breadcrumb,
+    PanelContainer
   },
   data() {
     return {

@@ -2,7 +2,8 @@
 import moment from 'moment'
 import _ from 'lodash'
 import {
-  convertFee
+  convertFee,
+  rewardCount
 } from './util'
 // import marked from 'marked'
 
@@ -66,7 +67,7 @@ const filters = {
     var decimal = String(num).split('.')[1] || '' // 小数部分
     var tempArr = []
     var revNumArr = String(num).split('.')[0].split('').reverse() // 倒序
-    for (let i in revNumArr) {
+    for (let i = 0; i < revNumArr.length; i++) {
       tempArr.push(revNumArr[i])
       if ((i + 1) % 3 === 0 && i !== revNumArr.length - 1) {
         tempArr.push(',')
@@ -74,6 +75,10 @@ const filters = {
     }
     var zs = tempArr.reverse().join('') // 整数部分
     return decimal ? zs + '.' + decimal : zs
+  },
+  getRewardByHeight: (blockHeight) => {
+    return rewardCount(blockHeight)
   }
+
 }
 export default filters
