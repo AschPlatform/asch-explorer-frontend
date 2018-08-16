@@ -6,7 +6,7 @@
         {{this.$t('TRANSACTION_INFO')}}
       </div>
       <boundary-line class="xs:my-15 sm:my-30" />
-      <info-panel class="xs:px-15 sm:px-30" :panelData="panelData" />
+      <info-panel class="xs:pr-0 xs:pl-15 sm:px-30" :panelData="panelData" />
     </div>
   </q-page>
 </template>

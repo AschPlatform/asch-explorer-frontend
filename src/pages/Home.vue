@@ -15,7 +15,7 @@
           <button class="border-none bg-transparent text-grey-darkest hover:text-blue-light hover:underline  text-18 cursor-pointer" @click="changeLang('en')">{{$t('LANGUAGE_EN')}}</button>
       </div>
     </div>
-    <state-banner class="flex xs:flex sm:hidden mb-8" :stateData="getRunState" />
+    <state-banner class="flex xs:flex sm:hidden xs:mt-30 mb-8" :stateData="getRunState" />
   </q-page>
 </template>
 

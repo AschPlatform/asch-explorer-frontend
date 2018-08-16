@@ -12,33 +12,21 @@
       color: #333333;
     }
   }
+  thead{
+    border-color: #eaeaea;
+  }
   tr{
-    th:nth-child(1){
-      padding-left: 30px;
-    }
-    td:nth-child(1){
-      padding-left: 30px;
-    }
+    border-color: #eaeaea;
     th{
       font-size: 18px;
       color: #666666;
-      padding-left: 24px;
-    }
-     th:nth-child(5){
-      padding-right: 60px;
-    }
-    td:nth-child(5){
-      padding-right: 60px;
-    }
-    th:nth-child(6){
-      padding-right: 60px;
-    }
-    td:nth-child(6){
-      padding-right: 60px;
+      border-color: #eaeaea;
     }
     td{
       font-size: 16px;
-      padding: 24px;
+      padding-top: 24px;
+      padding-bottom: 24px;
+      border-color: #eaeaea;
       span{
         color: #666666;
       }
@@ -60,30 +48,24 @@
       color: #333333;
     }
   }
+  thead{
+    border-color: #eaeaea;
+  }
   tr{
-    th:nth-child(1){
-      padding-left: 30px;
-    }
-    td:nth-child(1){
-      padding-left: 30px;
-    }
+    border-color: #eaeaea;
     th{
       font-size: 18px;
       color: #666666;
-      padding-left: 24px;
-    }
-    th:nth-child(4){
-      padding-right: 70px;
+      border-color: #eaeaea;
     }
     td{
       font-size: 16px;
-      padding: 24px;
+      padding-top: 24px;
+      padding-bottom: 24px;
+      border-color: #eaeaea;
       span{
         color: #666666;
       }
-    }
-    td:nth-child(4){
-      padding-right: 70px;
     }
   }
 }
@@ -94,11 +76,35 @@
        font-size: 16px;
        color: #666666;
        padding: 0 24px;
+       border-color: #eaeaea!important;
      }
     td:nth-child(1){
       padding-left: 0;
     }
     td:nth-child(2){
+      white-space: normal;
+      word-wrap: break-word;
+      word-break: break-all;
+    }
+  }
+}
+
+.table-mobile{
+   tr{
+     td{
+       font-size: 16px;
+       color: #666666;
+      //  padding: 12px 12px 12px 0px;
+      //  padding:12px 24px;
+       border-color: #eaeaea!important;
+     }
+    td:nth-child(1){
+      // padding-left: 0;
+      font-size: 14px;
+      border-color: #eaeaea;
+    }
+    td:nth-child(2){
+      font-size: 14px;
       white-space: normal;
       word-wrap: break-word;
       word-break: break-all;
@@ -139,7 +145,8 @@
 .custom-pre-wrap{
   // width: 60%;
   color: #666666;
-  font-size: 16px;
+  // font-size: 16px;
+  margin: 0;
   font-family: '-apple-system', 'Helvetica Neue', Helvetica, Arial, sans-serif;
   white-space: pre-wrap; /*css-3*/ 
   white-space: -moz-pre-wrap; /*Mozilla,since1999*/ 

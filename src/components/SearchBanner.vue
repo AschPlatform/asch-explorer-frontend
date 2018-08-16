@@ -1,6 +1,6 @@
 <template>
   <div class="flex flex-wrap justify-between xs:justify-center sm:justify-between items-center bg-black-darker w-full h-74 xs:h-32 xs:py-10 sm:h-74 max-w-1200 m-auto">
-    <div class="asch-logo h-8 mr-8 cursor-pointer" @click="toHome">
+    <div class="asch-logo h-8 cursor-pointer" @click="toHome">
       <img class="h-full" :src="aschLogo" alt="">
     </div>
     <div class="flex items-center xs:justify-center sm:justify-end xs:w-full sm:w-auto">
@@ -58,7 +58,7 @@ export default {
           icon: 'search',
           // required function to call when
           // icon is clicked/tapped
-          handler: () => this.$root.$emit('doSearch', this.searchStr),
+          handler: () => this.$root.$emit('doSearch', this.searchStr)((this.searchStr = '')),
           // Optional. Show icon button
           // if model has a value
           content: true
@@ -73,5 +73,4 @@ export default {
 </script>
 
 <style lang="stylus" scoped>
-
 </style>
