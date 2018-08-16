@@ -7,8 +7,12 @@ import {
 } from 'quasar'
 import moment from 'moment'
 import AschJs from 'asch-js'
-import { BigNumber } from 'bignumber'
-import { transTypes } from '../utils/constants'
+import {
+  BigNumber
+} from 'bignumber'
+import {
+  transTypes
+} from '../utils/constants'
 
 // confirm compontent
 export const confirm = (conf, cancel = () => {}, confirm = () => {}) => {
@@ -273,4 +277,26 @@ export const getTransType = (trans, t) => {
 
 export const getAddress = (pubKey) => {
   return AschJs.crypto.getAddress(pubKey)
+}
+
+export const rewardCount = (blockHeight) => {
+  if (blockHeight) {
+    if (blockHeight < 3464500 && blockHeight > 464500) {
+      return '3.5 XAS'
+    } else if (blockHeight < 6464500 && blockHeight > 3464500) {
+      return '3.0 XAS'
+    } else if (blockHeight < 9464500 && blockHeight > 6464500) {
+      return '2.5 XAS'
+    } else if (blockHeight < 12464500 && blockHeight > 9464500) {
+      return '2 XAS'
+    } else if (blockHeight < 15464500 && blockHeight > 12464500) {
+      return '1 XAS'
+    } else if (blockHeight > 15464500) {
+      return '0.5 XAS'
+    } else {
+      return '0 XAS'
+    }
+  } else {
+    return ''
+  }
 }

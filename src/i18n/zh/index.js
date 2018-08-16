@@ -114,6 +114,10 @@ const lang = {
   DELEGATES: '受托人',
   ASSETS: '资产',
   // common
-  LOADING: '读取中'
+  LOADING: '读取中',
+  FORGE: '锻造',
+  FROM: '从',
+  TO: '至'
+
 }
 export default lang

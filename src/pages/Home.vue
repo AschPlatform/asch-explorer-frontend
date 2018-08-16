@@ -1,5 +1,5 @@
 <template>
-  <q-page padding class="flex items-center">
+  <q-page padding class="flex justify-center">
     <!-- <div class="block w-full mb-32 xs:mb-0 sm:mb-32">
       <div class="flex justify-center mb-10">
         <div class="w-64">
@@ -18,9 +18,9 @@
       </div>
     </div> -->
     <state-banner class="flex xs:flex sm:hidden mb-8" :stateData="getRunState" />
-    <div class="flex w-full ">
-      <panel-container type="blocs" />
-      <panel-container type="trans" />
+    <div class="flex w-4/5">
+      <panel-container class="w-1/2" type="blocks" />
+      <panel-container class="w-1/2" type="trans" />
     </div>
   </q-page>
 </template>
