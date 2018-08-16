@@ -10,7 +10,7 @@
           <span>{{ props.props.rate }}</span>
         </q-td>
         <q-td v-if="props.props.name" key="name">
-          <div class="text-primary cursor-pointer" @click="doSearch(props.props.publicKey, 'delegate')">
+          <div class="text-primary cursor-pointer" @click="doSearch(props.props.address, 'delegate')">
             {{ props.props.name | eclipse }}
             <q-tooltip>{{ props.props.name }}</q-tooltip>
           </div>
@@ -109,8 +109,8 @@ export default {
       this.data = res.delegates
       this.count = res.totalCount
     },
-    doSearch(str) {
-      this.$root.$emit('doSearch', str)
+    doSearch(str, type) {
+      this.$root.$emit('doSearch', str, type)
     }
   },
   computed: {
