@@ -67,6 +67,10 @@ export default {
           return
         }
       }
+      // TODO: add public key reg
+      if (type === 'delegate') {
+        router.push(`/delegate/${str}`)
+      }
       toastError(this.$t('ERR_INVALID_SEARCH'))
     },
     // Set the language when you refresh

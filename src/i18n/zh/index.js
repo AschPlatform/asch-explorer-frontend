@@ -31,6 +31,20 @@ const lang = {
   TRANSACTION_INFO: '交易详情',
   ACCOUNT_INFO: '账户详情',
 
+  // delegates
+  RANK: '排名',
+  DELEGATE_NAME: '受托人名称',
+  BLOCK_NUM: '产块数量',
+  PRODUCTIVITY: '生产率',
+  VOTE_RATE: '得票率',
+
+  // assets
+  ASSET_NAME: '资产名称',
+  ISSUER: '发行商',
+  MAXIMUN: '总发行量',
+  PRECISION: '精度',
+  ISSUE_TIME: '发行时间',
+
   // transactionsInfo
   TRANSACTION: '交易',
   TRANSACTION_ID: '交易ID',

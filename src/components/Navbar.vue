@@ -8,7 +8,7 @@
         </q-toolbar-title> -->
     <div>
       <q-btn :label="$t('HOME')" @click="jump('/')" />
-      <q-btn :label="$t('DELEGATES')" @click="jump('/deletages')" />
+      <q-btn :label="$t('DELEGATES')" @click="jump('/delegates')" />
       <q-btn :label="$t('ASSETS')" @click="jump('/assets')" />
     </div>
   
