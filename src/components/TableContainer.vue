@@ -30,7 +30,7 @@ import { fulltimestamp } from '../utils/util'
 
 export default {
   name: 'TableContaine',
-  props: ['data', 'count', 'params', 'columnsData'],
+  props: ['data', 'count', 'params', 'columnsData', 'type'],
   components: {
     QTable,
     QTr,
@@ -145,9 +145,12 @@ export default {
   },
   watch: {
     params() {
-      console.log('params changes!')
       this.init()
       this.getData()
+    },
+    type() {
+      console.log('type changed')
+      this.init()
     },
     data() {
       this.showLoading()
