@@ -161,7 +161,9 @@ export default {
       }
     },
     params() {
-      return this.$route.params
+      let para = this.$route.params
+      para.type = this.type
+      return para
     },
     columnsData() {
       if (this.type === 0) {

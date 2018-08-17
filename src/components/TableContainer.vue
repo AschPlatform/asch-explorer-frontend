@@ -23,6 +23,7 @@
 </template>
 
 <script>
+/* eslint-disable */
 import { QTable, QTr, QTd, QTooltip, QBtnGroup, QBtn, QInnerLoading, QSpinnerGears } from 'quasar'
 import { mapActions, mapGetters } from 'vuex'
 import { fulltimestamp } from '../utils/util'
@@ -143,11 +144,12 @@ export default {
     // }
   },
   watch: {
-    params(val) {
+    params() {
+      console.log('params changes!')
       this.init()
       this.getData()
     },
-    datas() {
+    data() {
       this.showLoading()
     },
     count(val) {
