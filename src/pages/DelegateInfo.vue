@@ -16,7 +16,7 @@
             </div>
           </q-td>
           <q-td v-if="props.props.reward" key="reward">
-            <span>{{ rewardCount(props.props.height) }}</span>
+            <span>{{ props.props.reward }}</span>
           </q-td>
           <q-td v-if="props.props.count" key="count">
             <span>{{ props.props.count }}</span>
@@ -40,7 +40,7 @@ import BoundaryLine from '../components/BoundaryLine'
 import InfoPanel from '../components/InfoPanel'
 import TableContainer from '../components/TableContainer'
 import { mapActions } from 'vuex'
-import { convertFee, fulltimestamp, getAddress, rewardCount } from '../utils/util'
+import { convertFee, fulltimestamp, getAddress } from '../utils/util'
 
 export default {
   name: 'DelegateInfo',
@@ -61,6 +61,7 @@ export default {
       transFee: '',
       preBlock: '',
       produceTime: '',
+      reward: '',
       data: [],
       defaultProps: {
         orderBy: 'timestamp:desc',
@@ -134,7 +135,7 @@ export default {
         },
         {
           label: 'FORGE_REWARD',
-          value: rewardCount(this.blockHeight)
+          value: this.reward
         },
         {
           label: 'TRANS_NUM',
@@ -149,7 +150,6 @@ export default {
     }
   },
   methods: {
-    rewardCount,
     fulltimestamp,
     ...mapActions(['getBlocks']),
     async envalueData() {
@@ -164,6 +164,7 @@ export default {
         this.transFee = convertFee(trans.totalFee) + ' XAS'
         this.preBlock = trans.previousBlock
         this.produceTime = fulltimestamp(trans.timestamp)
+        this.reward = trans.reward
       }
     },
     async getData(props = this.defaultProps) {

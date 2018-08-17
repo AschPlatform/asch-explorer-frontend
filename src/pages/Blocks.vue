@@ -29,7 +29,7 @@
             <span>{{ props.props.count }}</span>
           </q-td>
           <q-td v-if="props.props.reward" key="reward" >
-            <span>{{ rewardCount(props.props.height) }}</span>
+            <span>{{ props.props.reward }}</span>
           </q-td>
           <q-td v-if="props.props.fee" key="fee" >
             <span v-if="props.props.fee">{{ props.props.fee | fee }}</span>
@@ -48,7 +48,7 @@
 import { QPage, QTd, QTooltip } from 'quasar'
 import Breadcrumb from '../components/Breadcrumb'
 import TableContainer from '../components/TableContainer'
-import { fulltimestamp, rewardCount } from '../utils/util'
+import { fulltimestamp } from '../utils/util'
 import { mapActions } from 'vuex'
 
 export default {
@@ -116,7 +116,6 @@ export default {
     }
   },
   methods: {
-    rewardCount,
     ...mapActions(['getBlocks']),
     fulltimestamp,
     async getData(props = this.defaultProps) {

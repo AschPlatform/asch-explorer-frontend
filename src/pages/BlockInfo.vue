@@ -61,7 +61,7 @@ import InfoPanel from '../components/InfoPanel'
 import TableContainer from '../components/TableContainer'
 import { transTypes } from '../utils/constants'
 import { mapActions } from 'vuex'
-import { convertFee, fulltimestamp, getAddress, rewardCount } from '../utils/util'
+import { convertFee, fulltimestamp, getAddress } from '../utils/util'
 
 export default {
   name: 'BlockInfo',
@@ -170,7 +170,7 @@ export default {
         },
         {
           label: 'FORGE_REWARD',
-          value: rewardCount(this.blockHeight)
+          value: this.reward
         },
         {
           label: 'TRANS_NUM',
@@ -208,6 +208,7 @@ export default {
         this.transFee = convertFee(trans.totalFee) + ' XAS'
         this.preBlock = trans.previousBlock
         this.produceTime = fulltimestamp(trans.timestamp)
+        this.reward = convertFee(trans.reward)
       }
     },
     async getData(props = this.defaultProps) {
