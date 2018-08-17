@@ -90,7 +90,7 @@ import InfoPanel from '../components/InfoPanel'
 import TableContainer from '../components/TableContainer'
 import { convertFee, toastError, fulltimestamp } from '../utils/util'
 import { transTypes } from '../utils/constants'
-import { mapActions } from 'vuex'
+import { mapActions, mapGetters } from 'vuex'
 
 export default {
   name: 'AccountInfo',
@@ -133,6 +133,7 @@ export default {
     this.init()
   },
   computed: {
+    ...mapGetters(['getPrecision']),
     address() {
       return this.$route.params.address || ''
     },

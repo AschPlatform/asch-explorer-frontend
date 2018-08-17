@@ -116,7 +116,7 @@ export default {
     }
   },
   computed: {
-    ...mapGetters(['getPrecision', 'loadingBool']),
+    ...mapGetters(['loadingBool']),
     columns() {
       return this.columnsData
     }

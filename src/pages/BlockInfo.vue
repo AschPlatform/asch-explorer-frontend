@@ -60,7 +60,7 @@ import BoundaryLine from '../components/BoundaryLine'
 import InfoPanel from '../components/InfoPanel'
 import TableContainer from '../components/TableContainer'
 import { transTypes } from '../utils/constants'
-import { mapActions } from 'vuex'
+import { mapActions, mapGetters } from 'vuex'
 import { convertFee, fulltimestamp, getAddress } from '../utils/util'
 
 export default {
@@ -139,6 +139,7 @@ export default {
     this.envalueData()
   },
   computed: {
+    ...mapGetters(['getPrecision']),
     blockHeight() {
       return Number(this.$route.params.height) || 0
     },
