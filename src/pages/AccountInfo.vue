@@ -12,7 +12,7 @@
         <q-btn outline v-for="(item, idx) in btnGroup" :label="item.label" @click="changeType(item.value)" :key="idx"></q-btn>
       </q-btn-group>
       <boundary-line class="mt-4 mb-4" />
-      <table-container class="mt-4" :data="data" :count="count" :params="params" :type="type" :columnsData="columnsData" @getData="getData">
+      <table-container class="mt-4" :data="data" :count="count" :params="params" :columnsData="columnsData" @getData="getData">
         <template slot="content" slot-scope="props" v-if="props.props">
           <q-td v-if="props.props.id" key="id">
             <!-- {{props.props}} -->

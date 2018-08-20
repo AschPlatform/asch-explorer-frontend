@@ -164,7 +164,7 @@ export default {
         this.transFee = convertFee(trans.totalFee) + ' XAS'
         this.preBlock = trans.previousBlock
         this.produceTime = fulltimestamp(trans.timestamp)
-        this.reward = trans.reward
+        this.reward = convertFee(trans.reward)
       }
     },
     async getData(props = this.defaultProps) {
