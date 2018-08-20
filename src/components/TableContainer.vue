@@ -1,20 +1,27 @@
 <template>
   <transition appear enter-active-class="animated fadeIn" leave-active-class="animated fadeOut">
     <div class="relative-position">
-      <q-table class="no-shadow table-top-border" :data="data" :columns="columns" :rows-per-page-options="[3,5,10,50]" :pagination.sync="pagination" :no-data-label="$t('NO_DATA')" @request="request" row-key="name">
+      <q-table class="no-shadow table-top-border" :data="data" :columns="columns" :pagination.sync="pagination" hide-bottom :no-data-label="$t('NO_DATA')" @request="request" row-key="name">
         <q-tr slot="body" slot-scope="props" :props="props">
           <slot name="content" slot-scope="props" :props="props.row"></slot>
         </q-tr>
-        <div slot="pagination" slot-scope="props" class="row flex-center q-py-sm">
-          <q-btn round dense flat size="sm" icon="first_page"  class="q-mr-sm" :disable="props.isFirstPage" @click="()=>firstPage(props)" />
-          <q-btn round dense flat size="sm" icon="chevron_left"  class="q-mr-sm" :disable="props.isFirstPage" @click="props.prevPage" />
-          <div class="q-mr-sm" style="font-size: small">
-            {{ props.pagination.page }} / {{ props.pagesNumber }}
-          </div>
-          <q-btn round dense flat size="sm" icon="chevron_right" :disable="props.isLastPage" @click="props.nextPage" />
-          <q-btn round dense flat size="sm" icon="last_page" :disable="props.isLastPage" @click="()=>lastPage(props)" />
-        </div>
+        <!-- <div slot="pagination" slot-scope="props" class="row flex-center q-py-sm">
+            <q-btn round dense flat size="sm" icon="first_page" class="q-mr-sm" :disable="props.isFirstPage" @click="()=>firstPage(props)" />
+            <q-btn round dense flat size="sm" icon="chevron_left" class="q-mr-sm" :disable="props.isFirstPage" @click="props.prevPage" />
+            <div class="q-mr-sm" style="font-size: small">
+              {{ props.pagination.page }} / {{ props.pagesNumber }}
+            </div>
+            <q-btn round dense flat size="sm" icon="chevron_right" :disable="props.isLastPage" @click="props.nextPage" />
+            <q-btn round dense flat size="sm" icon="last_page" :disable="props.isLastPage" @click="()=>lastPage(props)">
+            </q-btn>
+          </div> -->
       </q-table>
+      <div class="mt-4 flex justify-end">
+        <q-btn class="custorm-last-btn" size="md" @click="toFirstPage">{{this.$t('FIRST_PAGE')}}</q-btn>
+        <q-pagination class="custorm-pag" v-model="page" color="secondary" text-color="white" size="md" :min="1" :max="this.maxPage" :max-pages="3" :ellipses="true" @input="changePage" boundary-links direction-links>
+        </q-pagination>
+        <q-btn class="custorm-last-btn" size="md" @click="toLastPage">{{this.$t('LAST_PAGE')}}</q-btn>
+      </div>
       <q-inner-loading :visible="loadingBool">
         <q-spinner-gears size="50px" color="teal-4" />
       </q-inner-loading>
@@ -23,13 +30,23 @@
 </template>
 
 <script>
-import { QTable, QTr, QTd, QTooltip, QBtnGroup, QBtn, QInnerLoading, QSpinnerGears } from 'quasar'
+import {
+  QTable,
+  QTr,
+  QTd,
+  QTooltip,
+  QBtnGroup,
+  QBtn,
+  QInnerLoading,
+  QSpinnerGears,
+  QPagination
+} from 'quasar'
 import { mapActions, mapGetters } from 'vuex'
 import { fulltimestamp } from '../utils/util'
 
 export default {
   name: 'TableContaine',
-  props: ['data', 'count', 'params', 'columnsData'],
+  props: ['data', 'count', 'maxPage', 'params', 'columnsData'],
   components: {
     QTable,
     QTr,
@@ -38,10 +55,12 @@ export default {
     QInnerLoading,
     QSpinnerGears,
     QBtnGroup,
-    QBtn
+    QBtn,
+    QPagination
   },
   data() {
     return {
+      page: 1,
       datas: [],
       pagination: {
         page: 1,
@@ -58,6 +77,17 @@ export default {
   methods: {
     fulltimestamp,
     ...mapActions(['getTransactions', 'getTransfers', 'setLoadingflag']),
+    changePage(num) {
+      this.$emit('changePage', num)
+    },
+    toFirstPage() {
+      this.changePage(1)
+      // debugger
+      // this.pagination.page = 1
+    },
+    toLastPage() {
+      this.changePage(this.maxPage)
+    },
     showLoading() {
       if (this.datas) {
         this.setLoadingflag(true)
@@ -71,6 +101,7 @@ export default {
       let res = []
       let limit = props ? props.pagination.rowsPerPage : this.pagination.rowsPerPage
       let pageNo = props ? props.pagination.page : this.pagination.page
+      // this.page = this.pageNo
       let condition = {
         // TODO 参数 bug
         orderBy: 'timestamp:desc',
@@ -120,6 +151,7 @@ export default {
     columns() {
       return this.columnsData
     }
+    // curPage() {}
     // title() {
     //   let title = ''
     //   switch (this.type) {

@@ -12,7 +12,7 @@
         <q-btn outline v-for="(item, idx) in btnGroup" :label="item.label" @click="changeType(item.value)" :key="idx"></q-btn>
       </q-btn-group>
       <boundary-line class="mt-4 mb-4" />
-      <table-container class="mt-4" :data="data" :count="count" :params="params" :columnsData="columnsData" @getData="getData">
+      <table-container class="mt-4" :data="data" :count="count" :maxPage="maxPage" :params="params" :columnsData="columnsData" @getData="getData" @changePage="changePage" @toFirstPage="toFirstPage" @toLastPage="toLastPage">
         <template slot="content" slot-scope="props" v-if="props.props">
           <q-td v-if="props.props.id" key="id">
             <!-- {{props.props}} -->
@@ -110,6 +110,7 @@ export default {
       account: null,
       balances: [],
       type: 0,
+      maxPage: 1,
       data: [],
       defaultProps: {
         orderBy: 'timestamp:desc',
@@ -265,6 +266,18 @@ export default {
   methods: {
     fulltimestamp,
     ...mapActions(['getAccount', 'getBalance', 'getTransactions', 'getTransfers']),
+    changePage(num) {
+      this.defaultProps.offset = (num - 1) * this.defaultProps.limit
+      this.getData(this.defaultProps)
+    },
+    toFirstPage() {
+      this.defaultProps.offset = 1 * this.defaultProps.limit
+      this.getData(this.defaultProps)
+    },
+    toLastPage() {
+      this.defaultProps.offset = this.maxPage * this.defaultProps.limit
+      this.getData(this.defaultProps)
+    },
     async getAccountInfo() {
       let res = await this.getAccount(this.$route.params.address || this.$route.params.nickname)
       if (res.success) {
@@ -299,11 +312,13 @@ export default {
     changeType(val) {
       this.type = val
       this.reset()
+      // this.toFirstPage()
       this.getData(this.defaultProps)
     },
     async getData(props = this.defaultProps) {
       this.data = []
       let res
+
       if (this.type === 0) {
         // For transactions
         props.senderId = this.address
@@ -317,6 +332,7 @@ export default {
         this.data = res.transfers
         this.count = res.count
       }
+      this.maxPage = Math.ceil(this.count / this.defaultProps.limit)
     },
     reset() {
       this.defaultProps = {
