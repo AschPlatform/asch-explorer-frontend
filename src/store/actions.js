@@ -97,7 +97,7 @@ export default {
   }, params) => {
     return api.delegates(params)
   },
-  // 获取资产列表
+  // 获取资产列表 - 内置需要
   getAssets: async ({
     commit,
     state
@@ -111,6 +111,13 @@ export default {
       })
       commit('SET_ASSET_MAP', result.assets)
     }
+  },
+  // 获取资产列表 - 获取需要
+  getAssetsShow: ({
+    commit,
+    state
+  }, params) => {
+    return api.assets(params)
   },
   // 获取资产详情
   getAssetInfo: ({

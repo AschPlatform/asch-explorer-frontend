@@ -53,6 +53,11 @@ export default {
       const router = this.$router
       this.searchForbidden = true
       this._.delay(() => (this.searchForbidden = false), 2000)
+      // TODO: add public key reg
+      if (type === 'delegate') {
+        router.push(`/delegate/${str}`)
+        return
+      }
       if (hash.test(str) || type === 'trans') {
         router.push(`/transaction/${str}`)
         return
