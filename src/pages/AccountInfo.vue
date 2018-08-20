@@ -161,10 +161,7 @@ export default {
       }
     },
     params() {
-      return this.$route.params
-    },
-    type() {
-      return this._.merge({ type: this.type }, {})
+     return this._.merge({ type: this.type }, this.$route.params)
     },
     columnsData() {
       if (this.type === 0) {
@@ -303,7 +300,7 @@ export default {
     changeType(val) {
       this.type = val
       this.reset()
-      this.getData(this.defaultProps)
+      // this.getData(this.defaultProps)
     },
     async getData(props = this.defaultProps) {
       this.data = []
