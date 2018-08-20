@@ -23,7 +23,6 @@
 </template>
 
 <script>
-/* eslint-disable */
 import { QTable, QTr, QTd, QTooltip, QBtnGroup, QBtn, QInnerLoading, QSpinnerGears } from 'quasar'
 import { mapActions, mapGetters } from 'vuex'
 import { fulltimestamp } from '../utils/util'
@@ -149,7 +148,6 @@ export default {
       this.getData()
     },
     type() {
-      console.log('type changed')
       this.init()
     },
     data() {

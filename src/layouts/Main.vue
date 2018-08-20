@@ -15,7 +15,6 @@
 </template>
 
 <script>
-/* eslint-disable */
 import { openURL, QLayout, QLayoutHeader, QPageContainer, QLayoutFooter } from 'quasar'
 import FooterBar from '../components/FooterBar'
 import StateBanner from '../components/StateBanner'
