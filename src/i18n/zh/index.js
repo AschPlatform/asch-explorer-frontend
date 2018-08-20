@@ -117,7 +117,8 @@ const lang = {
   LOADING: '读取中',
   FORGE: '锻造',
   FROM: '从',
-  TO: '至'
-
+  TO: '至',
+  MORE: '更多',
+  SECOND_BEFORE: '秒前'
 }
 export default lang

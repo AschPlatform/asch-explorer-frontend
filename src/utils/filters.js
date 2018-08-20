@@ -3,7 +3,8 @@ import moment from 'moment'
 import _ from 'lodash'
 import {
   convertFee,
-  rewardCount
+  rewardCount,
+  getSecFromNow
 } from './util'
 // import marked from 'marked'
 
@@ -55,6 +56,9 @@ const filters = {
   formatTimestamp: (timestamp) => {
     let time = new Date(timestamp).getTime()
     return moment(time).format('YYYY/MM/DD HH:mm:ss')
+  },
+  secFromNow: (timestamp) => {
+    return getSecFromNow(timestamp)
   },
   eclipse: (str = '', head = 5, tail = 5) => {
     if (str.length > head + tail) {

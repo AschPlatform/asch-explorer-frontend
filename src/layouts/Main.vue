@@ -84,7 +84,7 @@ export default {
     this.getXas()
     this.getHeight()
     this.setLang()
-    this.getAssets()
+    this.assetMap.size === 0 && this.getAssets()
     // Intervel functions
     this.intervalStats = setInterval(() => this.getHeight(), 10000)
   },
@@ -96,7 +96,7 @@ export default {
     this.$root.$off('doSearch', this.doSearch)
   },
   computed: {
-    ...mapGetters(['getRunState']),
+    ...mapGetters(['getRunState', 'assetMap']),
     isHome() {
       return this.$route.name === 'home' ? this.isHomeFlg : !this.isHomeFlg
     }

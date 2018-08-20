@@ -279,6 +279,12 @@ export const getAddress = (pubKey) => {
   return AschJs.crypto.getAddress(pubKey)
 }
 
+export const getSecFromNow = (timestamp) => {
+  let time = moment(fulltimestamp(timestamp))
+  // return time.startOf('seconds').fromNow()
+  return moment().diff(time, 'seconds')
+}
+
 export const rewardCount = (blockHeight) => {
   if (blockHeight) {
     if (blockHeight < 3464500 && blockHeight > 464500) {
