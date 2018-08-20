@@ -13,7 +13,7 @@
           </div>
           <div>
             <span>{{$t('FORGE_REWARD')}}</span>
-            <span>{{data.reward}}</span>
+            <span>{{data.reward | fee}}</span>
           </div>
         </div>
         <div class="w-1/5">

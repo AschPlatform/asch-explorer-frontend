@@ -16,7 +16,7 @@
             </div>
           </q-td>
           <q-td v-if="props.props.reward" key="reward">
-            <span>{{ props.props.reward }}</span>
+            <span>{{ props.props.reward | fee }}</span>
           </q-td>
           <q-td v-if="props.props.count" key="count">
             <span>{{ props.props.count }}</span>

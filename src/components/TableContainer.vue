@@ -29,7 +29,7 @@ import { fulltimestamp } from '../utils/util'
 
 export default {
   name: 'TableContaine',
-  props: ['data', 'count', 'params', 'columnsData', 'type'],
+  props: ['data', 'count', 'params', 'columnsData'],
   components: {
     QTable,
     QTr,
@@ -85,17 +85,6 @@ export default {
       }
       this.$emit('getData', condition)
     },
-    // toast with state control
-    // info(msg) {
-    //   if (this.isDisable === true) {
-    //     return
-    //   }
-    //   this.isDisable = true
-    //   setTimeout(() => {
-    //     this.isDisable = false
-    //   }, 3000)
-    //   toast(msg)
-    // },
     request(props) {
       this.getData(props)
     },
@@ -120,35 +109,11 @@ export default {
     columns() {
       return this.columnsData
     }
-    // title() {
-    //   let title = ''
-    //   switch (this.type) {
-    //     case 'trans':
-    //       title = 'TRANS_TITLE'
-    //       break
-    //     case 'block':
-    //       title = 'BLOCK_TITLE'
-    //       break
-    //   }
-    //   return this.$t(title)
-    // },
-    // address() {
-    //   return this.$route.params.address
-    // },
-    // height() {
-    //   return this.$route.params.height
-    // },
-    // buttons() {
-    //   return this.btnGroup
-    // }
   },
   watch: {
     params() {
       this.init()
       this.getData()
-    },
-    type() {
-      this.init()
     },
     data() {
       this.showLoading()
