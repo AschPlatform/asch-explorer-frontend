@@ -85,17 +85,6 @@ export default {
       }
       this.$emit('getData', condition)
     },
-    // toast with state control
-    // info(msg) {
-    //   if (this.isDisable === true) {
-    //     return
-    //   }
-    //   this.isDisable = true
-    //   setTimeout(() => {
-    //     this.isDisable = false
-    //   }, 3000)
-    //   toast(msg)
-    // },
     request(props) {
       this.getData(props)
     },
@@ -116,38 +105,17 @@ export default {
     }
   },
   computed: {
-    ...mapGetters(['getPrecision', 'loadingBool']),
+    ...mapGetters(['loadingBool']),
     columns() {
       return this.columnsData
     }
-    // title() {
-    //   let title = ''
-    //   switch (this.type) {
-    //     case 'trans':
-    //       title = 'TRANS_TITLE'
-    //       break
-    //     case 'block':
-    //       title = 'BLOCK_TITLE'
-    //       break
-    //   }
-    //   return this.$t(title)
-    // },
-    // address() {
-    //   return this.$route.params.address
-    // },
-    // height() {
-    //   return this.$route.params.height
-    // },
-    // buttons() {
-    //   return this.btnGroup
-    // }
   },
   watch: {
-    params(val) {
+    params() {
       this.init()
       this.getData()
     },
-    datas() {
+    data() {
       this.showLoading()
     },
     count(val) {

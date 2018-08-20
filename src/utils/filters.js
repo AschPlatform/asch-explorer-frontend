@@ -2,8 +2,7 @@
 import moment from 'moment'
 import _ from 'lodash'
 import {
-  convertFee,
-  rewardCount
+  convertFee
 } from './util'
 // import marked from 'marked'
 
@@ -75,10 +74,6 @@ const filters = {
     }
     var zs = tempArr.reverse().join('') // 整数部分
     return decimal ? zs + '.' + decimal : zs
-  },
-  getRewardByHeight: (blockHeight) => {
-    return rewardCount(blockHeight)
   }
-
 }
 export default filters

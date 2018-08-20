@@ -2,7 +2,7 @@
   <q-page class="max-w-1200 m-auto xs:pl-2 xs:pr-2 sm:pl-0 sm:pr-0 pb-16">
     <breadcrumb />
     <div class="border border-solid border-grey rounded-lg overflow-hidden xs:overflow-scroll sm:overflow-hidden p-4 mb-4">
-      <table-container :data="data" :count="count" :params="height" :columnsData="columnsData" @getData="getData">
+      <table-container :data="data" :count="count" :columnsData="columnsData" @getData="getData">
         <template slot="content" slot-scope="props" v-if="props.props">
           <q-td v-if="props.props.height" key="height">
             <div class="text-primary cursor-pointer" @click="doSearch(props.props.height)">
@@ -13,10 +13,10 @@
           <q-td v-if="props.props.timestamp" key="timestamp" >
               <span>{{ fulltimestamp(props.props.timestamp) }}</span>
           </q-td>
-          <q-td v-if="props.props.name" key="name" >
-            <div class="text-primary cursor-pointer" @click="doSearch(props.props.name)">
-              {{ props.props.name }}
-              <q-tooltip>{{ props.props.name }}</q-tooltip>
+          <q-td v-if="props.props.delegate" key="delegate" >
+            <div class="text-primary cursor-pointer" @click="doSearch(props.props.delegate)">
+              {{ props.props.delegate | eclipse }}
+              <q-tooltip>{{ props.props.delegate }}</q-tooltip>
             </div>
           </q-td>
           <q-td v-if="props.props.id" key="id" >
@@ -25,14 +25,14 @@
               <q-tooltip>{{ props.props.id }}</q-tooltip>
             </div>
           </q-td>
-          <q-td v-if="props.props.amount" key="count" >
+          <q-td key="count" >
             <span>{{ props.props.count }}</span>
           </q-td>
           <q-td v-if="props.props.reward" key="reward" >
-            <span>{{ rewardCount(props.props.height) }}</span>
+            <span>{{ props.props.reward | fee }}</span>
           </q-td>
-          <q-td v-if="props.props.fee" key="fee" >
-            <span v-if="props.props.fee">{{ props.props.fee | fee }}</span>
+          <q-td key="fee" >
+            <span v-if="props.props.fees">{{ props.props.fees | fee }}</span>
             <span v-else>--</span>
           </q-td>
         </template>
@@ -48,7 +48,7 @@
 import { QPage, QTd, QTooltip } from 'quasar'
 import Breadcrumb from '../components/Breadcrumb'
 import TableContainer from '../components/TableContainer'
-import { fulltimestamp, rewardCount } from '../utils/util'
+import { fulltimestamp } from '../utils/util'
 import { mapActions } from 'vuex'
 
 export default {
@@ -64,7 +64,7 @@ export default {
     return {
       data: [],
       defaultProps: {
-        orderBy: 'timestamp:desc',
+        orderBy: 'height:desc',
         limit: 10,
         offset: 0
       },
@@ -83,9 +83,9 @@ export default {
           align: 'center'
         },
         {
-          name: 'name',
+          name: 'delegate',
           label: this.$t('BLOCK_GENERATOR'),
-          field: 'name',
+          field: 'delegate',
           align: 'center'
         },
         {
@@ -107,23 +107,22 @@ export default {
           align: 'center'
         },
         {
-          name: 'fee',
+          name: 'fees',
           label: this.$t('FEE'),
-          field: 'fee',
+          field: 'fees',
           align: 'center'
         }
       ]
     }
   },
   methods: {
-    rewardCount,
     ...mapActions(['getBlocks']),
     fulltimestamp,
     async getData(props = this.defaultProps) {
+      props.orderBy = 'height:desc'
       let res
       // For transactions
       // TODO: BLOCKS API should accept address or publickey
-      props.address = this.address
       res = await this.getBlocks(props)
       this.data = res.blocks
       this.count = res.count
@@ -131,6 +130,8 @@ export default {
     doSearch(str) {
       this.$root.$emit('doSearch', str)
     }
+  },
+  computed: {
   }
 }
 </script>
