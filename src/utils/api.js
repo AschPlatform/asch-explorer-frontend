@@ -126,18 +126,18 @@ api.delegates = params => {
   return fetch(urls.delegates, params, 'get')
 }
 
+// 受托人详情
+api.delegateDetail = params => {
+  return fetch(urls.delegateDetail, params, 'get')
+}
+
 api.uiaAssetList = params => {
   return fetch(urls.uiaAssetList, params, 'get')
 }
 
-//  获取资产
+//  获取资产account
 api.uiaAsset = params => {
-  return fetch(urls.uiaAsset, params, 'get')
-}
-
-// 账户查询
-api.accounts = params => {
-  return fetch(urls.accounts, params, 'get')
+  return fetch(urls.uiaAssetApi, params, 'get')
 }
 
 // api.deposit = params => {

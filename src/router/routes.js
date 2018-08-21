@@ -56,7 +56,7 @@ export default [{
         component: load('Delegates')
       },
       {
-        path: 'delegate/:publickey',
+        path: 'delegate/:address',
         name: 'delegate',
         component: load('DelegateInfo')
       },

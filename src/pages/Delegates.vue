@@ -1,8 +1,8 @@
 <template>
   <q-page class="max-w-1200 m-auto xs:pl-2 xs:pr-2 sm:pl-0 sm:pr-0 pb-16">
     <div class="upperSlot mt-4">
-      <span>受托人列表</span>
-      <span>注册受托人: {{count}}</span>
+      <span>{{$t('DELEGATE_LIST')}}</span>
+      <span>{{$t('REGIST_DELEGATE')}}: {{count}}</span>
     </div>
     <table-container class="mt-4" :data="data" :count="count" :params="params" :columnsData="columnsData" @getData="getData">
       <template slot="content" slot-scope="props" v-if="props.props">
@@ -105,6 +105,7 @@ export default {
     async getData(props = this.defaultProps) {
       this.data = []
       let res
+      props.orderBy = 'rate:asc'
       res = await this.getDelegates(props)
       this.data = res.delegates
       this.count = res.totalCount

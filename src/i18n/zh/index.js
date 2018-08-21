@@ -137,6 +137,16 @@ const lang = {
   FROM: '从',
   TO: '至',
   MORE: '更多',
-  SECOND_BEFORE: '秒前'
+  SECOND_BEFORE: '秒前',
+  DELEGATE: '受托人',
+  ASSET_INFO: '资产详情',
+  ASSET: '资产详情',
+  ASSET_DESC: '资产描述',
+  ASSET_ACCOUNT: '持币账户',
+  ASSET_PUBLISH: '已发行量',
+  DIGITAL_ASSET: '数字资产',
+  REGIST_ASSET: '链内注册资产',
+  DELEGATE_LIST: '受托人列表',
+  REGIST_DELEGATE: '注册受托人'
 }
 export default lang

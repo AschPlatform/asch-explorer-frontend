@@ -97,6 +97,13 @@ export default {
   }, params) => {
     return api.delegates(params)
   },
+  // 获取受托人详细信息
+  getDelegateDetail: ({
+    commit,
+    state
+  }, params) => {
+    return api.delegateDetail(params)
+  },
   // 获取资产列表 - 内置需要
   getAssets: async ({
     commit,
@@ -125,13 +132,6 @@ export default {
     state
   }, params) => {
     return api.uiaAsset(params)
-  },
-  // 获取服务器信息
-  getRunState: ({
-    commit,
-    state
-  }) => {
-    return api.account()
   },
   setLoadingflag: ({
     commit,
