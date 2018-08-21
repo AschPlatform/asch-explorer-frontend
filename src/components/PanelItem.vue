@@ -1,18 +1,17 @@
 <template>
-  <div class="rounded overflow-hidden hv:shadow-lg">
-   
+  <div class="rounded overflow-hidden border-solid border-grey-lighter m-5 py-5 pl-5 hover:shadow-lg ">
     <div v-if="type=='blocks'">
       <div v-if="data" class="flex">
         <div class="w-4/5">
-          <div class="flex">
+          <div class="flex mb-1">
             <span :class="labelClass">{{$t('BLOCK_HEIGHT')}}</span>
             <span :class="linkClass"  @click="doSearch(data.height)" >{{data.height | numSeparator}}</span>
           </div>
-          <div class="flex">
+          <div class="flex mb-1">
             <span :class="labelClass">{{$t('PRODUCER')}}</span>
             <span :class="linkClass"  @click="doSearch(data.delegate)" >{{getAddress(data.delegate)}}</span>
           </div>
-          <div class="flex">
+          <div class="flex mb-1">
             <span :class="labelClass">{{$t('FORGE_REWARD')}}</span>
             <span :class="'linkClass'"  >{{data.reward | fee}}{{' XAS'}}</span>
           </div>
@@ -25,19 +24,19 @@
     <div v-else>
       <div v-if="data">
         <div class="w-full">
-          <div class="flex">
+          <div class="flex  mb-1">
             <span class="w-1/5">{{$t('TRANSACTION_ID')}}</span>
-            <span :class="linkClass">{{data.id}}</span>
+            <span :class="linkClass" @click="doSearch(data.id)">{{data.id}}</span>
           </div>
-          <div class="flex">
+          <div class="flex mb-1">
             <span class="w-8">{{$t('FROM')}}</span>
             <span :class="addressClass" @click="doSearch(data.senderId)" >{{data.senderId}}</span>
             <span class="w-8">{{$t('TO')}}</span>
             <span :class="getProps(data,'recieve')?addressClass:''" @click="doSearch(getProps(data,'recieve'))" >{{getProps(data,'recieve') || '--'}}</span>
           </div>
-          <div class="flex">
+          <div class="flex mb-1">
             <span class="w-1/5">{{$t('AMOUNT')}}</span>
-            <span>{{getProps(data)}}</span>
+            <span>{{getProps(data) || '--'}}</span>
           </div>
         </div>
       </div>
