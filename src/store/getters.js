@@ -37,5 +37,11 @@ export default {
       return state.assetMap.get(name).precision
     }
     return null
+  },
+  getHeight: state => {
+    return state.runState.blockHeight
+  },
+  assetMap: state => {
+    return state.assetMap
   }
 }

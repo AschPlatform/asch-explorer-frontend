@@ -5,22 +5,18 @@
         <q-tr slot="body" slot-scope="props" :props="props">
           <slot name="content" slot-scope="props" :props="props.row"></slot>
         </q-tr>
-        <!-- <div slot="pagination" slot-scope="props" class="row flex-center q-py-sm">
-            <q-btn round dense flat size="sm" icon="first_page" class="q-mr-sm" :disable="props.isFirstPage" @click="()=>firstPage(props)" />
-            <q-btn round dense flat size="sm" icon="chevron_left" class="q-mr-sm" :disable="props.isFirstPage" @click="props.prevPage" />
-            <div class="q-mr-sm" style="font-size: small">
-              {{ props.pagination.page }} / {{ props.pagesNumber }}
-            </div>
-            <q-btn round dense flat size="sm" icon="chevron_right" :disable="props.isLastPage" @click="props.nextPage" />
-            <q-btn round dense flat size="sm" icon="last_page" :disable="props.isLastPage" @click="()=>lastPage(props)">
-            </q-btn>
-          </div> -->
       </q-table>
-      <div class="mt-4 flex justify-end">
-        <q-btn class="custorm-last-btn" size="md" @click="toFirstPage">{{this.$t('FIRST_PAGE')}}</q-btn>
-        <q-pagination class="custorm-pag" v-model="page" color="secondary" text-color="white" size="md" :min="1" :max="this.maxPage" :max-pages="3" :ellipses="true" @input="changePage" boundary-links direction-links>
-        </q-pagination>
-        <q-btn class="custorm-last-btn" size="md" @click="toLastPage">{{this.$t('LAST_PAGE')}}</q-btn>
+      <div class="mt-4 flex justify-between">
+        <div class="flex justify-start items-center ">
+          <span>显示</span>
+          <q-select class="custorm-select mx-2" v-model="selectPage" :options="options" @input="changePageNumber" hide-underline />
+          <span>页</span>
+        </div>
+        <div class="flex">
+          <q-btn class="custorm-last-btn" size="md" @click="toPage(1)">{{this.$t('FIRST_PAGE')}}</q-btn>
+          <q-pagination class="custorm-pag" v-model="page" color="secondary" text-color="white" size="md" :min="1" :max="maxPage" :max-pages="3" :ellipses="true" @input="changePage" direction-links/>
+          <q-btn class="custorm-last-btn" size="md" @click="toPage(maxPage)">{{this.$t('LAST_PAGE')}}</q-btn>
+        </div>
       </div>
       <q-inner-loading :visible="loadingBool">
         <q-spinner-gears size="50px" color="teal-4" />
@@ -39,14 +35,15 @@ import {
   QBtn,
   QInnerLoading,
   QSpinnerGears,
-  QPagination
+  QPagination,
+  QSelect
 } from 'quasar'
 import { mapActions, mapGetters } from 'vuex'
 import { fulltimestamp } from '../utils/util'
 
 export default {
   name: 'TableContaine',
-  props: ['data', 'count', 'maxPage', 'params', 'columnsData'],
+  props: ['data', 'count', 'select', 'maxPage', 'params', 'columnsData'],
   components: {
     QTable,
     QTr,
@@ -56,7 +53,8 @@ export default {
     QSpinnerGears,
     QBtnGroup,
     QBtn,
-    QPagination
+    QPagination,
+    QSelect
   },
   data() {
     return {
@@ -67,7 +65,22 @@ export default {
         rowsNumber: 0,
         rowsPerPage: 10
       },
-      isDisable: false
+      isDisable: false,
+      selectPage: this.select,
+      options: [
+        {
+          label: '10',
+          value: '10'
+        },
+        {
+          label: '15',
+          value: '15'
+        },
+        {
+          label: '30',
+          value: '30'
+        }
+      ]
     }
   },
   mounted() {
@@ -79,14 +92,15 @@ export default {
     ...mapActions(['getTransactions', 'getTransfers', 'setLoadingflag']),
     changePage(num) {
       this.$emit('changePage', num)
+      this.page = num
     },
-    toFirstPage() {
-      this.changePage(1)
-      // debugger
-      // this.pagination.page = 1
+    changePageNumber(num) {
+      this.selectPage = num
+      this.$emit('changePageNumber', num)
     },
-    toLastPage() {
-      this.changePage(this.maxPage)
+    toPage(pageNumber) {
+      this.changePage(pageNumber)
+      this.page = pageNumber
     },
     showLoading() {
       if (this.datas) {
@@ -99,9 +113,11 @@ export default {
     },
     async getData(props = null) {
       let res = []
-      let limit = props ? props.pagination.rowsPerPage : this.pagination.rowsPerPage
+      // let limit = props ? props.pagination.rowsPerPage : this.pagination.rowsPerPage
+      let limit = Number(this.select)
       let pageNo = props ? props.pagination.page : this.pagination.page
-      // this.page = this.pageNo
+      this.page = 1
+      this.selectPage = '10'
       let condition = {
         // TODO 参数 bug
         orderBy: 'timestamp:desc',
@@ -116,17 +132,6 @@ export default {
       }
       this.$emit('getData', condition)
     },
-    // toast with state control
-    // info(msg) {
-    //   if (this.isDisable === true) {
-    //     return
-    //   }
-    //   this.isDisable = true
-    //   setTimeout(() => {
-    //     this.isDisable = false
-    //   }, 3000)
-    //   toast(msg)
-    // },
     request(props) {
       this.getData(props)
     },
@@ -136,50 +141,20 @@ export default {
         rowsNumber: 0,
         rowsPerPage: 10
       }
-    },
-    firstPage(props) {
-      this.pagination.page = 1
-      this.request()
-    },
-    lastPage(props) {
-      this.pagination.page = props.pagesNumber
-      this.request()
     }
   },
   computed: {
-    ...mapGetters(['getPrecision', 'loadingBool']),
+    ...mapGetters(['loadingBool']),
     columns() {
       return this.columnsData
     }
-    // curPage() {}
-    // title() {
-    //   let title = ''
-    //   switch (this.type) {
-    //     case 'trans':
-    //       title = 'TRANS_TITLE'
-    //       break
-    //     case 'block':
-    //       title = 'BLOCK_TITLE'
-    //       break
-    //   }
-    //   return this.$t(title)
-    // },
-    // address() {
-    //   return this.$route.params.address
-    // },
-    // height() {
-    //   return this.$route.params.height
-    // },
-    // buttons() {
-    //   return this.btnGroup
-    // }
   },
   watch: {
-    params(val) {
+    params() {
       this.init()
       this.getData()
     },
-    datas() {
+    data() {
       this.showLoading()
     },
     count(val) {

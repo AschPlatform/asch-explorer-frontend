@@ -3,8 +3,9 @@ import moment from 'moment'
 import _ from 'lodash'
 import {
   convertFee,
-  rewardCount
+  getSecFromNow
 } from './util'
+
 // import marked from 'marked'
 
 const filters = {
@@ -56,6 +57,9 @@ const filters = {
     let time = new Date(timestamp).getTime()
     return moment(time).format('YYYY/MM/DD HH:mm:ss')
   },
+  secFromNow: (timestamp) => {
+    return getSecFromNow(timestamp)
+  },
   eclipse: (str = '', head = 5, tail = 5) => {
     if (str.length > head + tail) {
       return str.slice(0, head) + '...' + str.slice(-tail)
@@ -75,10 +79,6 @@ const filters = {
     }
     var zs = tempArr.reverse().join('') // 整数部分
     return decimal ? zs + '.' + decimal : zs
-  },
-  getRewardByHeight: (blockHeight) => {
-    return rewardCount(blockHeight)
   }
-
 }
 export default filters

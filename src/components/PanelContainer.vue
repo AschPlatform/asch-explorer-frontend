@@ -1,12 +1,24 @@
 <template>
 <div class="">
-  <div>{{panelName}}</div>
+   <div class="flex ">
+      <div class="w-10">
+        icon
+      </div>
+     <div class="flex justify-between w-5/6">
+      <div>
+        {{panelName}}
+      </div>
+      <div @click="open">
+        {{$t('MORE')}}
+      </div>
+     </div> 
+    </div>
   <panel-item v-for="(data, idx) in datas" :key="idx" :type="type" :data="data" />
 </div>
 </template>
 <script>
 import PanelItem from './PanelItem'
-import { mapActions } from 'vuex'
+import { mapActions, mapGetters } from 'vuex'
 import { toastError } from '../utils/util'
 
 export default {
@@ -16,11 +28,12 @@ export default {
   data() {
     return { datas: null }
   },
-  mounted() {
+  async mounted() {
+    this.assetMap.size === 0 && (await this.getAssets())
     this.getData()
   },
   methods: {
-    ...mapActions(['getBlocks', 'getTransactions']),
+    ...mapActions(['getBlocks', 'getTransactions', 'getAssets']),
     async getData() {
       let res
       const conditions = {
@@ -32,18 +45,26 @@ export default {
       } else {
         res = await this.getBlocks(conditions)
       }
-
       if (res.success) {
         this.datas = this.type === 'trans' ? res.transactions : res.blocks
       } else {
         toastError(this.$t('NO_DATA'))
       }
+    },
+    open() {
+      this.$router.push(this.type === 'trans' ? 'transactions' : 'blocks')
     }
   },
   computed: {
+    ...mapGetters(['getHeight', 'assetMap']),
     panelName() {
       const t = this.$t
       return t(this.type === 'trans' ? 'TRANS' : 'FORGE')
+    }
+  },
+  watch: {
+    getHeight(val) {
+      if (val) this.getData()
     }
   }
 }

@@ -12,7 +12,7 @@
         <q-btn outline v-for="(item, idx) in btnGroup" :label="item.label" @click="changeType(item.value)" :key="idx"></q-btn>
       </q-btn-group>
       <boundary-line class="mt-4 mb-4" />
-      <table-container class="mt-4" :data="data" :count="count" :maxPage="maxPage" :params="params" :columnsData="columnsData" @getData="getData" @changePage="changePage" @toFirstPage="toFirstPage" @toLastPage="toLastPage">
+      <table-container class="mt-4" :data="data" :count="count" :maxPage="maxPage" :select="select" :params="params" :columnsData="columnsData" @getData="getData" @changePage="changePage" @changePageNumber="changePageNumber" @toPage="toPage">
         <template slot="content" slot-scope="props" v-if="props.props">
           <q-td v-if="props.props.id" key="id">
             <!-- {{props.props}} -->
@@ -90,7 +90,7 @@ import InfoPanel from '../components/InfoPanel'
 import TableContainer from '../components/TableContainer'
 import { convertFee, toastError, fulltimestamp } from '../utils/util'
 import { transTypes } from '../utils/constants'
-import { mapActions } from 'vuex'
+import { mapActions, mapGetters } from 'vuex'
 
 export default {
   name: 'AccountInfo',
@@ -111,6 +111,7 @@ export default {
       balances: [],
       type: 0,
       maxPage: 1,
+      select: '10',
       data: [],
       defaultProps: {
         orderBy: 'timestamp:desc',
@@ -134,6 +135,7 @@ export default {
     this.init()
   },
   computed: {
+    ...mapGetters(['getPrecision']),
     address() {
       return this.$route.params.address || ''
     },
@@ -161,7 +163,7 @@ export default {
       }
     },
     params() {
-      return this.$route.params
+      return this._.merge({ type: this.type }, this.$route.params)
     },
     columnsData() {
       if (this.type === 0) {
@@ -270,12 +272,13 @@ export default {
       this.defaultProps.offset = (num - 1) * this.defaultProps.limit
       this.getData(this.defaultProps)
     },
-    toFirstPage() {
-      this.defaultProps.offset = 1 * this.defaultProps.limit
+    changePageNumber(num) {
+      this.defaultProps.limit = num
       this.getData(this.defaultProps)
+      this.select = String(num)
     },
-    toLastPage() {
-      this.defaultProps.offset = this.maxPage * this.defaultProps.limit
+    toPage(pageNumber) {
+      this.defaultProps.offset = pageNumber * this.defaultProps.limit
       this.getData(this.defaultProps)
     },
     async getAccountInfo() {
@@ -312,7 +315,6 @@ export default {
     changeType(val) {
       this.type = val
       this.reset()
-      // this.toFirstPage()
       this.getData(this.defaultProps)
     },
     async getData(props = this.defaultProps) {

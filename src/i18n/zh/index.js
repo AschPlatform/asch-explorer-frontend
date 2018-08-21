@@ -49,9 +49,9 @@ const lang = {
   TRANSACTION: '交易',
   TRANSACTION_ID: '交易ID',
   TRANS_TYPE: '交易类型',
-  TRANS_TABLE: '转账记录',
+  TRANS_TABLE: '转账列表',
   TRANSACTION_TYPE: '交易类型',
-  TRANSACTION_TABLE: '交易记录',
+  TRANSACTION_TABLE: '交易列表',
   AMOUNT: '金额',
   TRANS_TIME: '交易时间',
   ARGUMENTS: '参数',
@@ -137,7 +137,8 @@ const lang = {
   LOADING: '读取中',
   FORGE: '锻造',
   FROM: '从',
-  TO: '至'
-
+  TO: '至',
+  MORE: '更多',
+  SECOND_BEFORE: '秒前'
 }
 export default lang

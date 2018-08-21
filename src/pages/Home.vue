@@ -19,8 +19,8 @@
     </div> -->
     <state-banner class="flex xs:flex sm:hidden mb-8" :stateData="getRunState" />
     <div class="flex w-4/5">
-      <panel-container class="w-1/2" type="blocks" />
-      <panel-container class="w-1/2" type="trans" />
+      <panel-container class="sm:w-1/2 xs:w-full" type="blocks" />
+      <panel-container class="sm:w-1/2 xs:w-full" type="trans" />
     </div>
   </q-page>
 </template>
