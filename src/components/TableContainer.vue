@@ -1,20 +1,23 @@
 <template>
   <transition appear enter-active-class="animated fadeIn" leave-active-class="animated fadeOut">
     <div class="relative-position">
-      <q-table class="no-shadow table-top-border" :data="data" :columns="columns" :rows-per-page-options="[3,5,10,50]" :pagination.sync="pagination" :no-data-label="$t('NO_DATA')" @request="request" row-key="name">
+      <q-table class="no-shadow table-top-border" :data="data" :columns="columns" :pagination.sync="pagination" hide-bottom :no-data-label="$t('NO_DATA')" @request="request" row-key="name">
         <q-tr slot="body" slot-scope="props" :props="props">
           <slot name="content" slot-scope="props" :props="props.row"></slot>
         </q-tr>
-        <div slot="pagination" slot-scope="props" class="row flex-center q-py-sm">
-          <q-btn round dense flat size="sm" icon="first_page"  class="q-mr-sm" :disable="props.isFirstPage" @click="()=>firstPage(props)" />
-          <q-btn round dense flat size="sm" icon="chevron_left"  class="q-mr-sm" :disable="props.isFirstPage" @click="props.prevPage" />
-          <div class="q-mr-sm" style="font-size: small">
-            {{ props.pagination.page }} / {{ props.pagesNumber }}
-          </div>
-          <q-btn round dense flat size="sm" icon="chevron_right" :disable="props.isLastPage" @click="props.nextPage" />
-          <q-btn round dense flat size="sm" icon="last_page" :disable="props.isLastPage" @click="()=>lastPage(props)" />
-        </div>
       </q-table>
+      <div class="mt-4 flex justify-between">
+        <div class="flex justify-start items-center ">
+          <span>{{$t('SHOW')}}</span>
+          <q-select class="custorm-select mx-2" v-model="selectPage" :options="options" @input="changePageNumber" hide-underline />
+          <span>{{$t('PAGE')}}</span>
+        </div>
+        <div class="flex">
+          <q-btn class="custorm-last-btn" size="md" @click="toPage(1)">{{this.$t('FIRST_PAGE')}}</q-btn>
+          <q-pagination class="custorm-pag" v-model="page" color="secondary" text-color="white" size="md" :min="1" :max="maxPage" :max-pages="3" :ellipses="true" @input="changePage" direction-links/>
+          <q-btn class="custorm-last-btn" size="md" @click="toPage(maxPage)">{{this.$t('LAST_PAGE')}}</q-btn>
+        </div>
+      </div>
       <q-inner-loading :visible="loadingBool">
         <q-spinner-gears size="50px" color="teal-4" />
       </q-inner-loading>
@@ -23,13 +26,24 @@
 </template>
 
 <script>
-import { QTable, QTr, QTd, QTooltip, QBtnGroup, QBtn, QInnerLoading, QSpinnerGears } from 'quasar'
+import {
+  QTable,
+  QTr,
+  QTd,
+  QTooltip,
+  QBtnGroup,
+  QBtn,
+  QInnerLoading,
+  QSpinnerGears,
+  QPagination,
+  QSelect
+} from 'quasar'
 import { mapActions, mapGetters } from 'vuex'
 import { fulltimestamp } from '../utils/util'
 
 export default {
   name: 'TableContaine',
-  props: ['data', 'count', 'params', 'columnsData'],
+  props: ['data', 'count', 'select', 'maxPage', 'params', 'columnsData'],
   components: {
     QTable,
     QTr,
@@ -38,17 +52,35 @@ export default {
     QInnerLoading,
     QSpinnerGears,
     QBtnGroup,
-    QBtn
+    QBtn,
+    QPagination,
+    QSelect
   },
   data() {
     return {
+      page: 1,
       datas: [],
       pagination: {
         page: 1,
         rowsNumber: 0,
         rowsPerPage: 10
       },
-      isDisable: false
+      isDisable: false,
+      selectPage: this.select,
+      options: [
+        {
+          label: '10',
+          value: '10'
+        },
+        {
+          label: '15',
+          value: '15'
+        },
+        {
+          label: '30',
+          value: '30'
+        }
+      ]
     }
   },
   mounted() {
@@ -58,6 +90,18 @@ export default {
   methods: {
     fulltimestamp,
     ...mapActions(['getTransactions', 'getTransfers', 'setLoadingflag']),
+    changePage(num) {
+      this.$emit('changePage', num)
+      this.page = num
+    },
+    changePageNumber(num) {
+      this.selectPage = num
+      this.$emit('changePageNumber', num)
+    },
+    toPage(pageNumber) {
+      this.changePage(pageNumber)
+      this.page = pageNumber
+    },
     showLoading() {
       if (this.datas) {
         this.setLoadingflag(true)
@@ -69,8 +113,11 @@ export default {
     },
     async getData(props = null) {
       let res = []
-      let limit = props ? props.pagination.rowsPerPage : this.pagination.rowsPerPage
+      // let limit = props ? props.pagination.rowsPerPage : this.pagination.rowsPerPage
+      let limit = Number(this.select)
       let pageNo = props ? props.pagination.page : this.pagination.page
+      this.page = 1
+      this.selectPage = '10'
       let condition = {
         // TODO 参数 bug
         orderBy: 'timestamp:desc',
@@ -94,14 +141,6 @@ export default {
         rowsNumber: 0,
         rowsPerPage: 10
       }
-    },
-    firstPage(props) {
-      this.pagination.page = 1
-      this.request()
-    },
-    lastPage(props) {
-      this.pagination.page = props.pagesNumber
-      this.request()
     }
   },
   computed: {

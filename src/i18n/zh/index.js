@@ -67,6 +67,10 @@ const lang = {
   TRANS_SENDER: '发送者',
   TRANS_RECRIVER: '接收者',
   FEE: '手续费',
+  FIRST_PAGE: '首页',
+  LAST_PAGE: '尾页',
+  SHOW: '显示',
+  PAGE: '页',
 
   // blocks
   BLOCK_GENERATOR: '产块者',

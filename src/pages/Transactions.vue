@@ -5,7 +5,7 @@
       <q-btn-group class="mt-8" outline>
         <q-btn outline v-for="(item, idx) in btnGroup" :label="item.label" @click="changeType(item.value)" :key="idx"></q-btn>
       </q-btn-group>
-      <table-container :data="data" :count="count" :params="params" :columnsData="columnsData" @getData="getData">
+      <table-container :data="data" :count="count" :maxPage="maxPage"  :params="params" :columnsData="columnsData" @getData="getData">
         <template slot="content" slot-scope="props" v-if="props.props">
           <q-td v-if="props.props.id" key="id">
             <!-- {{props.props}} -->
@@ -99,6 +99,7 @@ export default {
   },
   data() {
     return {
+      maxPage: 1,
       data: [],
       defaultProps: {
         orderBy: 'timestamp:desc',
@@ -126,6 +127,11 @@ export default {
       this.data = []
       let res
       // For transactions
+      // TODO: BLOCKS API should accept address or publickey
+      res = await this.getTransactions(props)
+      this.data = res.transactions
+      this.count = res.count
+      this.maxPage = Math.ceil(this.count / this.defaultProps.limit)
       if (this.type === 0) {
         // For transactions
         res = await this.getTransactions(props)

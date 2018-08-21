@@ -23,7 +23,7 @@
        v-model="searchStr" @keyup.enter="search" :after="searchIcon" type="text" :placeholder="getPlaceholder" hide-underline	
        @focus="stretch=true" @blur="stretch=false"
       />
-      <q-select class="xs:hidden sm:flex h-full ml-3" v-model="lang" :options="getLangOpts" hide-underline />
+      <q-select class="ml-3" v-model="lang" :options="getLangOpts" hide-underline />
     </div>
   
   </q-toolbar>

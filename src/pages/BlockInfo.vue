@@ -8,7 +8,7 @@
       </div>
       <boundary-line class="mt-2 mb-8" />
       <info-panel :panelData="panelData" />
-      <table-container :data="data" :count="count" :params="height" :columnsData="columnsData" @getData="getData">
+      <table-container :data="data" :count="count" :maxPage="maxPage" :params="height" :columnsData="columnsData" @getData="getData">
         <template slot="content" slot-scope="props" v-if="props.props">
           <q-td v-if="props.props.id" key="id">
             <div class="text-primary cursor-pointer" @click="doSearch(props.props.id)">
@@ -76,6 +76,7 @@ export default {
   },
   data() {
     return {
+      maxPage: 1,
       block: '',
       producer: '',
       transNum: 0,
@@ -219,6 +220,7 @@ export default {
       res = await this.getTransactions(props)
       this.data = res.transactions
       this.count = res.count
+      this.maxPage = Math.ceil(this.count / this.data.length)
     },
     doSearch(str) {
       this.$root.$emit('doSearch', str)
