@@ -34,13 +34,14 @@
 </template>
 
 <script>
+/* eslint-disable */
 import { QPage, QTd, QTooltip } from 'quasar'
 import Breadcrumb from '../components/Breadcrumb'
 import BoundaryLine from '../components/BoundaryLine'
 import InfoPanel from '../components/InfoPanel'
 import TableContainer from '../components/TableContainer'
 import { mapActions } from 'vuex'
-import { convertFee, fulltimestamp, getAddress } from '../utils/util'
+import { convertFee, fulltimestamp } from '../utils/util'
 
 export default {
   name: 'DelegateInfo',
@@ -55,13 +56,11 @@ export default {
   },
   data() {
     return {
-      block: '',
-      producer: '',
-      transNum: 0,
-      transFee: '',
-      preBlock: '',
-      produceTime: '',
-      reward: '',
+      name: '',
+      fees: '',
+      producedBlocks: 0,
+      approval: '',
+      productivity: '',
       data: [],
       defaultProps: {
         orderBy: 'timestamp:desc',
@@ -103,7 +102,7 @@ export default {
       ]
     }
   },
-  async mounted() {
+  mounted() {
     this.envalueData()
   },
   computed: {
@@ -119,52 +118,49 @@ export default {
     panelData() {
       return [
         {
-          label: 'BLOCK_HEIGHT',
-          value: this.blockHeight,
-          type: 'number'
-        },
-        {
-          label: 'BLOCK_ID',
-          value: this.block,
+          label: 'DELEGATE_NAME',
+          value: this.name,
           type: 'id'
         },
         {
-          label: 'PRODUCER',
-          value: this.producer,
-          type: 'address'
+          label: 'ACCOUNT_BALANCE',
+          value: this.fees
         },
         {
-          label: 'FORGE_REWARD',
-          value: this.reward
-        },
-        {
-          label: 'TRANS_NUM',
-          value: this.transNum,
+          label: 'BLOCK_NUM',
+          value: this.producedBlocks,
           type: 'number'
         },
         {
-          label: 'TRANS_FEE',
-          value: this.transFee
+          label: 'PRODUCTIVITY',
+          value: this.productivity + ' %'
+        },
+        {
+          label: 'VOTE_RATE',
+          value: this.approval
+        },
+        {
+          label: 'ADDRESS',
+          value: this.address,
+          type: 'address'
         }
       ]
     }
   },
   methods: {
     fulltimestamp,
-    ...mapActions(['getBlocks']),
+    ...mapActions(['getDelegateDetail', 'getBlocks']),
     async envalueData() {
-      let result = await this.getBlocks({
-        height: this.blockHeight
+      let result = await this.getDelegateDetail({
+        address: this.address
       })
       if (result.success) {
-        let trans = result.block
-        this.block = trans.id
-        this.producer = getAddress(trans.generatorPublicKey)
-        this.transNum = trans.numberOfTransactions
-        this.transFee = convertFee(trans.totalFee) + ' XAS'
-        this.preBlock = trans.previousBlock
-        this.produceTime = fulltimestamp(trans.timestamp)
-        this.reward = convertFee(trans.reward)
+        let trans = result.delegate
+        this.name = trans.name
+        this.fees = convertFee(trans.fees)
+        this.producedBlocks = trans.producedBlocks
+        this.productivity = trans.productivity
+        this.approval = trans.approval
       }
     },
     async getData(props = this.defaultProps) {

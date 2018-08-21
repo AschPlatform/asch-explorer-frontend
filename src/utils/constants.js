@@ -85,6 +85,10 @@ const urls = {
     mock: '/data/vote/delegates.json',
     url: '/api/delegates'
   },
+  delegateDetail: {
+    mock: '',
+    url: '/api/delegates/get'
+  },
   // 获取转账记录
   transfers: {
     url: '/api/v2/transfers'

@@ -58,6 +58,10 @@ export default {
         router.push(`/delegate/${str}`)
         return
       }
+      if (type === 'asset') {
+        router.push(`/asset/${str}`)
+        return
+      }
       if (hash.test(str) || type === 'trans') {
         router.push(`/transaction/${str}`)
         return
