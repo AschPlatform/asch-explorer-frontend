@@ -1,13 +1,13 @@
 <template>
   <q-page class="max-w-1200 m-auto xs:pl-2 xs:pr-2 sm:pl-0 sm:pr-0 pb-16">
     <div class="upperSlot mt-4">
-      <span>数字资产</span>
-      <span>链内注册资产: {{count}}</span>
+      <span>{{$t('DIGITAL_ASSET')}}</span>
+      <span>{{$t('REGIST_ASSET')}}: {{count}}</span>
     </div>
     <table-container class="mt-4" :data="data" :count="count" :params="params" :columnsData="columnsData" @getData="getData">
       <template slot="content" slot-scope="props" v-if="props.props">
         <q-td v-if="props.props.name" key="asset">
-          <div class="text-primary cursor-pointer" @click="doSearch(props.props.name, 'delegate')">
+          <div class="text-primary cursor-pointer" @click="doSearch(props.props.name.replace('.', '-'), 'asset')">
             {{ props.props.name.split('.')[1] }}
             <q-tooltip>{{ props.props.name }}</q-tooltip>
           </div>
@@ -19,7 +19,7 @@
           </div>
         </q-td>
         <q-td v-if="props.props.maximum" key="maximum" >
-          <span>{{ props.props.maximum }}</span>
+          <span>{{ props.props.maximum | fee(props.props.precision)}}</span>
         </q-td>
         <q-td v-if="props.props.precision" key="precision" >
           <span>{{ props.props.precision }}</span>
@@ -108,8 +108,8 @@ export default {
       this.data = res.assets
       this.count = res.count
     },
-    doSearch(str) {
-      this.$root.$emit('doSearch', str)
+    doSearch(str, type) {
+      this.$root.$emit('doSearch', str, type)
     }
   },
   computed: {
