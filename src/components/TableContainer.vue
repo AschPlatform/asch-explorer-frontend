@@ -8,9 +8,9 @@
       </q-table>
       <div class="mt-4 flex justify-between">
         <div class="flex justify-start items-center ">
-          <span>显示</span>
+          <span>{{$t('SHOW')}}</span>
           <q-select class="custorm-select mx-2" v-model="selectPage" :options="options" @input="changePageNumber" hide-underline />
-          <span>页</span>
+          <span>{{$t('PAGE')}}</span>
         </div>
         <div class="flex">
           <q-btn class="custorm-last-btn" size="md" @click="toPage(1)">{{this.$t('FIRST_PAGE')}}</q-btn>

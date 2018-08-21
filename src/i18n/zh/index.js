@@ -69,6 +69,8 @@ const lang = {
   FEE: '手续费',
   FIRST_PAGE: '首页',
   LAST_PAGE: '尾页',
+  SHOW: '显示',
+  PAGE: '页',
 
   // blocks
   BLOCK_GENERATOR: '产块者',
