@@ -27,7 +27,7 @@ import Breadcrumb from '../components/Breadcrumb'
 import BoundaryLine from '../components/BoundaryLine'
 import InfoPanel from '../components/InfoPanel'
 import { mapActions } from 'vuex'
-// import { convertFee, fulltimestamp } from '../utils/util'
+import { fulltimestamp } from '../utils/util'
 
 export default {
   name: 'AssetInfo',
@@ -61,6 +61,7 @@ export default {
         this.issuer = this.name.split('.')[0]
         this.max = data.maximumShow
         this.publish = data.quantityShow
+        this.time = fulltimestamp(data.timestamp)
         this.precision = data.precision
         this.address = data.issuerId
       }

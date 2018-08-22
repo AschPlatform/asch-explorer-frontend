@@ -131,9 +131,9 @@ api.delegateDetail = params => {
   return fetch(urls.delegateDetail, params, 'get')
 }
 
-api.uiaAssetList = params => {
-  return fetch(urls.uiaAssetList, params, 'get')
-}
+// api.uiaAssetList = params => {
+//   return fetch(urls.uiaAssetList, params, 'get')
+// }
 
 //  获取资产account
 api.uiaAsset = params => {

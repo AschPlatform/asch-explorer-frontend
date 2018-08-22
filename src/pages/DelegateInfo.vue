@@ -104,6 +104,7 @@ export default {
   },
   mounted() {
     this.envalueData()
+    this.getAccountLeft()
   },
   computed: {
     address() {
@@ -149,7 +150,7 @@ export default {
   },
   methods: {
     fulltimestamp,
-    ...mapActions(['getDelegateDetail', 'getBlocks']),
+    ...mapActions(['getDelegateDetail', 'getBlocks', 'getAccount']),
     async envalueData() {
       let result = await this.getDelegateDetail({
         address: this.address
@@ -161,6 +162,12 @@ export default {
         this.producedBlocks = trans.producedBlocks
         this.productivity = trans.productivity
         this.approval = trans.approval
+      }
+    },
+    async getAccountLeft() {
+      let result = await this.getAccount(this.address)
+      if (result.success && result.account && result.account.xas) {
+        this.fees = convertFee(result.account.xas) + ' XAS'
       }
     },
     async getData(props = this.defaultProps) {
@@ -178,6 +185,7 @@ export default {
   },
   watch: {
     address() {
+      this.getAccountLeft()
       this.envalueData()
       this.getData()
     }
