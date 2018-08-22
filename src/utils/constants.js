@@ -75,12 +75,12 @@ const urls = {
   },
   uiaAssetApi: {
     mock: '',
-    url: '/api/uia/assets/:name'
+    url: '/api/v2/uia/assets/:name'
   },
-  uiaAssetList: {
-    mock: '',
-    url: '/api/uia/assets'
-  },
+  // uiaAssetList: {
+  //   mock: '',
+  //   url: '/api/uia/assets'
+  // },
   delegates: {
     mock: '/data/vote/delegates.json',
     url: '/api/delegates'
