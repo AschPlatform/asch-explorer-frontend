@@ -43,8 +43,8 @@ export default {
   getBlockInfo: ({
     commit,
     state
-  }, height) => {
-    return api.blockDetail(height)
+  }, params) => {
+    return api.blockDetail(params)
   },
   // 获取交易列表
   getTransactions: ({

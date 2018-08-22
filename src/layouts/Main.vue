@@ -56,6 +56,10 @@ export default {
         router.push(`/delegate/${str}`)
         return
       }
+      if (type === 'id') {
+        router.push(`/blocks_id/${str}`)
+        return
+      }
       if (type === 'asset') {
         router.push(`/asset/${str}`)
         return
