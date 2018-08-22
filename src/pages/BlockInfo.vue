@@ -61,7 +61,7 @@ import InfoPanel from '../components/InfoPanel'
 import TableContainer from '../components/TableContainer'
 import { transTypes } from '../utils/constants'
 import { mapActions, mapGetters } from 'vuex'
-import { convertFee, fulltimestamp, getAddress } from '../utils/util'
+import { convertFee, fulltimestamp, getAddress, rewardCount } from '../utils/util'
 
 export default {
   name: 'BlockInfo',
@@ -151,14 +151,6 @@ export default {
         return this.$route.params.id || ''
       }
     },
-    // height() {
-    //   return this.$route.params.height
-    // },
-    // params() {
-    //   return {
-    //     height: this.height
-    //   }
-    // },
 
     panelData() {
       return [
@@ -179,7 +171,7 @@ export default {
         },
         {
           label: 'FORGE_REWARD',
-          value: this.reward
+          value: rewardCount(this.height)
         },
         {
           label: 'TRANS_NUM',
