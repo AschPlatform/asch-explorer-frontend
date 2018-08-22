@@ -8,9 +8,8 @@
       <boundary-line class="mt-2 mb-8" />
       <info-panel v-if="account" :panelData="panelData" />
       <div v-else class="mt-2 mb-8 px-4 text-xs">{{$t('NO_DATA')}}</div>
-      <q-btn-group class="mt-8" outline>
-        <q-btn outline v-for="(item, idx) in btnGroup" :label="item.label" @click="changeType(item.value)" :key="idx"></q-btn>
-      </q-btn-group>
+      <q-btn-toggle v-model="model" class="mt-4 pl-15" flat color="positive" taggle-color="tertiary" text-color="primary" toggle-text-color="positive" @input="changeType" :options="btnGroup">
+      </q-btn-toggle>
       <boundary-line class="mt-4 mb-4" />
       <table-container class="mt-4" :data="data" :count="count" :params="params" :columnsData="columnsData" @getData="getData">
         <template slot="content" slot-scope="props" v-if="props.props">
@@ -83,7 +82,7 @@
 </template>
 
 <script>
-import { QPage, QBtnGroup, QBtn, QTd, QTooltip } from 'quasar'
+import { QPage, QBtnGroup, QBtnToggle, QBtn, QTd, QTooltip } from 'quasar'
 import BoundaryLine from '../components/BoundaryLine'
 import Breadcrumb from '../components/Breadcrumb'
 import InfoPanel from '../components/InfoPanel'
@@ -101,12 +100,14 @@ export default {
     TableContainer,
     BoundaryLine,
     QBtnGroup,
+    QBtnToggle,
     QBtn,
     QTd,
     QTooltip
   },
   data() {
     return {
+      model: 0,
       account: null,
       balances: [],
       type: 0,
@@ -161,7 +162,7 @@ export default {
       }
     },
     params() {
-     return this._.merge({ type: this.type }, this.$route.params)
+      return this._.merge({ type: this.type }, this.$route.params)
     },
     columnsData() {
       if (this.type === 0) {

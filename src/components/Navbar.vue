@@ -1,13 +1,13 @@
 <template>
-  <q-toolbar color="primary">
+  <q-toolbar class="bg-tw-black h-86 px-30">
     <div class="xs:hidden sm:flex asch-logo h-8 mr-8 cursor-pointer" @click="jump('/')">
       <img class="h-full" :src="aschLogo" alt="">
     </div>
    <q-btn class="xs:flex sm:hidden" icon="menu" @click="toggle" /> 
     <div class="xs:hidden sm:flex">
-      <q-btn :label="$t('HOME')" @click="jump('/')" />
-      <q-btn :label="$t('DELEGATES')" @click="jump('/delegates')" />
-      <q-btn :label="$t('ASSETS')" @click="jump('/assets')" />
+      <q-btn class="text-tw-grey hover:text-tw-green bg-tw-transparent" :label="$t('HOME')" push @click="jump('/')" />
+      <q-btn class="text-tw-grey hover:text-tw-green" push :label="$t('DELEGATES')" @click="jump('/delegates')" />
+      <q-btn class="text-tw-grey hover:text-tw-green" push :label="$t('ASSETS')" @click="jump('/assets')" />
     </div>
   
     <q-toolbar-title>
@@ -18,12 +18,12 @@
           but any button will do
         -->
     <div class="flex xs:w-5/6 sm:w-2/3 justify-end items-center">
-      <q-input class="xs:w-full shadow appearance-none border rounded h-full border-solid border border-black pt-2 pb-2 px-3 text-grey-darker leading-tight"
-      :class="stretch?'sm:w-2/3':'sm:w-2/5'"
+      <q-input class="xs:w-full shadow appearance-none border h-30 border-solid border border-tw-grey-light px-3 rounded-15 text-tw-white leading-tight custorm-search-icon"
+      :class="stretch?'sm:w-2/3 border-tw-green':'sm:w-2/5'"
        v-model="searchStr" @keyup.enter="search" :after="searchIcon" type="text" :placeholder="getPlaceholder" hide-underline	
        @focus="stretch=true" @blur="stretch=false"
       />
-      <q-select class="xs:hidden sm:flex h-full ml-3" v-model="lang" :options="getLangOpts" hide-underline />
+      <q-select class="xs:hidden sm:flex h-30 ml-3 border border-solid border-tw-grey-light pl-2 custorm-select rounded-15" v-model="lang" :options="getLangOpts" hide-underline />
     </div>
   
   </q-toolbar>
@@ -31,7 +31,7 @@
 
 <script>
 import { QToolbar, QToolbarTitle, QBtn, QInput, QSelect } from 'quasar'
-import aschLogo from '../assets/asch_logo.png'
+import aschLogo from '../assets/asch_logo1.png'
 
 export default {
   name: 'Navbar',
