@@ -273,11 +273,6 @@ export default {
           label: 'TRANSACTION_TYPE',
           value: this.getTransType(data.props)
         }
-      // let heightField = {
-      //   label: 'HEIGHT',
-      //   value: heig ht,
-      //   type: 'number'
-      // }
       let senderField = {
         label: 'TRANS_SENDER',
         value: senderId,

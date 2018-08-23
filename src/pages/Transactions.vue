@@ -6,9 +6,8 @@
         <q-btn outline v-for="(item, idx) in btnGroup" :label="item.label" @click="changeType(item.value)" :key="idx"></q-btn>
       </q-btn-group>
       <table-container :data="data" :count="count" :params="params" :columnsData="columnsData" @getData="getData">
-        <template slot="content" slot-scope="props" v-if="props.props">
+        <!-- <template slot="content" slot-scope="props" v-if="props.props">
           <q-td v-if="props.props.id" key="id">
-            <!-- {{props.props}} -->
             <div class="text-primary cursor-pointer" @click="doSearch(props.props.id)">
               {{ props.props.id | eclipse }}
               <q-tooltip>{{ props.props.id }}</q-tooltip>
@@ -66,9 +65,9 @@
           <q-td v-if="props.props.transaction && props.props.transaction.fee" key="transferFee" >
             <span>0.1</span>
           </q-td>
-          <!-- <q-td v-if="props.props.timestamp > -1" key="timestamp" >
-            <span>{{ fulltimestamp(props.props.timestamp) }}</span>
-          </q-td> -->
+        </template> -->
+        <template slot="items" slot-scope="props" v-if="props.props">
+          <table-item  :data="getTableData(props.props)" />
         </template>
       </table-container>
     </div>
@@ -85,6 +84,7 @@ import TableContainer from '../components/TableContainer'
 import { fulltimestamp, convertFee } from '../utils/util'
 import { transTypes } from '../utils/constants'
 import { mapActions, mapGetters } from 'vuex'
+import TableItem from '../components/TableItem'
 
 export default {
   name: 'Transactions',
@@ -95,7 +95,8 @@ export default {
     QTd,
     QTooltip,
     QBtnGroup,
-    QBtn
+    QBtn,
+    TableItem
   },
   data() {
     return {
@@ -179,6 +180,79 @@ export default {
         return '--'
       }
       // return args[len - 2]
+    },
+    getTableData(data) {
+      const { id = null, tid = null, height, recipientId, senderId, currency, args = [], fee, timestamp } = data
+
+      let idField = {
+        label: 'TRANSACTION_ID',
+        value: id || tid,
+        type: 'id'
+      }
+
+      let heightField = {
+        label: 'HEIGHT',
+        value: height,
+        type: 'number'
+      }
+
+      let timeField = {
+        label: 'TIME',
+        value: fulltimestamp(timestamp)
+      }
+      let senderField = {
+        label: 'TRANS_SENDER',
+        value: senderId,
+        type: 'address'
+      }
+
+      let typeField = {
+        label: 'TYPE',
+        value: this.getTransType(data)
+      }
+
+      let argsField = {
+        label: 'ARGUMENTS',
+        // value: args && args.join(' ')
+        value: args && args.join('').substring(0, 5)
+      }
+
+      let feeField = {
+        label: 'FEE',
+        value: convertFee(fee)
+      }
+
+      let receiverField = {
+        label: 'TRANS_RECRIVER',
+        value: recipientId,
+        type: 'address'
+      }
+
+      let currencyField = {
+        label: 'ASSET',
+        value: currency
+      }
+
+      let amountField = {
+        label: 'AMOUNT',
+        value: this.getAmount(data)
+      }
+
+      let tablePanelData =
+        this.type === 0
+          ? [idField, heightField, timeField, typeField, senderField, argsField, feeField]
+          : [
+              idField,
+              heightField,
+              timeField,
+              senderField,
+              receiverField,
+              amountField,
+              currencyField,
+              feeField
+            ]
+
+      return tablePanelData
     }
   },
   computed: {

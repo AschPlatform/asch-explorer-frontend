@@ -9,7 +9,7 @@
       <boundary-line class="mt-2 mb-8" />
       <info-panel :panelData="panelData" />
       <table-container :data="data" :count="count" :params="address" :columnsData="columnsData" @getData="getData">
-        <template slot="content" slot-scope="props" v-if="props.props">
+        <!-- <template slot="content" slot-scope="props" v-if="props.props">
           <q-td v-if="props.props.height" key="height">
             <div class="text-primary cursor-pointer" @click="doSearch(props.props.height)">
               {{ props.props.height }}
@@ -27,6 +27,9 @@
           <q-td v-if="props.props.timestamp" key="timestamp" >
             <span>{{ fulltimestamp(props.props.timestamp) }}</span>
           </q-td>
+        </template> -->
+        <template slot="items" slot-scope="props" v-if="props.props">
+          <table-item  :data="getTableData(props.props)" />
         </template>
       </table-container>
     </div>
@@ -42,6 +45,7 @@ import InfoPanel from '../components/InfoPanel'
 import TableContainer from '../components/TableContainer'
 import { mapActions } from 'vuex'
 import { convertFee, fulltimestamp } from '../utils/util'
+import TableItem from '../components/TableItem'
 
 export default {
   name: 'DelegateInfo',
@@ -52,7 +56,8 @@ export default {
     InfoPanel,
     TableContainer,
     QTd,
-    QTooltip
+    QTooltip,
+    TableItem
   },
   data() {
     return {
@@ -181,6 +186,31 @@ export default {
     },
     doSearch(str) {
       this.$root.$emit('doSearch', str)
+    },
+    getTableData(data) {
+      const { height, reward, count, fees, timestamp } = data
+
+      let heightField = {
+        label: 'BLOCK_HEIGHT',
+        value: height
+      }
+      let rewardField = {
+        label: 'FORGE_REWARD',
+        value: reward
+      }
+      let countField = {
+        label: 'TRANS_NUM',
+        value: count
+      }
+      let feeField = {
+        label: 'TRANS_FEE',
+        value: fees
+      }
+      let timeField = {
+        label: 'PRODUCER_TIME',
+        value: fulltimestamp(timestamp)
+      }
+      return [heightField, rewardField, countField, feeField, timeField]
     }
   },
   watch: {

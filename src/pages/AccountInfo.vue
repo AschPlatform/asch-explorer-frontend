@@ -359,11 +359,11 @@ export default {
     },
     // get data array for tableItem
     getTableData(data) {
-      const { id, height, recipientId, senderId, currency, args = [], fee, timestamp } = data
+      const { id = null, tid = null, height, recipientId, senderId, currency, args = [], fee, timestamp } = data
 
       let idField = {
         label: 'TRANSACTION_ID',
-        value: id,
+        value: id || tid,
         type: 'id'
       }
 
