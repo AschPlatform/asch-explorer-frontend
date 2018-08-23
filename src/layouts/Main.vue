@@ -11,6 +11,7 @@
     <q-layout-footer>
       <footer-bar />
     </q-layout-footer>
+    <code-modal :show="QRCodeShow" @close="QRCodeShow = false" :text="QRCodeText" />
   </q-layout>
 </template>
 
@@ -21,6 +22,7 @@ import StateBanner from '../components/StateBanner'
 import SearchBanner from '../components/SearchBanner'
 import { REGEX } from '../utils/constants'
 import Navbar from '../components/Navbar'
+import CodeModal from '../components/QRCodeModal'
 
 import { toastError, getCache } from '../utils/util'
 import { mapGetters, mapActions } from 'vuex'
@@ -35,13 +37,16 @@ export default {
     FooterBar,
     StateBanner,
     SearchBanner,
-    Navbar
+    Navbar,
+    CodeModal
   },
   data() {
     return {
       searchForbidden: false,
       isHomeFlg: true,
-      intervalStats: null
+      intervalStats: null,
+      QRCodeShow: false,
+      QRCodeText: ''
     }
   },
   methods: {
@@ -89,6 +94,10 @@ export default {
         this.$i18n.locale = lang
         this.$store.commit('SET_LANG', lang)
       }
+    },
+    showQRCodeModal(content) {
+      this.QRCodeShow = true
+      this.QRCodeText = content
     }
   },
   mounted() {
@@ -103,10 +112,12 @@ export default {
   },
   created() {
     this.$root.$on('doSearch', this.doSearch)
+    this.$root.$on('showQRCodeModal', this.showQRCodeModal)
   },
   beforeDestroy() {
     clearInterval(this.intervalStats)
     this.$root.$off('doSearch', this.doSearch)
+    this.$root.$off('showQRCodeModal', this.showQRCodeModal)
   },
   computed: {
     ...mapGetters(['getRunState', 'assetMap']),

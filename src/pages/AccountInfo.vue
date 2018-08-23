@@ -156,7 +156,7 @@ export default {
         datas.push({
           label: 'ADDRESS',
           value: this.account.address,
-          type: 'address'
+          type: 'qr'
         })
         return datas
       }
