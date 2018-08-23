@@ -1,13 +1,13 @@
 <template>
-  <q-toolbar class="bg-tw-black h-86 px-30 xs:px-15">
-    <div class="xs:hidden sm:flex asch-logo h-30 mr-53 cursor-pointer" @click="jump('/')">
+  <q-toolbar class="bg-tw-black h-86 xs:px-15 sm:px-30">
+    <div class="xs:hidden sm:flex asch-logo h-30 sm:mr-20 lg:mr-53 cursor-pointer" @click="jump('/')">
       <img class="h-full" :src="aschLogo" alt="">
     </div>
    <q-btn class="xs:flex sm:hidden" icon="menu" @click="toggle" /> 
     <div class="xs:hidden sm:flex">
-      <q-btn class="text-16 text-tw-grey hover:text-tw-green px-11 mr-40" :label="$t('HOME')" flat @click="jump('/')" />
-      <q-btn class="text-16 text-tw-grey hover:text-tw-green p-11 mr-40" flat :label="$t('DELEGATES')" @click="jump('/delegates')" />
-      <q-btn class="text-16 text-tw-grey hover:text-tw-green p-11" flat :label="$t('ASSETS')" @click="jump('/assets')" />
+      <q-btn class="text-16 text-tw-grey hover:text-tw-green px-11 md:mr-20" :label="$t('HOME')" flat @click="jump('/')" />
+      <q-btn class="text-16 text-tw-grey hover:text-tw-green px-11 md:mr-20" flat :label="$t('DELEGATES')" @click="jump('/delegates')" />
+      <q-btn class="text-16 text-tw-grey hover:text-tw-green px-11" flat :label="$t('ASSETS')" @click="jump('/assets')" />
     </div>
   
     <q-toolbar-title>
@@ -17,9 +17,9 @@
           configured as "flat, round, dense" and with an icon,
           but any button will do
         -->
-    <div class="flex xs:w-5/6 sm:w-2/3 justify-end items-center">
+    <div class="flex justify-end items-center">
       <q-input class="xs:w-full shadow appearance-none border h-30 border-solid border border-tw-grey-light px-11 rounded-15 text-tw-white leading-tight custorm-search-icon"
-      :class="stretch?'sm:w-2/3 border-tw-green':'sm:w-2/5'"
+      :class="stretch?'sm:w-720 border-tw-green':'sm:w-290'"
        v-model="searchStr" @keyup.enter="search" :after="searchIcon" type="text" :placeholder="getPlaceholder" hide-underline	
        @focus="stretch=true" @blur="stretch=false"
       />
