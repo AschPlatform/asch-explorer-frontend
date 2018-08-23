@@ -8,7 +8,7 @@
       </div>
       <boundary-line class="mt-2 mb-8" />
       <info-panel :panelData="panelData" />
-      <table-container :data="data" :count="count" :params="height" :columnsData="columnsData" @getData="getData">
+      <table-container :data="data" :count="count" :params="params" :columnsData="columnsData" @getData="getData">
         <template slot="content" slot-scope="props" v-if="props.props">
           <q-td v-if="props.props.id" key="id">
             <div class="text-primary cursor-pointer" @click="doSearch(props.props.id)">
@@ -61,7 +61,7 @@ import InfoPanel from '../components/InfoPanel'
 import TableContainer from '../components/TableContainer'
 import { transTypes } from '../utils/constants'
 import { mapActions, mapGetters } from 'vuex'
-import { convertFee, fulltimestamp, getAddress } from '../utils/util'
+import { convertFee, fulltimestamp, getAddress, rewardCount } from '../utils/util'
 
 export default {
   name: 'BlockInfo',
@@ -82,6 +82,7 @@ export default {
       transFee: '',
       preBlock: '',
       produceTime: '',
+      height: 0,
       data: [],
       defaultProps: {
         orderBy: 'timestamp:desc',
@@ -140,17 +141,16 @@ export default {
   },
   computed: {
     ...mapGetters(['getPrecision']),
-    blockHeight() {
-      return Number(this.$route.params.height) || 0
-    },
-    height() {
-      return this.$route.params.height
-    },
-    // params() {
-    //   return {
-    //     height: this.height
-    //   }
+    // blockHeight() {
+    //   return Number(this.$route.params.height) || 0
     // },
+    params() {
+      if (this.$route.params.height) {
+        return Number(this.$route.params.height) || 0
+      } else {
+        return this.$route.params.id || ''
+      }
+    },
 
     panelData() {
       return [
@@ -171,7 +171,7 @@ export default {
         },
         {
           label: 'FORGE_REWARD',
-          value: this.reward
+          value: rewardCount(this.height)
         },
         {
           label: 'TRANS_NUM',
@@ -198,12 +198,17 @@ export default {
     fulltimestamp,
     ...mapActions(['getBlockInfo', 'getTransactions']),
     async envalueData() {
-      let result = await this.getBlockInfo({
-        height: this.blockHeight
-      })
+      let para = {}
+      if (this.$route.params.height) {
+        para['height'] = this.params
+      } else {
+        para['id'] = this.params
+      }
+      let result = await this.getBlockInfo(para)
       if (result.success) {
         let trans = result.block
         this.block = trans.id
+        this.height = trans.height
         this.producer = getAddress(trans.generatorPublicKey)
         this.transNum = trans.numberOfTransactions
         this.transFee = convertFee(trans.totalFee) + ' XAS'
@@ -214,7 +219,6 @@ export default {
     },
     async getData(props = this.defaultProps) {
       let res
-      // For transactions
       props.height = this.height
       res = await this.getTransactions(props)
       this.data = res.transactions
@@ -252,8 +256,11 @@ export default {
     }
   },
   watch: {
-    height() {
+    params() {
       this.envalueData()
+      this.getData()
+    },
+    height() {
       this.getData()
     }
   }

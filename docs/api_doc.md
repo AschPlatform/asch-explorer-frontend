@@ -85,7 +85,7 @@
 
 通过分页与过滤条件查询区块列表信息
 
-`/api/blocks`
+`/api/v2/blocks`
 
 
 
@@ -94,8 +94,6 @@
 | limit    | number | --   | 条数           |
 | offset   | number | --   | 偏移量         |
 | orderBy  | string | --   | 排序规则       |
-| producer | string |      | 受托人产快信息 |
-| height   | number |      | 区块高度       |
 
 
 
@@ -105,31 +103,16 @@
     "count": 17462,
     "blocks": [
         {
-            "id": "148da01c074085898c36c8fc65f78379741f2d7a9f60692a989a1c154d65f5e3",
-            "version": 0,
-            "timestamp": 0,
-            "height": 0,
-            "payloadHash": "275d2b8f2c9cae345d535e76a0922d5ccca6668ab8d007135f0aa8a780b52896",
-            "numberOfTransactions": 203,
-            "totalFee": 0,
-            "generatorPublicKey": "dcb28a3789c748b62aac1dfff81178d203aabdfd0516c547d5ce6c986d26b4fa",
-            "blockSignature": "67254c9b69224e8d2269ca28af5e434fbfee47e6fd4b819e9c053b00af04da3664e17ec337a9b60fc5fc91f66b93743cd926d79c00fa367e55136cfb2933b007",
-            "confirmations": 17461,
-            "transactions": []
-        },
-        {
-            "id": "0d2230c420d62292c56558a1113e911ca1f05b52e920524e6601e6469384d425",
-            "version": 0,
-            "timestamp": 65366890,
-            "height": 1,
-            "payloadHash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-            "previousBlock": "148da01c074085898c36c8fc65f78379741f2d7a9f60692a989a1c154d65f5e3",
-            "numberOfTransactions": 0,
-            "totalFee": 0,
-            "generatorPublicKey": "936346baf9de399224cea283e3e9976601aaf5ad44908a7f22a0e534f9d47006",
-            "blockSignature": "8ed82401e7bad0b8656878d75afb41d1171d312ba563aa2fa69bd448d3218a824478191c38d7c31b17010fe4e950464280abd45a7b331aaf643ccb854496a700",
-            "confirmations": 17460,
-            "transactions": []
+            count:217,
+            delegate:"5E626027B53D3226714090F1A3531A4D353919C3DC99B4ECB587CE8D390D6342",
+            fees:0,
+            height:1,
+            id:"14835864848871200194",
+            payloadHash:"44097D5B27112B64F4ED0B472861B4FC32F0BFAEC41D73E0C027770F6A500CA1",
+            prevBlockId:null,
+            reward:0,
+            timestamp:0,
+            version:1,
         }
      ]
  }
@@ -179,7 +162,7 @@
                 "whocansupport"
             ],
             "height": 16131,
-            "message": null,
+            "message": "",
             "executed": 1,
             "_version_": 1
         }
@@ -246,7 +229,7 @@
 
 查询资产信息
 
-`api/uia/assets`
+`api/v2/uia/assets`
 
 
 
@@ -270,16 +253,10 @@
             "desc": "DD链资产，价值固定",
             "maximum": "1000000000000000000",
             "precision": 8,
-            "strategy": "",
             "quantity": "100000000000000",
-            "height": 5950452,
             "issuerId": "AJT8e3rjpUuaEGKbQYJv5LP9Nkmppek2wC",
-            "acl": 0,
-            "writeoff": 0,
-            "allowWriteoff": 0,
-            "allowWhitelist": 0,
-            "allowBlacklist": 0,
-            "maximumShow": "10000000000",
+            "tid":"420e2bfb2b37aecc1561c4ab559dc5f004d2a2b183d9f0554d35cca5e8fc3643",
+            "timestamp": 21308778,
             "quantityShow": "1000000"
         }
     ],
@@ -295,7 +272,7 @@
 
 查询资产详情
 
-`/api/uia/assets/:name`
+`/api/v2/uia/assets/:name`
 
 
 
@@ -311,16 +288,8 @@
         "desc": "优良资产，值得拥有",
         "maximum": "1000000000000000",
         "precision": 8,
-        "strategy": "",
         "quantity": "10000000000000",
-        "height": 1700230,
         "issuerId": "1038895743869791470",
-        "acl": 0,
-        "writeoff": 0,
-        "allowWriteoff": 1,
-        "allowWhitelist": 1,
-        "allowBlacklist": 1,
-        "maximumShow": "10000000",
         "quantityShow": "100000"
     }
 }

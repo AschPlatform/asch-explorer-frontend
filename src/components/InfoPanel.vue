@@ -18,7 +18,7 @@
                 </span>
               </span>
               <pre v-else-if="data.type==='id'" class="custom-pre-wrap">{{data.value}}</pre>
-              <pre v-else-if="data.type==='preBlock'" class="custom-pre-wrap">{{data.value}}</pre>
+              <pre v-else-if="data.type==='preBlock'" class="text-primary cursor-pointer" @click="doSearch(data.value, 'id')">{{data.value}}</pre>
               <pre v-else-if="data.type==='argStr'" class="custom-pre-wrap">{{data.value}}</pre>
               <span v-else-if="data.type==='block'" class="text-primary cursor-pointer" @click="doSearch(data.value)">{{data.value}}</span>
               <span v-else> {{data.value}} </span>
@@ -78,8 +78,8 @@ export default {
       }, 3000)
       toast(msg)
     },
-    doSearch(str) {
-      this.$root.$emit('doSearch', str)
+    doSearch(str, type) {
+      this.$root.$emit('doSearch', str, type)
     }
   },
   computed: {
