@@ -1,13 +1,17 @@
 <template>
   <transition appear enter-active-class="animated fadeIn" leave-active-class="animated fadeOut">
     <div class="relative-position">
-      <q-table class="no-shadow table-top-border" :data="data" :columns="columns" :rows-per-page-options="[3,5,10,50]" :pagination.sync="pagination" :no-data-label="$t('NO_DATA')" @request="request" row-key="name">
-        <q-tr slot="body" slot-scope="props" :props="props">
+      <q-table class="no-shadow table-top-border" :data="data" :grid="true" :hide-header="true" :columns="columns" :rows-per-page-options="[3,5,10,50]" :pagination.sync="pagination" :no-data-label="$t('NO_DATA')" @request="request" row-key="name">
+        <!-- <q-tr v-if="isDesktop" slot="body" slot-scope="props" :props="props">
           <slot name="content" slot-scope="props" :props="props.row"></slot>
-        </q-tr>
+        </q-tr> -->
+        <div class="w-full" slot="item" slot-scope="props">
+          <slot name="items" slot-scope="props" :props="props.row" />
+        </div>
+  
         <div slot="pagination" slot-scope="props" class="row flex-center q-py-sm">
-          <q-btn round dense flat size="sm" icon="first_page"  class="q-mr-sm" :disable="props.isFirstPage" @click="()=>firstPage(props)" />
-          <q-btn round dense flat size="sm" icon="chevron_left"  class="q-mr-sm" :disable="props.isFirstPage" @click="props.prevPage" />
+          <q-btn round dense flat size="sm" icon="first_page" class="q-mr-sm" :disable="props.isFirstPage" @click="()=>firstPage(props)" />
+          <q-btn round dense flat size="sm" icon="chevron_left" class="q-mr-sm" :disable="props.isFirstPage" @click="props.prevPage" />
           <div class="q-mr-sm" style="font-size: small">
             {{ props.pagination.page }} / {{ props.pagesNumber }}
           </div>
@@ -25,7 +29,7 @@
 <script>
 import { QTable, QTr, QTd, QTooltip, QBtnGroup, QBtn, QInnerLoading, QSpinnerGears } from 'quasar'
 import { mapActions, mapGetters } from 'vuex'
-import { fulltimestamp } from '../utils/util'
+import { fulltimestamp, isDesktop } from '../utils/util'
 
 export default {
   name: 'TableContaine',
@@ -56,6 +60,7 @@ export default {
     this.showLoading()
   },
   methods: {
+    isDesktop,
     fulltimestamp,
     ...mapActions(['getTransactions', 'getTransfers', 'setLoadingflag']),
     showLoading() {

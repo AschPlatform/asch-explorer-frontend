@@ -54,6 +54,7 @@ const lang = {
   TRANSACTION_TABLE: '交易列表',
   AMOUNT: '金额',
   TRANS_TIME: '交易时间',
+  TIME: '时间',
   ARGUMENTS: '参数',
 
   // accountInfo
@@ -82,6 +83,7 @@ const lang = {
   NO_DATA: '没有数据',
 
   // transaction type filter
+  TYPE: '类型',
   TRS_TYPE_TRANSFER: '转账',
   TRS_TYPE_NICKNAME: '设置昵称',
   TRS_TYPE_TRANSFER_RECORD: '转账记录',
@@ -140,7 +142,7 @@ const lang = {
   SECOND_BEFORE: '秒前',
   DELEGATE: '受托人',
   ASSET_INFO: '资产详情',
-  ASSET: '资产详情',
+  ASSET: '资产',
   ASSET_DESC: '资产描述',
   ASSET_ACCOUNT: '持币账户',
   ASSET_PUBLISH: '已发行量',

@@ -13,9 +13,8 @@
       </q-btn-group>
       <boundary-line class="mt-4 mb-4" />
       <table-container class="mt-4" :data="data" :count="count" :params="params" :columnsData="columnsData" @getData="getData">
-        <template slot="content" slot-scope="props" v-if="props.props">
+        <!-- <template class="xs:hidden" slot="content" slot-scope="props" v-if="props.props">
           <q-td v-if="props.props.id" key="id">
-            <!-- {{props.props}} -->
             <div class="text-primary cursor-pointer" @click="doSearch(props.props.id)">
               {{ props.props.id | eclipse }}
               <q-tooltip>{{ props.props.id }}</q-tooltip>
@@ -73,9 +72,9 @@
           <q-td v-if="props.props.transaction && props.props.transaction.fee" key="transferFee" >
             <span>0.1</span>
           </q-td>
-          <!-- <q-td v-if="props.props.timestamp > -1" key="timestamp" >
-            <span>{{ fulltimestamp(props.props.timestamp) }}</span>
-          </q-td> -->
+        </template> -->
+        <template slot="items" slot-scope="props" v-if="props.props">
+          <table-item  :data="getTableData(props.props)" />
         </template>
       </table-container>
     </div>
@@ -87,6 +86,7 @@ import { QPage, QBtnGroup, QBtn, QTd, QTooltip } from 'quasar'
 import BoundaryLine from '../components/BoundaryLine'
 import Breadcrumb from '../components/Breadcrumb'
 import InfoPanel from '../components/InfoPanel'
+import TableItem from '../components/TableItem'
 import TableContainer from '../components/TableContainer'
 import { convertFee, toastError, fulltimestamp } from '../utils/util'
 import { transTypes } from '../utils/constants'
@@ -101,6 +101,7 @@ export default {
     TableContainer,
     BoundaryLine,
     QBtnGroup,
+    TableItem,
     QBtn,
     QTd,
     QTooltip
@@ -109,7 +110,7 @@ export default {
     return {
       account: null,
       balances: [],
-      type: 0,
+      type: 0, // trans: 0 , transfer:1
       data: [],
       defaultProps: {
         orderBy: 'timestamp:desc',
@@ -161,10 +162,10 @@ export default {
       }
     },
     params() {
-     return this._.merge({ type: this.type }, this.$route.params)
+      return this._.merge({ type: this.type }, this.$route.params)
     },
     columnsData() {
-      if (this.type === 0) {
+      if (this.type === 1) {
         return [
           {
             name: 'id',
@@ -355,6 +356,80 @@ export default {
         return '--'
       }
       // return args[len - 2]
+    },
+    // get data array for tableItem
+    getTableData(data) {
+      const { id, height, recipientId, senderId, currency, args = [], fee, timestamp } = data
+
+      let idField = {
+        label: 'TRANSACTION_ID',
+        value: id,
+        type: 'id'
+      }
+
+      let heightField = {
+        label: 'HEIGHT',
+        value: height,
+        type: 'number'
+      }
+
+      let timeField = {
+        label: 'TIME',
+        value: fulltimestamp(timestamp)
+      }
+      let senderField = {
+        label: 'TRANS_SENDER',
+        value: senderId,
+        type: 'address'
+      }
+
+      let typeField = {
+        label: 'TYPE',
+        value: this.getTransType(data)
+      }
+
+      let argsField = {
+        label: 'ARGUMENTS',
+        // value: args && args.join(' ')
+        value: args && args.join('').substring(0, 5)
+      }
+
+      let feeField = {
+        label: 'FEE',
+        value: convertFee(fee)
+      }
+
+      let receiverField = {
+        label: 'TRANS_RECRIVER',
+        value: recipientId,
+        type: 'address'
+      }
+
+      let currencyField = {
+        label: 'ASSET',
+        value: currency
+      }
+
+      let amountField = {
+        label: 'AMOUNT',
+        value: this.getAmount(data)
+      }
+
+      let tablePanelData =
+        this.type === 0
+          ? [idField, heightField, timeField, typeField, senderField, argsField, feeField]
+          : [
+              idField,
+              heightField,
+              timeField,
+              senderField,
+              receiverField,
+              amountField,
+              currencyField,
+              feeField
+            ]
+
+      return tablePanelData
     }
   },
   watch: {
