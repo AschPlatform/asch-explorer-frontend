@@ -1,5 +1,5 @@
 <template>
-  <div class="rounded overflow-hidden border-solid border-grey-lighter m-5 py-5 pl-5 hover:shadow-lg ">
+  <div class=" ">
     <div v-if="type=='blocks'">
       <div v-if="data" class="flex">
         <div class="w-4/5">
@@ -9,7 +9,7 @@
           </div>
           <div class="flex mb-1">
             <span :class="labelClass">{{$t('PRODUCER')}}</span>
-            <span :class="linkClass"  @click="doSearch(data.delegate)" >{{getAddress(data.delegate)}}</span>
+            <span :class="linkClass"  @click="doSearch(getAddress(data.delegate))" >{{getAddress(data.delegate)}}</span>
           </div>
           <div class="flex mb-1">
             <span :class="labelClass">{{$t('FORGE_REWARD')}}</span>
