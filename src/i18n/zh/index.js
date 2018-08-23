@@ -149,6 +149,7 @@ const lang = {
   DIGITAL_ASSET: '数字资产',
   REGIST_ASSET: '链内注册资产',
   DELEGATE_LIST: '受托人列表',
-  REGIST_DELEGATE: '注册受托人'
+  REGIST_DELEGATE: '注册受托人',
+  close: '关闭'
 }
 export default lang
