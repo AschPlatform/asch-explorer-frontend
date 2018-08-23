@@ -52,7 +52,6 @@ export default {
   },
   methods: {
     doSearch(value) {
-      debugger
       this.$root.$emit('doSearch', value)
     }
   },
