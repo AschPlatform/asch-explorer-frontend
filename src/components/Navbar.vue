@@ -1,13 +1,13 @@
 <template>
-  <q-toolbar class="bg-tw-black h-86 px-30">
-    <div class="xs:hidden sm:flex asch-logo h-8 mr-8 cursor-pointer" @click="jump('/')">
+  <q-toolbar class="bg-tw-black h-86 px-30 xs:px-15">
+    <div class="xs:hidden sm:flex asch-logo h-30 mr-53 cursor-pointer" @click="jump('/')">
       <img class="h-full" :src="aschLogo" alt="">
     </div>
    <q-btn class="xs:flex sm:hidden" icon="menu" @click="toggle" /> 
     <div class="xs:hidden sm:flex">
-      <q-btn class="text-tw-grey hover:text-tw-green bg-tw-transparent" :label="$t('HOME')" push @click="jump('/')" />
-      <q-btn class="text-tw-grey hover:text-tw-green" push :label="$t('DELEGATES')" @click="jump('/delegates')" />
-      <q-btn class="text-tw-grey hover:text-tw-green" push :label="$t('ASSETS')" @click="jump('/assets')" />
+      <q-btn class="text-16 text-tw-grey hover:text-tw-green px-11 mr-40" :label="$t('HOME')" flat @click="jump('/')" />
+      <q-btn class="text-16 text-tw-grey hover:text-tw-green p-11 mr-40" flat :label="$t('DELEGATES')" @click="jump('/delegates')" />
+      <q-btn class="text-16 text-tw-grey hover:text-tw-green p-11" flat :label="$t('ASSETS')" @click="jump('/assets')" />
     </div>
   
     <q-toolbar-title>
@@ -18,12 +18,12 @@
           but any button will do
         -->
     <div class="flex xs:w-5/6 sm:w-2/3 justify-end items-center">
-      <q-input class="xs:w-full shadow appearance-none border h-30 border-solid border border-tw-grey-light px-3 rounded-15 text-tw-white leading-tight custorm-search-icon"
+      <q-input class="xs:w-full shadow appearance-none border h-30 border-solid border border-tw-grey-light px-11 rounded-15 text-tw-white leading-tight custorm-search-icon"
       :class="stretch?'sm:w-2/3 border-tw-green':'sm:w-2/5'"
        v-model="searchStr" @keyup.enter="search" :after="searchIcon" type="text" :placeholder="getPlaceholder" hide-underline	
        @focus="stretch=true" @blur="stretch=false"
       />
-      <q-select class="xs:hidden sm:flex h-30 ml-3 border border-solid border-tw-grey-light pl-2 custorm-select rounded-15" v-model="lang" :options="getLangOpts" hide-underline />
+      <q-select class="xs:hidden sm:flex h-30 ml-30 border border-solid border-tw-grey-light pl-6 custorm-select rounded-15" v-model="lang" :options="getLangOpts" hide-underline />
     </div>
   
   </q-toolbar>

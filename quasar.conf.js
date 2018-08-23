@@ -10,6 +10,7 @@ module.exports = function (ctx) {
       'filters'
     ],
     css: [
+      'font-style.css',
       'tailwindOutput.css',
       'app.styl'
     ],
