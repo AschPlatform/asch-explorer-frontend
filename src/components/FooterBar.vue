@@ -22,12 +22,20 @@ export default {
     links() {
       const t = this.$t
       return [
-        { label: 'API', href: 'https://github.com/AschPlatform/asch/blob/master/docs/asch_http_interface.md' },
+        {
+          label: 'API',
+          href: this.isZH
+            ? 'https://github.com/AschPlatform/asch-docs/blob/master/http_api/zh-cn.md'
+            : 'https://github.com/AschPlatform/asch-docs/blob/master/http_api/en.md'
+        },
         { label: 'Github', href: 'https://github.com/AschPlatform/asch' },
         { label: t('HOMEPAGE'), href: 'https://www.asch.io' },
         { label: t('FORUM'), href: 'https://bbs.asch.io' },
         { label: t('ONLINE_WALLET'), href: 'https://wallet.asch.io/#/login' }
       ]
+    },
+    isZH() {
+      return this.$store.state.locale === 'zh'
     }
   }
 }
