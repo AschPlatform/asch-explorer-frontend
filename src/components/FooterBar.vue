@@ -37,7 +37,10 @@ export default {
       return [
         {
           label: 'API',
-          href: 'https://github.com/AschPlatform/asch-docs/blob/master/http_api/zh_cn_1.4.md'
+          href:
+            this.$store.state.locale === 'zh'
+              ? 'https://github.com/AschPlatform/asch-docs/blob/master/http_api/zh-cn.md'
+              : 'https://github.com/AschPlatform/asch-docs/blob/master/http_api/en.md'
         },
         {
           label: 'Github',
