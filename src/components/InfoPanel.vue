@@ -21,6 +21,12 @@
               <pre v-else-if="data.type==='preBlock'" class="text-primary cursor-pointer" @click="doSearch(data.value, 'id')">{{data.value}}</pre>
               <pre v-else-if="data.type==='argStr'" class="custom-pre-wrap">{{data.value}}</pre>
               <span v-else-if="data.type==='block'" class="text-primary cursor-pointer" @click="doSearch(data.value)">{{data.value}}</span>
+              <span v-else-if="data.type==='qr'" class="text-primary cursor-pointer" @click="doSearch(data.value)">
+                {{data.value}}
+                <span class="qr-right-container" @click="showAddrQr(data.value)">
+                  <vue-qr class="add-qr-container" :size="20" :text="data.value"></vue-qr>
+                </span>
+              </span>
               <span v-else> {{data.value}} </span>
               </span>
             </td>
@@ -39,6 +45,7 @@ import { QInnerLoading, QSpinnerGears } from 'quasar'
 import ICountUp from 'vue-countup-v2'
 import { toast } from '../utils/util'
 import { mapActions, mapGetters } from 'vuex'
+import VueQr from 'vue-qr'
 
 export default {
   name: 'InfoPanel',
@@ -46,7 +53,8 @@ export default {
   components: {
     ICountUp,
     QInnerLoading,
-    QSpinnerGears
+    QSpinnerGears,
+    VueQr
   },
   data() {
     return {
@@ -80,6 +88,9 @@ export default {
     },
     doSearch(str, type) {
       this.$root.$emit('doSearch', str, type)
+    },
+    showAddrQr(str) {
+      this.$root.$emit('showQRCodeModal', str)
     }
   },
   computed: {
@@ -97,4 +108,11 @@ export default {
 </script>
 
 <style lang="stylus" scoped>
+  .qr-right-container {
+    cursor: pointer;
+  }
+  .add-qr-container {
+    display: inline-block;
+    vertical-align: middle !important;
+  }
 </style>
