@@ -6,7 +6,7 @@
     <q-page-container>
       <router-view />
     </q-page-container>
-    <q-layout-footer>
+    <q-layout-footer class="bg-tw-black">
       <footer-bar />
     </q-layout-footer>
     <code-modal :show="QRCodeShow" @close="QRCodeShow = false" :text="QRCodeText" />
