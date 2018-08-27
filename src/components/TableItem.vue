@@ -16,6 +16,7 @@
               <span v-else-if="data.type==='timestamp'">{{data.value | formatTimestamp(true)}}</span>
               <span v-else-if="data.type==='delegate'" class="text-primary cursor-pointer" @click="doSearch(data.value, 'delegate')">{{data.value}}</span>
               <span v-else-if="data.type==='asset'" class="text-primary cursor-pointer" @click="doSearch(data.value, 'asset')">{{data.value.split('.')[1]}}</span>
+              <span v-else-if="data.type==='countDown'">{{data.value | secFromNow}} {{$t('SECOND_BEFORE')}}</span>
               <span v-else-if="data.type==='address'" class="text-primary cursor-pointer" @click="doSearch(data.value)">
                 <span v-if="data.nickname" >
                   {{data.nickname}}({{data.value}})

@@ -157,20 +157,21 @@ export default {
         label: 'FORGE_REWARD',
         value: convertFee(reward)
       }
-      let countField = {
-        label: 'TRANS_NUM',
-        value: count
-      }
-      let feeField = {
-        label: 'FEE',
-        value: fee
-      }
+      // let countField = {
+      //   label: 'TRANS_NUM',
+      //   value: count
+      // }
+      // let feeField = {
+      //   label: 'FEE',
+      //   value: fee
+      // }
       let timeField = {
         label: 'FEE',
-        value: fulltimestamp(timestamp)
+        value: timestamp,
+        type: 'countDown'
       }
 
-      return [idField, heightField, delegateField, rewardField, countField, feeField, timeField]
+      return [idField, heightField, delegateField, rewardField, timeField]
     }
   },
   computed: {

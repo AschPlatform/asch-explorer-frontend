@@ -361,7 +361,7 @@ export default {
     },
     // get data array for tableItem
     getTableData(data) {
-      const { id = null, tid = null, height, recipientId, senderId, currency, args = [], fee, timestamp } = data
+      const { id = null, tid = null, recipientId, senderId, timestamp } = data
 
       let idField = {
         label: 'TRANSACTION_ID',
@@ -369,11 +369,11 @@ export default {
         type: 'id'
       }
 
-      let heightField = {
-        label: 'HEIGHT',
-        value: height,
-        type: 'number'
-      }
+      // let heightField = {
+      //   label: 'HEIGHT',
+      //   value: height,
+      //   type: 'number'
+      // }
 
       let timeField = {
         label: 'TIME',
@@ -390,16 +390,16 @@ export default {
         value: this.getTransType(data)
       }
 
-      let argsField = {
-        label: 'ARGUMENTS',
-        // value: args && args.join(' ')
-        value: args && args.join('').substring(0, 5)
-      }
+      // let argsField = {
+      //   label: 'ARGUMENTS',
+      //   // value: args && args.join(' ')
+      //   value: args && args.join('').substring(0, 5)
+      // }
 
-      let feeField = {
-        label: 'FEE',
-        value: convertFee(fee)
-      }
+      // let feeField = {
+      //   label: 'FEE',
+      //   value: convertFee(fee)
+      // }
 
       let receiverField = {
         label: 'TRANS_RECRIVER',
@@ -407,15 +407,15 @@ export default {
         type: 'address'
       }
 
-      let currencyField = {
-        label: 'ASSET',
-        value: currency
-      }
+      // let currencyField = {
+      //   label: 'ASSET',
+      //   value: currency
+      // }
 
-      let amountField = {
-        label: 'AMOUNT',
-        value: this.getAmount(data)
-      }
+      // let amountField = {
+      //   label: 'AMOUNT',
+      //   value: this.getAmount(data)
+      // }
 
       let tablePanelData =
         this.type === 0

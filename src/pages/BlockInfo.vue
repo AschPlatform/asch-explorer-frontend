@@ -292,7 +292,7 @@ export default {
         type: 'arg'
       }
 
-      return [idField, typeField, senderField, feeField, argsField, timeField]
+      return [idField, typeField, senderField, timeField]
     }
   },
   watch: {
