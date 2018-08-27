@@ -74,7 +74,7 @@
           </q-td>
         </template> -->
         <template slot="items" slot-scope="props" v-if="props.props">
-          <panel-item  :data="getTableData(props.props)" />
+          <table-item  :data="getTableData(props.props)" />
         </template>
       </table-container>
     </div>
@@ -419,16 +419,12 @@ export default {
 
       let tablePanelData =
         this.type === 0
-          ? [idField, heightField, timeField, typeField, senderField, argsField, feeField]
+          ? [idField, timeField, typeField, senderField]
           : [
               idField,
-              heightField,
               timeField,
               senderField,
-              receiverField,
-              amountField,
-              currencyField,
-              feeField
+              receiverField
             ]
 
       return tablePanelData

@@ -42,7 +42,7 @@
 import { QPage, QTd, QTooltip } from 'quasar'
 import { mapActions } from 'vuex'
 import TableContainer from '../components/TableContainer'
-import { fulltimestamp, convertFee } from '../utils/util'
+import { fulltimestamp } from '../utils/util'
 import TableItem from '../components/TableItem'
 
 export default {
@@ -117,29 +117,30 @@ export default {
       this.$root.$emit('doSearch', str, type)
     },
     getTableData(data) {
-      const { name, maximum, precision, timestamp } = data
+      const { name, timestamp } = data
 
       let assetField = {
         label: 'ASSET_NAME',
-        value: name.split('.')[1]
+        value: name,
+        type: 'asset'
       }
       let issuerField = {
         label: 'ISSUER',
         value: name.split('.')[0]
       }
-      let maximumField = {
-        label: 'MAXIMUN',
-        value: convertFee(maximum, precision)
-      }
-      let precisionField = {
-        label: 'PRECISION',
-        value: precision
-      }
+      // let maximumField = {
+      //   label: 'MAXIMUN',
+      //   value: convertFee(maximum, precision)
+      // }
+      // let precisionField = {
+      //   label: 'PRECISION',
+      //   value: precision
+      // }
       let timeField = {
         label: 'ISSUE_TIME',
         value: fulltimestamp(timestamp)
       }
-      return [assetField, issuerField, maximumField, precisionField, timeField]
+      return [assetField, issuerField, timeField]
     }
   },
   computed: {
