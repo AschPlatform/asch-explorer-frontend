@@ -24,7 +24,7 @@
     <div v-else>
       <div v-if="data">
         <div class="w-full">
-          <div class="flex  mb-1">
+          <div class="flex mb-1">
             <span class="w-1/5">{{$t('TRANSACTION_ID')}}</span>
             <span :class="linkClass" @click="doSearch(data.id)">{{data.id}}</span>
           </div>

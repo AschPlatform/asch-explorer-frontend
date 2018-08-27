@@ -8,7 +8,7 @@
     <table class="w-full">
       <tbody class='info-tbody'>
         <tr class="flex" v-for="(arr, idx) in tableData" :key="idx">
-          <div class="flex w-1/2" v-for="(data, index) in arr " :key="index">
+          <div class="flex w-full" v-for="(data, index) in arr " :key="index">
             <td class="w-1/3 text-xs">{{$t(data.label)}}</td>
             <td class="w-2/3 text-xs truncate">
               <span :class="data.link?`text-primary cursor-pointer`:''" @click="data.link?$router.push(data.link+data.value):null">
@@ -19,8 +19,8 @@
                     {{data.nickname}}({{data.value}})
                   </span>
               <span v-else class="">
-                    {{data.value}}
-                  </span>
+                {{data.value}}
+              </span>
               </span>
               <span v-else-if="data.type==='argStr'" class="custom-pre-wrap">{{data.value}}</span>
               <span v-else-if="data.type==='block'" class="text-primary cursor-pointer" @click="doSearch(data.value)">{{data.value}}</span>

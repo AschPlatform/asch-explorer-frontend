@@ -74,7 +74,7 @@
           </q-td>
         </template> -->
         <template slot="items" slot-scope="props" v-if="props.props">
-          <table-item  :data="getTableData(props.props)" />
+          <panel-item  :data="getTableData(props.props)" />
         </template>
       </table-container>
     </div>
@@ -87,6 +87,7 @@ import BoundaryLine from '../components/BoundaryLine'
 import Breadcrumb from '../components/Breadcrumb'
 import InfoPanel from '../components/InfoPanel'
 import TableItem from '../components/TableItem'
+import PanelItem from '../components/PanelItem'
 import TableContainer from '../components/TableContainer'
 import { convertFee, toastError, fulltimestamp } from '../utils/util'
 import { transTypes } from '../utils/constants'
@@ -102,6 +103,7 @@ export default {
     BoundaryLine,
     QBtnGroup,
     TableItem,
+    PanelItem,
     QBtn,
     QTd,
     QTooltip
