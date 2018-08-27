@@ -182,7 +182,7 @@ export default {
       // return args[len - 2]
     },
     getTableData(data) {
-      const { id = null, tid = null, height, recipientId, senderId, currency, args = [], fee, timestamp } = data
+      const { id = null, tid = null, recipientId, senderId, timestamp } = data
 
       let idField = {
         label: 'TRANSACTION_ID',
