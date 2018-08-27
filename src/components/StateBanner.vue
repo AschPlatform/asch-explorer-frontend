@@ -1,14 +1,14 @@
 <template>
-  <div class="w-full flex flex-wrap border border-solid border-tw-black-dark xs:border-b-0 sm:border-b-1 state-container">
-    <div class="flex xs:w-1/2 md:w-1/6 xs:h-86 sm:h-130 justify-center items-center xs:border-0 sm:border border-solid border-tw-black-dark  xs:border-r-1 xs:border-b-1 sm:border-l-0 sm:border-t-0 sm:border-b-0 state" v-for="(state,idx) in stateData" :key="idx">
+  <div class="w-full flex flex-wrap border border-solid border-tw-grey-darker xs:border-b-0 sm:border-b-1 state-container">
+    <div class="flex xs:w-1/2 md:w-1/6 xs:h-86 sm:h-130 justify-center items-center shadow-none hover:shadow-13 xs:border-0 sm:border border-solid border-tw-grey-darker  xs:border-r-1 xs:border-b-1 sm:border-l-0 sm:border-t-0 sm:border-b-0 state" v-for="(state,idx) in stateData" :key="idx">
       <div class="xs:mr-10">
-        <q-icon class="xs:text-36 sm:text-48 text-tw-green" :name="state.icon" />
+        <q-icon class="xs:text-36 sm:text-48 text-tw-blue" :name="state.icon" />
       </div>
       <div class="ml-2">
-        <div class="text-tw-grey xs:text-12 sm:text-14">
+        <div class="text-tw-grey xs:text-12 lg:text-14 xll:text-20">
           {{$t(state.label)}}
         </div>
-        <div class="xs:text-16 sm:text-24 text-tw-green font-futura">
+        <div class="xs:text-16 lg:text-24 xll:text-28 text-tw-blue font-futura">
           <ICountUp :endVal="Number(state.value)||0" />
         </div>
       </div>

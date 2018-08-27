@@ -1,16 +1,23 @@
 <template>
   <q-page class="max-w-1200 m-auto xs:pl-2 xs:pr-2 sm:pl-0 sm:pr-0 pb-16">
-    <breadcrumb />
-    <div class="border border-solid border-grey rounded-lg p-4 mb-4">
+    <breadcrumb class="my-20" />
+    <div class="border border-solid border-grey rounded-lg xs:p-15 sm:p-30">
       <div class="text-14 text-black-dark font-bold">
         {{this.$t('ACCOUNT_INFO')}}
       </div>
-      <boundary-line class="mt-2 mb-8" />
-      <info-panel v-if="account" :panelData="panelData" />
-      <div v-else class="mt-2 mb-8 px-4 text-xs">{{$t('NO_DATA')}}</div>
+      <boundary-line class="my-20" />
+      <div class="flex justify-between">
+        <info-panel v-if="account" :panelData="panelData" />
+        <div v-else class="mt-2 mb-8 px-4 text-xs">{{$t('NO_DATA')}}</div>
+        <div class="self-end w-163 xs:hidden sm:block">
+          <img class="w-full" :src="infoImge" alt="">
+        </div>
+      </div>
+      <!-- <info-panel v-if="account" :panelData="panelData" /> -->
+      <!-- <div v-else class="mt-2 mb-8 px-4 text-xs">{{$t('NO_DATA')}}</div> -->
       <q-btn-toggle v-model="model" class="mt-4 pl-15" flat color="positive" taggle-color="tertiary" text-color="primary" toggle-text-color="positive" @input="changeType" :options="btnGroup">
       </q-btn-toggle>
-      <boundary-line class="mt-4 mb-4" />
+      <boundary-line class="my-20" />
       <table-container class="mt-4" :data="data" :count="count" :params="params" :columnsData="columnsData" @getData="getData">
         <!-- <template class="xs:hidden" slot="content" slot-scope="props" v-if="props.props">
           <q-td v-if="props.props.id" key="id">
@@ -90,6 +97,7 @@ import TableContainer from '../components/TableContainer'
 import { convertFee, toastError, fulltimestamp } from '../utils/util'
 import { transTypes } from '../utils/constants'
 import { mapActions, mapGetters } from 'vuex'
+import infoImge from '../assets/asch_logo.png'
 
 export default {
   name: 'AccountInfo',
@@ -108,6 +116,7 @@ export default {
   },
   data() {
     return {
+      infoImge,
       model: 0,
       account: null,
       balances: [],

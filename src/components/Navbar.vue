@@ -6,9 +6,9 @@
       </div>
   
       <div class="xs:hidden sm:flex">
-        <q-btn class="text-16 text-tw-grey hover:text-tw-green px-11 md:mr-20" :label="$t('HOME')" flat @click="jump('/')" />
-        <q-btn class="text-16 text-tw-grey hover:text-tw-green px-11 md:mr-20" flat :label="$t('DELEGATES')" @click="jump('/delegates')" />
-        <q-btn class="text-16 text-tw-grey hover:text-tw-green px-11" flat :label="$t('ASSETS')" @click="jump('/assets')" />
+        <q-btn class="text-16 text-tw-grey hover:text-tw-blue px-11 md:mr-20" :label="$t('HOME')" flat @click="jump('/')" />
+        <q-btn class="text-16 text-tw-grey hover:text-tw-blue px-11 md:mr-20" flat :label="$t('DELEGATES')" @click="jump('/delegates')" />
+        <q-btn class="text-16 text-tw-grey hover:text-tw-blue px-11" flat :label="$t('ASSETS')" @click="jump('/assets')" />
       </div>
     </div>
   
@@ -17,7 +17,7 @@
       <!-- <q-toolbar-title>
       </q-toolbar-title> -->
       <div class="flex items-center">
-        <q-input class="xs:w-290 shadow appearance-none border xs:h-25 sm:h-30 border-solid border border-tw-grey-light px-11 rounded-15 text-tw-white leading-tight custorm-search-icon" :class="stretch?'sm:w-720 border-tw-green':'sm:w-290'" v-model="searchStr" @keyup.enter="search"
+        <q-input class="xs:w-290 shadow appearance-none xs:h-25 sm:h-30 border-solid border hover:border-tw-blue px-11 rounded-15 text-tw-white leading-tight custorm-search-icon" :class="stretch?'sm:w-720 border-tw-blue':'sm:w-290 border-tw-grey-light'" v-model="searchStr" @keyup.enter="search"
           :after="searchIcon" type="text" :placeholder="getPlaceholder" hide-underline @focus="stretch=true" @blur="stretch=false" />
         <q-select class="xs:hidden sm:flex h-30 ml-30 border border-solid border-tw-grey-light pl-6 custorm-select rounded-15" v-model="lang" :options="getLangOpts" hide-underline />
       </div>

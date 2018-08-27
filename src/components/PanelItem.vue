@@ -1,5 +1,5 @@
 <template>
-  <div class="bg-tw-black mb-20 p-20 border-2 border-solid border-tw-black-lighter ">
+  <div class="mb-20 xs:p-15 sm:p-30 shadow-none hover:shadow-13 border-1 border-solid border-tw-grey-darker panelitem-container">
     <div v-if="type=='blocks'">
       <div v-if="data" class="flex">
         <div class="w-4/5">
@@ -13,11 +13,14 @@
           </div>
           <div class="flex items-center">
             <span :class="labelClass">{{$t('FORGE_REWARD')}}</span>
-            <span class="truncate text-tw-white w-3/4"  >{{data.reward | fee}}{{' XAS'}}</span>
+            <span class="truncate xs:text-12 sm:text-18 text-tw-grey-darkest w-3/4"  >{{data.reward | fee}}{{' XAS'}}</span>
           </div>
         </div>
-        <div class="w-1/5 text-right text-24 text-tw-green">
+        <div class="w-1/5 text-right xs:text-18 sm:text-24 text-tw-blue">
           {{data.timestamp | secFromNow}}{{$t('SECOND_BEFORE')}}
+        </div>
+        <div class="right-icon">
+          <i class="material-icons text-48 text-tw-grey-lighter opacity-25">timeline</i>
         </div>
       </div>
     </div>
@@ -25,19 +28,22 @@
       <div v-if="data">
         <div class="w-full">
           <div class="flex items-center mb-20">
-            <span class="w-1/5 text-tw-grey-lighter">{{$t('TRANSACTION_ID')}}</span>
+            <span class="w-1/5 xs:text-12 sm:text-18 text-tw-grey-darkest">{{$t('TRANSACTION_ID')}}</span>
             <span :class="linkClass" @click="doSearch(data.id)">{{data.id}}</span>
           </div>
-          <div class="flex items-center mb-20">
-            <span class="mr-20 text-tw-grey-lighter">{{$t('FROM')}}</span>
+          <div class="flex items-center justify-start mb-20">
+            <span class="mr-20 xs:text-12 sm:text-18 text-tw-grey-darkest">{{$t('FROM')}}</span>
             <span :class="addressClass" @click="doSearch(data.senderId)" >{{data.senderId}}</span>
-            <span class="mr-20  text-tw-grey-lighter">{{$t('TO')}}</span>
+            <span class="mx-20 xs:text-12 sm:text-18 text-tw-grey-darkest">{{$t('TO')}}</span>
             <span :class="getProps(data,'recieve')?addressClass:''" @click="doSearch(getProps(data,'recieve'))" >{{getProps(data,'recieve') || '--'}}</span>
           </div>
           <div class="flex items-center">
-            <span class="w-1/5 text-tw-grey-lighter">{{$t('AMOUNT')}}</span>
-            <span class="text-tw-grey-lighter">{{getProps(data) || '--'}}</span>
+            <span class="w-auto mr-20 xs:text-12 sm:text-18 text-tw-grey-darkest">{{$t('AMOUNT')}}</span>
+            <span class="xs:text-12 sm:text-18 text-tw-grey-lighter">{{getProps(data) || '--'}}</span>
           </div>
+        </div>
+        <div class="right-icon">
+          <i class="material-icons text-48 text-tw-grey-lighter opacity-25">timeline</i>
         </div>
       </div>
     </div>
@@ -83,13 +89,13 @@ export default {
   computed: {
     ...mapGetters(['assetMap']),
     linkClass() {
-      return 'truncate text-tw-white hover:text-tw-green w-3/4 cursor-pointer'
+      return 'truncate xs:text-12 sm:text-18 text-tw-blue hover:underline w-3/4 cursor-pointer'
     },
     addressClass() {
-      return 'truncate text-tw-white hover:text-tw-green cursor-pointer w-2/5'
+      return 'truncate xs:text-12 sm:text-18 text-tw-blue hover:underline cursor-pointer w-1/3'
     },
     labelClass() {
-      return 'w-1/4 text-tw-grey-lighter'
+      return 'w-1/4 xs:text-12 sm:text-18 text-tw-grey-darkest'
     }
   }
 }

@@ -2,12 +2,12 @@
   <div class="">
     <div class="flex justify-between items-center mb-30">
       <div class="flex items-center">
-        <i class="material-icons text-24 text-tw-green mr-10">{{isTrans}}</i>
-        <span class="text-24 text-tw-grey">{{panelName}}</span>
+        <i class="material-icons text-26 text-tw-grey-darkest mr-10">{{isTrans}}</i>
+        <span class="text-24 text-tw-grey-darkest">{{panelName}}</span>
       </div>
       <div class="flex justify-end">
         <!-- <div class=""></div> -->
-        <div class="text-14 text-tw-grey hover:text-tw-green border border-solid border-tw-grey hover:border-tw-green px-11 py-6 cursor-pointer" @click="open">
+        <div class="text-14 text-tw-white bg-tw-black-lighter hover:bg-tw-blue  px-11 py-6 cursor-pointer" @click="open">
           {{$t('MORE')}}
         </div>
       </div>

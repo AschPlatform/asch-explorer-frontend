@@ -1,6 +1,6 @@
 <template>
   <transition appear enter-active-class="animated fadeIn" leave-active-class="animated fadeOut">
-    <div class="flex w-full relative-position">
+    <div class="flex relative-position">
       <table class="q-table horizontal-separator highlight loose accountinfo-table margin-t-20 table-tr-td-p-0">
         <tbody class='info-tbody'>
           <tr v-show="data.value != null" v-for="(data, idx) in panelData" :key="idx">
