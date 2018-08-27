@@ -127,7 +127,7 @@ export default {
       let nameField = {
         label: 'DELEGATE_NAME',
         value: name,
-        type: 'address'
+        type: 'delegate'
       }
       let addressField = {
         label: 'ADDRESS',

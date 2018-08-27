@@ -61,9 +61,10 @@ export default {
   },
   data() {
     return {
-      name: '',
       fees: '',
+      balance: 0,
       producedBlocks: 0,
+      address: '',
       approval: '',
       productivity: '',
       data: [],
@@ -109,11 +110,10 @@ export default {
   },
   mounted() {
     this.envalueData()
-    this.getAccountLeft()
   },
   computed: {
-    address() {
-      return this.$route.params.address
+    name() {
+      return this.$route.params.name
     },
     // params() {
     //   return {
@@ -130,7 +130,7 @@ export default {
         },
         {
           label: 'ACCOUNT_BALANCE',
-          value: this.fees
+          value: this.balance
         },
         {
           label: 'BLOCK_NUM',
@@ -158,22 +158,27 @@ export default {
     ...mapActions(['getDelegateDetail', 'getBlocks', 'getAccount']),
     async envalueData() {
       let result = await this.getDelegateDetail({
-        address: this.address
+        name: this.name
       })
       if (result.success) {
         let trans = result.delegate
-        this.name = trans.name
+        this.address = trans.address
         this.fees = convertFee(trans.fees)
         this.producedBlocks = trans.producedBlocks
         this.productivity = trans.productivity
         this.approval = trans.approval
+        this.getAccountLeft()
       }
     },
     async getAccountLeft() {
+      console.log(this.address)
       let result = await this.getAccount(this.address)
       if (result.success && result.account && result.account.xas) {
-        this.fees = convertFee(result.account.xas) + ' XAS'
+        this.balance = convertFee(result.account.xas) + ' XAS'
       }
+    },
+    async getBalance(address) {
+
     },
     async getData(props = this.defaultProps) {
       let res
@@ -214,8 +219,7 @@ export default {
     }
   },
   watch: {
-    address() {
-      this.getAccountLeft()
+    name() {
       this.envalueData()
       this.getData()
     }

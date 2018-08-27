@@ -14,6 +14,7 @@
               <span :class="data.link?`text-primary cursor-pointer`:''" @click="data.link?$router.push(data.link+data.value):null">
                 <span v-if="data.type==='number'" >{{data.value | numSeparator}}</span>
               <span v-else-if="data.type==='timestamp'">{{data.value | formatTimestamp(true)}}</span>
+              <span v-else-if="data.type==='delegate'" class="text-primary cursor-pointer" @click="doSearch(data.value, 'delegate')">{{data.value}}</span>
               <span v-else-if="data.type==='address'" class="text-primary cursor-pointer" @click="doSearch(data.value)">
                   <span v-if="data.nickname" >
                     {{data.nickname}}({{data.value}})
@@ -51,8 +52,8 @@ export default {
     }
   },
   methods: {
-    doSearch(value) {
-      this.$root.$emit('doSearch', value)
+    doSearch(value, type) {
+      this.$root.$emit('doSearch', value, type)
     }
   },
   computed: {
