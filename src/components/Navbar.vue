@@ -6,13 +6,13 @@
       </div>
   
       <div class="xs:hidden sm:flex">
-        <q-btn class="text-16 text-tw-grey hover:text-tw-blue px-11 md:mr-20" :label="$t('HOME')" flat @click="jump('/')" />
-        <q-btn class="text-16 text-tw-grey hover:text-tw-blue px-11 md:mr-20" flat :label="$t('DELEGATES')" @click="jump('/delegates')" />
-        <q-btn class="text-16 text-tw-grey hover:text-tw-blue px-11" flat :label="$t('ASSETS')" @click="jump('/assets')" />
+        <q-btn class="text-20 text-tw-white hover:text-tw-blue px-11 md:mr-20" :label="$t('HOME')" flat @click="jump('/')" />
+        <q-btn class="text-20 text-tw-white hover:text-tw-blue px-11 md:mr-20" flat :label="$t('DELEGATES')" @click="jump('/delegates')" />
+        <q-btn class="text-20 text-tw-white hover:text-tw-blue px-11" flat :label="$t('ASSETS')" @click="jump('/assets')" />
       </div>
     </div>
   
-    <div class="xs:w-full sm:w-auto flex xs:content-start sm:justify-between xs:border-t-1 xs:border-b-1 xs:border-l-0 xs:border-r-0 sm:border-none  border-solid border-tw-black-dark xs:pr-15 sm:pr-0">
+    <div class="xs:w-full sm:w-auto flex xs:content-start sm:justify-between xs:border-t-1 xs:border-b-0 xs:border-l-0 xs:border-r-0 sm:border-none  border-solid border-tw-black-dark xs:pt-10 xs:pr-15 sm:pr-0">
       <q-btn class="xs:flex sm:hidden" icon="menu" @click="toggle" />
       <!-- <q-toolbar-title>
       </q-toolbar-title> -->
@@ -73,7 +73,7 @@
           icon: 'search',
           // required function to call when
           // icon is clicked/tapped
-          handler: () => this.$root.$emit('doSearch', this.searchStr),
+          handler: () => this.search(),
           // Optional. Show icon button
           // if model has a value
           content: true

@@ -1,11 +1,11 @@
 <template>
-  <q-page class="max-w-1200 m-auto ">
-    <breadcrumb class="my-20"/>
-    <div class="border border-solid border-grey rounded-lg overflow-hidden xs:overflow-scroll sm:overflow-hidden xs:p-15 sm:p-30">
+  <q-page class="max-w-1200 m-auto xs:p-15 sm:p-0 xs:pb-20 sm:pb-40">
+    <breadcrumb class="xs:mt-5 sm:mt-40" />
+    <div class="border border-solid border-tw-grey rounded-lg overflow-hidden xs:overflow-scroll sm:overflow-hidden xs:px-10 xs:py-15 sm:px-40 sm:py-30">
       <div class="text-14 text-black-dark font-bold">
         {{this.$t('TRANSACTION_INFO')}}
       </div>
-      <boundary-line class="my-20" />
+      <boundary-line class="xs:my-15 sm:my-30" />
       <div class="flex justify-between">
         <info-panel :panelData="panelData" />
         <div class="self-end w-163 xs:hidden sm:block">

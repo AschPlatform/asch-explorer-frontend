@@ -59,7 +59,7 @@ export default {
           icon: 'search',
           // required function to call when
           // icon is clicked/tapped
-          handler: () => this.$root.$emit('doSearch', this.searchStr),
+          handler: () => this.search(),
           // Optional. Show icon button
           // if model has a value
           content: true

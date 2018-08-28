@@ -1,9 +1,9 @@
 <template>
   <q-page class="flex justify-center min-h-0 home-container">
-    <state-banner class="mt-20" :stateData="getRunState" />
-    <div class="flex xs:w-full sm:w-4/5 my-60 xs:px-15 sm:px-0 max-w-1200">
+    <state-banner class="xs:mt-0 sm:mt-20" :stateData="getRunState" />
+    <div class="flex w-full mt-30 mb-10 xs:px-15 sm:px-0 max-w-1200">
       <panel-container class="xs:w-full sm:w-1/2 xs:pr-0 sm:pr-20" type="blocks" />
-      <panel-container class="xs:w-full sm:w-1/2 xs:pr-0 sm:pl-20" type="trans" />
+      <panel-container class="xs:w-full sm:w-1/2 xs:pr-0 sm:pl-20 xs:mt-15 sm:mt-0" type="trans" />
     </div>
   </q-page>
 </template>

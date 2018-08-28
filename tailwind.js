@@ -53,12 +53,13 @@ let colors = {
   'tw-black-lighter': '#2C2E34',
   'tw-black-lightest': '#2D2F34',
   'tw-blue': '#2D98FC',
-  'tw-grey': '#8D90A3',
+  'tw-grey': '#E0E1E5',
   'tw-grey-dark': '#24252A',
   'tw-grey-darker': '#E0E1E5',
   'tw-grey-darkest': '#6A737D',
   'tw-grey-light': '#9DA0B5',
   'tw-grey-lighter': '#818496',
+  'tw-grey-lightet': '#FAFBFC',
   'tw-green': '#3A9FFE',
   'tw-green-light': '#18AE7C',
   'tw-white': '#FFFFFF'
@@ -163,7 +164,8 @@ module.exports = {
     '28': '28px',
     '36': '36px',
     '40': '40px',
-    '48': '48px'
+    '48': '48px',
+    '60': '60px'
   },
 
   /*
@@ -550,16 +552,18 @@ module.exports = {
 
   padding: {
     '0': '0px',
+    '3': '3px',
     '6': '6px',
+    '10': '10px',
     '11': '11px',
+    '12': '12px',
     '15': '15px',
     '18': '18px',
     '20': '20px',
     '23': '23px',
     '29': '29px',
     '30': '30px',
-    '31': '31px',
-    '39': '39px',
+    '40': '40px',
     '104': '104px'
   },
 
@@ -583,6 +587,7 @@ module.exports = {
     '0': '0px',
     '5': '5px',
     '10': '10px',
+    '15': '15px',
     '18': '18px',
     '19': '19px',
     '20': '20px',
@@ -639,14 +644,10 @@ module.exports = {
   */
 
   shadows: {
-    default: '0 2px 4px 0 rgba(0,0,0,0.10)',
-    'md': '0 4px 8px 0 rgba(0,0,0,0.12), 0 2px 4px 0 rgba(0,0,0,0.08)',
-    'lg': '0 15px 30px 0 rgba(0,0,0,0.11), 0 5px 15px 0 rgba(0,0,0,0.08)',
-    'inner': 'inset 0 2px 4px 0 rgba(0,0,0,0.06)',
-    'outline': '0 0 0 3px rgba(52,144,220,0.5)',
     'none': 'none',
     '0': '0px 0px 0px',
-    '13': '0px 0px 13px rgba(0,0,0,0.1)'
+    '13': '0px 0px 13px rgba(0,0,0,0.1)',
+    '21': '0px 0px 21px rgba(0,0,0,0.13)'
   },
 
   /*

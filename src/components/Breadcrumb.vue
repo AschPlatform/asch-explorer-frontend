@@ -1,5 +1,5 @@
 <template>
-  <q-breadcrumbs class="custom-breadcrumbs-a" v-if="pagePath.length>1" separator=">">
+  <q-breadcrumbs class="xs:my-20 sm:my-40 custom-breadcrumbs-a" v-if="pagePath.length>1" separator=">">
     <q-breadcrumbs-el v-for="(path, idx) in pagePath" :key="idx" :label="$t(_.toUpper(path))" :to="paths[path].path" />
   </q-breadcrumbs>
 </template>

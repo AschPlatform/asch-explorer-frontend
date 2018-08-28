@@ -3,7 +3,7 @@
     <breadcrumb />
     <div class="border border-solid border-grey rounded-lg overflow-hidden xs:overflow-scroll sm:overflow-hidden p-4 mb-4">
       <table-container :data="data" :count="count" :columnsData="columnsData" @getData="getData">
-        <template slot="content" slot-scope="props" v-if="props.props">
+        <!-- <template slot="content" slot-scope="props" v-if="props.props">
           <q-td v-if="props.props.height" key="height">
             <div class="text-primary cursor-pointer" @click="doSearch(props.props.height)">
               {{ props.props.height }}
@@ -35,6 +35,9 @@
             <span v-if="props.props.fees">{{ props.props.fees | fee }}</span>
             <span v-else>--</span>
           </q-td>
+        </template> -->
+        <template slot="items" slot-scope="props" v-if="props.props">
+          <table-item  :data="getTableData(props)" />
         </template>
       </table-container>
     </div>
@@ -45,10 +48,12 @@
 </style>
 
 <script>
+/* eslint-disable */
 import { QPage, QTd, QTooltip } from 'quasar'
 import Breadcrumb from '../components/Breadcrumb'
 import TableContainer from '../components/TableContainer'
-import { fulltimestamp } from '../utils/util'
+import { fulltimestamp, convertFee } from '../utils/util'
+import TableItem from '../components/TableItem'
 import { mapActions } from 'vuex'
 
 export default {
@@ -58,7 +63,8 @@ export default {
     Breadcrumb,
     TableContainer,
     QTd,
-    QTooltip
+    QTooltip,
+    TableItem
   },
   data() {
     return {
@@ -129,6 +135,43 @@ export default {
     },
     doSearch(str) {
       this.$root.$emit('doSearch', str)
+    },
+    getTableData(data) {
+      const { id, height, delegate, count, reward, fee, timestamp } = data.props
+      
+      let idField = {
+        label: 'BLOCK_ID',
+        value: id,
+        type: 'id'
+      }
+      let heightField = {
+        label: 'HEIGHT',
+        value: height,
+        type: 'number'
+      }
+      let delegateField = {
+        label: 'BLOCK_GENERATOR',
+        value: delegate
+      }
+      let rewardField = {
+        label: 'FORGE_REWARD',
+        value: convertFee(reward)
+      }
+      // let countField = {
+      //   label: 'TRANS_NUM',
+      //   value: count
+      // }
+      // let feeField = {
+      //   label: 'FEE',
+      //   value: fee
+      // }
+      let timeField = {
+        label: 'FEE',
+        value: timestamp,
+        type: 'countDown'
+      }
+
+      return [idField, heightField, delegateField, rewardField, timeField]
     }
   },
   computed: {

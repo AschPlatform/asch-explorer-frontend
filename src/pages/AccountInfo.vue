@@ -93,6 +93,7 @@ import BoundaryLine from '../components/BoundaryLine'
 import Breadcrumb from '../components/Breadcrumb'
 import InfoPanel from '../components/InfoPanel'
 import TableItem from '../components/TableItem'
+import PanelItem from '../components/PanelItem'
 import TableContainer from '../components/TableContainer'
 import { convertFee, toastError, fulltimestamp } from '../utils/util'
 import { transTypes } from '../utils/constants'
@@ -110,6 +111,7 @@ export default {
     QBtnGroup,
     QBtnToggle,
     TableItem,
+    PanelItem,
     QBtn,
     QTd,
     QTooltip
@@ -369,19 +371,19 @@ export default {
     },
     // get data array for tableItem
     getTableData(data) {
-      const { id, height, recipientId, senderId, currency, args = [], fee, timestamp } = data
+      const { id = null, tid = null, recipientId, senderId, timestamp } = data
 
       let idField = {
         label: 'TRANSACTION_ID',
-        value: id,
+        value: id || tid,
         type: 'id'
       }
 
-      let heightField = {
-        label: 'HEIGHT',
-        value: height,
-        type: 'number'
-      }
+      // let heightField = {
+      //   label: 'HEIGHT',
+      //   value: height,
+      //   type: 'number'
+      // }
 
       let timeField = {
         label: 'TIME',
@@ -398,16 +400,16 @@ export default {
         value: this.getTransType(data)
       }
 
-      let argsField = {
-        label: 'ARGUMENTS',
-        // value: args && args.join(' ')
-        value: args && args.join('').substring(0, 5)
-      }
+      // let argsField = {
+      //   label: 'ARGUMENTS',
+      //   // value: args && args.join(' ')
+      //   value: args && args.join('').substring(0, 5)
+      // }
 
-      let feeField = {
-        label: 'FEE',
-        value: convertFee(fee)
-      }
+      // let feeField = {
+      //   label: 'FEE',
+      //   value: convertFee(fee)
+      // }
 
       let receiverField = {
         label: 'TRANS_RECRIVER',
@@ -415,28 +417,24 @@ export default {
         type: 'address'
       }
 
-      let currencyField = {
-        label: 'ASSET',
-        value: currency
-      }
+      // let currencyField = {
+      //   label: 'ASSET',
+      //   value: currency
+      // }
 
-      let amountField = {
-        label: 'AMOUNT',
-        value: this.getAmount(data)
-      }
+      // let amountField = {
+      //   label: 'AMOUNT',
+      //   value: this.getAmount(data)
+      // }
 
       let tablePanelData =
         this.type === 0
-          ? [idField, heightField, timeField, typeField, senderField, argsField, feeField]
+          ? [idField, timeField, typeField, senderField]
           : [
               idField,
-              heightField,
               timeField,
               senderField,
-              receiverField,
-              amountField,
-              currencyField,
-              feeField
+              receiverField
             ]
 
       return tablePanelData
