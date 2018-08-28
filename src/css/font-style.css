@@ -24,81 +24,81 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
-.icon-icon_accounts:before {
-  content: "\1f32b";
+.icon-accounts:before {
+  content: "\e900";
 }
-.icon-icon_asch:before {
+.icon-asch:before {
   content: "\e901";
 }
-.icon-icon_block-height:before {
+.icon-block-height:before {
   content: "\e902";
 }
-.icon-icon_block:before {
+.icon-block:before {
   content: "\e903";
 }
-.icon-icon_data:before {
+.icon-data:before {
   content: "\e904";
 }
-.icon-icon_delet:before {
+.icon-delete:before {
   content: "\e905";
 }
-.icon-icon_details:before {
+.icon-details:before {
   content: "\e906";
 }
-.icon-icon_forging:before {
+.icon-forging:before {
   content: "\e907";
 }
-.icon-icon_height:before {
+.icon-height:before {
   content: "\e908";
 }
-.icon-icon_issue:before {
+.icon-issue:before {
   content: "\e909";
 }
-.icon-icon_left:before {
+.icon-left:before {
   content: "\e90a";
 }
-.icon-icon_light:before {
+.icon-light:before {
   content: "\e90b";
 }
-.icon-icon_More:before {
+.icon-More:before {
   content: "\e90c";
 }
-.icon-icon_Numberof-users:before {
+.icon-Numberof-users:before {
   content: "\e90d";
 }
-.icon-icon_Operating-days:before {
+.icon-Operating-days:before {
   content: "\e90e";
 }
-.icon-icon_QR-code:before {
+.icon-QR-code:before {
   content: "\e90f";
 }
-.icon-icon_right:before {
+.icon-right:before {
   content: "\e910";
 }
-.icon-icon_rightset:before {
+.icon-rightset:before {
   content: "\e911";
 }
-.icon-icon_search:before {
+.icon-search:before {
   content: "\e912";
 }
-.icon-icon_Token:before {
+.icon-Token:before {
   content: "\e913";
 }
-.icon-icon_Totalmarket-value:before {
+.icon-Totalmarket-value:before {
   content: "\e914";
 }
-.icon-icon_transaction:before {
+.icon-transaction:before {
   content: "\e915";
 }
-.icon-icon_Transfer-accounts:before {
+.icon-Transfer-accounts:before {
   content: "\e916";
 }
-.icon-icon_Trustee:before {
+.icon-Trustee:before {
   content: "\e917";
 }
-.icon-icon_turn:before {
+.icon-turn:before {
   content: "\e918";
 }
-.icon-icon_watermark:before {
+.icon-watermark:before {
   content: "\e919";
 }
