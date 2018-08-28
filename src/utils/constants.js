@@ -129,6 +129,10 @@ const urls = {
   // 获取指定币种账户数
   holders: {
     url: '/api/v2/uia/assets/:name'
+  },
+  // 获取XAS市值
+  price: {
+    url: '/api/v2/misc/marketinfo'
   }
 
   // 区分 local 与 mainnet 的请求头参数

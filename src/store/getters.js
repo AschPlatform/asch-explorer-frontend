@@ -22,6 +22,16 @@ export default {
           Math.abs(Date.now() - new Date(2016, 8, 16, 0, 0, 0).getTime()) / (3600 * 24 * 1e3)
         ),
         label: 'RUNNING_DAYS'
+      },
+      {
+        icon: 'bar_chart',
+        value: Number(runState.assetCount),
+        label: 'ISSUED_NUM'
+      },
+      {
+        icon: 'bar_chart',
+        value: Number(runState.totalPrice),
+        label: 'TOTAL_PRICE'
       }
     ]
   },

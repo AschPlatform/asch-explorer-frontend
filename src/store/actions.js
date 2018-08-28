@@ -119,6 +119,17 @@ export default {
       commit('SET_ASSET_MAP', result.assets)
     }
   },
+  // 获取资产数量
+  getAssetNum: async ({
+    commit,
+    state
+  }, params) => {
+    let result = await api.assets({
+      limit: 999
+    })
+    let count = result.count
+    commit('SET_ASSET_NUMBER', count)
+  },
   // 获取资产列表 - 获取需要
   getAssetsShow: ({
     commit,
@@ -139,6 +150,15 @@ export default {
     state
   }, params) => {
     return api.holders(params)
+  },
+  // 获取XAS市值
+  getXasPrice: async ({
+    commit,
+    state
+  }, params) => {
+    let result = await api.xasPrice(params)
+    let info = result.marketinfo
+    commit('SET_TOTALPRICE', info)
   },
   setLoadingflag: ({
     commit,

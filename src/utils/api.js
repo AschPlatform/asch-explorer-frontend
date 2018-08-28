@@ -145,6 +145,11 @@ api.uiaAsset = params => {
   return fetch(urls.uiaAssetApi, params, 'get')
 }
 
+// 获取XAS市值
+api.xasPrice = params => {
+  return fetch(urls.price, params, 'get')
+}
+
 // api.deposit = params => {
 //   return createInTransfer(urls.dappId[process.env.NODE_ENV], 'koumei.KMC', params.amount, params.secret, params.secondPassword || '')
 // }
