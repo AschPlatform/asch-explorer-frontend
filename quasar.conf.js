@@ -11,7 +11,8 @@ module.exports = function (ctx) {
     ],
     css: [
       'tailwindOutput.css',
-      'app.styl'
+      'app.styl',
+      'font-style.css'
     ],
     extras: [
       ctx.theme.mat ? 'roboto-font' : null,

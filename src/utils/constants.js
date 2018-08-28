@@ -30,7 +30,7 @@ const REGEX = {
 // }
 
 const host = {
-  development: 'http://mainnet.asch.cn',
+  development: 'http://47.93.138.148:8192',
   production: 'http://mainnet.asch.cn'
   // production: 'https://webnode.asch.io:443'
 }
