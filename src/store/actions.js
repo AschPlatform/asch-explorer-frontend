@@ -160,6 +160,13 @@ export default {
     let info = result.marketinfo
     commit('SET_TOTALPRICE', info)
   },
+  // 获取受托人产块信息
+  getDelegateBlock: ({
+    commit,
+    state
+  }, params) => {
+    return api.getDelegateBlock(params)
+  },
   setLoadingflag: ({
     commit,
     state

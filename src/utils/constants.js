@@ -133,6 +133,10 @@ const urls = {
   // 获取XAS市值
   price: {
     url: '/api/v2/misc/marketinfo'
+  },
+  // 获取受托人产块列表
+  delegateBlock: {
+    url: '/api/v2/blocks/forgedby/:name'
   }
 
   // 区分 local 与 mainnet 的请求头参数
