@@ -57,7 +57,6 @@
 </template>
 
 <script>
-/* eslint-disable */
 import { QPage, QTd, QTooltip } from 'quasar'
 import Breadcrumb from '../components/Breadcrumb'
 import BoundaryLine from '../components/BoundaryLine'
@@ -261,9 +260,7 @@ export default {
       // return args[len - 2]
     },
     getTableData(data) {
-      const { id, type, senderId, amount, args = [], fee, timestamp } = data.props
-      console.log(data)
-
+      const { id, senderId, timestamp } = data.props
       let idField = {
         label: 'TRANSACTION_ID',
         value: id,
@@ -278,14 +275,14 @@ export default {
         value: senderId,
         type: 'address'
       }
-      let feeField = {
-        label: 'FEE',
-        value: fee
-      }
-      let argsField = {
-        label: 'ARGUMENTS',
-        value: args.join(',')
-      }
+      // let feeField = {
+      //   label: 'FEE',
+      //   value: fee
+      // }
+      // let argsField = {
+      //   label: 'ARGUMENTS',
+      //   value: args.join(',')
+      // }
       let timeField = {
         label: 'TRANS_TIME',
         value: fulltimestamp(timestamp),

@@ -37,7 +37,6 @@
 </template>
 
 <script>
-/* eslint-disable */
 import { QPage, QTd, QTooltip } from 'quasar'
 import Breadcrumb from '../components/Breadcrumb'
 import BoundaryLine from '../components/BoundaryLine'
@@ -171,7 +170,6 @@ export default {
       }
     },
     async getAccountLeft() {
-      console.log(this.address)
       let result = await this.getAccount(this.address)
       if (result.success && result.account && result.account.xas) {
         this.balance = convertFee(result.account.xas) + ' XAS'
