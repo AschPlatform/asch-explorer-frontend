@@ -30,7 +30,7 @@ const REGEX = {
 // }
 
 const host = {
-  development: 'http://mainnet.asch.cn',
+  development: 'http://47.93.138.148:8192',
   production: 'http://mainnet.asch.cn'
   // production: 'https://webnode.asch.io:443'
 }
@@ -125,6 +125,18 @@ const urls = {
   // 获取指定币种账户余额
   balance: {
     url: '/api/v2/balances/:address/:currency'
+  },
+  // 获取指定币种账户数
+  holders: {
+    url: '/api/v2/uia/assets/:name'
+  },
+  // 获取XAS市值
+  price: {
+    url: '/api/v2/misc/marketinfo'
+  },
+  // 获取受托人产块列表
+  delegateBlock: {
+    url: '/api/v2/blocks/forgedby/:name'
   }
 
   // 区分 local 与 mainnet 的请求头参数

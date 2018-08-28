@@ -50,7 +50,7 @@ export default {
     }
   },
   methods: {
-    ...mapActions(['getHeight', 'getUsers', 'getXas', 'getAssets']),
+    ...mapActions(['getHeight', 'getUsers', 'getXas', 'getAssets', 'getAssetNum', 'getXasPrice']),
     openURL,
     doSearch(str, type) {
       if (this.searchForbidden) return
@@ -68,6 +68,7 @@ export default {
         return
       }
       if (type === 'asset') {
+        str = str.replace('.', '-')
         router.push(`/asset/${str}`)
         return
       }
@@ -103,6 +104,8 @@ export default {
   mounted() {
     // init state
     this.getUsers()
+    this.getXasPrice()
+    this.getAssetNum()
     this.getXas()
     this.getHeight()
     this.setLang()

@@ -7,7 +7,7 @@
     <table-container class="mt-4" :data="data" :count="count" :params="params" :columnsData="columnsData" @getData="getData">
       <!-- <template slot="content" slot-scope="props" v-if="props.props">
         <q-td v-if="props.props.name" key="asset">
-          <div class="text-primary cursor-pointer" @click="doSearch(props.props.name.replace('.', '-'), 'asset')">
+          <div class="text-primary cursor-pointer" @click="doSearch(props.props.name, 'asset')">
             {{ props.props.name.split('.')[1] }}
             <q-tooltip>{{ props.props.name }}</q-tooltip>
           </div>

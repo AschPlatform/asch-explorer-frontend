@@ -119,6 +119,17 @@ export default {
       commit('SET_ASSET_MAP', result.assets)
     }
   },
+  // 获取资产数量
+  getAssetNum: async ({
+    commit,
+    state
+  }, params) => {
+    let result = await api.assets({
+      limit: 999
+    })
+    let count = result.count
+    commit('SET_ASSET_NUMBER', count)
+  },
   // 获取资产列表 - 获取需要
   getAssetsShow: ({
     commit,
@@ -132,6 +143,29 @@ export default {
     state
   }, params) => {
     return api.uiaAsset(params)
+  },
+  // 获取侧链资产持币用户数
+  getHolders: ({
+    commit,
+    state
+  }, params) => {
+    return api.holders(params)
+  },
+  // 获取XAS市值
+  getXasPrice: async ({
+    commit,
+    state
+  }, params) => {
+    let result = await api.xasPrice(params)
+    let info = result.marketinfo
+    commit('SET_TOTALPRICE', info)
+  },
+  // 获取受托人产块信息
+  getDelegateBlock: ({
+    commit,
+    state
+  }, params) => {
+    return api.getDelegateBlock(params)
   },
   setLoadingflag: ({
     commit,

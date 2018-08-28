@@ -2,7 +2,8 @@
   <div class="flex-wrap">
     <div class="flex xs:w-1/2 sm:w-1/2 md:w-1/4 lg:w-1/4 justify-center items-center h-16 xs:border-0 sm:border border-solid border-grey-dark sm:border-l-0 sm:border-t-0 sm:border-b-0" v-for="(state,idx) in stateData" :key="idx">
       <div>
-        <q-icon class="text-5xl" :name="state.icon" />
+        <!-- <q-icon class="text-5xl" :name="state.icon" /> -->
+        <i :class="'text-5xl ' + state.icon"></i>
       </div>
       <div class="ml-2">
         <div class="text-light-grey text-13">
