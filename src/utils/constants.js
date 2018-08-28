@@ -125,6 +125,10 @@ const urls = {
   // 获取指定币种账户余额
   balance: {
     url: '/api/v2/balances/:address/:currency'
+  },
+  // 获取指定币种账户数
+  holders: {
+    url: '/api/v2/uia/assets/:name'
   }
 
   // 区分 local 与 mainnet 的请求头参数

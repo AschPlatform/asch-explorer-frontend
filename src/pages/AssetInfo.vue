@@ -64,6 +64,7 @@ export default {
         this.time = fulltimestamp(data.timestamp)
         this.precision = data.precision
         this.address = data.issuerId
+        this.account = data.holders
       }
     }
   },

@@ -68,6 +68,7 @@ export default {
         return
       }
       if (type === 'asset') {
+        str = str.replace('.', '-')
         router.push(`/asset/${str}`)
         return
       }

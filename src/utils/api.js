@@ -112,6 +112,11 @@ api.assets = params => {
   return fetch(urls.assets, params, 'get')
 }
 
+// 获取指定资产的持币用户数
+api.holders = params => {
+  return fetch(urls.holders, params, 'get')
+}
+
 // 获取转账记录
 api.getTransfers = params => {
   return fetch(urls.transfers, params, 'get')

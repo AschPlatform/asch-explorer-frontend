@@ -133,6 +133,13 @@ export default {
   }, params) => {
     return api.uiaAsset(params)
   },
+  // 获取侧链资产持币用户数
+  getHolders: ({
+    commit,
+    state
+  }, params) => {
+    return api.holders(params)
+  },
   setLoadingflag: ({
     commit,
     state
