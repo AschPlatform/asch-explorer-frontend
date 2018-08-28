@@ -59,8 +59,8 @@ export default {
         let data = result.asset
         this.desc = data.desc
         this.issuer = this.name.split('.')[0]
-        this.max = data.maximumShow
-        this.publish = data.quantityShow
+        this.max = data.maximum
+        this.publish = data.quantity
         this.time = fulltimestamp(data.timestamp)
         this.precision = data.precision
         this.address = data.issuerId
