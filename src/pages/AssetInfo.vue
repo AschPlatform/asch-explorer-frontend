@@ -1,12 +1,17 @@
 <template>
   <q-page class="max-w-1200 m-auto xs:pl-2 xs:pr-2 sm:pl-0 sm:pr-0 pb-16">
-    <breadcrumb />
-    <div class="border border-solid border-grey rounded-lg overflow-hidden xs:overflow-scroll sm:overflow-hidden p-4 mb-4">
+    <breadcrumb class="my-20" />
+    <div class="border border-solid border-grey rounded-lg overflow-hidden xs:overflow-scroll sm:overflow-hidden xs:p-15 sm:p-30">
       <div class="text-14 text-black-dark font-bold">
         {{this.$t('ASSET_INFO')}}
       </div>
       <boundary-line class="mt-2 mb-8" />
-      <info-panel :panelData="panelData" />
+      <div class="flex justify-between">
+        <info-panel :panelData="panelData" />
+        <div class="self-end w-163 xs:hidden sm:block">
+          <img class="w-full" :src="infoImge" alt="">
+        </div>
+      </div>
       <div class="text-14 text-black-dark font-bold">
         {{this.$t('ASSET_DESC')}}
       </div>
@@ -28,6 +33,7 @@ import BoundaryLine from '../components/BoundaryLine'
 import InfoPanel from '../components/InfoPanel'
 import { mapActions } from 'vuex'
 import { fulltimestamp } from '../utils/util'
+import infoImge from '../assets/asch_logo.png'
 
 export default {
   name: 'AssetInfo',
@@ -39,6 +45,7 @@ export default {
   },
   data() {
     return {
+      infoImge,
       desc: '',
       account: 0,
       issuer: '',

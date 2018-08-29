@@ -1,15 +1,16 @@
 <template>
   <transition appear enter-active-class="animated fadeIn" leave-active-class="animated fadeOut">
-    <div class="flex w-full relative-position">
+    <div class="flex relative-position">
       <table class="q-table horizontal-separator highlight loose accountinfo-table margin-t-20 table-tr-td-p-0">
-        <tbody class='info-tbody'>
+        <tbody :class='tableTbodyMobile'>
           <tr v-show="data.value != null" v-for="(data, idx) in panelData" :key="idx">
-            <td class="w-1/6">{{$t(data.label)}}</td>
-            <td class="w-2/3 text-xs">
+            <td v-if="data.label" class="w-auto pl-0">{{$t(data.label)}} :</td>
+            <td v-else class="w-auto pl-0">{{$t(data.label)}}</td>
+            <td class="xs:w-5/6 sm:w-auto">
               <span :class="data.link?`text-primary cursor-pointer`:''" @click="data.link?$router.push(data.link+data.value):null">
                               <span v-if="data.type==='number'" >{{data.value | numSeparator}}</span>
               <span v-else-if="data.type==='timestamp'">{{data.value | formatTimestamp}}</span>
-              <span v-else-if="data.type==='address'" class="text-primary cursor-pointer" @click="doSearch(data.value)">
+              <span v-else-if="data.type==='address'" class="text-tw-blue cursor-pointer" @click="doSearch(data.value)">
                 <span v-if="data.nickname">
                   {{data.nickname}}({{data.value}})
                 </span>
@@ -17,17 +18,17 @@
                   {{data.value}}
                 </span>
               </span>
-              <pre v-else-if="data.type==='id'" class="custom-pre-wrap">{{data.value}}</pre>
-              <pre v-else-if="data.type==='preBlock'" class="text-primary cursor-pointer" @click="doSearch(data.value, 'id')">{{data.value}}</pre>
-              <pre v-else-if="data.type==='argStr'" class="custom-pre-wrap">{{data.value}}</pre>
-              <span v-else-if="data.type==='block'" class="text-primary cursor-pointer" @click="doSearch(data.value)">{{data.value}}</span>
-              <span v-else-if="data.type==='qr'" class="text-primary cursor-pointer" @click="doSearch(data.value)">
+              <span v-else-if="data.type==='id'">{{data.value}}</span>
+              <span v-else-if="data.type==='preBlock'" class="text-tw-blue cursor-pointer" @click="doSearch(data.value, 'id')">{{data.value}}</span>
+              <span v-else-if="data.type==='argStr'" class="text-tw-grey-darkest">{{data.value}}</span>
+              <span v-else-if="data.type==='block'" class="text-tw-blue cursor-pointer" @click="doSearch(data.value)">{{data.value}}</span>
+              <span v-else-if="data.type==='qr'" class="text-tw-grey-darkest" @click="doSearch(data.value)">
                 {{data.value}}
                 <span class="qr-right-container" @click="showAddrQr(data.value)">
-                  <vue-qr class="add-qr-container" :size="20" :text="data.value"></vue-qr>
+                  <vue-qr class="add-qr-container text-tw-blue" :colorDark="qrDark" :colorLight="qrLight" autoColor :size="16" :text="data.value"></vue-qr>
                 </span>
               </span>
-              <span v-else> {{data.value}} </span>
+              <span v-else>{{data.value}} </span>
               </span>
             </td>
           </tr>
@@ -43,7 +44,7 @@
 <script>
 import { QInnerLoading, QSpinnerGears } from 'quasar'
 import ICountUp from 'vue-countup-v2'
-import { toast } from '../utils/util'
+import { toast, isDesktop } from '../utils/util'
 import { mapActions, mapGetters } from 'vuex'
 import VueQr from 'vue-qr'
 
@@ -58,6 +59,8 @@ export default {
   },
   data() {
     return {
+      qrDark: '#2D98FC',
+      qrLight: '#FFFFFF',
       visible: true,
       isDisable: false
     }
@@ -94,10 +97,13 @@ export default {
     }
   },
   computed: {
-    ...mapGetters(['loadingBool'])
-    // loadingFlg() {
-    //   return this.loadingBool
-    // }
+    ...mapGetters(['loadingBool']),
+    tableTbodyMobile() {
+      return this.isDesktop ? 'info-tbody table-desktop' : 'info-tbody table-mobile'
+    },
+    isDesktop() {
+      return isDesktop()
+    }
   },
   watch: {
     panelData() {
@@ -108,11 +114,12 @@ export default {
 </script>
 
 <style lang="stylus" scoped>
-  .qr-right-container {
-    cursor: pointer;
-  }
-  .add-qr-container {
-    display: inline-block;
-    vertical-align: middle !important;
-  }
+.qr-right-container {
+  cursor: pointer;
+}
+
+.add-qr-container {
+  display: inline-block;
+  vertical-align: middle !important;
+}
 </style>

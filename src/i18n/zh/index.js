@@ -138,7 +138,7 @@ const lang = {
   FORGE: '锻造',
   FROM: '从',
   TO: '至',
-  MORE: '更多',
+  MORE: 'MORE',
   SECOND_BEFORE: '秒前',
   DELEGATE: '受托人',
   ASSET_INFO: '资产详情',

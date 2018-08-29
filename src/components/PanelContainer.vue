@@ -1,21 +1,18 @@
 <template>
-<div class="">
-   <div class="flex ">
-      <div class="w-10">
-        icon
+  <div class="">
+    <div class="flex justify-between items-center xs:mb-15 sm:mb-30">
+      <div class="flex items-center">
+        <i class="material-icons xs:text-18 sm:text-26 text-tw-grey-darkest mr-10">{{isTrans}}</i>
+        <span class="xs:text-16 sm:text-24 text-tw-grey-darkest font-medium">{{panelName}}</span>
       </div>
-     <div class="flex justify-between w-5/6">
-      <div>
-        {{panelName}}
+      <div class="text-14 text-tw-white bg-tw-black-lighter hover:bg-tw-blue  px-12 py-6 cursor-pointer" @click="open">
+          {{$t('MORE')}}
       </div>
-      <div @click="open">
-        {{$t('MORE')}}
-      </div>
-     </div> 
     </div>
-  <panel-item v-for="(data, idx) in datas" :key="idx" :type="type" :data="data" />
-</div>
+    <panel-item v-for="(data, idx) in datas" :key="idx" :type="type" :data="data" />
+  </div>
 </template>
+
 <script>
 import PanelItem from './PanelItem'
 import { mapActions, mapGetters } from 'vuex'
@@ -24,9 +21,14 @@ import { toastError } from '../utils/util'
 export default {
   name: 'PanelContainer',
   props: ['type'],
-  components: { PanelItem },
+  components: {
+    PanelItem
+  },
   data() {
-    return { datas: null }
+    return {
+      // isTrans: true,
+      datas: null
+    }
   },
   async mounted() {
     this.assetMap.size === 0 && (await this.getAssets())
@@ -34,6 +36,7 @@ export default {
   },
   methods: {
     ...mapActions(['getBlocks', 'getTransactions', 'getAssets']),
+
     async getData() {
       let res
       const conditions = {
@@ -57,6 +60,9 @@ export default {
   },
   computed: {
     ...mapGetters(['getHeight', 'assetMap']),
+    isTrans() {
+      return this.type === 'trans' ? 'swap_horiz' : 'gavel'
+    },
     panelName() {
       const t = this.$t
       return t(this.type === 'trans' ? 'TRANS' : 'FORGE')
@@ -69,5 +75,6 @@ export default {
   }
 }
 </script>
+
 <style lang="stylus" scoped>
 </style>
