@@ -112,6 +112,11 @@ api.assets = params => {
   return fetch(urls.assets, params, 'get')
 }
 
+// 获取指定资产的持币用户数
+api.holders = params => {
+  return fetch(urls.holders, params, 'get')
+}
+
 // 获取转账记录
 api.getTransfers = params => {
   return fetch(urls.transfers, params, 'get')
@@ -138,6 +143,16 @@ api.delegateDetail = params => {
 //  获取资产account
 api.uiaAsset = params => {
   return fetch(urls.uiaAssetApi, params, 'get')
+}
+
+// 获取XAS市值
+api.xasPrice = params => {
+  return fetch(urls.price, params, 'get')
+}
+
+// 获取受托人产块信息
+api.getDelegateBlock = params => {
+  return fetch(urls.delegateBlock, params, 'get')
 }
 
 // api.deposit = params => {

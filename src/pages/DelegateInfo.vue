@@ -154,7 +154,7 @@ export default {
   },
   methods: {
     fulltimestamp,
-    ...mapActions(['getDelegateDetail', 'getBlocks', 'getAccount']),
+    ...mapActions(['getDelegateDetail', 'getBlocks', 'getAccount', 'getDelegateBlock']),
     async envalueData() {
       let result = await this.getDelegateDetail({
         name: this.name
@@ -182,8 +182,8 @@ export default {
       let res
       // For transactions
       // TODO: BLOCKS API should accept address or publickey
-      props.address = this.address
-      res = await this.getBlocks(props)
+      props.name = this.name
+      res = await this.getDelegateBlock(props)
       this.data = res.transactions
       this.count = res.count
     },
