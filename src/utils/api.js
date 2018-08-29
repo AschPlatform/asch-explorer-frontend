@@ -1,7 +1,6 @@
 import axios from './axiosWrap'
 import {
-  urls,
-  host
+  urls
 } from './constants'
 // import {
 //   createInTransfer
@@ -28,7 +27,7 @@ const fetch = (url, data, method, postHeaders) => {
   }
 
   // let realUrl = urls.server.caos + url
-  let realUrl = host[process.env.NODE_ENV] + url
+  let realUrl = urls.serverHost + url
   let type = method.toLowerCase()
   let res = {}
   if (type === 'get') {

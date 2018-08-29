@@ -9,15 +9,20 @@
   "scripts": {
     "lint": "eslint --ext .js,.vue src",
     "build:tw": "./node_modules/.bin/tailwind build ./src/css/tailwind.css -c ./tailwind.js -o ./src/css/tailwindOutput.css",
-    "test": "echo \"No test specified\" && exit 0",
-    "dev": "quasar dev -t ios",
-    "build": "quasar build -t ios & scp -r dist/spa-ios/* root@47.52.37.126:/var/www/html"
+    "test": "gulp test",
+    "pro": "gulp pro",
+    "local": "gulp dev",
+    "dev": "gulp dev & quasar dev -t ios",
+    "build:test": "gulp test & quasar build -t ios",
+    "build": "gulp pro & quasar build -t ios"
   },
   "dependencies": {
     "asch-js": "^1.3.10",
     "axios": "^0.18.0",
     "bignumber": "^1.1.0",
     "countup.js": "^1.9.3",
+    "gulp": "^3.9.1",
+    "gulp-string-replace": "^1.1.1",
     "lodash": "^4.17.10",
     "moment": "^2.22.2",
     "vue-clipboards": "^1.2.4",
