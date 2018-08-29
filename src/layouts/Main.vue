@@ -1,14 +1,12 @@
 <template>
   <q-layout view="lHh Lpr lff">
     <q-layout-header>
-      <!-- <state-banner v-show="isHome" class="desktop-only xs:hidden sm:flex"  :stateData="getRunState" />
-      <search-banner v-show="!isHome"/> -->
       <navbar  />
     </q-layout-header>
     <q-page-container>
       <router-view />
     </q-page-container>
-    <q-layout-footer>
+    <q-layout-footer class="bg-tw-black">
       <footer-bar />
     </q-layout-footer>
     <code-modal :show="QRCodeShow" @close="QRCodeShow = false" :text="QRCodeText" />

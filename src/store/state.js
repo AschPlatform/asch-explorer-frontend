@@ -1,5 +1,5 @@
 export default {
-  locales: ['en', 'zh'],
+  locales: ['En', 'zh'],
   locale: 'zh',
   runState: {
     blockHeight: 0,
