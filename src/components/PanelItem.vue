@@ -1,7 +1,7 @@
 <template>
   <div class="xs:mb-15 sm:mb-30 xs:p-15 sm:p-20 shadow-none hover:shadow-21 border-1 border-solid border-tw-grey-darker panelitem-container">
     <div v-if="type=='blocks'">
-      <div class="right-icon ">
+      <div class="right-icon">
         <i class="material-icons xs:text-24 sm:text-48 text-tw-grey-lighter opacity-25 ">timeline</i>
       </div>
       <div class="w-auto text-right xs:text-12 sm:text-24 text-tw-blue right-top-time">
