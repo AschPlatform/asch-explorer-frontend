@@ -14,7 +14,8 @@
     "local": "gulp dev",
     "dev": "gulp dev & quasar dev -t ios",
     "build:test": "gulp test & quasar build -t ios",
-    "build": "gulp pro & quasar build -t ios"
+    "build": "gulp pro & quasar build -t ios",
+    "deploy": "gulp pro & quasar build -t ios & scp -r dist/spa-ios/* root@47.52.37.126:/var/www/html"
   },
   "dependencies": {
     "asch-js": "^1.3.10",
