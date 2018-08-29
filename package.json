@@ -22,8 +22,6 @@
     "axios": "^0.18.0",
     "bignumber": "^1.1.0",
     "countup.js": "^1.9.3",
-    "gulp": "^3.9.1",
-    "gulp-string-replace": "^1.1.1",
     "lodash": "^4.17.10",
     "moment": "^2.22.2",
     "vue-clipboards": "^1.2.4",
@@ -43,6 +41,8 @@
     "eslint-plugin-promise": "^3.7.0",
     "eslint-plugin-standard": "^3.0.1",
     "eslint-plugin-vue": "^4.3.0",
+    "gulp": "^3.9.1",
+    "gulp-string-replace": "^1.1.1",
     "quasar-cli": "^0.17.0",
     "tailwindcss": "^0.6.4"
   },
