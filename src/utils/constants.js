@@ -29,18 +29,18 @@ const REGEX = {
 //   1007: 'STATE_CHANGE'
 // }
 
-const host = {
-  development: 'http://mainnet.asch.cn',
-  production: 'http://mainnet.asch.cn'
-  // production: 'https://webnode.asch.io:443'
-}
+// const host: 'http://47.93.138.148:8192',
+//   development: 'http://47.93.138.148:8192',
+//   production: 'http://mainnet.asch.cn'
+//   // production: 'https://webnode.asch.io:443'
+// }
 // const dappId = {
 //   development: '91a9aeeaa6609ebd73afc7c542eec02e7510c23a65d2e1db2840c46f74f67ceb',
 //   production: '91a9aeeaa6609ebd73afc7c542eec02e7510c23a65d2e1db2840c46f74f67ceb'
 // }
 
 const urls = {
-  host,
+  serverHost: 'http://47.93.138.148:8192',
   // dappId,
   // server: {
   //   development: `${host.development}/api/dapps/${dappId.development}`,
@@ -192,7 +192,6 @@ export {
   I18N_OPT,
   urls,
   REGEX,
-  host,
   transTypes
   // MARKET_STATE,
   // SELECTION_MAP,
