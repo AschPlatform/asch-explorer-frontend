@@ -2,8 +2,8 @@
   <q-page class="max-w-1200 m-auto xs:p-15 sm:p-0 xs:pb-20 sm:pb-40">
     <breadcrumb class="xs:mt-5 sm:mt-40" />
     <div class="border border-solid border-tw-grey rounded-lg xs:px-10 xs:py-15 sm:px-40 sm:py-30">
-      <table-container :data="data" :count="count" :columnsData="columnsData" @getData="getData">
-        <!-- <template slot="content" slot-scope="props" v-if="props.props">
+    <table-container  class="desktop-only"  :data="data" :count="count" :columnsData="columnsData" @getData="getData">
+        <template class="desktop-only" slot="content" slot-scope="props" v-if="props.props">
           <q-td v-if="props.props.height" key="height">
             <div class="text-primary cursor-pointer" @click="doSearch(props.props.height)">
               {{ props.props.height }}
@@ -35,7 +35,9 @@
             <span v-if="props.props.fees">{{ props.props.fees | fee }}</span>
             <span v-else>--</span>
           </q-td>
-        </template> -->
+        </template>
+      </table-container>
+      <table-container class="mobile-only" :data="data" :count="count" :columnsData="columnsData" @getData="getData">
         <template slot="items" slot-scope="props" v-if="props.props">
           <table-item  :data="getTableData(props)" />
         </template>

@@ -134,6 +134,7 @@ const lang = {
 
   // added
   DELEGATES: '受托人',
+  PERSON: '人',
   ASSETS: '资产',
   // common
   LOADING: '读取中',

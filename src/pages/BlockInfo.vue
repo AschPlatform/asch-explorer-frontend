@@ -13,8 +13,8 @@
         </div>
       </div>
       <boundary-line class="xs:my-20 sm:mt-40 sm:mb-30" />
-      <table-container :data="data" :count="count" :params="params" :columnsData="columnsData" @getData="getData">
-        <!-- <template slot="content" slot-scope="props" v-if="props.props">
+      <table-container class="desktop-only" :data="data" :count="count" :params="params" :columnsData="columnsData" @getData="getData">
+        <template slot="content" slot-scope="props" v-if="props.props">
           <q-td v-if="props.props.id" key="id">
             <div class="text-primary cursor-pointer" @click="doSearch(props.props.id)">
               {{ props.props.id | eclipse }}
@@ -52,9 +52,11 @@
             <span v-if="props.props.fee">{{ props.props.fee | fee }}</span>
             <span v-else>--</span>
           </q-td>
-        </template> -->
+        </template>
+      </table-container>
+      <table-container class="mobile-only" :data="data" :count="count" :params="params" :columnsData="columnsData" @getData="getData">
         <template slot="items" slot-scope="props" v-if="props.props">
-          <table-item  :data="getTableData(props)" />
+          <table-item :smallIconName="smallIconName" :bigIconName="bigIconName"  :data="getTableData(props)" />
         </template>
       </table-container>
     </div>
@@ -88,6 +90,8 @@ export default {
   },
   data() {
     return {
+      smallIconName: 'icon-transaction',
+      bigIconName: 'icon-details',
       infoImge,
       block: '',
       producer: '',

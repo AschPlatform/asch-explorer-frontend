@@ -1,11 +1,14 @@
 <template>
-  <q-page class="max-w-1200 m-auto xs:pl-2 xs:pr-2 sm:pl-0 sm:pr-0 pb-16">
-    <div class="upperSlot mt-4">
-      <span>{{$t('DELEGATE_LIST')}}</span>
-      <span>{{$t('REGIST_DELEGATE')}}: {{count}}</span>
+  <q-page class="max-w-1200 m-auto xs:p-15 sm:p-0 xs:pb-20 sm:pb-40">
+    <div class="upperSlot flex justify-start items-center xs:mt-0 sm:mt-40">
+      <q-icon class="xs:text-14 sm:text-18 text-tw-grey-darkest xs:mr-10 sm:mr-20" name="icon-Trustee" />
+      <span class="xs:text-14 sm:text-16 text-tw-grey-darkest">{{$t('DELEGATE_LIST')}}</span>
     </div>
-    <table-container class="mt-4" :data="data" :count="count" :params="params" :columnsData="columnsData" @getData="getData">
-      <!-- <template slot="content" slot-scope="props" v-if="props.props">
+    <div class="w-full flex justify-end xs:mb-20 mb-40 xs:-mt-20 sm:mt-0">
+      <span class="xs:text-12 sm:text-16 text-tw-blue">{{$t('REGIST_DELEGATE')}}: {{count}}{{$t('PERSON')}}</span>
+    </div>
+    <table-container class="desktop-only" :data="data" :count="count" :params="params" :columnsData="columnsData" @getData="getData">
+      <template slot="content" slot-scope="props" v-if="props.props">
         <q-td v-if="props.props.rate" key="rate" >
           <span>{{ props.props.rate }}</span>
         </q-td>
@@ -30,9 +33,11 @@
         <q-td v-if="props.props.approval" key="approval" >
           <span>{{ props.props.approval + ' %' }}</span>
         </q-td>
-      </template> -->
+      </template>
+    </table-container>
+    <table-container class="mobile-only" :data="data" :count="count" :params="params" :columnsData="columnsData" @getData="getData">
       <template slot="items" slot-scope="props" v-if="props.props">
-        <table-item  :data="getTableData(props.props)" />
+        <table-item :smallIconName="smallIconName" :bigIconName="bigIconName"  :data="getTableData(props.props)" />
       </template>
     </table-container>
   </q-page>
@@ -42,7 +47,7 @@
 </style>
 
 <script>
-import { QPage, QTd, QTooltip } from 'quasar'
+import { QPage, QTd, QTooltip, QIcon } from 'quasar'
 import { mapActions } from 'vuex'
 import TableContainer from '../components/TableContainer'
 import TableItem from '../components/TableItem'
@@ -52,12 +57,15 @@ export default {
   components: {
     QPage,
     QTd,
+    QIcon,
     QTooltip,
     TableContainer,
     TableItem
   },
   data() {
     return {
+      smallIconName: 'icon-transaction',
+      bigIconName: 'icon-details',
       data: [],
       count: 0,
       defaultProps: {
@@ -148,7 +156,14 @@ export default {
         value: approval + ' %'
       }
 
-      return [rateField, nameField, addressField, producedBlocksField, productivityField, approvalField]
+      return [
+        rateField,
+        nameField,
+        addressField,
+        producedBlocksField,
+        productivityField,
+        approvalField
+      ]
     }
   },
   computed: {

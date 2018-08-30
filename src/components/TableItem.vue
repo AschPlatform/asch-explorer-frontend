@@ -1,20 +1,20 @@
 <template>
-  <div class="flex xs:mb-15 sm:mb-30 xs:p-15 sm:p-20 shadow-none hover:shadow-21 border-1 border-solid border-tw-grey-darker panelitem-container">
-    <div class="right-icon">
-      <i :class="rightIcon"></i>
+  <div class="flex xs:mb-15 sm:mb-30 xs:pt-15 xs:pb-5 xs:px-15 sm:p-10 shadow-none hover:shadow-21 border-1 border-solid border-tw-grey-darker panelitem-container relative overflow-hidden">
+    <div class="absolute -mr-15 -mb-15 opacity-8 pin-b pin-r">
+      <q-icon class="text-60 text-tw-grey-lighter" :name="this.bigIconName" />
     </div>
-    <div v-if="hasId && idField" class="flex justify-start items-start w-auto xs:mr-5 sm:mr-10 xs:pt-3 sm:pt-3">
-      <i :class="icIcon"></i>
+    <div v-if="hasId && idField" class="flex justify-start items-start w-auto mr-10">
+      <q-icon class="xs:text-14 sm:text-26 text-tw-blue" :name="this.smallIconName" />
     </div>
-    <table class="w-4/5 flex">
-      <div class="flex" v-if="hasId && idField">
-        <div class="w-1/6 xs:text-12 sm:text-18 text-tw-grey-darkest">{{$t(idField.label)}}</div>
-        <div class="truncate text-tw-blue xs:text-12 sm:text-18 w-5/6" @click="doSearch(idField.value)">{{idField.value}}</div>
+    <table class="w-5/6 flex">
+      <div class="flex w-full" v-if="hasId && idField">
+        <div class="w-1/4 xs:text-12 sm:text-18 text-tw-grey-darkest mb-15">{{$t(idField.label)}}:</div>
+        <div class="truncate text-tw-blue xs:text-12 sm:text-18 w-3/4" @click="doSearch(idField.value)">{{idField.value}}</div>
       </div>
       <tbody class='info-tbody'>
         <tr class="flex" v-for="(arr, idx) in tableData" :key="idx">
           <div class="flex w-full" v-for="(data, index) in arr" :key="index">
-            <td class="w-1/4 xs:text-12 sm:text-18 text-tw-grey-darkest">{{$t(data.label)}}</td>
+            <td class="w-1/4 xs:text-12 sm:text-18 text-tw-grey-darkest mb-15">{{$t(data.label)}}:</td>
             <td class="truncate xs:text-12 sm:text-18 text-tw-grey-darkest w-3/4">
               <span :class="data.link?`text-tw-blue cursor-pointer`:''" @click="data.link?$router.push(data.link+data.value):null">
                 <span v-if="data.type==='number'" >{{data.value | numSeparator}}</span>
@@ -43,15 +43,16 @@
 </template>
 
 <script>
-import { QTd } from 'quasar'
+import { QTd, QIcon } from 'quasar'
 // import { getAddress, convertFee } from '../utils/util'
 // import { mapGetters } from 'vuex'
 
 export default {
   name: 'TableItem',
-  props: ['data', 'iconName', 'idIcon'],
+  props: ['data', 'smallIconName', 'bigIconName', 'idIcon'],
   components: {
-    QTd
+    QTd,
+    QIcon
   },
   data() {
     return {
@@ -81,9 +82,6 @@ export default {
     },
     hasId() {
       return this.data[0].type === 'id'
-    },
-    rightIcon() {
-      return this.iconName + ' xs:text-48 sm:text-48 text-tw-grey-lighter opacity-25'
     },
     icIcon() {
       return this.idIcon + ' xs:text-12 sm:text-20 text-tw-blue material-icons'

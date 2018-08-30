@@ -18,8 +18,8 @@
       <q-btn-toggle v-model="model" class="mt-4 pl-15" flat color="positive" taggle-color="tertiary" text-color="primary" toggle-text-color="positive" @input="changeType" :options="btnGroup">
       </q-btn-toggle>
       <boundary-line class="my-20" />
-      <table-container class="mt-4" :data="data" :count="count" :params="params" :columnsData="columnsData" @getData="getData">
-        <!-- <template class="xs:hidden" slot="content" slot-scope="props" v-if="props.props">
+      <table-container class="desktop-only" :data="data" :count="count" :params="params" :columnsData="columnsData" @getData="getData">
+        <template class="xs:hidden" slot="content" slot-scope="props" v-if="props.props">
           <q-td v-if="props.props.id" key="id">
             <div class="text-primary cursor-pointer" @click="doSearch(props.props.id)">
               {{ props.props.id | eclipse }}
@@ -78,9 +78,11 @@
           <q-td v-if="props.props.transaction && props.props.transaction.fee" key="transferFee" >
             <span>0.1</span>
           </q-td>
-        </template> -->
+        </template>
+      </table-container>
+      <table-container class="mobile-only" :data="data" :count="count" :params="params" :columnsData="columnsData" @getData="getData">
         <template slot="items" slot-scope="props" v-if="props.props">
-          <table-item  :data="getTableData(props.props)" />
+          <table-item :smallIconName="smallIconName" :bigIconName="bigIconName" :data="getTableData(props.props)" />
         </template>
       </table-container>
     </div>
@@ -121,6 +123,8 @@ export default {
     return {
       infoImge,
       model: 0,
+      smallIconName: 'icon-transaction',
+      bigIconName: 'icon-details',
       account: null,
       balances: [],
       type: 0, // trans: 0 , transfer:1
@@ -314,6 +318,7 @@ export default {
     changeType(val) {
       this.type = val
       this.reset()
+      // this.leftIconName()
       // this.getData(this.defaultProps)
     },
     async getData(props = this.defaultProps) {

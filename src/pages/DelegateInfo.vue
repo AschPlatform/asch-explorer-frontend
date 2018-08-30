@@ -12,8 +12,8 @@
           <q-icon class="text-60 text-tw-grayish" name="icon-Trustee" />
         </div>
       </div>
-      <table-container :data="data" :count="count" :params="address" :columnsData="columnsData" @getData="getData">
-        <!-- <template slot="content" slot-scope="props" v-if="props.props">
+      <table-container class="desktop-only" :data="data" :count="count" :params="address" :columnsData="columnsData" @getData="getData">
+        <template slot="content" slot-scope="props" v-if="props.props">
           <q-td v-if="props.props.height" key="height">
             <div class="text-primary cursor-pointer" @click="doSearch(props.props.height)">
               {{ props.props.height }}
@@ -31,9 +31,11 @@
           <q-td v-if="props.props.timestamp" key="timestamp" >
             <span>{{ fulltimestamp(props.props.timestamp) }}</span>
           </q-td>
-        </template> -->
+        </template>
+      </table-container>
+      <table-container class="mobile-only" :data="data" :count="count" :params="address" :columnsData="columnsData" @getData="getData">
         <template slot="items" slot-scope="props" v-if="props.props">
-          <table-item  :data="getTableData(props.props)" />
+          <table-item :smallIconName="smallIconName" :bigIconName="bigIconName"  :data="getTableData(props.props)" />
         </template>
       </table-container>
     </div>
@@ -65,6 +67,8 @@ export default {
   },
   data() {
     return {
+      smallIconName: 'icon-transaction',
+      bigIconName: 'icon-details',
       fees: '',
       balance: 0,
       producedBlocks: 0,

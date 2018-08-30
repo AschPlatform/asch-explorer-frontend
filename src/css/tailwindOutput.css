@@ -384,6 +384,38 @@
   border-collapse: separate;
 }
 
+.group:hover .group-hover\:border-collapse {
+  border-collapse: collapse;
+}
+
+.group:hover .group-hover\:border-separate {
+  border-collapse: separate;
+}
+
+.hover\:border-collapse:hover {
+  border-collapse: collapse;
+}
+
+.hover\:border-separate:hover {
+  border-collapse: separate;
+}
+
+.focus\:border-collapse:focus {
+  border-collapse: collapse;
+}
+
+.focus\:border-separate:focus {
+  border-collapse: separate;
+}
+
+.active\:border-collapse:active {
+  border-collapse: collapse;
+}
+
+.active\:border-separate:active {
+  border-collapse: separate;
+}
+
 .border-tw-transparent {
   border-color: transparent;
 }
@@ -2110,6 +2142,10 @@
   margin: -10px;
 }
 
+.-m-15 {
+  margin: -15px;
+}
+
 .-m-20 {
   margin: -20px;
 }
@@ -2136,6 +2172,16 @@
 .-mx-10 {
   margin-left: -10px;
   margin-right: -10px;
+}
+
+.-my-15 {
+  margin-top: -15px;
+  margin-bottom: -15px;
+}
+
+.-mx-15 {
+  margin-left: -15px;
+  margin-right: -15px;
 }
 
 .-my-20 {
@@ -2188,6 +2234,22 @@
 
 .-ml-10 {
   margin-left: -10px;
+}
+
+.-mt-15 {
+  margin-top: -15px;
+}
+
+.-mr-15 {
+  margin-right: -15px;
+}
+
+.-mb-15 {
+  margin-bottom: -15px;
+}
+
+.-ml-15 {
+  margin-left: -15px;
 }
 
 .-mt-20 {
@@ -2318,6 +2380,10 @@
   padding: 3px;
 }
 
+.p-5 {
+  padding: 5px;
+}
+
 .p-6 {
   padding: 6px;
 }
@@ -2384,6 +2450,16 @@
 .px-3 {
   padding-left: 3px;
   padding-right: 3px;
+}
+
+.py-5 {
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+
+.px-5 {
+  padding-left: 5px;
+  padding-right: 5px;
 }
 
 .py-6 {
@@ -2536,6 +2612,22 @@
 
 .pl-3 {
   padding-left: 3px;
+}
+
+.pt-5 {
+  padding-top: 5px;
+}
+
+.pr-5 {
+  padding-right: 5px;
+}
+
+.pb-5 {
+  padding-bottom: 5px;
+}
+
+.pl-5 {
+  padding-left: 5px;
 }
 
 .pt-6 {
@@ -3997,6 +4089,46 @@
 
   .xs\:bg-contain {
     background-size: contain;
+  }
+
+  .xs\:border-collapse {
+    border-collapse: collapse;
+  }
+
+  .xs\:border-separate {
+    border-collapse: separate;
+  }
+
+  .group:hover .xs\:group-hover\:border-collapse {
+    border-collapse: collapse;
+  }
+
+  .group:hover .xs\:group-hover\:border-separate {
+    border-collapse: separate;
+  }
+
+  .xs\:hover\:border-collapse:hover {
+    border-collapse: collapse;
+  }
+
+  .xs\:hover\:border-separate:hover {
+    border-collapse: separate;
+  }
+
+  .xs\:focus\:border-collapse:focus {
+    border-collapse: collapse;
+  }
+
+  .xs\:focus\:border-separate:focus {
+    border-collapse: separate;
+  }
+
+  .xs\:active\:border-collapse:active {
+    border-collapse: collapse;
+  }
+
+  .xs\:active\:border-separate:active {
+    border-collapse: separate;
   }
 
   .xs\:border-tw-transparent {
@@ -5725,6 +5857,10 @@
     margin: -10px;
   }
 
+  .xs\:-m-15 {
+    margin: -15px;
+  }
+
   .xs\:-m-20 {
     margin: -20px;
   }
@@ -5751,6 +5887,16 @@
   .xs\:-mx-10 {
     margin-left: -10px;
     margin-right: -10px;
+  }
+
+  .xs\:-my-15 {
+    margin-top: -15px;
+    margin-bottom: -15px;
+  }
+
+  .xs\:-mx-15 {
+    margin-left: -15px;
+    margin-right: -15px;
   }
 
   .xs\:-my-20 {
@@ -5803,6 +5949,22 @@
 
   .xs\:-ml-10 {
     margin-left: -10px;
+  }
+
+  .xs\:-mt-15 {
+    margin-top: -15px;
+  }
+
+  .xs\:-mr-15 {
+    margin-right: -15px;
+  }
+
+  .xs\:-mb-15 {
+    margin-bottom: -15px;
+  }
+
+  .xs\:-ml-15 {
+    margin-left: -15px;
   }
 
   .xs\:-mt-20 {
@@ -5925,6 +6087,10 @@
     padding: 3px;
   }
 
+  .xs\:p-5 {
+    padding: 5px;
+  }
+
   .xs\:p-6 {
     padding: 6px;
   }
@@ -5991,6 +6157,16 @@
   .xs\:px-3 {
     padding-left: 3px;
     padding-right: 3px;
+  }
+
+  .xs\:py-5 {
+    padding-top: 5px;
+    padding-bottom: 5px;
+  }
+
+  .xs\:px-5 {
+    padding-left: 5px;
+    padding-right: 5px;
   }
 
   .xs\:py-6 {
@@ -6143,6 +6319,22 @@
 
   .xs\:pl-3 {
     padding-left: 3px;
+  }
+
+  .xs\:pt-5 {
+    padding-top: 5px;
+  }
+
+  .xs\:pr-5 {
+    padding-right: 5px;
+  }
+
+  .xs\:pb-5 {
+    padding-bottom: 5px;
+  }
+
+  .xs\:pl-5 {
+    padding-left: 5px;
   }
 
   .xs\:pt-6 {
@@ -7582,6 +7774,46 @@
 
   .sm\:bg-contain {
     background-size: contain;
+  }
+
+  .sm\:border-collapse {
+    border-collapse: collapse;
+  }
+
+  .sm\:border-separate {
+    border-collapse: separate;
+  }
+
+  .group:hover .sm\:group-hover\:border-collapse {
+    border-collapse: collapse;
+  }
+
+  .group:hover .sm\:group-hover\:border-separate {
+    border-collapse: separate;
+  }
+
+  .sm\:hover\:border-collapse:hover {
+    border-collapse: collapse;
+  }
+
+  .sm\:hover\:border-separate:hover {
+    border-collapse: separate;
+  }
+
+  .sm\:focus\:border-collapse:focus {
+    border-collapse: collapse;
+  }
+
+  .sm\:focus\:border-separate:focus {
+    border-collapse: separate;
+  }
+
+  .sm\:active\:border-collapse:active {
+    border-collapse: collapse;
+  }
+
+  .sm\:active\:border-separate:active {
+    border-collapse: separate;
   }
 
   .sm\:border-tw-transparent {
@@ -9310,6 +9542,10 @@
     margin: -10px;
   }
 
+  .sm\:-m-15 {
+    margin: -15px;
+  }
+
   .sm\:-m-20 {
     margin: -20px;
   }
@@ -9336,6 +9572,16 @@
   .sm\:-mx-10 {
     margin-left: -10px;
     margin-right: -10px;
+  }
+
+  .sm\:-my-15 {
+    margin-top: -15px;
+    margin-bottom: -15px;
+  }
+
+  .sm\:-mx-15 {
+    margin-left: -15px;
+    margin-right: -15px;
   }
 
   .sm\:-my-20 {
@@ -9388,6 +9634,22 @@
 
   .sm\:-ml-10 {
     margin-left: -10px;
+  }
+
+  .sm\:-mt-15 {
+    margin-top: -15px;
+  }
+
+  .sm\:-mr-15 {
+    margin-right: -15px;
+  }
+
+  .sm\:-mb-15 {
+    margin-bottom: -15px;
+  }
+
+  .sm\:-ml-15 {
+    margin-left: -15px;
   }
 
   .sm\:-mt-20 {
@@ -9510,6 +9772,10 @@
     padding: 3px;
   }
 
+  .sm\:p-5 {
+    padding: 5px;
+  }
+
   .sm\:p-6 {
     padding: 6px;
   }
@@ -9576,6 +9842,16 @@
   .sm\:px-3 {
     padding-left: 3px;
     padding-right: 3px;
+  }
+
+  .sm\:py-5 {
+    padding-top: 5px;
+    padding-bottom: 5px;
+  }
+
+  .sm\:px-5 {
+    padding-left: 5px;
+    padding-right: 5px;
   }
 
   .sm\:py-6 {
@@ -9728,6 +10004,22 @@
 
   .sm\:pl-3 {
     padding-left: 3px;
+  }
+
+  .sm\:pt-5 {
+    padding-top: 5px;
+  }
+
+  .sm\:pr-5 {
+    padding-right: 5px;
+  }
+
+  .sm\:pb-5 {
+    padding-bottom: 5px;
+  }
+
+  .sm\:pl-5 {
+    padding-left: 5px;
   }
 
   .sm\:pt-6 {
@@ -11167,6 +11459,46 @@
 
   .md\:bg-contain {
     background-size: contain;
+  }
+
+  .md\:border-collapse {
+    border-collapse: collapse;
+  }
+
+  .md\:border-separate {
+    border-collapse: separate;
+  }
+
+  .group:hover .md\:group-hover\:border-collapse {
+    border-collapse: collapse;
+  }
+
+  .group:hover .md\:group-hover\:border-separate {
+    border-collapse: separate;
+  }
+
+  .md\:hover\:border-collapse:hover {
+    border-collapse: collapse;
+  }
+
+  .md\:hover\:border-separate:hover {
+    border-collapse: separate;
+  }
+
+  .md\:focus\:border-collapse:focus {
+    border-collapse: collapse;
+  }
+
+  .md\:focus\:border-separate:focus {
+    border-collapse: separate;
+  }
+
+  .md\:active\:border-collapse:active {
+    border-collapse: collapse;
+  }
+
+  .md\:active\:border-separate:active {
+    border-collapse: separate;
   }
 
   .md\:border-tw-transparent {
@@ -12895,6 +13227,10 @@
     margin: -10px;
   }
 
+  .md\:-m-15 {
+    margin: -15px;
+  }
+
   .md\:-m-20 {
     margin: -20px;
   }
@@ -12921,6 +13257,16 @@
   .md\:-mx-10 {
     margin-left: -10px;
     margin-right: -10px;
+  }
+
+  .md\:-my-15 {
+    margin-top: -15px;
+    margin-bottom: -15px;
+  }
+
+  .md\:-mx-15 {
+    margin-left: -15px;
+    margin-right: -15px;
   }
 
   .md\:-my-20 {
@@ -12973,6 +13319,22 @@
 
   .md\:-ml-10 {
     margin-left: -10px;
+  }
+
+  .md\:-mt-15 {
+    margin-top: -15px;
+  }
+
+  .md\:-mr-15 {
+    margin-right: -15px;
+  }
+
+  .md\:-mb-15 {
+    margin-bottom: -15px;
+  }
+
+  .md\:-ml-15 {
+    margin-left: -15px;
   }
 
   .md\:-mt-20 {
@@ -13095,6 +13457,10 @@
     padding: 3px;
   }
 
+  .md\:p-5 {
+    padding: 5px;
+  }
+
   .md\:p-6 {
     padding: 6px;
   }
@@ -13161,6 +13527,16 @@
   .md\:px-3 {
     padding-left: 3px;
     padding-right: 3px;
+  }
+
+  .md\:py-5 {
+    padding-top: 5px;
+    padding-bottom: 5px;
+  }
+
+  .md\:px-5 {
+    padding-left: 5px;
+    padding-right: 5px;
   }
 
   .md\:py-6 {
@@ -13313,6 +13689,22 @@
 
   .md\:pl-3 {
     padding-left: 3px;
+  }
+
+  .md\:pt-5 {
+    padding-top: 5px;
+  }
+
+  .md\:pr-5 {
+    padding-right: 5px;
+  }
+
+  .md\:pb-5 {
+    padding-bottom: 5px;
+  }
+
+  .md\:pl-5 {
+    padding-left: 5px;
   }
 
   .md\:pt-6 {
@@ -14752,6 +15144,46 @@
 
   .lg\:bg-contain {
     background-size: contain;
+  }
+
+  .lg\:border-collapse {
+    border-collapse: collapse;
+  }
+
+  .lg\:border-separate {
+    border-collapse: separate;
+  }
+
+  .group:hover .lg\:group-hover\:border-collapse {
+    border-collapse: collapse;
+  }
+
+  .group:hover .lg\:group-hover\:border-separate {
+    border-collapse: separate;
+  }
+
+  .lg\:hover\:border-collapse:hover {
+    border-collapse: collapse;
+  }
+
+  .lg\:hover\:border-separate:hover {
+    border-collapse: separate;
+  }
+
+  .lg\:focus\:border-collapse:focus {
+    border-collapse: collapse;
+  }
+
+  .lg\:focus\:border-separate:focus {
+    border-collapse: separate;
+  }
+
+  .lg\:active\:border-collapse:active {
+    border-collapse: collapse;
+  }
+
+  .lg\:active\:border-separate:active {
+    border-collapse: separate;
   }
 
   .lg\:border-tw-transparent {
@@ -16480,6 +16912,10 @@
     margin: -10px;
   }
 
+  .lg\:-m-15 {
+    margin: -15px;
+  }
+
   .lg\:-m-20 {
     margin: -20px;
   }
@@ -16506,6 +16942,16 @@
   .lg\:-mx-10 {
     margin-left: -10px;
     margin-right: -10px;
+  }
+
+  .lg\:-my-15 {
+    margin-top: -15px;
+    margin-bottom: -15px;
+  }
+
+  .lg\:-mx-15 {
+    margin-left: -15px;
+    margin-right: -15px;
   }
 
   .lg\:-my-20 {
@@ -16558,6 +17004,22 @@
 
   .lg\:-ml-10 {
     margin-left: -10px;
+  }
+
+  .lg\:-mt-15 {
+    margin-top: -15px;
+  }
+
+  .lg\:-mr-15 {
+    margin-right: -15px;
+  }
+
+  .lg\:-mb-15 {
+    margin-bottom: -15px;
+  }
+
+  .lg\:-ml-15 {
+    margin-left: -15px;
   }
 
   .lg\:-mt-20 {
@@ -16680,6 +17142,10 @@
     padding: 3px;
   }
 
+  .lg\:p-5 {
+    padding: 5px;
+  }
+
   .lg\:p-6 {
     padding: 6px;
   }
@@ -16746,6 +17212,16 @@
   .lg\:px-3 {
     padding-left: 3px;
     padding-right: 3px;
+  }
+
+  .lg\:py-5 {
+    padding-top: 5px;
+    padding-bottom: 5px;
+  }
+
+  .lg\:px-5 {
+    padding-left: 5px;
+    padding-right: 5px;
   }
 
   .lg\:py-6 {
@@ -16898,6 +17374,22 @@
 
   .lg\:pl-3 {
     padding-left: 3px;
+  }
+
+  .lg\:pt-5 {
+    padding-top: 5px;
+  }
+
+  .lg\:pr-5 {
+    padding-right: 5px;
+  }
+
+  .lg\:pb-5 {
+    padding-bottom: 5px;
+  }
+
+  .lg\:pl-5 {
+    padding-left: 5px;
   }
 
   .lg\:pt-6 {
@@ -18337,6 +18829,46 @@
 
   .xl\:bg-contain {
     background-size: contain;
+  }
+
+  .xl\:border-collapse {
+    border-collapse: collapse;
+  }
+
+  .xl\:border-separate {
+    border-collapse: separate;
+  }
+
+  .group:hover .xl\:group-hover\:border-collapse {
+    border-collapse: collapse;
+  }
+
+  .group:hover .xl\:group-hover\:border-separate {
+    border-collapse: separate;
+  }
+
+  .xl\:hover\:border-collapse:hover {
+    border-collapse: collapse;
+  }
+
+  .xl\:hover\:border-separate:hover {
+    border-collapse: separate;
+  }
+
+  .xl\:focus\:border-collapse:focus {
+    border-collapse: collapse;
+  }
+
+  .xl\:focus\:border-separate:focus {
+    border-collapse: separate;
+  }
+
+  .xl\:active\:border-collapse:active {
+    border-collapse: collapse;
+  }
+
+  .xl\:active\:border-separate:active {
+    border-collapse: separate;
   }
 
   .xl\:border-tw-transparent {
@@ -20065,6 +20597,10 @@
     margin: -10px;
   }
 
+  .xl\:-m-15 {
+    margin: -15px;
+  }
+
   .xl\:-m-20 {
     margin: -20px;
   }
@@ -20091,6 +20627,16 @@
   .xl\:-mx-10 {
     margin-left: -10px;
     margin-right: -10px;
+  }
+
+  .xl\:-my-15 {
+    margin-top: -15px;
+    margin-bottom: -15px;
+  }
+
+  .xl\:-mx-15 {
+    margin-left: -15px;
+    margin-right: -15px;
   }
 
   .xl\:-my-20 {
@@ -20143,6 +20689,22 @@
 
   .xl\:-ml-10 {
     margin-left: -10px;
+  }
+
+  .xl\:-mt-15 {
+    margin-top: -15px;
+  }
+
+  .xl\:-mr-15 {
+    margin-right: -15px;
+  }
+
+  .xl\:-mb-15 {
+    margin-bottom: -15px;
+  }
+
+  .xl\:-ml-15 {
+    margin-left: -15px;
   }
 
   .xl\:-mt-20 {
@@ -20265,6 +20827,10 @@
     padding: 3px;
   }
 
+  .xl\:p-5 {
+    padding: 5px;
+  }
+
   .xl\:p-6 {
     padding: 6px;
   }
@@ -20331,6 +20897,16 @@
   .xl\:px-3 {
     padding-left: 3px;
     padding-right: 3px;
+  }
+
+  .xl\:py-5 {
+    padding-top: 5px;
+    padding-bottom: 5px;
+  }
+
+  .xl\:px-5 {
+    padding-left: 5px;
+    padding-right: 5px;
   }
 
   .xl\:py-6 {
@@ -20483,6 +21059,22 @@
 
   .xl\:pl-3 {
     padding-left: 3px;
+  }
+
+  .xl\:pt-5 {
+    padding-top: 5px;
+  }
+
+  .xl\:pr-5 {
+    padding-right: 5px;
+  }
+
+  .xl\:pb-5 {
+    padding-bottom: 5px;
+  }
+
+  .xl\:pl-5 {
+    padding-left: 5px;
   }
 
   .xl\:pt-6 {
@@ -21922,6 +22514,46 @@
 
   .xll\:bg-contain {
     background-size: contain;
+  }
+
+  .xll\:border-collapse {
+    border-collapse: collapse;
+  }
+
+  .xll\:border-separate {
+    border-collapse: separate;
+  }
+
+  .group:hover .xll\:group-hover\:border-collapse {
+    border-collapse: collapse;
+  }
+
+  .group:hover .xll\:group-hover\:border-separate {
+    border-collapse: separate;
+  }
+
+  .xll\:hover\:border-collapse:hover {
+    border-collapse: collapse;
+  }
+
+  .xll\:hover\:border-separate:hover {
+    border-collapse: separate;
+  }
+
+  .xll\:focus\:border-collapse:focus {
+    border-collapse: collapse;
+  }
+
+  .xll\:focus\:border-separate:focus {
+    border-collapse: separate;
+  }
+
+  .xll\:active\:border-collapse:active {
+    border-collapse: collapse;
+  }
+
+  .xll\:active\:border-separate:active {
+    border-collapse: separate;
   }
 
   .xll\:border-tw-transparent {
@@ -23650,6 +24282,10 @@
     margin: -10px;
   }
 
+  .xll\:-m-15 {
+    margin: -15px;
+  }
+
   .xll\:-m-20 {
     margin: -20px;
   }
@@ -23676,6 +24312,16 @@
   .xll\:-mx-10 {
     margin-left: -10px;
     margin-right: -10px;
+  }
+
+  .xll\:-my-15 {
+    margin-top: -15px;
+    margin-bottom: -15px;
+  }
+
+  .xll\:-mx-15 {
+    margin-left: -15px;
+    margin-right: -15px;
   }
 
   .xll\:-my-20 {
@@ -23728,6 +24374,22 @@
 
   .xll\:-ml-10 {
     margin-left: -10px;
+  }
+
+  .xll\:-mt-15 {
+    margin-top: -15px;
+  }
+
+  .xll\:-mr-15 {
+    margin-right: -15px;
+  }
+
+  .xll\:-mb-15 {
+    margin-bottom: -15px;
+  }
+
+  .xll\:-ml-15 {
+    margin-left: -15px;
   }
 
   .xll\:-mt-20 {
@@ -23850,6 +24512,10 @@
     padding: 3px;
   }
 
+  .xll\:p-5 {
+    padding: 5px;
+  }
+
   .xll\:p-6 {
     padding: 6px;
   }
@@ -23916,6 +24582,16 @@
   .xll\:px-3 {
     padding-left: 3px;
     padding-right: 3px;
+  }
+
+  .xll\:py-5 {
+    padding-top: 5px;
+    padding-bottom: 5px;
+  }
+
+  .xll\:px-5 {
+    padding-left: 5px;
+    padding-right: 5px;
   }
 
   .xll\:py-6 {
@@ -24068,6 +24744,22 @@
 
   .xll\:pl-3 {
     padding-left: 3px;
+  }
+
+  .xll\:pt-5 {
+    padding-top: 5px;
+  }
+
+  .xll\:pr-5 {
+    padding-right: 5px;
+  }
+
+  .xll\:pb-5 {
+    padding-bottom: 5px;
+  }
+
+  .xll\:pl-5 {
+    padding-left: 5px;
   }
 
   .xll\:pt-6 {

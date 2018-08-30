@@ -12,11 +12,12 @@
           <q-icon class="text-60 text-tw-grayish" name="icon-turn" />
         </div>
       </div>
-      <div class="text-14 text-black-dark font-bold">
+      <boundary-line class="my-30" />
+      <div class="text-20 text-tw-grey-darkest font-medium">
         {{this.$t('ASSET_DESC')}}
       </div>
-      <boundary-line class="mt-2 mb-8" />
-      <div>
+      <boundary-line class="my-30" />
+      <div class="text-16 text-tw-grey-darkest">
         {{this.desc}}
       </div>
     </div>

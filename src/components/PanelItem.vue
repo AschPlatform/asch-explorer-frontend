@@ -1,7 +1,7 @@
 <template>
-  <div class="xs:mb-15 sm:mb-30 xs:p-15 sm:p-20 shadow-none hover:shadow-21 border-1 border-solid border-tw-grey-darker panelitem-container overflow-hidden">
+  <div class="xs:mb-15 sm:mb-30 xs:p-15 sm:p-20 shadow-none hover:shadow-21 border-1 border-solid border-tw-grey-darker panelitem-container overflow-hidden relative">
     <div v-if="type=='blocks'">
-      <div class="right-icon-left ">
+      <div class="right-icon-left absolute -mr-15 -mb-15 pin-b pin-r">
         <q-icon class="xs:text-70 sm:text-70 text-tw-grey-lighter opacity-8" name="icon-block" />
       </div>
       <div :class="isDesktopTime">
@@ -51,7 +51,7 @@
             <span class="xs:text-12 sm:text-18 text-tw-grey-lighter">{{getProps(data) || '--'}}</span>
           </div>
         </div>
-        <div class="right-icon-right">
+        <div class="right-icon-right absolute -mr-20 -mb-10 pin-b pin-r">
           <q-icon class="xs:text-60 sm:text-60 text-tw-grey-lighter opacity-8" name="icon-watermark" />
         </div>
       </div>
@@ -113,10 +113,7 @@ export default {
   computed: {
     ...mapGetters(['assetMap']),
     isDesktopTime() {
-      let rightTopCss = 'w-auto text-right xs:text-12 sm:text-18 text-tw-grey-lighter'
-      return this.isDesktop
-        ? rightTopCss + ' right-top-time-desktop'
-        : rightTopCss + ' right-top-time-mobile'
+      return 'w-auto text-right xs:text-12 sm:text-18 text-tw-grey-lighter absolute xs:pt-15 xs:pr-15 sm:pt-20 sm:pr-20 pin-t pin-r'
     },
     linkClass() {
       return 'truncate xs:text-12 sm:text-18 text-tw-blue hover:underline w-3/4 cursor-pointer'
@@ -135,31 +132,4 @@ export default {
 </script>
 
 <style lang="stylus" scoped>
-.panelitem-container {
-  position: relative;
-
-  .right-icon-left {
-    position: absolute;
-    right: -15px;
-    bottom: -15px;
-  }
-
-  .right-icon-right {
-    position: absolute;
-    right: -18px;
-    bottom: -10px;
-  }
-
-  .right-top-time-desktop {
-    position: absolute;
-    right: 20px;
-    top: 20px;
-  }
-
-  .right-top-time-mobile {
-    position: absolute;
-    right: 15px;
-    top: 15px;
-  }
-}
 </style>
