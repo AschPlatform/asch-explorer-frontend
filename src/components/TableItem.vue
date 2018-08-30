@@ -1,23 +1,28 @@
 <template>
-  <div class="flex">
-    <div v-if="hasId && idField" class="flex w-full text-xs">
-      <div class="absolute pin-l -ml-3">ic</div>
-      <div class="w-1/6 text-xs">{{$t(idField.label)}}</div>
-      <div class="w-5/6 truncate text-primary corsor-pointer" @click="doSearch(idField.value)">{{idField.value}}</div>
+  <div class="flex xs:mb-15 sm:mb-30 xs:p-15 sm:p-20 shadow-none hover:shadow-21 border-1 border-solid border-tw-grey-darker panelitem-container">
+    <div class="right-icon">
+      <i :class="rightIcon"></i>
     </div>
-    <table class="w-full">
+    <div v-if="hasId && idField" class="flex justify-start items-start w-auto xs:mr-5 sm:mr-10 xs:pt-3 sm:pt-3">
+      <i :class="icIcon"></i>
+    </div>
+    <table class="w-4/5 flex">
+      <div class="flex" v-if="hasId && idField">
+        <div class="w-1/6 xs:text-12 sm:text-18 text-tw-grey-darkest">{{$t(idField.label)}}</div>
+        <div class="truncate text-tw-blue xs:text-12 sm:text-18 w-5/6" @click="doSearch(idField.value)">{{idField.value}}</div>
+      </div>
       <tbody class='info-tbody'>
         <tr class="flex" v-for="(arr, idx) in tableData" :key="idx">
-          <div class="flex w-full" v-for="(data, index) in arr " :key="index">
-            <td class="w-1/3 text-xs">{{$t(data.label)}}</td>
-            <td class="w-2/3 text-xs truncate">
-              <span :class="data.link?`text-primary cursor-pointer`:''" @click="data.link?$router.push(data.link+data.value):null">
+          <div class="flex w-full" v-for="(data, index) in arr" :key="index">
+            <td class="w-1/4 xs:text-12 sm:text-18 text-tw-grey-darkest">{{$t(data.label)}}</td>
+            <td class="truncate xs:text-12 sm:text-18 text-tw-grey-darkest w-3/4">
+              <span :class="data.link?`text-tw-blue cursor-pointer`:''" @click="data.link?$router.push(data.link+data.value):null">
                 <span v-if="data.type==='number'" >{{data.value | numSeparator}}</span>
               <span v-else-if="data.type==='timestamp'">{{data.value | formatTimestamp(true)}}</span>
-              <span v-else-if="data.type==='delegate'" class="text-primary cursor-pointer" @click="doSearch(data.value, 'delegate')">{{data.value}}</span>
-              <span v-else-if="data.type==='asset'" class="text-primary cursor-pointer" @click="doSearch(data.value, 'asset')">{{data.value.split('.')[1]}}</span>
+              <span v-else-if="data.type==='delegate'" class="text-tw-blue cursor-pointer" @click="doSearch(data.value, 'delegate')">{{data.value}}</span>
+              <span v-else-if="data.type==='asset'" class="text-tw-blue cursor-pointer" @click="doSearch(data.value, 'asset')">{{data.value.split('.')[1]}}</span>
               <span v-else-if="data.type==='countDown'">{{data.value | secFromNow}} {{$t('SECOND_BEFORE')}}</span>
-              <span v-else-if="data.type==='address'" class="text-primary cursor-pointer" @click="doSearch(data.value)">
+              <span v-else-if="data.type==='address'" class="text-tw-blue cursor-pointer" @click="doSearch(data.value)">
                 <span v-if="data.nickname" >
                   {{data.nickname}}({{data.value}})
                 </span>
@@ -44,7 +49,7 @@ import { QTd } from 'quasar'
 
 export default {
   name: 'TableItem',
-  props: ['data'],
+  props: ['data', 'iconName', 'idIcon'],
   components: {
     QTd
   },
@@ -76,6 +81,12 @@ export default {
     },
     hasId() {
       return this.data[0].type === 'id'
+    },
+    rightIcon() {
+      return this.iconName + ' xs:text-48 sm:text-48 text-tw-grey-lighter opacity-25'
+    },
+    icIcon() {
+      return this.idIcon + ' xs:text-12 sm:text-20 text-tw-blue material-icons'
     }
   }
 }

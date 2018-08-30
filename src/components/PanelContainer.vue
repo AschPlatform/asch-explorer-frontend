@@ -5,8 +5,8 @@
         <i class="material-icons xs:text-18 sm:text-26 text-tw-grey-darkest mr-10">{{isTrans}}</i>
         <span class="xs:text-16 sm:text-24 text-tw-grey-darkest font-medium">{{panelName}}</span>
       </div>
-      <div class="text-14 text-tw-white bg-tw-black-lighter hover:bg-tw-blue  px-12 py-6 cursor-pointer" @click="open">
-          {{$t('MORE')}}
+      <div class="text-14 text-tw-white bg-tw-black-lighter hover:bg-tw-blue px-12 py-6 cursor-pointer" @click="open">
+        {{$t('MORE')}}
       </div>
     </div>
     <panel-item v-for="(data, idx) in datas" :key="idx" :type="type" :data="data" />

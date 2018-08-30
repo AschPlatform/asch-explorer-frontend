@@ -553,6 +553,7 @@ module.exports = {
   padding: {
     '0': '0px',
     '3': '3px',
+    '5': '5px',
     '6': '6px',
     '10': '10px',
     '11': '11px',
@@ -756,7 +757,7 @@ module.exports = {
     backgroundPosition: ['responsive'],
     backgroundRepeat: ['responsive'],
     backgroundSize: ['responsive'],
-    borderCollapse: [],
+    borderCollapse: ['responsive', 'hover', 'focus', 'active', 'group-hover'],
     borderColors: ['responsive', 'hover', 'focus'],
     borderRadius: ['responsive'],
     borderStyle: ['responsive'],
