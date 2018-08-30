@@ -92,6 +92,7 @@ export default {
         let lang = getCache('lang')
         this.$i18n.locale = lang
         this.$store.commit('SET_LANG', lang)
+        // moment.locale(lang === 'zh' ? 'zh-cn' : 'en-us')
       }
     },
     showQRCodeModal(content) {

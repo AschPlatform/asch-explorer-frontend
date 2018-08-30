@@ -1,11 +1,17 @@
 <template>
   <q-page class="max-w-1200 m-auto xs:p-15 sm:p-0 xs:pb-20 sm:pb-40">
-    <breadcrumb class="xs:mt-5 sm:mt-40" />
+     <breadcrumb class="xs:mt-5 sm:mt-40" />
     <div class="border border-solid border-tw-grey rounded-lg xs:px-10 xs:py-15 sm:px-40 sm:py-30">
-      <q-btn-group class="mt-8" outline>
+      <!-- <q-btn-group class="mt-8" outline>
         <q-btn outline v-for="(item, idx) in btnGroup" :label="item.label" @click="changeType(item.value)" :key="idx"></q-btn>
-      </q-btn-group>
-      <table-container :data="data" :count="count" :params="params" :columnsData="columnsData" @getData="getData">
+      </q-btn-group> -->
+      <button class="border border-tw-transparent text-14 text-tw-white bg-tw-black-lighter hover:bg-tw-blue px-12 py-6 cursor-pointer" @click="changeType(0)">
+        {{$t('TRANSACTION_TABLE')}}
+      </button>
+      <button class="border border-tw-transparent text-14 text-tw-white bg-tw-black-lighter hover:bg-tw-blue px-12 py-6 cursor-pointer" @click="changeType(1)">
+        {{$t('TRANS_TABLE')}}
+      </button>
+      <table-container :data="data" :count="count" :params="params" :columnsData="columnsData" @getData="getData" class="xs:mt-20">
         <!-- <template slot="content" slot-scope="props" v-if="props.props">
           <q-td v-if="props.props.id" key="id">
             <div class="text-primary cursor-pointer" @click="doSearch(props.props.id)">
@@ -67,7 +73,7 @@
           </q-td>
         </template> -->
         <template slot="items" slot-scope="props" v-if="props.props">
-          <table-item  :data="getTableData(props.props)" />
+          <table-item :data="getTableData(props.props)" :iconName="iconName" :idIcon="'icon-transaction'"/>
         </template>
       </table-container>
     </div>
@@ -354,6 +360,9 @@ export default {
           }
         ]
       }
+    },
+    iconName() {
+      return this.type === 0 ? 'icon-accounts' : 'icon-turn'
     }
   }
 }

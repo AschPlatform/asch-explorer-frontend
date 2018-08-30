@@ -4,8 +4,8 @@
       <div class="right-icon-left ">
         <q-icon class="xs:text-70 sm:text-70 text-tw-grey-lighter opacity-8" name="icon-block" />
       </div>
-      <div class="w-auto text-right xs:text-12 sm:text-18 text-tw-grey-lighter right-top-time">
-          {{data.timestamp | secFromNow}}{{$t('SECOND_BEFORE')}}
+      <div :class="isDesktopTime">
+          {{data.timestamp | secFromNow}}{{" " + $t('SECOND_BEFORE')}}
       </div>
       <div v-if="data" class="flex justify-start">
         <div class="flex justify-start items-start w-auto xs:mr-5 sm:mr-10 xs:pt-0 sm:pt-3">
@@ -32,10 +32,13 @@
         <div class="flex justify-start items-start w-auto xs:mr-5 sm:mr-10 xs:pt-0 sm:pt-3">
           <q-icon class="xs:text-14 sm:text-20 text-tw-blue" name="icon-transaction" />
         </div>
+        <div :class="isDesktopTime">
+          {{timeFromNow(data.timestamp)}}
+        </div>
         <div class="w-4/5">
           <div class="flex items-center mb-20">
             <span class="w-1/5 xs:text-12 sm:text-18 text-tw-grey-darkest">{{$t('TRANSACTION_ID')}}</span>
-            <span :class="linkClass" @click="doSearch(data.id)">{{data.id}}</span>
+            <span  :class="linkClass" class="max-w-xs" @click="doSearch(data.id)">{{data.id}}</span>
           </div>
           <div class="flex items-center justify-start mb-20">
             <span class="xs:mr-10 sm:mr-20 xs:text-12 sm:text-18 text-tw-grey-darkest">{{$t('FROM')}}</span>
@@ -58,8 +61,9 @@
 
 <script>
 import { QIcon } from 'quasar'
-import { getAddress, convertFee } from '../utils/util'
+import { getAddress, convertFee, fulltimestamp, isDesktop } from '../utils/util'
 import { mapGetters } from 'vuex'
+import moment from 'moment'
 
 export default {
   name: 'PanelItem',
@@ -90,10 +94,30 @@ export default {
     },
     doSearch(str) {
       this.$root.$emit('doSearch', str)
+    },
+    timeFromNow(timestamp) {
+      const lang = this.$store.state.locale
+      moment.locale(lang === 'zh' ? 'zh-cn' : 'en-us')
+      let timeStr = moment(fulltimestamp(timestamp)).fromNow()
+      if (lang === 'en') {
+        timeStr = timeStr.replace('seconds', 's')
+        timeStr = timeStr.replace('minutes', 'm')
+        timeStr = timeStr.replace('minute', 'm')
+        timeStr = timeStr.replace('hours', 'h')
+        timeStr = timeStr.replace('hour', 'h')
+        timeStr = timeStr.replace('an', '1')
+      }
+      return timeStr
     }
   },
   computed: {
     ...mapGetters(['assetMap']),
+    isDesktopTime() {
+      let rightTopCss = 'w-auto text-right xs:text-12 sm:text-18 text-tw-grey-lighter'
+      return this.isDesktop
+        ? rightTopCss + ' right-top-time-desktop'
+        : rightTopCss + ' right-top-time-mobile'
+    },
     linkClass() {
       return 'truncate xs:text-12 sm:text-18 text-tw-blue hover:underline w-3/4 cursor-pointer'
     },
@@ -102,6 +126,9 @@ export default {
     },
     labelClass() {
       return 'w-1/4 xs:text-12 sm:text-18 text-tw-grey-darkest'
+    },
+    isDesktop() {
+      return isDesktop()
     }
   }
 }
@@ -123,10 +150,16 @@ export default {
     bottom: -10px;
   }
 
-  .right-top-time {
+  .right-top-time-desktop {
     position: absolute;
     right: 20px;
     top: 20px;
+  }
+
+  .right-top-time-mobile {
+    position: absolute;
+    right: 15px;
+    top: 15px;
   }
 }
 </style>

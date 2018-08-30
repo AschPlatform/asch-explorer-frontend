@@ -285,6 +285,11 @@ export const getSecFromNow = (timestamp) => {
   return moment().diff(time, 'seconds')
 }
 
+export const getTimeFromNow = (timestamp) => {
+  // return time.startOf('seconds').fromNow()
+  return moment(fulltimestamp(timestamp)).fromNow()
+}
+
 export const rewardCount = (blockHeight) => {
   if (blockHeight) {
     if (blockHeight < 3464500 && blockHeight >= 464500) {
