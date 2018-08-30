@@ -27,12 +27,12 @@
         <q-td v-if="props.props.productivity" key="productivity" >
           <span>{{ props.props.productivity + ' %' }}</span>
         </q-td>
-        <q-td v-if="props.props.approval" key="approval" >
+        <q-td v-if="props.props.approval" key="approval">
           <span>{{ props.props.approval + ' %' }}</span>
         </q-td>
       </template> -->
       <template slot="items" slot-scope="props" v-if="props.props">
-        <table-item  :data="getTableData(props.props)" />
+        <table-item  :data="getTableData(props.props)" :iconName="'icon-trustee'" :idIcon="'icon-users'"/>
       </template>
     </table-container>
   </q-page>

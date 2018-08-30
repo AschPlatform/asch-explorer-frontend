@@ -9,12 +9,15 @@
     <q-layout-footer class="bg-tw-black">
       <footer-bar />
     </q-layout-footer>
+    <q-layout-drawer v-model="drawer">
+      ...
+    </q-layout-drawer>
     <code-modal :show="QRCodeShow" @close="QRCodeShow = false" :text="QRCodeText" />
   </q-layout>
 </template>
 
 <script>
-import { openURL, QLayout, QLayoutHeader, QPageContainer, QLayoutFooter } from 'quasar'
+import { openURL, QLayout, QLayoutHeader, QPageContainer, QLayoutFooter, QLayoutDrawer } from 'quasar'
 import FooterBar from '../components/FooterBar'
 import StateBanner from '../components/StateBanner'
 import SearchBanner from '../components/SearchBanner'
@@ -36,7 +39,8 @@ export default {
     StateBanner,
     SearchBanner,
     Navbar,
-    CodeModal
+    CodeModal,
+    QLayoutDrawer
   },
   data() {
     return {
@@ -44,7 +48,8 @@ export default {
       isHomeFlg: true,
       intervalStats: null,
       QRCodeShow: false,
-      QRCodeText: ''
+      QRCodeText: '',
+      drawer: false
     }
   },
   methods: {

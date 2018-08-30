@@ -29,7 +29,7 @@
         </q-td>
       </template> -->
       <template slot="items" slot-scope="props" v-if="props.props">
-        <table-item  :data="getTableData(props.props)" />
+        <table-item  :data="getTableData(props.props)" :iconName="'icon-data'"/>
       </template>
     </table-container>
   </q-page>

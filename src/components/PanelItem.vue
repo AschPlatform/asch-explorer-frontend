@@ -99,7 +99,6 @@ export default {
       const lang = this.$store.state.locale
       moment.locale(lang === 'zh' ? 'zh-cn' : 'en-us')
       let timeStr = moment(fulltimestamp(timestamp)).fromNow()
-      debugger
       if (lang === 'en') {
         timeStr = timeStr.replace('seconds', 's')
         timeStr = timeStr.replace('minutes', 'm')
