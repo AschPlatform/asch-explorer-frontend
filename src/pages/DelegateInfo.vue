@@ -9,7 +9,7 @@
       <boundary-line class="mt-2 mb-8" />
       <info-panel :panelData="panelData" />
       <table-container :data="data" :count="count" :params="address" :columnsData="columnsData" @getData="getData">
-        <template slot="content" slot-scope="props" v-if="props.props">
+        <!-- <template slot="content" slot-scope="props" v-if="props.props">
           <q-td v-if="props.props.height" key="height">
             <div class="text-primary cursor-pointer" @click="doSearch(props.props.height)">
               {{ props.props.height }}
@@ -27,6 +27,9 @@
           <q-td v-if="props.props.timestamp" key="timestamp" >
             <span>{{ fulltimestamp(props.props.timestamp) }}</span>
           </q-td>
+        </template> -->
+        <template slot="items" slot-scope="props" v-if="props.props">
+          <table-item  :data="getTableData(props.props)" />
         </template>
       </table-container>
     </div>
@@ -34,7 +37,6 @@
 </template>
 
 <script>
-/* eslint-disable */
 import { QPage, QTd, QTooltip } from 'quasar'
 import Breadcrumb from '../components/Breadcrumb'
 import BoundaryLine from '../components/BoundaryLine'
@@ -42,6 +44,7 @@ import InfoPanel from '../components/InfoPanel'
 import TableContainer from '../components/TableContainer'
 import { mapActions } from 'vuex'
 import { convertFee, fulltimestamp } from '../utils/util'
+import TableItem from '../components/TableItem'
 
 export default {
   name: 'DelegateInfo',
@@ -52,13 +55,15 @@ export default {
     InfoPanel,
     TableContainer,
     QTd,
-    QTooltip
+    QTooltip,
+    TableItem
   },
   data() {
     return {
-      name: '',
       fees: '',
+      balance: 0,
       producedBlocks: 0,
+      address: '',
       approval: '',
       productivity: '',
       data: [],
@@ -104,11 +109,10 @@ export default {
   },
   mounted() {
     this.envalueData()
-    this.getAccountLeft()
   },
   computed: {
-    address() {
-      return this.$route.params.address
+    name() {
+      return this.$route.params.name
     },
     // params() {
     //   return {
@@ -125,7 +129,7 @@ export default {
         },
         {
           label: 'ACCOUNT_BALANCE',
-          value: this.fees
+          value: this.balance
         },
         {
           label: 'BLOCK_NUM',
@@ -150,42 +154,70 @@ export default {
   },
   methods: {
     fulltimestamp,
-    ...mapActions(['getDelegateDetail', 'getBlocks', 'getAccount']),
+    ...mapActions(['getDelegateDetail', 'getBlocks', 'getAccount', 'getDelegateBlock']),
     async envalueData() {
       let result = await this.getDelegateDetail({
-        address: this.address
+        name: this.name
       })
       if (result.success) {
         let trans = result.delegate
-        this.name = trans.name
+        this.address = trans.address
         this.fees = convertFee(trans.fees)
         this.producedBlocks = trans.producedBlocks
         this.productivity = trans.productivity
         this.approval = trans.approval
+        this.getAccountLeft()
       }
     },
     async getAccountLeft() {
       let result = await this.getAccount(this.address)
       if (result.success && result.account && result.account.xas) {
-        this.fees = convertFee(result.account.xas) + ' XAS'
+        this.balance = convertFee(result.account.xas) + ' XAS'
       }
+    },
+    async getBalance(address) {
+
     },
     async getData(props = this.defaultProps) {
       let res
       // For transactions
       // TODO: BLOCKS API should accept address or publickey
-      props.address = this.address
-      res = await this.getBlocks(props)
+      props.name = this.name
+      res = await this.getDelegateBlock(props)
       this.data = res.transactions
       this.count = res.count
     },
     doSearch(str) {
       this.$root.$emit('doSearch', str)
+    },
+    getTableData(data) {
+      const { height, reward, count, fees, timestamp } = data
+
+      let heightField = {
+        label: 'BLOCK_HEIGHT',
+        value: height
+      }
+      let rewardField = {
+        label: 'FORGE_REWARD',
+        value: reward
+      }
+      let countField = {
+        label: 'TRANS_NUM',
+        value: count
+      }
+      let feeField = {
+        label: 'TRANS_FEE',
+        value: fees
+      }
+      let timeField = {
+        label: 'PRODUCER_TIME',
+        value: fulltimestamp(timestamp)
+      }
+      return [heightField, rewardField, countField, feeField, timeField]
     }
   },
   watch: {
-    address() {
-      this.getAccountLeft()
+    name() {
       this.envalueData()
       this.getData()
     }

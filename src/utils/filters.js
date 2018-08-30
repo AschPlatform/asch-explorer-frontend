@@ -3,7 +3,8 @@ import moment from 'moment'
 import _ from 'lodash'
 import {
   convertFee,
-  getSecFromNow
+  getSecFromNow,
+  getTimeFromNow
 } from './util'
 
 // import marked from 'marked'
@@ -59,6 +60,9 @@ const filters = {
   },
   secFromNow: (timestamp) => {
     return getSecFromNow(timestamp)
+  },
+  timeFromNow: (timestamp) => {
+    return getTimeFromNow(timestamp)
   },
   eclipse: (str = '', head = 5, tail = 5) => {
     if (str.length > head + tail) {

@@ -5,9 +5,9 @@
       <span>{{$t('REGIST_ASSET')}}: {{count}}</span>
     </div>
     <table-container class="mt-4" :data="data" :count="count" :params="params" :columnsData="columnsData" @getData="getData">
-      <template slot="content" slot-scope="props" v-if="props.props">
+      <!-- <template slot="content" slot-scope="props" v-if="props.props">
         <q-td v-if="props.props.name" key="asset">
-          <div class="text-primary cursor-pointer" @click="doSearch(props.props.name.replace('.', '-'), 'asset')">
+          <div class="text-primary cursor-pointer" @click="doSearch(props.props.name, 'asset')">
             {{ props.props.name.split('.')[1] }}
             <q-tooltip>{{ props.props.name }}</q-tooltip>
           </div>
@@ -27,6 +27,9 @@
         <q-td v-if="props.props.timestamp" key="timestamp" >
           <span>{{ fulltimestamp(props.props.timestamp) }}</span>
         </q-td>
+      </template> -->
+      <template slot="items" slot-scope="props" v-if="props.props">
+        <table-item  :data="getTableData(props.props)" />
       </template>
     </table-container>
   </q-page>
@@ -40,6 +43,7 @@ import { QPage, QTd, QTooltip } from 'quasar'
 import { mapActions } from 'vuex'
 import TableContainer from '../components/TableContainer'
 import { fulltimestamp } from '../utils/util'
+import TableItem from '../components/TableItem'
 
 export default {
   name: 'Assets',
@@ -47,7 +51,8 @@ export default {
     QPage,
     QTd,
     QTooltip,
-    TableContainer
+    TableContainer,
+    TableItem
   },
   data() {
     return {
@@ -110,6 +115,32 @@ export default {
     },
     doSearch(str, type) {
       this.$root.$emit('doSearch', str, type)
+    },
+    getTableData(data) {
+      const { name, timestamp } = data
+
+      let assetField = {
+        label: 'ASSET_NAME',
+        value: name,
+        type: 'asset'
+      }
+      let issuerField = {
+        label: 'ISSUER',
+        value: name.split('.')[0]
+      }
+      // let maximumField = {
+      //   label: 'MAXIMUN',
+      //   value: convertFee(maximum, precision)
+      // }
+      // let precisionField = {
+      //   label: 'PRECISION',
+      //   value: precision
+      // }
+      let timeField = {
+        label: 'ISSUE_TIME',
+        value: fulltimestamp(timestamp)
+      }
+      return [assetField, issuerField, timeField]
     }
   },
   computed: {

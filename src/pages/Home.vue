@@ -1,26 +1,9 @@
 <template>
-  <q-page padding class="flex justify-center">
-    <!-- <div class="block w-full mb-32 xs:mb-0 sm:mb-32">
-      <div class="flex justify-center mb-10">
-        <div class="w-64">
-          <img class="w-full"  :src="aschLogo" alt="">
-        </div>
-      </div>
-      <div class="flex mb-4 justify-center">
-        <q-input class="shadow appearance-none border rounded xs:w-5/6 sm:w-1/2 h-12 border-solid border-1 border-black pt-2 pb-2 px-3 text-grey-darker leading-tight"
-        v-model="searchStr" @keyup.enter="search" :after="searchIcon"
-        type="text" :placeholder="$t('HOME_PLACEHOLDER')" hide-underline	/>
-      </div>
-      <div class="flex items-center justify-center mt-8">
-          <span class="text-13 text-black-dark">{{$t('LANGUAGE_CONTEXT')}}</span>
-          <button class="border-none bg-transparent text-blue-dark hover:text-blue text-13 cursor-pointer ml-8 mr-8" @click="changeLang('zh')">{{$t('LANGUAGE_ZH')}}</button>
-          <button class="border-none bg-transparent text-blue-dark hover:text-blue text-13 cursor-pointer" @click="changeLang('en')">{{$t('LANGUAGE_EN')}}</button>
-      </div>
-    </div> -->
-    <state-banner class="flex xs:flex sm:hidden mb-8" :stateData="getRunState" />
-    <div class="flex w-4/5">
-      <panel-container class="sm:w-1/2 xs:w-full" type="blocks" />
-      <panel-container class="sm:w-1/2 xs:w-full" type="trans" />
+  <q-page class="flex justify-center min-h-0 home-container">
+    <state-banner class="xs:mt-0 sm:mt-20" :stateData="getRunState" />
+    <div class="flex w-full mt-30 mb-10 xs:px-15 sm:px-0 max-w-1200">
+      <panel-container class="xs:w-full sm:w-1/2 xs:pr-0 sm:pr-20" type="blocks" />
+      <panel-container class="xs:w-full sm:w-1/2 xs:pr-0 sm:pl-20 xs:mt-15 sm:mt-0" type="trans" />
     </div>
   </q-page>
 </template>
@@ -83,5 +66,9 @@ export default {
 }
 </script>
 
-<style>
+
+<style lang="stylus" scoped>
+.home-container {
+  min-height: 0 !important;
+}
 </style>

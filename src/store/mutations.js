@@ -15,6 +15,13 @@ export default {
   SET_USERS(state, amount) {
     state.runState.accountCount = amount
   },
+  SET_TOTALPRICE(state, info) {
+    let count = info.price_btc * info.totalSupply
+    state.runState.totalPrice = count
+  },
+  SET_ASSET_NUMBER(state, amount) {
+    state.runState.assetCount = amount
+  },
   SET_ASSET_MAP(state, assets) {
     let assetMap = new Map()
     assets.forEach(e => {

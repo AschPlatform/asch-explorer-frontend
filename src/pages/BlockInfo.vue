@@ -1,15 +1,19 @@
 <template>
   <q-page class="max-w-1200 m-auto xs:pl-2 xs:pr-2 sm:pl-0 sm:pr-0 pb-16">
-    <breadcrumb />
-  
-    <div class="border border-solid border-grey rounded-lg overflow-hidden xs:overflow-scroll sm:overflow-hidden p-4 mb-4">
+    <breadcrumb class="my-20" />
+    <div class="border border-solid border-grey rounded-lg overflow-hidden xs:overflow-scroll sm:overflow-hidden xs:p-15 sm:p-30">
       <div class="text-14 text-black-dark font-bold">
         {{this.$t('BLOCK_INFO')}}
       </div>
-      <boundary-line class="mt-2 mb-8" />
-      <info-panel :panelData="panelData" />
+      <boundary-line class="my-20" />
+       <div class="flex justify-between">
+        <info-panel :panelData="panelData" />
+        <div class="self-end w-163 xs:hidden sm:block">
+          <img class="w-full" :src="infoImge" alt="">
+        </div>
+      </div>
       <table-container :data="data" :count="count" :params="params" :columnsData="columnsData" @getData="getData">
-        <template slot="content" slot-scope="props" v-if="props.props">
+        <!-- <template slot="content" slot-scope="props" v-if="props.props">
           <q-td v-if="props.props.id" key="id">
             <div class="text-primary cursor-pointer" @click="doSearch(props.props.id)">
               {{ props.props.id | eclipse }}
@@ -47,6 +51,9 @@
             <span v-if="props.props.fee">{{ props.props.fee | fee }}</span>
             <span v-else>--</span>
           </q-td>
+        </template> -->
+        <template slot="items" slot-scope="props" v-if="props.props">
+          <table-item  :data="getTableData(props)" />
         </template>
       </table-container>
     </div>
@@ -61,7 +68,9 @@ import InfoPanel from '../components/InfoPanel'
 import TableContainer from '../components/TableContainer'
 import { transTypes } from '../utils/constants'
 import { mapActions, mapGetters } from 'vuex'
+import TableItem from '../components/TableItem'
 import { convertFee, fulltimestamp, getAddress, rewardCount } from '../utils/util'
+import infoImge from '../assets/asch_logo.png'
 
 export default {
   name: 'BlockInfo',
@@ -72,10 +81,12 @@ export default {
     InfoPanel,
     TableContainer,
     QTd,
-    QTooltip
+    QTooltip,
+    TableItem
   },
   data() {
     return {
+      infoImge,
       block: '',
       producer: '',
       transNum: 0,
@@ -253,6 +264,38 @@ export default {
         return '--'
       }
       // return args[len - 2]
+    },
+    getTableData(data) {
+      const { id, senderId, timestamp } = data.props
+      let idField = {
+        label: 'TRANSACTION_ID',
+        value: id,
+        type: 'id'
+      }
+        let typeField = {
+          label: 'TRANSACTION_TYPE',
+          value: this.getTransType(data.props)
+        }
+      let senderField = {
+        label: 'TRANS_SENDER',
+        value: senderId,
+        type: 'address'
+      }
+      // let feeField = {
+      //   label: 'FEE',
+      //   value: fee
+      // }
+      // let argsField = {
+      //   label: 'ARGUMENTS',
+      //   value: args.join(',')
+      // }
+      let timeField = {
+        label: 'TRANS_TIME',
+        value: fulltimestamp(timestamp),
+        type: 'arg'
+      }
+
+      return [idField, typeField, senderField, timeField]
     }
   },
   watch: {

@@ -138,7 +138,7 @@ const lang = {
   FORGE: '锻造',
   FROM: '从',
   TO: '至',
-  MORE: '更多',
+  MORE: 'MORE',
   SECOND_BEFORE: '秒前',
   DELEGATE: '受托人',
   ASSET_INFO: '资产详情',
@@ -150,6 +150,8 @@ const lang = {
   REGIST_ASSET: '链内注册资产',
   DELEGATE_LIST: '受托人列表',
   REGIST_DELEGATE: '注册受托人',
-  close: '关闭'
+  close: '关闭',
+  ISSUED_NUM: '发行资产数量',
+  TOTAL_PRICE: '总市值'
 }
 export default lang

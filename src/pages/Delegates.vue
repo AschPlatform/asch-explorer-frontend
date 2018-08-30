@@ -5,7 +5,7 @@
       <span>{{$t('REGIST_DELEGATE')}}: {{count}}</span>
     </div>
     <table-container class="mt-4" :data="data" :count="count" :params="params" :columnsData="columnsData" @getData="getData">
-      <template slot="content" slot-scope="props" v-if="props.props">
+      <!-- <template slot="content" slot-scope="props" v-if="props.props">
         <q-td v-if="props.props.rate" key="rate" >
           <span>{{ props.props.rate }}</span>
         </q-td>
@@ -30,6 +30,9 @@
         <q-td v-if="props.props.approval" key="approval" >
           <span>{{ props.props.approval + ' %' }}</span>
         </q-td>
+      </template> -->
+      <template slot="items" slot-scope="props" v-if="props.props">
+        <table-item  :data="getTableData(props.props)" />
       </template>
     </table-container>
   </q-page>
@@ -42,6 +45,7 @@
 import { QPage, QTd, QTooltip } from 'quasar'
 import { mapActions } from 'vuex'
 import TableContainer from '../components/TableContainer'
+import TableItem from '../components/TableItem'
 
 export default {
   name: 'Delegates',
@@ -49,7 +53,8 @@ export default {
     QPage,
     QTd,
     QTooltip,
-    TableContainer
+    TableContainer,
+    TableItem
   },
   data() {
     return {
@@ -112,6 +117,38 @@ export default {
     },
     doSearch(str, type) {
       this.$root.$emit('doSearch', str, type)
+    },
+    getTableData(data) {
+      const { rate, name, address, producedBlocks, productivity, approval } = data
+      let rateField = {
+        label: 'RANK',
+        value: rate
+      }
+      let nameField = {
+        label: 'DELEGATE_NAME',
+        value: name,
+        type: 'delegate'
+      }
+      let addressField = {
+        label: 'ADDRESS',
+        value: address,
+        type: 'address'
+      }
+      let producedBlocksField = {
+        label: 'BLOCK_NUM',
+        value: producedBlocks,
+        type: 'number'
+      }
+      let productivityField = {
+        label: 'PRODUCTIVITY',
+        value: productivity + ' %'
+      }
+      let approvalField = {
+        label: 'VOTE_RATE',
+        value: approval + ' %'
+      }
+
+      return [rateField, nameField, addressField, producedBlocksField, productivityField, approvalField]
     }
   },
   computed: {

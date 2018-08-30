@@ -10,8 +10,10 @@ module.exports = function (ctx) {
       'filters'
     ],
     css: [
+      'font-style.css',
       'tailwindOutput.css',
-      'app.styl'
+      'app.styl',
+      'font-style.css'
     ],
     extras: [
       ctx.theme.mat ? 'roboto-font' : null,
@@ -39,7 +41,7 @@ module.exports = function (ctx) {
     },
     devServer: {
       // https: true,
-      // port: 8080,
+      port: 8090,
       open: false // opens browser window automatically
     },
     // framework: 'all' --- includes everything; for dev only!
