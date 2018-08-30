@@ -1,10 +1,10 @@
 <template>
   <div class="flex xs:mb-15 sm:mb-30 xs:pt-15 xs:pb-5 xs:px-15 sm:p-10 shadow-none hover:shadow-21 border-1 border-solid border-tw-grey-darker panelitem-container relative overflow-hidden">
     <div class="absolute -mr-15 -mb-15 opacity-8 pin-b pin-r">
-      <q-icon class="text-60 text-tw-grey-lighter" :name="this.bigIconName" />
+      <q-icon class="text-60 text-tw-grey-lighter" :name="this.iconName" />
     </div>
     <div v-if="hasId && idField" class="flex justify-start items-start w-auto mr-10">
-      <q-icon class="xs:text-14 sm:text-26 text-tw-blue" :name="this.smallIconName" />
+      <q-icon class="xs:text-14 sm:text-26 text-tw-blue" :name="this.idIcon" />
     </div>
     <table class="w-5/6 flex">
       <div class="flex w-full" v-if="hasId && idField">
@@ -49,7 +49,7 @@ import { QTd, QIcon } from 'quasar'
 
 export default {
   name: 'TableItem',
-  props: ['data', 'smallIconName', 'bigIconName', 'idIcon'],
+  props: ['data', 'smallIconName', 'iconName', 'idIcon'],
   components: {
     QTd,
     QIcon

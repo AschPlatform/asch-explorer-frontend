@@ -82,7 +82,7 @@
       </table-container>
       <table-container class="mobile-only" :data="data" :count="count" :params="params" :columnsData="columnsData" @getData="getData">
         <template slot="items" slot-scope="props" v-if="props.props">
-          <table-item :smallIconName="smallIconName" :bigIconName="bigIconName" :data="getTableData(props.props)" />
+          <table-item  :data="getTableData(props.props)" :iconName="'icon-details'" :idIcon="'icon-transaction'"/>
         </template>
       </table-container>
     </div>

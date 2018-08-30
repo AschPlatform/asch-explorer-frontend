@@ -69,43 +69,43 @@
 .icon-light:before {
   content: "\e90b";
 }
-.icon-More:before {
+.icon-more:before {
   content: "\e90c";
 }
-.icon-Numberof-users:before {
+.icon-operating:before {
   content: "\e90d";
 }
-.icon-Operating-days:before {
+.icon-qrcode:before {
   content: "\e90e";
 }
-.icon-QR-code:before {
+.icon-right:before {
   content: "\e90f";
 }
-.icon-right:before {
+.icon-rightset:before {
   content: "\e910";
 }
-.icon-rightset:before {
+.icon-search:before {
   content: "\e911";
 }
-.icon-search:before {
+.icon-token:before {
   content: "\e912";
 }
-.icon-Token:before {
+.icon-totalmarket:before {
   content: "\e913";
 }
-.icon-Totalmarket-value:before {
+.icon-transaction:before {
   content: "\e914";
 }
-.icon-transaction:before {
+.icon-transfer:before {
   content: "\e915";
 }
-.icon-Transfer-accounts:before {
+.icon-trustee:before {
   content: "\e916";
 }
-.icon-Trustee:before {
+.icon-turn:before {
   content: "\e917";
 }
-.icon-turn:before {
+.icon-users:before {
   content: "\e918";
 }
 .icon-watermark:before {
