@@ -1,16 +1,16 @@
 <template>
-  <q-page class="max-w-1200 m-auto xs:pl-2 xs:pr-2 sm:pl-0 sm:pr-0 pb-16">
-    <breadcrumb class="my-20" />
-    <div class="border border-solid border-grey rounded-lg xs:p-15 sm:p-30">
-      <div class="text-14 text-black-dark font-bold">
+  <q-page class="max-w-1200 m-auto xs:p-15 sm:p-0 xs:pb-20 sm:pb-40">
+    <breadcrumb class="xs:mt-5 sm:mt-40" />
+    <div class="border border-solid border-tw-grey rounded-lg xs:px-10 xs:py-15 sm:px-40 sm:py-30">
+      <div class="xs:text-16 sm:text-20 text-tw-grey-darkest">
         {{this.$t('ACCOUNT_INFO')}}
       </div>
-      <boundary-line class="my-20" />
+      <boundary-line class="xs:my-15 sm:my-30" />
       <div class="flex justify-between">
         <info-panel v-if="account" :panelData="panelData" />
         <div v-else class="mt-2 mb-8 px-4 text-xs">{{$t('NO_DATA')}}</div>
-        <div class="self-end w-163 xs:hidden sm:block">
-          <img class="w-full" :src="infoImge" alt="">
+        <div class="self-end w-auto xs:hidden sm:block pb-10">
+          <q-icon class="text-60 text-tw-grayish" name="icon-details" />
         </div>
       </div>
       <!-- <info-panel v-if="account" :panelData="panelData" /> -->
@@ -88,7 +88,7 @@
 </template>
 
 <script>
-import { QPage, QBtnGroup, QBtnToggle, QBtn, QTd, QTooltip } from 'quasar'
+import { QPage, QBtnGroup, QBtnToggle, QBtn, QTd, QTooltip, QIcon } from 'quasar'
 import BoundaryLine from '../components/BoundaryLine'
 import Breadcrumb from '../components/Breadcrumb'
 import InfoPanel from '../components/InfoPanel'
@@ -114,6 +114,7 @@ export default {
     PanelItem,
     QBtn,
     QTd,
+    QIcon,
     QTooltip
   },
   data() {
@@ -430,12 +431,7 @@ export default {
       let tablePanelData =
         this.type === 0
           ? [idField, timeField, typeField, senderField]
-          : [
-              idField,
-              timeField,
-              senderField,
-              receiverField
-            ]
+          : [idField, timeField, senderField, receiverField]
 
       return tablePanelData
     }

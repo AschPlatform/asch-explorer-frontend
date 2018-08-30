@@ -19,6 +19,7 @@ const lang = {
 
   // panel
   BLOCK: '区块',
+  BLOCKS: '区块',
   BLOCK_ID: '区块ID',
   PRODUCER: '生产者',
   FORGE_REWARD: '产块奖励',
@@ -47,6 +48,7 @@ const lang = {
 
   // transactionsInfo
   TRANSACTION: '交易',
+  TRANSACTIONS: '交易',
   TRANSACTION_ID: '交易ID',
   TRANS_TYPE: '交易类型',
   TRANS_TABLE: '转账列表',

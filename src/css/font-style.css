@@ -1,10 +1,19 @@
 @font-face {
+  font-family: 'futura';
+  src: url('./fonts/futura.eot?b5hyj5');
+  src: url('./fonts/futura.eot?b5hyj5#iefix') format('embedded-opentype'), url('./fonts/futura.ttf?b5hyj5') format('truetype'), url('./fonts/futura.woff?b5hyj5') format('woff'), url('./fonts/futura.svg?b5hyj5') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
+
+@font-face {
   font-family: 'icomoon';
-  src:  url('../assets/fonts/icomoon.eot?pf5gda');
-  src:  url('../assets/fonts/icomoon.eot?pf5gda#iefix') format('embedded-opentype'),
-    url('../assets/fonts/icomoon.ttf?pf5gda') format('truetype'),
-    url('../assets/fonts/icomoon.woff?pf5gda') format('woff'),
-    url('../assets/fonts/icomoon.svg?pf5gda#icomoon') format('svg');
+  src:  url('./fonts/icomoon.eot?r6gl8u');
+  src:  url('./fonts/icomoon.eot?r6gl8u#iefix') format('embedded-opentype'),
+    url('./fonts/icomoon.ttf?r6gl8u') format('truetype'),
+    url('./fonts/icomoon.woff?r6gl8u') format('woff'),
+    url('./fonts/icomoon.svg?r6gl8u#icomoon') format('svg');
   font-weight: normal;
   font-style: normal;
 }
@@ -39,7 +48,7 @@
 .icon-data:before {
   content: "\e904";
 }
-.icon-delete:before {
+.icon-delet:before {
   content: "\e905";
 }
 .icon-details:before {

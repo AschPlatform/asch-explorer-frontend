@@ -1,13 +1,17 @@
 <template>
-  <q-page class="max-w-1200 m-auto xs:pl-2 xs:pr-2 sm:pl-0 sm:pr-0 pb-16">
-    <breadcrumb />
-  
-    <div class="border border-solid border-grey rounded-lg overflow-hidden xs:overflow-scroll sm:overflow-hidden p-4 mb-4">
-      <div class="text-14 text-black-dark font-bold">
+  <q-page class="max-w-1200 m-auto xs:p-15 sm:p-0 xs:pb-20 sm:pb-40">
+    <breadcrumb class="xs:mt-5 sm:mt-40" />
+    <div class="border border-solid border-tw-grey rounded-lg xs:px-10 xs:py-15 sm:px-40 sm:py-30">
+      <div class="xs:text-16 sm:text-20 text-tw-grey-darkest">
         {{this.$t('BLOCK_INFO')}}
       </div>
-      <boundary-line class="mt-2 mb-8" />
-      <info-panel :panelData="panelData" />
+      <boundary-line class="xs:my-15 sm:my-30" />
+       <div class="flex justify-between">
+        <info-panel :panelData="panelData" />
+        <div class="self-end w-auto xs:hidden sm:block pb-10">
+          <q-icon class="text-60 text-tw-grayish" name="icon-Trustee" />
+        </div>
+      </div>
       <table-container :data="data" :count="count" :params="address" :columnsData="columnsData" @getData="getData">
         <!-- <template slot="content" slot-scope="props" v-if="props.props">
           <q-td v-if="props.props.height" key="height">
@@ -37,7 +41,7 @@
 </template>
 
 <script>
-import { QPage, QTd, QTooltip } from 'quasar'
+import { QPage, QIcon, QTd, QTooltip } from 'quasar'
 import Breadcrumb from '../components/Breadcrumb'
 import BoundaryLine from '../components/BoundaryLine'
 import InfoPanel from '../components/InfoPanel'
@@ -50,6 +54,7 @@ export default {
   name: 'DelegateInfo',
   components: {
     QPage,
+    QIcon,
     BoundaryLine,
     Breadcrumb,
     InfoPanel,
@@ -175,9 +180,7 @@ export default {
         this.balance = convertFee(result.account.xas) + ' XAS'
       }
     },
-    async getBalance(address) {
-
-    },
+    async getBalance(address) {},
     async getData(props = this.defaultProps) {
       let res
       // For transactions
