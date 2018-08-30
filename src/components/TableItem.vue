@@ -1,17 +1,17 @@
 <template>
   <div class="flex xs:mb-15 sm:mb-30 xs:pt-15 xs:pb-5 xs:px-15 sm:p-10 shadow-none hover:shadow-21 border-1 border-solid border-tw-grey-darker panelitem-container relative overflow-hidden">
     <div class="absolute -mr-15 -mb-15 opacity-8 pin-b pin-r">
-      <q-icon class="text-60 text-tw-grey-lighter" :name="this.iconName" />
+      <q-icon class="text-60 text-tw-grey-lighter" :name="this.bgIcon" />
     </div>
     <div v-if="hasId && idField" class="flex justify-start items-start w-auto mr-10">
-      <q-icon class="xs:text-14 sm:text-26 text-tw-blue" :name="this.idIcon" />
+      <q-icon class="xs:text-14 sm:text-26 text-tw-blue" :name="this.dataIcon" />
     </div>
     <table class="w-5/6 flex">
       <div class="flex w-full" v-if="hasId && idField">
         <div class="w-1/4 xs:text-12 sm:text-18 text-tw-grey-darkest mb-15">{{$t(idField.label)}}:</div>
         <div class="truncate text-tw-blue xs:text-12 sm:text-18 w-3/4" @click="doSearch(idField.value)">{{idField.value}}</div>
       </div>
-      <tbody class='info-tbody'>
+      <tbody class='info-tbody w-full'>
         <tr class="flex" v-for="(arr, idx) in tableData" :key="idx">
           <div class="flex w-full" v-for="(data, index) in arr" :key="index">
             <td class="w-1/4 xs:text-12 sm:text-18 text-tw-grey-darkest mb-15">{{$t(data.label)}}:</td>
@@ -49,7 +49,7 @@ import { QTd, QIcon } from 'quasar'
 
 export default {
   name: 'TableItem',
-  props: ['data', 'smallIconName', 'iconName', 'idIcon'],
+  props: ['data', 'dataIcon', 'bgIcon'],
   components: {
     QTd,
     QIcon

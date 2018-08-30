@@ -82,7 +82,7 @@
       </table-container>
       <table-container class="mobile-only" :data="data" :count="count" :params="params" :columnsData="columnsData" @getData="getData">
         <template slot="items" slot-scope="props" v-if="props.props">
-          <table-item  :data="getTableData(props.props)" :iconName="'icon-details'" :idIcon="'icon-transaction'"/>
+          <table-item  :data="getTableData(props.props)" :bgIcon="'icon-details'" :dataIcon="'icon-transaction'"/>
         </template>
       </table-container>
     </div>
@@ -123,8 +123,6 @@ export default {
     return {
       infoImge,
       model: 0,
-      smallIconName: 'icon-transaction',
-      bigIconName: 'icon-details',
       account: null,
       balances: [],
       type: 0, // trans: 0 , transfer:1

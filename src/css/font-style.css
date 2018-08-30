@@ -48,7 +48,7 @@
 .icon-data:before {
   content: "\e904";
 }
-.icon-delet:before {
+.icon-delete:before {
   content: "\e905";
 }
 .icon-details:before {
@@ -72,40 +72,40 @@
 .icon-more:before {
   content: "\e90c";
 }
-.icon-operating:before {
+.icon-users:before {
   content: "\e90d";
 }
-.icon-qrcode:before {
+.icon-operating:before {
   content: "\e90e";
 }
-.icon-right:before {
+.icon-qr:before {
   content: "\e90f";
 }
-.icon-rightset:before {
+.icon-right:before {
   content: "\e910";
 }
-.icon-search:before {
+.icon-rightset:before {
   content: "\e911";
 }
-.icon-token:before {
+.icon-search:before {
   content: "\e912";
 }
-.icon-totalmarket:before {
+.icon-token:before {
   content: "\e913";
 }
-.icon-transaction:before {
+.icon-totalmarket:before {
   content: "\e914";
 }
-.icon-transfer:before {
+.icon-transaction:before {
   content: "\e915";
 }
-.icon-trustee:before {
+.icon-transfer:before {
   content: "\e916";
 }
-.icon-turn:before {
+.icon-trustee:before {
   content: "\e917";
 }
-.icon-users:before {
+.icon-turn:before {
   content: "\e918";
 }
 .icon-watermark:before {

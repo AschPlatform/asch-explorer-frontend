@@ -42,12 +42,4 @@ export default {
     border-right: none;
   }
 }
-
-@media screen and (max-width: 678px) {
-  .state-container {
-    .state:last-child {
-      // border-right: 1px solid #373941;
-    }
-  }
-}
 </style>

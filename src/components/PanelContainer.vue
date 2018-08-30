@@ -2,7 +2,7 @@
   <div class="">
     <div class="flex justify-between items-center xs:mb-15 sm:mb-30">
       <div class="flex items-center">
-        <q-icon class="xs:text-18 sm:text-26 text-tw-grey-darkest mr-10" :name="isTrans" />
+        <q-icon class="xs:text-18 sm:text-26 text-tw-grey-darkest mr-10" :name="panelIcon" />
         <span class="xs:text-16 sm:text-24 text-tw-grey-darkest font-medium">{{panelName}}</span>
       </div>
       <div class="text-14 text-tw-white bg-tw-black-lighter hover:bg-tw-blue px-12 py-6 cursor-pointer" @click="open">
@@ -61,8 +61,8 @@ export default {
   },
   computed: {
     ...mapGetters(['getHeight', 'assetMap']),
-    isTrans() {
-      return this.type === 'trans' ? 'icon-Transfer-accounts' : 'icon-forging'
+    panelIcon() {
+      return this.type === 'trans' ? 'icon-transfer' : 'icon-forging'
     },
     panelName() {
       const t = this.$t
