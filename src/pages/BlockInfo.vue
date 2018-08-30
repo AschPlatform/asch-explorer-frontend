@@ -53,7 +53,7 @@
           </q-td>
         </template> -->
         <template slot="items" slot-scope="props" v-if="props.props">
-          <table-item  :data="getTableData(props)" />
+          <table-item  :data="getTableData(props)" :iconName="'icon-details'" :idIcon="'icon-transaction'"/>
         </template>
       </table-container>
     </div>

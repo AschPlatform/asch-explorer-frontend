@@ -7,17 +7,17 @@ export default {
         label: 'BLOCK_HEIGHT'
       },
       {
-        icon: 'icon-Token',
+        icon: 'icon-token',
         value: Number(runState.totalSupply),
         label: 'TOTAL_SUPPLY'
       },
       {
-        icon: 'icon-Numberof-users',
+        icon: 'icon-users',
         value: Number(runState.accountCount),
         label: 'USERS_NUMBER'
       },
       {
-        icon: 'icon-Operating-days',
+        icon: 'icon-operating',
         value: Math.floor(
           Math.abs(Date.now() - new Date(2016, 8, 16, 0, 0, 0).getTime()) / (3600 * 24 * 1e3)
         ),
@@ -29,7 +29,7 @@ export default {
         label: 'ISSUED_NUM'
       },
       {
-        icon: 'icon-Totalmarket-value',
+        icon: 'icon-totalmarket',
         value: Number(runState.totalPrice),
         label: 'TOTAL_PRICE'
       }
