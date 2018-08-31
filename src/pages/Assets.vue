@@ -1,11 +1,21 @@
 <template>
-  <q-page class="max-w-1200 m-auto xs:pl-2 xs:pr-2 sm:pl-0 sm:pr-0 pb-16">
-    <div class="upperSlot mt-4">
-      <span>{{$t('DIGITAL_ASSET')}}</span>
-      <span>{{$t('REGIST_ASSET')}}: {{count}}</span>
+  <q-page class="max-w-1200 m-auto xs:p-15 sm:p-0 xs:pb-20 sm:pb-40">
+    <div class="upperSlot flex justify-start items-center xs:mt-0 sm:mt-40">
+      <q-icon class="xs:text-14 sm:text-18 text-tw-grey-darkest xs:mr-10 sm:mr-20" name="icon-data" />
+      <span class="xs:text-14 sm:text-16 text-tw-grey-darkest">{{$t('DIGITAL_ASSET')}}</span>
     </div>
-    <table-container class="mt-4" :data="data" :count="count" :params="params" :columnsData="columnsData" @getData="getData">
-      <!-- <template slot="content" slot-scope="props" v-if="props.props">
+    <div class="w-full flex justify-end xs:mb-20 mb-40 xs:-mt-20 sm:mt-0">
+      <span class="xs:text-12 sm:text-16 text-tw-blue">{{$t('REGIST_ASSET')}}: {{count}}</span>
+    </div>
+
+
+    <!-- <div class="upperSlot xs:mt-0 xs:mb-20 sm:my-40">
+
+      <span class="xs:text-14 sm:text-16 font-medium">{{$t('DIGITAL_ASSET')}}</span>
+      <span class="xs:text-14 sm:text-16 text-tw-blue">{{$t('REGIST_ASSET')}}: {{count}}</span>
+    </div> -->
+    <table-container class="desktop-only" :data="data" :count="count" :params="params" :columnsData="columnsData" @getData="getData">
+      <template slot="content" slot-scope="props" v-if="props.props">
         <q-td v-if="props.props.name" key="asset">
           <div class="text-primary cursor-pointer" @click="doSearch(props.props.name, 'asset')">
             {{ props.props.name.split('.')[1] }}
@@ -27,9 +37,11 @@
         <q-td v-if="props.props.timestamp" key="timestamp" >
           <span>{{ fulltimestamp(props.props.timestamp) }}</span>
         </q-td>
-      </template> -->
+      </template>
+    </table-container>
+    <table-container class="mobile-only" :data="data" :count="count" :params="params" :columnsData="columnsData" @getData="getData">
       <template slot="items" slot-scope="props" v-if="props.props">
-        <table-item  :data="getTableData(props.props)" :iconName="'icon-data'"/>
+        <table-item  :data="getTableData(props.props)" :bgIcon="'icon-details'" :dataIcon="'icon-transaction'"/>
       </template>
     </table-container>
   </q-page>
@@ -39,7 +51,7 @@
 </style>
 
 <script>
-import { QPage, QTd, QTooltip } from 'quasar'
+import { QPage, QTd, QTooltip, QIcon } from 'quasar'
 import { mapActions } from 'vuex'
 import TableContainer from '../components/TableContainer'
 import { fulltimestamp } from '../utils/util'
@@ -50,6 +62,7 @@ export default {
   components: {
     QPage,
     QTd,
+    QIcon,
     QTooltip,
     TableContainer,
     TableItem

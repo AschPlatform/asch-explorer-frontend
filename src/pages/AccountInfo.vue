@@ -1,16 +1,16 @@
 <template>
-  <q-page class="max-w-1200 m-auto xs:pl-2 xs:pr-2 sm:pl-0 sm:pr-0 pb-16">
-    <breadcrumb class="my-20" />
-    <div class="border border-solid border-grey rounded-lg xs:p-15 sm:p-30">
-      <div class="text-14 text-black-dark font-bold">
+  <q-page class="max-w-1200 m-auto xs:p-15 sm:p-0 xs:pb-20 sm:pb-40">
+    <breadcrumb class="xs:mt-5 sm:mt-40" />
+    <div class="border border-solid border-tw-grey rounded-lg xs:px-10 xs:py-15 sm:px-40 sm:py-30">
+      <div class="xs:text-16 sm:text-20 text-tw-grey-darkest">
         {{this.$t('ACCOUNT_INFO')}}
       </div>
-      <boundary-line class="my-20" />
+      <boundary-line class="xs:my-15 sm:my-30" />
       <div class="flex justify-between">
         <info-panel v-if="account" :panelData="panelData" />
         <div v-else class="mt-2 mb-8 px-4 text-xs">{{$t('NO_DATA')}}</div>
-        <div class="self-end w-163 xs:hidden sm:block">
-          <img class="w-full" :src="infoImge" alt="">
+        <div class="self-end w-auto xs:hidden sm:block pb-10">
+          <q-icon class="text-60 text-tw-grayish" name="icon-details" />
         </div>
       </div>
       <!-- <info-panel v-if="account" :panelData="panelData" /> -->
@@ -18,8 +18,8 @@
       <q-btn-toggle v-model="model" class="mt-4 pl-15" flat color="positive" taggle-color="tertiary" text-color="primary" toggle-text-color="positive" @input="changeType" :options="btnGroup">
       </q-btn-toggle>
       <boundary-line class="my-20" />
-      <table-container class="mt-4" :data="data" :count="count" :params="params" :columnsData="columnsData" @getData="getData">
-        <!-- <template class="xs:hidden" slot="content" slot-scope="props" v-if="props.props">
+      <table-container class="desktop-only" :data="data" :count="count" :params="params" :columnsData="columnsData" @getData="getData">
+        <template class="xs:hidden" slot="content" slot-scope="props" v-if="props.props">
           <q-td v-if="props.props.id" key="id">
             <div class="text-primary cursor-pointer" @click="doSearch(props.props.id)">
               {{ props.props.id | eclipse }}
@@ -55,14 +55,15 @@
               <q-tooltip>{{ props.props.recipientId }}</q-tooltip>
             </div>
           </q-td>
-          <q-td v-if="props.props.amount" key="amount" >
+          <q-td v-if="props.props.amount" class="text-right" key="amount" >
             <span v-if="getAmount(props.props.transaction)">{{ getAmount(props.props.transaction) }}</span>
           </q-td>
-          <q-td v-if="props.props.transferAmount" key="transferAmount">
+          <q-td v-if="props.props.transferAmount" class="text-right" key="transferAmount">
             <span v-if="getTransAmount(props.props)">{{ getTransAmount(props.props) }}</span>
           </q-td>
-          <q-td v-if="props.props.currency" key="currency" >
-            <span class="">{{ (props.props.currency) + $t('TRS_TYPE_TRANSFER') }}</span>
+          <q-td v-if="props.props.currency" class="text-right align-baseline" key="currency">
+            <span class="text-12">{{ props.props.currency !== 'XAS' ? props.props.currency.split('.')[0] : ''}}</span>
+            <q-chip color="blue" text-color="white" small>{{ props.props.currency.split('.')[1] || props.props.currency.split('.')[0]}}</q-chip>
           </q-td>
          <q-td v-if="props.props.args || props.props.args === null" key="args" >
            <div v-if="props.props.args && props.props.args.length > 0" >
@@ -78,9 +79,11 @@
           <q-td v-if="props.props.transaction && props.props.transaction.fee" key="transferFee" >
             <span>0.1</span>
           </q-td>
-        </template> -->
+        </template>
+      </table-container>
+      <table-container class="mobile-only" :data="data" :count="count" :params="params" :columnsData="columnsData" @getData="getData">
         <template slot="items" slot-scope="props" v-if="props.props">
-          <table-item  :data="getTableData(props.props)" :iconName="'icon-details'" :idIcon="'icon-transaction'"/>
+          <table-item  :data="getTableData(props.props)" :bgIcon="'icon-details'" :dataIcon="'icon-transaction'"/>
         </template>
       </table-container>
     </div>
@@ -88,7 +91,7 @@
 </template>
 
 <script>
-import { QPage, QBtnGroup, QBtnToggle, QBtn, QTd, QTooltip } from 'quasar'
+import { QPage, QBtnGroup, QBtnToggle, QBtn, QTd, QTooltip, QIcon, QChip } from 'quasar'
 import BoundaryLine from '../components/BoundaryLine'
 import Breadcrumb from '../components/Breadcrumb'
 import InfoPanel from '../components/InfoPanel'
@@ -114,7 +117,9 @@ export default {
     PanelItem,
     QBtn,
     QTd,
-    QTooltip
+    QIcon,
+    QTooltip,
+    QChip
   },
   data() {
     return {
@@ -313,6 +318,7 @@ export default {
     changeType(val) {
       this.type = val
       this.reset()
+      // this.leftIconName()
       // this.getData(this.defaultProps)
     },
     async getData(props = this.defaultProps) {
@@ -430,12 +436,7 @@ export default {
       let tablePanelData =
         this.type === 0
           ? [idField, timeField, typeField, senderField]
-          : [
-              idField,
-              timeField,
-              senderField,
-              receiverField
-            ]
+          : [idField, timeField, senderField, receiverField]
 
       return tablePanelData
     }

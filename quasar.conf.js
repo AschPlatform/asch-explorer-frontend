@@ -12,8 +12,7 @@ module.exports = function (ctx) {
     css: [
       'font-style.css',
       'tailwindOutput.css',
-      'app.styl',
-      'font-style.css'
+      'app.styl'
     ],
     extras: [
       ctx.theme.mat ? 'roboto-font' : null,
@@ -41,7 +40,7 @@ module.exports = function (ctx) {
     },
     devServer: {
       // https: true,
-      port: 8090,
+      port: 8080,
       open: false // opens browser window automatically
     },
     // framework: 'all' --- includes everything; for dev only!

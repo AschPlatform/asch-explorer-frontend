@@ -1,11 +1,29 @@
 <template>
   <transition appear enter-active-class="animated fadeIn" leave-active-class="animated fadeOut">
     <div class="relative-position">
-      <q-table class="no-shadow q-table" table-class="overall" :data="data" :grid="true" :hide-header="false" :columns="columns" :rows-per-page-options="[3,5,10,50]" :pagination.sync="pagination" :no-data-label="$t('NO_DATA')" @request="request" row-key="name">
-        <q-tr slot="body" slot-scope="props" :props="props">
+      <q-table class="desktop-only no-shadow table-top-border" :data="data" :grid="true" :hide-header="false" :columns="columns" :rows-per-page-options="[3,5,10,50]" :pagination.sync="pagination" :no-data-label="$t('NO_DATA')" @request="request" row-key="name">
+        <q-tr v-if="isDesktop" slot="body" slot-scope="props" :props="props">
           <slot name="content" slot-scope="props" :props="props.row"></slot>
         </q-tr>
-        <!-- <div v-if="!isDesktop" class="w-full" slot="item" slot-scope="props">
+        <!-- <div class="w-full mobile-only" slot="item" slot-scope="props">
+          <slot name="items" slot-scope="props" :props="props.row" />
+        </div> -->
+  
+        <div slot="pagination" slot-scope="props" class="row flex-center q-py-sm">
+          <q-btn round dense flat size="sm" icon="first_page" class="q-mr-sm" :disable="props.isFirstPage" @click="()=>firstPage(props)" />
+          <q-btn round dense flat size="sm" icon="chevron_left" class="q-mr-sm" :disable="props.isFirstPage" @click="props.prevPage" />
+          <div class="q-mr-sm" style="font-size: small">
+            {{ props.pagination.page }} / {{ props.pagesNumber }}
+          </div>
+          <q-btn round dense flat size="sm" icon="chevron_right" :disable="props.isLastPage" @click="props.nextPage" />
+          <q-btn round dense flat size="sm" icon="last_page" :disable="props.isLastPage" @click="()=>lastPage(props)" />
+        </div>
+      </q-table>
+      <q-table class="mobile-only no-shadow table-top-border" :data="data" :grid="true" :hide-header="true" :columns="columns" :rows-per-page-options="[3,5,10,50]" :pagination.sync="pagination" :no-data-label="$t('NO_DATA')" @request="request" row-key="name">
+        <!-- <q-tr v-if="isDesktop" slot="body" slot-scope="props" :props="props">
+          <slot name="content" slot-scope="props" :props="props.row"></slot>
+        </q-tr> -->
+        <div class="w-full mobile-only" slot="item" slot-scope="props">
           <slot name="items" slot-scope="props" :props="props.row" />
         </div> -->
         <div slot="pagination" slot-scope="props" class="row flex-center q-py-sm">
