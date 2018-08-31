@@ -1,14 +1,14 @@
 <template>
   <q-page class="max-w-1200 m-auto xs:p-15 sm:p-0 xs:pb-20 sm:pb-40">
     <div class="upperSlot flex justify-start items-center xs:mt-0 sm:mt-40">
-      <q-icon class="xs:text-14 sm:text-18 text-tw-grey-darkest xs:mr-10 sm:mr-20" name="icon-Trustee" />
+      <q-icon class="xs:text-14 sm:text-18 text-tw-grey-darkest xs:mr-10 sm:mr-20" name="icon-trustee" />
       <span class="xs:text-14 sm:text-16 text-tw-grey-darkest">{{$t('DELEGATE_LIST')}}</span>
     </div>
     <div class="w-full flex justify-end xs:mb-20 mb-40 xs:-mt-20 sm:mt-0">
       <span class="xs:text-12 sm:text-16 text-tw-blue">{{$t('REGIST_DELEGATE')}}: {{count}}{{$t('PERSON')}}</span>
     </div>
-    <table-container class="desktop-only" :data="data" :count="count" :params="params" :columnsData="columnsData" @getData="getData">
-      <template slot="content" slot-scope="props" v-if="props.props">
+    <table-container :data="data" :count="count" :params="params" :columnsData="columnsData" @getData="getData">
+      <template class="desktop-only" slot="content" slot-scope="props" v-if="props.props">
         <q-td v-if="props.props.rate" key="rate" >
           <span>{{ props.props.rate }}</span>
         </q-td>
@@ -34,9 +34,7 @@
           <span>{{ props.props.approval + ' %' }}</span>
         </q-td>
       </template>
-    </table-container>
-    <table-container class="mobile-only" :data="data" :count="count" :params="params" :columnsData="columnsData" @getData="getData">
-      <template slot="items" slot-scope="props" v-if="props.props">
+      <template class="mobile-only" slot="items" slot-scope="props" v-if="props.props">
         <table-item  :data="getTableData(props.props)" :bgIcon="'icon-details'" :dataIcon="'icon-transaction'"/>
       </template>
     </table-container>

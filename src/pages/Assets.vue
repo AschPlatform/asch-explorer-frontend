@@ -14,8 +14,8 @@
       <span class="xs:text-14 sm:text-16 font-medium">{{$t('DIGITAL_ASSET')}}</span>
       <span class="xs:text-14 sm:text-16 text-tw-blue">{{$t('REGIST_ASSET')}}: {{count}}</span>
     </div> -->
-    <table-container class="desktop-only" :data="data" :count="count" :params="params" :columnsData="columnsData" @getData="getData">
-      <template slot="content" slot-scope="props" v-if="props.props">
+    <table-container :data="data" :count="count" :params="params" :columnsData="columnsData" @getData="getData">
+      <template class="desktop-only" slot="content" slot-scope="props" v-if="props.props">
         <q-td v-if="props.props.name" key="asset">
           <div class="text-primary cursor-pointer" @click="doSearch(props.props.name, 'asset')">
             {{ props.props.name.split('.')[1] }}
@@ -38,10 +38,8 @@
           <span>{{ fulltimestamp(props.props.timestamp) }}</span>
         </q-td>
       </template>
-    </table-container>
-    <table-container class="mobile-only" :data="data" :count="count" :params="params" :columnsData="columnsData" @getData="getData">
-      <template slot="items" slot-scope="props" v-if="props.props">
-        <table-item  :data="getTableData(props.props)" :bgIcon="'icon-details'" :dataIcon="'icon-transaction'"/>
+      <template class="mobile-only" slot="items" slot-scope="props" v-if="props.props">
+        <table-item :data="getTableData(props.props)" :bgIcon="'icon-details'" :dataIcon="'icon-transaction'"/>
       </template>
     </table-container>
   </q-page>
