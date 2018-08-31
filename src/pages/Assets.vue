@@ -1,19 +1,16 @@
 <template>
   <q-page class="max-w-1200 m-auto xs:p-15 sm:p-0 xs:pb-20 sm:pb-40">
-    <div class="upperSlot flex justify-start items-center xs:mt-0 sm:mt-40">
-      <q-icon class="xs:text-14 sm:text-18 text-tw-grey-darkest xs:mr-10 sm:mr-20" name="icon-data" />
-      <span class="xs:text-14 sm:text-16 text-tw-grey-darkest">{{$t('DIGITAL_ASSET')}}</span>
+    <div class="upperSlot flex justify-between items-center xs:mt-0 xs:mb-20 sm:mb-0 sm:mt-40">
+      <div>
+        <q-icon class="xs:text-14 sm:text-18 text-tw-grey-darkest xs:mr-10 sm:mr-20" name="icon-data" />
+        <span class="xs:text-14 sm:text-16 text-tw-grey-darkest">{{$t('DIGITAL_ASSET')}}</span>
+      </div>
+      <span class="mobile-only xs:text-12 sm:text-16 text-tw-blue">{{$t('REGIST_ASSET')}}: {{count}}</span>
     </div>
-    <div class="w-full flex justify-end xs:mb-20 mb-40 xs:-mt-20 sm:mt-0">
+    <div class="desktop-only w-full flex justify-end xs:mb-20 mb-40 xs:-mt-20 sm:mt-0">
       <span class="xs:text-12 sm:text-16 text-tw-blue">{{$t('REGIST_ASSET')}}: {{count}}</span>
     </div>
 
-
-    <!-- <div class="upperSlot xs:mt-0 xs:mb-20 sm:my-40">
-
-      <span class="xs:text-14 sm:text-16 font-medium">{{$t('DIGITAL_ASSET')}}</span>
-      <span class="xs:text-14 sm:text-16 text-tw-blue">{{$t('REGIST_ASSET')}}: {{count}}</span>
-    </div> -->
     <table-container :data="data" :count="count" :params="params" :columnsData="columnsData" @getData="getData">
       <template class="desktop-only" slot="content" slot-scope="props" v-if="props.props">
         <q-td v-if="props.props.name" key="asset">

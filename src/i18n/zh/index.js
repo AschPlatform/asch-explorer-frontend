@@ -14,8 +14,8 @@ const lang = {
   ONLINE_WALLET: '在线钱包',
   HOME_PLACEHOLDER: '请输入区块高度/地址/交易ID',
   LANGUAGE_CONTEXT: '语言环境:',
-  LANGUAGE_ZH: '中文',
-  LANGUAGE_EN: 'English',
+  LANGUAGE_ZH: 'ZH',
+  LANGUAGE_EN: 'EN',
 
   // panel
   BLOCK: '区块',

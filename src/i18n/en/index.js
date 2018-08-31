@@ -14,8 +14,8 @@ const lang = {
  ONLINE_WALLET: 'Online Wallet',
  HOME_PLACEHOLDER: 'Please enter block height/address/transaction ID',
  LANGUAGE_CONTEXT: 'Language:',
- LANGUAGE_ZH: '中文',
- LANGUAGE_EN: 'English',
+ LANGUAGE_ZH: 'ZH',
+ LANGUAGE_EN: 'EN',
 
  // panel
  BLOCK: 'Block',
