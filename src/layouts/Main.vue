@@ -34,7 +34,7 @@
           <q-item-main class="text-30 text-tw-blue" :label="$t('HOME')"/>
         </q-item> -->
         <div class="min-h-50 q-item q-item-division relative-position">
-          <a :class="computedRoute('home')" @click="getRouterConf('/')">
+          <a class="w-full" :class="computedRoute('home')" @click="getRouterConf('/')">
             {{$t('HOME')}}
           </a>
         </div>
@@ -43,7 +43,7 @@
         </q-item> -->
         <q-item-separator class="sep text-tw-grey" />
         <div class="min-h-50 q-item q-item-division relative-position">
-          <a :class="computedRoute('delegates')" @click="getRouterConf('delegates')">
+          <a class="w-full" :class="computedRoute('delegates')" @click="getRouterConf('delegates')">
             {{$t('DELEGATES')}}
           </a>
         </div>
@@ -52,7 +52,7 @@
         </q-item> -->
         <q-item-separator class="sep text-tw-grey" />
         <div class="min-h-50 q-item q-item-division relative-position">
-          <a :class="computedRoute('assets')" @click="getRouterConf('assets')">
+          <a class="w-full" :class="computedRoute('assets')" @click="getRouterConf('assets')">
             {{$t('ASSETS')}}
           </a>
         </div>
@@ -61,13 +61,13 @@
           <a class="text-30">{{$t('ZH')}}</a>
         </q-item> -->
         <div class="min-h-50 q-item q-item-division relative-position">
-          <a class="text-30" @click="change()">
+          <a class="w-full text-30" @click="change()">
             {{$t('ZH')}}
           </a>
         </div>
         <q-item-separator class="sep text-tw-grey" />
         <div class="min-h-50 q-item q-item-division relative-position">
-          <a class="text-30" @click="change()">
+          <a class="w-full text-30" @click="change()">
             {{$t('EN')}}
           </a>
         </div>
@@ -90,7 +90,7 @@ import { REGEX } from '../utils/constants'
 import Navbar from '../components/Navbar'
 import CodeModal from '../components/QRCodeModal'
 
-import { toastError, getCache } from '../utils/util'
+import { getCache } from '../utils/util'
 import { mapGetters, mapActions } from 'vuex'
 import aschLogo from '../assets/asch_logo2.png'
 
@@ -163,8 +163,9 @@ export default {
           return
         }
       }
-      toastError(this.$t('ERR_INVALID_SEARCH'))
+      this.$router.push({ path: '/error', query: { errorStr: str } })
     },
+
     // Set the language when you refresh
     setLang() {
       if (window.localStorage && getCache('lang')) {

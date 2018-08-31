@@ -18,8 +18,8 @@
       <q-btn-toggle v-model="model" class="mt-4 pl-15" flat color="positive" taggle-color="tertiary" text-color="primary" toggle-text-color="positive" @input="changeType" :options="btnGroup">
       </q-btn-toggle>
       <boundary-line class="my-20" />
-      <table-container class="desktop-only" :data="data" :count="count" :params="params" :columnsData="columnsData" @getData="getData">
-        <template class="xs:hidden" slot="content" slot-scope="props" v-if="props.props">
+      <table-container :data="data" :count="count" :params="params" :columnsData="columnsData" @getData="getData">
+        <template class="desktop-only" slot="content" slot-scope="props" v-if="props.props">
           <q-td v-if="props.props.id" key="id">
             <div class="text-primary cursor-pointer" @click="doSearch(props.props.id)">
               {{ props.props.id | eclipse }}
@@ -80,10 +80,8 @@
             <span>0.1</span>
           </q-td>
         </template>
-      </table-container>
-      <table-container class="mobile-only" :data="data" :count="count" :params="params" :columnsData="columnsData" @getData="getData">
-        <template slot="items" slot-scope="props" v-if="props.props">
-          <table-item  :data="getTableData(props.props)" :bgIcon="'icon-details'" :dataIcon="'icon-transaction'"/>
+        <template class="mobile-only" slot="items" slot-scope="props" v-if="props.props">
+          <table-item :data="getTableData(props.props)" :bgIcon="'icon-details'" :dataIcon="'icon-transaction'"/>
         </template>
       </table-container>
     </div>

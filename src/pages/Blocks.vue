@@ -36,9 +36,7 @@
             <span v-else>--</span>
           </q-td>
         </template>
-      </table-container>
-      <table-container class="mobile-only" :data="data" :count="count" :columnsData="columnsData" @getData="getData">
-        <template slot="items" slot-scope="props" v-if="props.props">
+        <template class="moblie-only" slot="items" slot-scope="props" v-if="props.props">
           <table-item :bgIcon="'icon-block'" :dataIcon="'icon-height'" :data="getTableData(props)" />
         </template>
       </table-container>

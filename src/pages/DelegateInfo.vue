@@ -1,6 +1,10 @@
 <template>
   <q-page class="max-w-1200 m-auto xs:p-15 sm:p-0 xs:pb-20 sm:pb-40">
-    <breadcrumb class="xs:mt-5 sm:mt-40" />
+    <div class="xs:mt-5 xs:mb-20 sm:my-40 text-16 custom-link-btn">
+      <button class="p-0 text-tw-grey-darkest hover:text-tw-blue text-16 border-0 bg-tw-white cursor-pointer" @click="$router.push('/delegates')">{{this.$t('DELEGATES')}}</button>
+      <q-icon class="text-12 text-tw-grey-darkest p-0 xs:mx-5 sm:mx-10" name="icon-right" />
+      <button class="p-0 text-16 text-tw-grey-darkest border-0 bg-tw-white">{{this.$t('INFO')}}</button>
+    </div>
     <div class="border border-solid border-tw-grey rounded-lg xs:px-10 xs:py-15 sm:px-40 sm:py-30">
       <div class="xs:text-16 sm:text-20 text-tw-grey-darkest">
         {{this.$t('BLOCK_INFO')}}
@@ -9,11 +13,11 @@
        <div class="flex justify-between">
         <info-panel :panelData="panelData" />
         <div class="self-end w-auto xs:hidden sm:block pb-10">
-          <q-icon class="text-60 text-tw-grayish" name="icon-Trustee" />
+          <q-icon class="text-60 text-tw-grayish" name="icon-trustee" />
         </div>
       </div>
-      <table-container class="desktop-only" :data="data" :count="count" :params="address" :columnsData="columnsData" @getData="getData">
-        <template slot="content" slot-scope="props" v-if="props.props">
+      <table-container :data="data" :count="count" :params="address" :columnsData="columnsData" @getData="getData">
+        <template class="desktop-only" slot="content" slot-scope="props" v-if="props.props">
           <q-td v-if="props.props.height" key="height">
             <div class="text-primary cursor-pointer" @click="doSearch(props.props.height)">
               {{ props.props.height }}
@@ -32,9 +36,7 @@
             <span>{{ fulltimestamp(props.props.timestamp) }}</span>
           </q-td>
         </template>
-      </table-container>
-      <table-container class="mobile-only" :data="data" :count="count" :params="address" :columnsData="columnsData" @getData="getData">
-        <template slot="items" slot-scope="props" v-if="props.props">
+        <template class="mobile-only" slot="items" slot-scope="props" v-if="props.props">
           <table-item  :data="getTableData(props.props)" :bgIcon="'icon-details'" :dataIcon="'icon-transaction'"/>
         </template>
       </table-container>

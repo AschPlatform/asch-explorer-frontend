@@ -69,6 +69,11 @@ export default [{
         path: 'asset/:name',
         name: 'asset',
         component: load('AssetInfo')
+      },
+      {
+        path: 'error',
+        name: 'error',
+        component: load('SearchError')
       }
     ]
   },

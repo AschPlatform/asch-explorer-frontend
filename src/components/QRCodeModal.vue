@@ -14,8 +14,8 @@
     </div>
 
     <template  slot="buttons" slot-scope="props">
-      <div class="row justify-center width-100">
-        <q-btn color="secondary" align="center" :label="$t('close')" @click="close" />
+      <div class="row justify-center w-full">
+        <q-btn class="text-tw-grey-lighter" align="center" :label="$t('close')" @click="close" />
       </div>
    
     </template>
