@@ -137,11 +137,11 @@ export default {
       count: 0,
       btnGroup: [
         {
-          label: this.$t('TRANSACTION_TABLE'),
+          label: this.$t('TRANS_TABLE'),
           value: 0
         },
         {
-          label: this.$t('TRANS_TABLE'),
+          label: this.$t('TRANSACTION_TABLE'),
           value: 1
         }
       ]
@@ -324,7 +324,7 @@ export default {
     async getData(props = this.defaultProps) {
       this.data = []
       let res
-      if (this.type === 0) {
+      if (this.type === 1) {
         // For transactions
         props.senderId = this.address
         res = await this.getTransactions(props)
