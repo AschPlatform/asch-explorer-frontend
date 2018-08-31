@@ -27,6 +27,7 @@
 </template>
 
 <script>
+/* eslint-disable */
   import {
     QToolbar,
     QToolbarTitle,
@@ -64,7 +65,9 @@
         this.$root.$emit('doSearch', this.searchStr)
         this.searchStr = ''
       },
-      toggle() {}
+      toggle() {
+        this.$root.$emit('showDrawer', true)
+      }
     },
     computed: {
       searchIcon() {

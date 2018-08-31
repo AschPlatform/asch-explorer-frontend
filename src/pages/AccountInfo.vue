@@ -55,14 +55,15 @@
               <q-tooltip>{{ props.props.recipientId }}</q-tooltip>
             </div>
           </q-td>
-          <q-td v-if="props.props.amount" key="amount" >
+          <q-td v-if="props.props.amount" class="text-right" key="amount" >
             <span v-if="getAmount(props.props.transaction)">{{ getAmount(props.props.transaction) }}</span>
           </q-td>
-          <q-td v-if="props.props.transferAmount" key="transferAmount">
+          <q-td v-if="props.props.transferAmount" class="text-right" key="transferAmount">
             <span v-if="getTransAmount(props.props)">{{ getTransAmount(props.props) }}</span>
           </q-td>
-          <q-td v-if="props.props.currency" key="currency" >
-            <span class="">{{ (props.props.currency) + $t('TRS_TYPE_TRANSFER') }}</span>
+          <q-td v-if="props.props.currency" class="text-right align-baseline" key="currency">
+            <span class="text-12">{{ props.props.currency !== 'XAS' ? props.props.currency.split('.')[0] : ''}}</span>
+            <q-chip color="blue" text-color="white" small>{{ props.props.currency.split('.')[1] || props.props.currency.split('.')[0]}}</q-chip>
           </q-td>
          <q-td v-if="props.props.args || props.props.args === null" key="args" >
            <div v-if="props.props.args && props.props.args.length > 0" >
@@ -90,7 +91,7 @@
 </template>
 
 <script>
-import { QPage, QBtnGroup, QBtnToggle, QBtn, QTd, QTooltip, QIcon } from 'quasar'
+import { QPage, QBtnGroup, QBtnToggle, QBtn, QTd, QTooltip, QIcon, QChip } from 'quasar'
 import BoundaryLine from '../components/BoundaryLine'
 import Breadcrumb from '../components/Breadcrumb'
 import InfoPanel from '../components/InfoPanel'
@@ -117,7 +118,8 @@ export default {
     QBtn,
     QTd,
     QIcon,
-    QTooltip
+    QTooltip,
+    QChip
   },
   data() {
     return {

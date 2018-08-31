@@ -10,14 +10,79 @@
       <footer-bar />
     </q-layout-footer>
     <q-layout-drawer v-model="drawer">
-      ...
+      <q-toolbar class="flex xs:flex-col sm:flex-row justify-between w-full bg-tw-black xs:h-auto sm:h-86 xs:px-0 xs:pb-11 sm:pb-0 sm:px-30">
+        <div class="w-full flex justify-between items-center">
+          <div class="xs:w-full sm:w-auto asch-logo h-30 xs:my-10 sm:my-0 sm:mr-20 lg:mr-53 cursor-pointer text-center">
+            <img class="h-full" :src="aschLogo" alt="">
+          </div>
+          <div class="xs:w-full sm:w-auto flex xs:content-start sm:justify-between xs:border-t-1 xs:border-b-0 xs:border-l-0 xs:border-r-0 sm:border-none border-solid border-tw-black-dark xs:pt-10 xs:pr-15 sm:pr-0">
+            <q-btn class="xs:flex sm:hidden w-1/6" icon="icon-delete" @click="switchDrawer(false)"/>
+          </div>
+        </div>
+      </q-toolbar>
+      <q-list class="py-0 mt-20" no-border link inset-delimiter>
+        <!-- <q-list-header class="row justify-left"> -->
+          <!-- <div class="header-left row justify-center items-center">
+            <span class="menu-logo"></span>
+          </div>
+          <div class="header-right margin-left-10">
+            <span class="header-right-top">{{$t('ASCH')}}</span>
+            <span class="header-right-bottom font-12">Asch Client CCC</span>
+          </div> -->
+        <!-- </q-list-header> -->
+        <!-- <q-item class="min-h-50" :to="getRouterConf('home')">
+          <q-item-main class="text-30 text-tw-blue" :label="$t('HOME')"/>
+        </q-item> -->
+        <div class="min-h-50 q-item q-item-division relative-position">
+          <a :class="computedRoute('home')" @click="getRouterConf('/')">
+            {{$t('HOME')}}
+          </a>
+        </div>
+        <!-- <q-item class="min-h-50" :to="getRouterConf('delegates')">
+          <q-item-main class="text-30" :label="$t('DELEGATES')" />
+        </q-item> -->
+        <q-item-separator class="sep text-tw-grey" />
+        <div class="min-h-50 q-item q-item-division relative-position">
+          <a :class="computedRoute('delegates')" @click="getRouterConf('delegates')">
+            {{$t('DELEGATES')}}
+          </a>
+        </div>
+        <!-- <q-item class="min-h-50" :to="getRouterConf('assets')">
+          <q-item-main class="text-30" :label="$t('ASSETS')" />
+        </q-item> -->
+        <q-item-separator class="sep text-tw-grey" />
+        <div class="min-h-50 q-item q-item-division relative-position">
+          <a :class="computedRoute('assets')" @click="getRouterConf('assets')">
+            {{$t('ASSETS')}}
+          </a>
+        </div>
+        <q-item-separator class="sep text-tw-grey" />
+        <!-- <q-item class="min-h-50" @click="change()" tag="div">
+          <a class="text-30">{{$t('ZH')}}</a>
+        </q-item> -->
+        <div class="min-h-50 q-item q-item-division relative-position">
+          <a class="text-30" @click="change()">
+            {{$t('ZH')}}
+          </a>
+        </div>
+        <q-item-separator class="sep text-tw-grey" />
+        <div class="min-h-50 q-item q-item-division relative-position">
+          <a class="text-30" @click="change()">
+            {{$t('EN')}}
+          </a>
+        </div>
+        <!-- <q-item class="min-h-50" :to="getRouterConf('home')">
+          <q-item-main class="text-30" label="EN" />
+        </q-item> -->
+      </q-list>
     </q-layout-drawer>
-    <code-modal :show="QRCodeShow" @close="QRCodeShow = false" :text="QRCodeText" />
+    <code-modal :show="QRCodeShow" @close="QRCodeShow = false" :text="QRCodeText"/>
   </q-layout>
 </template>
 
 <script>
-import { openURL, QLayout, QLayoutHeader, QPageContainer, QLayoutFooter, QLayoutDrawer } from 'quasar'
+/* eslint-disable */
+import { openURL, QLayout, QLayoutHeader, QPageContainer, QLayoutFooter, QLayoutDrawer, QList, QItem, QItemMain, QListHeader, QToolbar, QBtn, QItemSeparator } from 'quasar'
 import FooterBar from '../components/FooterBar'
 import StateBanner from '../components/StateBanner'
 import SearchBanner from '../components/SearchBanner'
@@ -27,6 +92,7 @@ import CodeModal from '../components/QRCodeModal'
 
 import { toastError, getCache } from '../utils/util'
 import { mapGetters, mapActions } from 'vuex'
+import aschLogo from '../assets/asch_logo2.png'
 
 export default {
   name: 'MyLayout',
@@ -40,10 +106,18 @@ export default {
     SearchBanner,
     Navbar,
     CodeModal,
-    QLayoutDrawer
+    QLayoutDrawer,
+    QList,
+    QItem,
+    QItemMain,
+    QListHeader,
+    QToolbar,
+    QBtn,
+    QItemSeparator
   },
   data() {
     return {
+      aschLogo,
       searchForbidden: false,
       isHomeFlg: true,
       intervalStats: null,
@@ -103,6 +177,21 @@ export default {
     showQRCodeModal(content) {
       this.QRCodeShow = true
       this.QRCodeText = content
+    },
+    switchDrawer(state) {
+      this.drawer = state
+    },
+    getRouterConf(path = '/') {
+      this.$router.push(path)
+    },
+    change() {
+    },
+    computedRoute(data) {
+      let path = this.$route.name
+      if (path && path === data) {
+        return 'text-30 text-tw-blue'
+      }
+      return 'text-30'
     }
   },
   mounted() {
@@ -120,11 +209,13 @@ export default {
   created() {
     this.$root.$on('doSearch', this.doSearch)
     this.$root.$on('showQRCodeModal', this.showQRCodeModal)
+    this.$root.$on('showDrawer', this.switchDrawer)
   },
   beforeDestroy() {
     clearInterval(this.intervalStats)
     this.$root.$off('doSearch', this.doSearch)
     this.$root.$off('showQRCodeModal', this.showQRCodeModal)
+    this.$root.$off('showDrawer', this.switchDrawer)
   },
   computed: {
     ...mapGetters(['getRunState', 'assetMap']),
@@ -136,4 +227,8 @@ export default {
 </script>
 
 <style>
+.sep {
+  margin-left: 16px;
+  margin-right: 16px;
+}
 </style>

@@ -1,7 +1,7 @@
 <template>
   <transition appear enter-active-class="animated fadeIn" leave-active-class="animated fadeOut">
     <div class="relative-position">
-      <q-table class="desktop-only no-shadow table-top-border" :data="data" :grid="true" :hide-header="true" :columns="columns" :rows-per-page-options="[3,5,10,50]" :pagination.sync="pagination" :no-data-label="$t('NO_DATA')" @request="request" row-key="name">
+      <q-table class="desktop-only no-shadow table-top-border" :data="data" :grid="true" :hide-header="false" :columns="columns" :rows-per-page-options="[3,5,10,50]" :pagination.sync="pagination" :no-data-label="$t('NO_DATA')" @request="request" row-key="name">
         <q-tr v-if="isDesktop" slot="body" slot-scope="props" :props="props">
           <slot name="content" slot-scope="props" :props="props.row"></slot>
         </q-tr>
@@ -25,8 +25,7 @@
         </q-tr> -->
         <div class="w-full mobile-only" slot="item" slot-scope="props">
           <slot name="items" slot-scope="props" :props="props.row" />
-        </div>
-  
+        </div> -->
         <div slot="pagination" slot-scope="props" class="row flex-center q-py-sm">
           <q-btn round dense flat size="sm" icon="first_page" class="q-mr-sm" :disable="props.isFirstPage" @click="()=>firstPage(props)" />
           <q-btn round dense flat size="sm" icon="chevron_left" class="q-mr-sm" :disable="props.isFirstPage" @click="props.prevPage" />
@@ -149,4 +148,18 @@ export default {
 </script>
 
 <style lang="stylus" scoped>
+.q-table
+  tr
+    border: 1px solid #E0E1E5;
+    text-align: center;
+    span
+      text-align: center;
+      font-size: 16px;
+  td
+    border: 1px solid #E0E1E5;
+  thead
+    border: 1px solid #E0E1E5;
+  tr:nth-child(2n -1)
+    background-color: #F8F8F8;
+
 </style>
