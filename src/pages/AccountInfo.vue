@@ -18,8 +18,8 @@
       <q-btn-toggle v-model="model" class="mt-4 pl-15" flat color="positive" taggle-color="tertiary" text-color="primary" toggle-text-color="positive" @input="changeType" :options="btnGroup">
       </q-btn-toggle>
       <boundary-line class="my-20" />
-      <table-container class="desktop-only" :data="data" :count="count" :params="params" :columnsData="columnsData" @getData="getData">
-        <template class="xs:hidden" slot="content" slot-scope="props" v-if="props.props">
+      <table-container :data="data" :count="count" :params="params" :columnsData="columnsData" @getData="getData">
+        <template class="desktop-only" slot="content" slot-scope="props" v-if="props.props">
           <q-td v-if="props.props.id" key="id">
             <div class="text-primary cursor-pointer" @click="doSearch(props.props.id)">
               {{ props.props.id | eclipse }}
@@ -55,14 +55,15 @@
               <q-tooltip>{{ props.props.recipientId }}</q-tooltip>
             </div>
           </q-td>
-          <q-td v-if="props.props.amount" key="amount" >
+          <q-td v-if="props.props.amount" class="text-right" key="amount" >
             <span v-if="getAmount(props.props.transaction)">{{ getAmount(props.props.transaction) }}</span>
           </q-td>
-          <q-td v-if="props.props.transferAmount" key="transferAmount">
+          <q-td v-if="props.props.transferAmount" class="text-right" key="transferAmount">
             <span v-if="getTransAmount(props.props)">{{ getTransAmount(props.props) }}</span>
           </q-td>
-          <q-td v-if="props.props.currency" key="currency" >
-            <span class="">{{ (props.props.currency) + $t('TRS_TYPE_TRANSFER') }}</span>
+          <q-td v-if="props.props.currency" class="text-right align-baseline" key="currency">
+            <span class="text-12">{{ props.props.currency !== 'XAS' ? props.props.currency.split('.')[0] : ''}}</span>
+            <q-chip color="blue" text-color="white" small>{{ props.props.currency.split('.')[1] || props.props.currency.split('.')[0]}}</q-chip>
           </q-td>
          <q-td v-if="props.props.args || props.props.args === null" key="args" >
            <div v-if="props.props.args && props.props.args.length > 0" >
@@ -79,10 +80,8 @@
             <span>0.1</span>
           </q-td>
         </template>
-      </table-container>
-      <table-container class="mobile-only" :data="data" :count="count" :params="params" :columnsData="columnsData" @getData="getData">
-        <template slot="items" slot-scope="props" v-if="props.props">
-          <table-item  :data="getTableData(props.props)" :bgIcon="'icon-details'" :dataIcon="'icon-transaction'"/>
+        <template class="mobile-only" slot="items" slot-scope="props" v-if="props.props">
+          <table-item :data="getTableData(props.props)" :bgIcon="'icon-details'" :dataIcon="'icon-transaction'"/>
         </template>
       </table-container>
     </div>
@@ -90,7 +89,7 @@
 </template>
 
 <script>
-import { QPage, QBtnGroup, QBtnToggle, QBtn, QTd, QTooltip, QIcon } from 'quasar'
+import { QPage, QBtnGroup, QBtnToggle, QBtn, QTd, QTooltip, QIcon, QChip } from 'quasar'
 import BoundaryLine from '../components/BoundaryLine'
 import Breadcrumb from '../components/Breadcrumb'
 import InfoPanel from '../components/InfoPanel'
@@ -117,7 +116,8 @@ export default {
     QBtn,
     QTd,
     QIcon,
-    QTooltip
+    QTooltip,
+    QChip
   },
   data() {
     return {

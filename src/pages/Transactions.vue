@@ -2,24 +2,26 @@
   <q-page class="max-w-1200 m-auto xs:p-15 sm:p-0 xs:pb-20 sm:pb-40">
      <breadcrumb class="xs:mt-5 sm:mt-40" />
     <div class="xs:border-0 sm:border-1 border-solid border-tw-grey rounded-lg xs:px-0 xs:pt-0 xs:pb-15 sm:px-40 sm:py-30">
-      <!-- <q-btn-group class="mt-8" outline>
+      <q-btn-group class="mt-8 mobile-only" outline>
         <q-btn outline v-for="(item, idx) in btnGroup" :label="item.label" @click="changeType(item.value)" :key="idx"></q-btn>
-      </q-btn-group> -->
-      <button class="border border-tw-transparent text-14 text-tw-white bg-tw-black-lighter hover:bg-tw-blue px-12 py-6 cursor-pointer" @click="changeType(0)">
-        {{$t('TRANSACTION_TABLE')}}
-      </button>
-      <button class="border border-tw-transparent text-14 text-tw-white bg-tw-black-lighter hover:bg-tw-blue px-12 py-6 cursor-pointer" @click="changeType(1)">
-        {{$t('TRANS_TABLE')}}
-      </button>
-      <table-container class="xs:mt-20 desktop-only" :data="data" :count="count" :params="params" :columnsData="columnsData" @getData="getData">
-        <template slot="content" slot-scope="props" v-if="props.props">
+      </q-btn-group>
+      <div class="btnWrap desktop-only w-full border-1 border-solid border-tw-grey">
+        <button class="border border-tw-transparent h-57 text-14 text-tw-white bg-tw-black-lighter hover:bg-tw-blue px-12 py-6 cursor-pointer" @click="changeType(1)">
+          {{$t('TRANS_TABLE')}}
+        </button>
+        <button class="border border-tw-transparent h-57 text-14 text-tw-white bg-tw-black-lighter hover:bg-tw-blue px-12 py-6 cursor-pointer" @click="changeType(0)">
+          {{$t('TRANSACTION_TABLE')}}
+        </button>
+      </div>
+      <table-container class="xs:mt-20" :data="data" :count="count" :params="params" :columnsData="columnsData" @getData="getData">
+        <template class="desktop-only" slot="content" slot-scope="props" v-if="props.props">
           <q-td v-if="props.props.id" key="id">
             <div class="text-primary cursor-pointer" @click="doSearch(props.props.id)">
               {{ props.props.id | eclipse }}
               <q-tooltip>{{ props.props.id }}</q-tooltip>
             </div>
           </q-td>
-          <q-td v-if="props.props.tid" key="tid" >
+          <q-td v-if="props.props.tid" key="tid">
             <div class="text-primary cursor-pointer" @click="doSearch(props.props.tid)">
               {{ props.props.tid | eclipse }}
               <q-tooltip>{{ props.props.tid }}</q-tooltip>
@@ -48,14 +50,15 @@
               <q-tooltip>{{ props.props.recipientId }}</q-tooltip>
             </div>
           </q-td>
-          <q-td v-if="props.props.amount" key="amount" >
+          <q-td v-if="props.props.amount" class="text-right" key="amount" >
             <span v-if="getAmount(props.props.transaction)">{{ getAmount(props.props.transaction) }}</span>
           </q-td>
-          <q-td v-if="props.props.transferAmount" key="transferAmount">
+          <q-td v-if="props.props.transferAmount" class="text-right" key="transferAmount">
             <span v-if="getTransAmount(props.props)">{{ getTransAmount(props.props) }}</span>
           </q-td>
-          <q-td v-if="props.props.currency" key="currency" >
-            <span class="">{{ (props.props.currency) + $t('TRS_TYPE_TRANSFER') }}</span>
+          <q-td v-if="props.props.currency" class="text-right align-baseline" key="currency">
+            <span class="text-12">{{ props.props.currency !== 'XAS' ? props.props.currency.split('.')[0] : ''}}</span>
+            <q-chip color="blue" text-color="white" small>{{ props.props.currency.split('.')[1] || props.props.currency.split('.')[0]}}</q-chip>
           </q-td>
          <q-td v-if="props.props.args || props.props.args === null" key="args" >
            <div v-if="props.props.args && props.props.args.length > 0" >
@@ -72,9 +75,7 @@
             <span>0.1</span>
           </q-td>
         </template>
-      </table-container>
-      <table-container class="xs:mt-20 mobile-only" :data="data" :count="count" :params="params" :columnsData="columnsData" @getData="getData" >
-        <template slot="items" slot-scope="props" v-if="props.props">
+        <template class="mobile-only" slot="items" slot-scope="props" v-if="props.props">
           <table-item :data="getTableData(props.props)" :bgIcon="'icon-details'" :dataIcon="'icon-transaction'"/>
         </template>
       </table-container>
@@ -86,10 +87,10 @@
 </style>
 
 <script>
-import { QPage, QTd, QTooltip, QBtnGroup, QBtn } from 'quasar'
+import { QPage, QTd, QTooltip, QBtnGroup, QBtn, QChip } from 'quasar'
 import Breadcrumb from '../components/Breadcrumb'
 import TableContainer from '../components/TableContainer'
-import { fulltimestamp, convertFee } from '../utils/util'
+import { fulltimestamp, convertFee, isDesktop } from '../utils/util'
 import { transTypes } from '../utils/constants'
 import { mapActions, mapGetters } from 'vuex'
 import TableItem from '../components/TableItem'
@@ -104,7 +105,8 @@ export default {
     QTooltip,
     QBtnGroup,
     QBtn,
-    TableItem
+    TableItem,
+    QChip
   },
   data() {
     return {
@@ -365,6 +367,9 @@ export default {
     },
     iconName() {
       return this.type === 0 ? 'icon-accounts' : 'icon-turn'
+    },
+    isDesktop() {
+      return isDesktop()
     }
   }
 }
