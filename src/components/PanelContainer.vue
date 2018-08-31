@@ -2,7 +2,7 @@
   <div class="">
     <div class="flex justify-between items-center xs:mb-15 sm:mb-30">
       <div class="flex items-center">
-        <i class="material-icons xs:text-18 sm:text-26 text-tw-grey-darkest mr-10">{{isTrans}}</i>
+        <q-icon class="xs:text-18 sm:text-26 text-tw-grey-darkest mr-10" :name="panelIcon" />
         <span class="xs:text-16 sm:text-24 text-tw-grey-darkest font-medium">{{panelName}}</span>
       </div>
       <div class="text-14 text-tw-white bg-tw-black-lighter hover:bg-tw-blue px-12 py-6 cursor-pointer" @click="open">
@@ -14,6 +14,7 @@
 </template>
 
 <script>
+import { QIcon } from 'quasar'
 import PanelItem from './PanelItem'
 import { mapActions, mapGetters } from 'vuex'
 import { toastError } from '../utils/util'
@@ -22,11 +23,11 @@ export default {
   name: 'PanelContainer',
   props: ['type'],
   components: {
+    QIcon,
     PanelItem
   },
   data() {
     return {
-      // isTrans: true,
       datas: null
     }
   },
@@ -60,8 +61,8 @@ export default {
   },
   computed: {
     ...mapGetters(['getHeight', 'assetMap']),
-    isTrans() {
-      return this.type === 'trans' ? 'swap_horiz' : 'gavel'
+    panelIcon() {
+      return this.type === 'trans' ? 'icon-transfer' : 'icon-forging'
     },
     panelName() {
       const t = this.$t

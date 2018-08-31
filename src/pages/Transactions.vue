@@ -1,7 +1,7 @@
 <template>
-  <q-page class="max-w-1200 m-auto xs:pl-2 xs:pr-2 sm:pl-0 sm:pr-0 md:mx-15 xs:mx-15 pb-16">
-    <breadcrumb />
-    <div class="rounded-lg overflow-hidden xs:overflow-scroll sm:overflow-hidden p-4 mb-4">
+  <q-page class="max-w-1200 m-auto xs:p-15 sm:p-0 xs:pb-20 sm:pb-40">
+     <breadcrumb class="xs:mt-5 sm:mt-40" />
+    <div class="xs:border-0 sm:border-1 border-solid border-tw-grey rounded-lg xs:px-0 xs:pt-0 xs:pb-15 sm:px-40 sm:py-30">
       <!-- <q-btn-group class="mt-8" outline>
         <q-btn outline v-for="(item, idx) in btnGroup" :label="item.label" @click="changeType(item.value)" :key="idx"></q-btn>
       </q-btn-group> -->
@@ -11,8 +11,8 @@
       <button class="border border-tw-transparent text-14 text-tw-white bg-tw-black-lighter hover:bg-tw-blue px-12 py-6 cursor-pointer" @click="changeType(1)">
         {{$t('TRANS_TABLE')}}
       </button>
-      <table-container :data="data" :count="count" :params="params" :columnsData="columnsData" @getData="getData" class="xs:mt-20">
-        <!-- <template slot="content" slot-scope="props" v-if="props.props">
+      <table-container class="xs:mt-20 desktop-only" :data="data" :count="count" :params="params" :columnsData="columnsData" @getData="getData">
+        <template slot="content" slot-scope="props" v-if="props.props">
           <q-td v-if="props.props.id" key="id">
             <div class="text-primary cursor-pointer" @click="doSearch(props.props.id)">
               {{ props.props.id | eclipse }}
@@ -71,9 +71,11 @@
           <q-td v-if="props.props.transaction && props.props.transaction.fee" key="transferFee" >
             <span>0.1</span>
           </q-td>
-        </template> -->
+        </template>
+      </table-container>
+      <table-container class="xs:mt-20 mobile-only" :data="data" :count="count" :params="params" :columnsData="columnsData" @getData="getData" >
         <template slot="items" slot-scope="props" v-if="props.props">
-          <table-item :data="getTableData(props.props)" :iconName="iconName" :idIcon="'icon-transaction'"/>
+          <table-item :data="getTableData(props.props)" :bgIcon="'icon-details'" :dataIcon="'icon-transaction'"/>
         </template>
       </table-container>
     </div>

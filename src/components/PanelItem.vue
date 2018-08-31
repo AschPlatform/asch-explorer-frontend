@@ -1,22 +1,22 @@
 <template>
-  <div class="xs:mb-15 sm:mb-30 xs:p-15 sm:p-20 shadow-none hover:shadow-21 border-1 border-solid border-tw-grey-darker panelitem-container">
+  <div class="xs:mb-15 sm:mb-30 xs:p-15 sm:p-20 shadow-none hover:shadow-21 border-1 border-solid border-tw-grey-darker panelitem-container overflow-hidden relative">
     <div v-if="type=='blocks'">
-      <div class="right-icon">
-        <i class="material-icons xs:text-24 sm:text-48 text-tw-grey-lighter opacity-25 ">timeline</i>
+      <div class="right-icon-left absolute -mr-15 -mb-15 pin-b pin-r">
+        <q-icon class="xs:text-70 sm:text-70 text-tw-grey-lighter opacity-8" name="icon-block" />
       </div>
-      <div class="w-auto text-right xs:text-12 sm:text-24 text-tw-blue right-top-time">
+      <div :class="timestampCss">
           {{data.timestamp | secFromNow}}{{" " + $t('SECOND_BEFORE')}}
       </div>
       <div v-if="data" class="flex justify-start">
         <div class="flex justify-start items-start w-auto xs:mr-5 sm:mr-10 xs:pt-0 sm:pt-3">
-          <i class="material-icons xs:text-14 sm:text-20 text-tw-grey-lighter opacity-25">table_chart</i>
+          <q-icon class="xs:text-14 sm:text-20 text-tw-blue" name="icon-height" />
         </div>
         <div class="w-4/5">
-          <div class="flex items-center mb-20">
+          <div class="flex items-center xs:mb-15 sm:mb-20">
             <span :class="labelClass">{{$t('BLOCK_HEIGHT')}}</span>
             <span :class="linkClass"  @click="doSearch(data.height)" >{{data.height | numSeparator}}</span>
           </div>
-          <div class="flex items-center mb-20">
+          <div class="flex items-center xs:mb-15 sm:mb-20">
             <span :class="labelClass">{{$t('PRODUCER')}}</span>
             <span :class="linkClass"  @click="doSearch(getAddress(data.delegate))" >{{getAddress(data.delegate)}}</span>
           </div>
@@ -30,9 +30,9 @@
     <div v-else>
       <div v-if="data" class="flex justify-start">
         <div class="flex justify-start items-start w-auto xs:mr-5 sm:mr-10 xs:pt-0 sm:pt-3">
-          <i class="material-icons xs:text-14 sm:text-20 text-tw-grey-lighter opacity-25">table_chart</i>
+          <q-icon class="xs:text-14 sm:text-20 text-tw-blue" name="icon-transaction" />
         </div>
-        <div class="w-auto text-right xs:text-12 sm:text-24 text-tw-blue right-top-time">
+        <div :class="timestampCss">
           {{timeFromNow(data.timestamp)}}
         </div>
         <div class="w-4/5">
@@ -51,8 +51,8 @@
             <span class="xs:text-12 sm:text-18 text-tw-grey-lighter">{{getProps(data) || '--'}}</span>
           </div>
         </div>
-        <div class="right-icon">
-          <i class="material-icons xs:text-24 sm:text-48 text-tw-grey-lighter opacity-25">timeline</i>
+        <div class="right-icon-right absolute -mr-20 -mb-10 pin-b pin-r">
+          <q-icon class="xs:text-60 sm:text-60 text-tw-grey-lighter opacity-8" name="icon-watermark" />
         </div>
       </div>
     </div>
@@ -60,7 +60,7 @@
 </template>
 
 <script>
-// import { QIcon } from 'quasar'
+import { QIcon } from 'quasar'
 import { getAddress, convertFee, fulltimestamp } from '../utils/util'
 import { mapGetters } from 'vuex'
 import moment from 'moment'
@@ -68,7 +68,7 @@ import moment from 'moment'
 export default {
   name: 'PanelItem',
   props: ['type', 'data'],
-  // components: { QIcon },
+  components: { QIcon },
   data() {
     return {}
   },
@@ -112,6 +112,9 @@ export default {
   },
   computed: {
     ...mapGetters(['assetMap']),
+    timestampCss() {
+      return 'w-auto text-right xs:text-12 sm:text-18 text-tw-grey-lighter absolute xs:pt-15 xs:pr-15 sm:pt-20 sm:pr-20 pin-t pin-r'
+    },
     linkClass() {
       return 'truncate xs:text-12 sm:text-18 text-tw-blue hover:underline w-3/4 cursor-pointer'
     },
