@@ -92,7 +92,7 @@ import CodeModal from '../components/QRCodeModal'
 
 import { toastError, getCache } from '../utils/util'
 import { mapGetters, mapActions } from 'vuex'
-import aschLogo from '../assets/asch_logo1.png'
+import aschLogo from '../assets/asch_logo2.png'
 
 export default {
   name: 'MyLayout',
@@ -123,7 +123,7 @@ export default {
       intervalStats: null,
       QRCodeShow: false,
       QRCodeText: '',
-      drawer: true
+      drawer: false
     }
   },
   methods: {
