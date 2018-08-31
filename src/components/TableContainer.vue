@@ -148,27 +148,18 @@ export default {
 </script>
 
 <style lang="stylus" scoped>
-.q-table tr{
-  border: 1px solid #E0E1E5;
-}
+.q-table
+  tr
+    border: 1px solid #E0E1E5;
+    text-align: center;
+    span
+      text-align: center;
+      font-size: 16px;
+  td
+    border: 1px solid #E0E1E5;
+  thead
+    border: 1px solid #E0E1E5;
+  tr:nth-child(2n -1)
+    background-color: #F8F8F8;
 
-.q-table td {
-  border: 1px solid #E0E1E5;
-}
-
-.q-table-grid .q-table thead {
-  border: 1px solid #E0E1E5;
-}
-
-.q-table tr:nth-child(2n -1) {
-  background-color: #F8F8F8;
-}
-
-.q-table tr {
-  text-align: center;
-}
-.q-table tr span{
-  text-align: center;
-  font-size: 16px;
-}
 </style>
