@@ -185,7 +185,6 @@ export default {
       this.$router.push(path)
     },
     change() {
-      console.log('change', this.$route)
     },
     computedRoute(data) {
       let path = this.$route.name

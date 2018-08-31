@@ -6,11 +6,11 @@
         <q-btn outline v-for="(item, idx) in btnGroup" :label="item.label" @click="changeType(item.value)" :key="idx"></q-btn>
       </q-btn-group>
       <div class="btnWrap desktop-only w-full border-1 border-solid border-tw-grey">
-        <button class="border border-tw-transparent text-14 text-tw-white bg-tw-black-lighter hover:bg-tw-blue px-12 py-6 cursor-pointer" @click="changeType(0)">
-          {{$t('TRANSACTION_TABLE')}}
-        </button>
-        <button class="border border-tw-transparent text-14 text-tw-white bg-tw-black-lighter hover:bg-tw-blue px-12 py-6 cursor-pointer" @click="changeType(1)">
+        <button class="border border-tw-transparent h-57 text-14 text-tw-white bg-tw-black-lighter hover:bg-tw-blue px-12 py-6 cursor-pointer" @click="changeType(1)">
           {{$t('TRANS_TABLE')}}
+        </button>
+        <button class="border border-tw-transparent h-57 text-14 text-tw-white bg-tw-black-lighter hover:bg-tw-blue px-12 py-6 cursor-pointer" @click="changeType(0)">
+          {{$t('TRANSACTION_TABLE')}}
         </button>
       </div>
       <table-container class="desktop-only" :data="data" :count="count" :params="params" :columnsData="columnsData" @getData="getData">

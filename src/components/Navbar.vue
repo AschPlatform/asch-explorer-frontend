@@ -66,7 +66,6 @@
         this.searchStr = ''
       },
       toggle() {
-        console.log('toggle')
         this.$root.$emit('showDrawer', true)
       }
     },
