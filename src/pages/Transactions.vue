@@ -6,10 +6,10 @@
         <q-btn outline v-for="(item, idx) in btnGroup" :label="item.label" @click="changeType(item.value)" :key="idx"></q-btn>
       </q-btn-group>
       <div class="relative desktop-only w-full border-1 border-solid border-tw-grey">
-        <button class="bg-transparent h-57 w-188 text-20 text-tw-blue px-12 py-6 cursor-pointer" @click="changeType(1)">
+        <button :class="this.type === 1 ? styleSelected : styleUnselected" @click="changeType(1)">
           {{$t('TRANS_TABLE')}}
         </button>
-        <button class="bg-transparent h-57 w-188 text-20 text-tw-grey-darkest px-12 py-6 cursor-pointer" @click="changeType(0)">
+        <button :class="this.type === 0 ? styleSelected : styleUnselected" @click="changeType(0)">
           {{$t('TRANSACTION_TABLE')}}
         </button>
       </div>
@@ -101,6 +101,9 @@
 .selected {
   bottom: -1px;
 }
+motivi:hover {
+  transform: scale(1.1);
+}
 </style>
 
 <script>
@@ -145,7 +148,8 @@ export default {
           value: 1
         }
       ],
-      styleSelected: 'bg-transparent h-57 w-188 text-20 text-tw-blue px-12 py-6 cursor-pointer'
+      styleSelected: 'bg-transparent relative absulote h-57 w-188 text-20 text-tw-blue px-12 py-6 cursor-pointer btn selected',
+      styleUnselected: 'bg-transparent relative h-57 w-188 text-20 text-tw-grey-darkest px-12 py-6 cursor-pointer btn'
     }
   },
   methods: {
