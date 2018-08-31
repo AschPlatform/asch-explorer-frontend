@@ -55,6 +55,7 @@ let colors = {
   'tw-blue': '#2D98FC',
   'tw-grey': '#E0E1E5',
   'tw-grayish': '#F8F8F8',
+  'tw-grayish-light': '#F5F5F5',
   'tw-grey-dark': '#24252A',
   'tw-grey-darker': '#E0E1E5',
   'tw-grey-darkest': '#6A737D',
@@ -564,10 +565,13 @@ module.exports = {
     '18': '18px',
     '20': '20px',
     '23': '23px',
+    '25': '25px',
     '29': '29px',
     '30': '30px',
     '40': '40px',
-    '104': '104px'
+    '60': '60px',
+    '104': '104px',
+    '150': '150px'
   },
 
   /*

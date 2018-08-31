@@ -136,6 +136,8 @@ const lang = {
   DELEGATES: '受托人',
   PERSON: '人',
   ASSETS: '资产',
+  SEARCH_OEEOR: '哎呀!',
+  SEARCH_OEEOR_STATEMENT: '未找到符合查询的数据，请更换关键词后重试。',
   // common
   LOADING: '读取中',
   FORGE: '锻造',

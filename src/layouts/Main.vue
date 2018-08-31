@@ -17,7 +17,14 @@
 </template>
 
 <script>
-import { openURL, QLayout, QLayoutHeader, QPageContainer, QLayoutFooter, QLayoutDrawer } from 'quasar'
+import {
+  openURL,
+  QLayout,
+  QLayoutHeader,
+  QPageContainer,
+  QLayoutFooter,
+  QLayoutDrawer
+} from 'quasar'
 import FooterBar from '../components/FooterBar'
 import StateBanner from '../components/StateBanner'
 import SearchBanner from '../components/SearchBanner'
@@ -25,7 +32,7 @@ import { REGEX } from '../utils/constants'
 import Navbar from '../components/Navbar'
 import CodeModal from '../components/QRCodeModal'
 
-import { toastError, getCache } from '../utils/util'
+import { getCache } from '../utils/util'
 import { mapGetters, mapActions } from 'vuex'
 
 export default {
@@ -89,8 +96,9 @@ export default {
           return
         }
       }
-      toastError(this.$t('ERR_INVALID_SEARCH'))
+      this.$router.push({ path: '/error', query: { errorStr: str } })
     },
+
     // Set the language when you refresh
     setLang() {
       if (window.localStorage && getCache('lang')) {
