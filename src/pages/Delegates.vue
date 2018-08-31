@@ -1,7 +1,7 @@
 <template>
   <q-page class="max-w-1200 m-auto xs:p-15 sm:p-0 xs:pb-20 sm:pb-40">
     <div class="upperSlot flex justify-start items-center xs:mt-0 sm:mt-40">
-      <q-icon class="xs:text-14 sm:text-18 text-tw-grey-darkest xs:mr-10 sm:mr-20" name="icon-Trustee" />
+      <q-icon class="xs:text-14 sm:text-18 text-tw-grey-darkest xs:mr-10 sm:mr-20" name="icon-trustee" />
       <span class="xs:text-14 sm:text-16 text-tw-grey-darkest">{{$t('DELEGATE_LIST')}}</span>
     </div>
     <div class="w-full flex justify-end xs:mb-20 mb-40 xs:-mt-20 sm:mt-0">

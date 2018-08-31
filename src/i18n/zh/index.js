@@ -134,8 +134,9 @@ const lang = {
 
   // added
   DELEGATES: '受托人',
+  INFO: '详情',
   PERSON: '人',
-  ASSETS: '资产',
+  ASSETS: '数字资产',
   SEARCH_OEEOR: '哎呀!',
   SEARCH_OEEOR_STATEMENT: '未找到符合查询的数据，请更换关键词后重试。',
   // common
