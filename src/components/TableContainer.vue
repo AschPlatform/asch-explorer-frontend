@@ -157,6 +157,7 @@ export default {
       font-size: 16px;
   tr:hover
     transform: scale(1.03);
+    border-radius: 6px;
   td
     border: 1px solid #E0E1E5;
   thead

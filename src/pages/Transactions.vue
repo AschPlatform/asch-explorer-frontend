@@ -13,7 +13,7 @@
           {{$t('TRANSACTION_TABLE')}}
         </button>
       </div>
-      <table-container class="xs:mt-20" :data="data" :count="count" :params="params" :columnsData="columnsData" @getData="getData">
+      <table-container class="table-thead-border-top" :data="data" :count="count" :params="params" :columnsData="columnsData" @getData="getData">
         <template class="desktop-only" slot="content" slot-scope="props" v-if="props.props">
           <q-td v-if="props.props.id" key="id">
             <div class="text-primary cursor-pointer" @click="doSearch(props.props.id)">
