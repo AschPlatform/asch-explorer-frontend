@@ -22,31 +22,31 @@
       </q-toolbar>
       <q-list class="py-0 mt-20 px-10" no-border link inset-delimiter>
         <div class="min-h-50 q-item q-item-division relative-position">
-          <a class="w-full text-16 text-tw-grey-darkest" :class="computedRoute('home')" @click="getRouterConf('/')">
+          <a :class="computedRoute('home')" @click="getRouterConf('/')">
             {{$t('HOME')}}
           </a>
         </div>
         <q-item-separator class="sep text-tw-grey" />
         <div class="min-h-50 q-item q-item-division relative-position">
-          <a class="w-full text-16 text-tw-grey-darkest" :class="computedRoute('delegates')" @click="getRouterConf('delegates')">
+          <a :class="computedRoute('delegates')" @click="getRouterConf('delegates')">
             {{$t('DELEGATES')}}
           </a>
         </div>
         <q-item-separator class="sep text-tw-grey" />
         <div class="min-h-50 q-item q-item-division relative-position">
-          <a class="w-full text-16 text-tw-grey-darkest" :class="computedRoute('assets')" @click="getRouterConf('assets')">
+          <a :class="computedRoute('assets')" @click="getRouterConf('assets')">
             {{$t('ASSETS')}}
           </a>
         </div>
         <q-item-separator class="sep text-tw-grey" />
         <div class="min-h-50 q-item q-item-division relative-position">
-          <a class="w-full text-16 text-tw-grey-darkest" @click="changeLang('zh')">
+          <a class="w-full text-20 text-tw-grey-darkest font-semibold" @click="changeLang('zh')">
             {{$t('LANGUAGE_ZH')}}
           </a>
         </div>
         <q-item-separator class="sep text-tw-grey" />
         <div class="min-h-50 q-item q-item-division relative-position">
-          <a class="w-full text-16 text-tw-grey-darkest" @click="changeLang('en')">
+          <a class="w-full text-20 text-tw-grey-darkest font-semibold" @click="changeLang('en')">
             {{$t('LANGUAGE_EN')}}
           </a>
         </div>
@@ -187,9 +187,9 @@ export default {
     computedRoute(data) {
       let path = this.$route.name
       if (path && path === data) {
-        return 'text-30 text-tw-blue'
+        return 'w-full text-20 text-tw-blue font-semibold'
       }
-      return 'text-30'
+      return 'w-full text-20 text-tw-grey-darkest font-semibold'
     }
   },
   mounted() {
