@@ -158,6 +158,12 @@ const lang = {
   REGIST_DELEGATE: '注册受托人',
   close: '关闭',
   ISSUED_NUM: '发行资产数量',
-  TOTAL_PRICE: '总市值'
+  TOTAL_PRICE: '总市值',
+
+  // page
+  SHOW: '显示',
+  PAGE: '页',
+  FIRST_PAGE: '首页',
+  LAST_PAGE: '尾页'
 }
 export default lang
