@@ -2,7 +2,7 @@
   <q-page class="max-w-1200 m-auto xs:p-15 sm:p-0 xs:pb-20 sm:pb-40">
     <breadcrumb class="xs:mt-5 sm:mt-40" />
     <div class="border border-solid border-tw-grey rounded-lg xs:px-10 xs:py-15 sm:px-40 sm:py-30">
-      <div class="xs:text-16 sm:text-20 text-tw-grey-darkest">
+      <div class="xs:text-16 sm:text-20 text-tw-grey-darkest font-semibold">
         {{this.$t('ACCOUNT_INFO')}}
       </div>
       <boundary-line class="xs:my-15 sm:my-30" />
