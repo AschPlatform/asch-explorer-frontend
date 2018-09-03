@@ -2,19 +2,19 @@ export default {
   getRunState: state => {
     const runState = state.runState
     return [{
-        icon: 'icon-block-height',
-        value: Number(runState.blockHeight),
-        label: 'BLOCK_HEIGHT'
-      },
-      {
         icon: 'icon-token',
         value: Number(runState.totalSupply),
         label: 'TOTAL_SUPPLY'
       },
       {
-        icon: 'icon-users',
-        value: Number(runState.accountCount),
-        label: 'USERS_NUMBER'
+        icon: 'icon-block-height',
+        value: Number(runState.blockHeight),
+        label: 'BLOCK_HEIGHT'
+      },
+      {
+        icon: 'icon-totalmarket',
+        value: Number(runState.totalPrice),
+        label: 'TOTAL_PRICE'
       },
       {
         icon: 'icon-operating',
@@ -29,9 +29,9 @@ export default {
         label: 'ISSUED_NUM'
       },
       {
-        icon: 'icon-totalmarket',
-        value: Number(runState.totalPrice),
-        label: 'TOTAL_PRICE'
+        icon: 'icon-users',
+        value: Number(runState.accountCount),
+        label: 'USERS_NUMBER'
       }
     ]
   },

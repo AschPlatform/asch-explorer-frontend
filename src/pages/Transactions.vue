@@ -1,7 +1,7 @@
 <template>
   <q-page class="max-w-1200 m-auto xs:p-15 sm:p-0 xs:pb-20 sm:pb-40">
      <breadcrumb class="xs:mt-5 sm:mt-40" />
-    <div class="xs:border-0 sm:border-1 border-solid border-tw-grey rounded-lg xs:px-0 xs:pt-0 xs:pb-15 sm:px-40 sm:py-30">
+    <div class="xs:border-0 sm:border-1 border-solid border-tw-grey rounded-lg xs:px-0 xs:pt-0 xs:pb-15 sm:pb-30">
       <q-btn-group class="mt-8 mobile-only" outline>
         <q-btn outline v-for="(item, idx) in btnGroup" :label="item.label" @click="changeType(item.value)" :key="idx"></q-btn>
       </q-btn-group>
@@ -57,7 +57,7 @@
             <span v-if="getTransAmount(props.props)">{{ getTransAmount(props.props) }}</span>
           </q-td>
           <q-td v-if="props.props.currency" class="text-right align-baseline" key="currency">
-            <span class="text-12">{{ props.props.currency !== 'XAS' ? props.props.currency.split('.')[0] : ''}}</span>
+            <span class="text-12 mr-5">{{ props.props.currency !== 'XAS' ? props.props.currency.split('.')[0] : ''}}</span>
             <q-chip color="blue" text-color="white" small>{{ props.props.currency.split('.')[1] || props.props.currency.split('.')[0]}}</q-chip>
           </q-td>
          <q-td v-if="props.props.args || props.props.args === null" key="args" >

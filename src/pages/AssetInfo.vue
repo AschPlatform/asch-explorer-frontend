@@ -13,7 +13,7 @@
       <div class="flex justify-between">
         <info-panel :panelData="panelData" />
        <div class="self-end w-auto xs:hidden sm:block pb-10">
-          <q-icon class="text-60 text-tw-grayish" name="icon-turn" />
+          <q-icon class="text-60 text-tw-grayish" name="icon-data" />
         </div>
       </div>
       <boundary-line class="my-30" />

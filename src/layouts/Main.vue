@@ -12,41 +12,41 @@
     <q-layout-drawer v-model="drawer">
       <q-toolbar class="flex xs:flex-col sm:flex-row justify-between w-full bg-tw-black xs:h-auto sm:h-86 xs:px-0 xs:pb-11 sm:pb-0 sm:px-30">
         <div class="w-full flex justify-between items-center">
-          <div class="xs:w-full sm:w-auto asch-logo h-30 xs:my-10 sm:my-0 sm:mr-20 lg:mr-53 cursor-pointer text-center">
-            <img class="h-full" :src="aschLogo" alt="">
+          <div class="xs:w-full sm:w-auto asch-logo xs:h-25 sm:h-30 xs:mt-15 xs:mb-10 sm:my-0 sm:mr-20 lg:mr-53 cursor-pointer text-center">
+            <img class="h-full" :src="logoTop" alt="">
           </div>
           <div class="xs:w-full sm:w-auto flex xs:content-start sm:justify-between xs:border-t-1 xs:border-b-0 xs:border-l-0 xs:border-r-0 sm:border-none border-solid border-tw-black-dark xs:pt-10 xs:pr-15 sm:pr-0">
-            <q-btn class="xs:flex sm:hidden w-1/6" icon="icon-delete" @click="switchDrawer(false)"/>
+            <q-btn class="xs:flex sm:hidden text-12" icon="icon-delete" @click="switchDrawer(false)"/>
           </div>
         </div>
       </q-toolbar>
-      <q-list class="py-0 mt-20" no-border link inset-delimiter>
+      <q-list class="py-0 mt-20 px-10" no-border link inset-delimiter>
         <div class="min-h-50 q-item q-item-division relative-position">
-          <a class="w-full" :class="computedRoute('home')" @click="getRouterConf('/')">
+          <a class="w-full text-16 text-tw-grey-darkest" :class="computedRoute('home')" @click="getRouterConf('/')">
             {{$t('HOME')}}
           </a>
         </div>
         <q-item-separator class="sep text-tw-grey" />
         <div class="min-h-50 q-item q-item-division relative-position">
-          <a class="w-full" :class="computedRoute('delegates')" @click="getRouterConf('delegates')">
+          <a class="w-full text-16 text-tw-grey-darkest" :class="computedRoute('delegates')" @click="getRouterConf('delegates')">
             {{$t('DELEGATES')}}
           </a>
         </div>
         <q-item-separator class="sep text-tw-grey" />
         <div class="min-h-50 q-item q-item-division relative-position">
-          <a class="w-full" :class="computedRoute('assets')" @click="getRouterConf('assets')">
+          <a class="w-full text-16 text-tw-grey-darkest" :class="computedRoute('assets')" @click="getRouterConf('assets')">
             {{$t('ASSETS')}}
           </a>
         </div>
         <q-item-separator class="sep text-tw-grey" />
         <div class="min-h-50 q-item q-item-division relative-position">
-          <a class="w-full text-30" @click="changeLang('zh')">
+          <a class="w-full text-16 text-tw-grey-darkest" @click="changeLang('zh')">
             {{$t('LANGUAGE_ZH')}}
           </a>
         </div>
         <q-item-separator class="sep text-tw-grey" />
         <div class="min-h-50 q-item q-item-division relative-position">
-          <a class="w-full text-30" @click="changeLang('en')">
+          <a class="w-full text-16 text-tw-grey-darkest" @click="changeLang('en')">
             {{$t('LANGUAGE_EN')}}
           </a>
         </div>
@@ -82,7 +82,7 @@ import CodeModal from '../components/QRCodeModal'
 
 import { getCache, setCache } from '../utils/util'
 import { mapGetters, mapActions } from 'vuex'
-import aschLogo from '../assets/asch_logo2.png'
+import logoTop from '../assets/logo_top.png'
 
 export default {
   name: 'MyLayout',
@@ -107,7 +107,7 @@ export default {
   },
   data() {
     return {
-      aschLogo,
+      logoTop,
       searchForbidden: false,
       isHomeFlg: true,
       intervalStats: null,

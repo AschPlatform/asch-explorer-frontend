@@ -2,7 +2,7 @@
   <q-toolbar class="flex xs:flex-col sm:flex-row justify-between w-full bg-tw-black xs:h-auto sm:h-86 xs:px-0 xs:pb-11 sm:pb-0 sm:px-10 md:px-20 xl:px-25 xll:px-30">
     <div class="flex justify-between items-center flex-no-wrap sm:w-auto">
       <div class="xs:w-full sm:w-auto asch-logo sm:h-20 md:h-26 xl:h-28 xll:h-30 xs:my-10 sm:my-0 sm:mr-20 lg:mr-30 cursor-pointer" @click="jump('/')">
-        <img class="h-full" :src="aschLogo" alt="">
+        <img class="h-full" :src="logoTop" alt="">
       </div>
   
       <div class="xs:hidden sm:flex w-auto">
@@ -22,7 +22,7 @@
       <q-btn class="xs:flex sm:hidden w-auto" icon="menu" @click="toggle" />
       <!-- <q-toolbar-title>
       </q-toolbar-title> -->
-      <div class="flex items-center xs:justify-start sm:justify-end xs:w-5/6 sm:w-full">
+      <div class="flex items-center xs:justify-start sm:justify-end sm:w-full" :class="stretch?'xs:w-5/6':'w-2/3'">
         <q-input class="xs:w-full shadow appearance-none xs:h-25 sm:h-30 border-solid border hover:border-tw-blue px-11 rounded-15 text-tw-white leading-tight custorm-search-icon" :class="stretch?'sm:w-2/3 border-tw-blue':'sm:w-1/3 border-tw-grey-light'" v-model="searchStr" @keyup.enter="search"
           :after="searchIcon" type="text" :placeholder="getPlaceholder" hide-underline @focus="stretch=true" @blur="stretch=false" />
         <q-select class="xs:hidden sm:flex h-30 ml-30 border border-solid border-tw-grey-light pl-6 custorm-select rounded-15" v-model="lang" :options="getLangOpts" hide-underline />
@@ -41,7 +41,7 @@
     QInput,
     QSelect
   } from 'quasar'
-  import aschLogo from '../assets/asch_logo1.png'
+  import logoTop from '../assets/logo_top.png'
   
   export default {
     name: 'Navbar',
@@ -54,7 +54,7 @@
     },
     data() {
       return {
-        aschLogo,
+        logoTop,
         searchStr: '',
         stretch: false,
         lang: ''

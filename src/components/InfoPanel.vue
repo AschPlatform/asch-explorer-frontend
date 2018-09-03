@@ -99,10 +99,7 @@ export default {
   computed: {
     ...mapGetters(['loadingBool']),
     tableTbodyMobile() {
-      return this.isDesktop ? 'info-tbody table-desktop' : 'info-tbody table-mobile'
-    },
-    isDesktop() {
-      return isDesktop()
+      return isDesktop() ? 'info-tbody table-desktop' : 'info-tbody table-mobile'
     }
   },
   watch: {

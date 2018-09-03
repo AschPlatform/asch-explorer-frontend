@@ -11,15 +11,15 @@
           <slot name="items" slot-scope="props" :props="props.row" />
         </div> -->
       </q-table>
-        <div class="flex justify-between xs:py-20 sm:py-40">
+      <div class="flex justify-between xs:py-20 sm:py-40 xs:px-0 sm:px-20">
         <div class="flex justify-start items-center">
-          <span>{{$t('SHOW')}}</span>
-          <q-select class="border border-solid border-tw-grey-darker xs:mx-5 sm:mx-10 xs:px-10 sm:px-20 py-5" v-model="selectPage" :options="options" @input="changePageNumber" hide-underline />
-          <span>{{$t('PAGE')}}</span>
+          <span class="xs:text-12 sm:text-18">{{$t('SHOW')}}</span>
+          <q-select class="border border-solid border-tw-grey-darker xs:mx-5 sm:mx-10 xs:px-5 sm:px-20 py-5" v-model="selectPage" :options="options" @input="changePageNumber" hide-underline />
+          <span class="xs:text-12 sm:text-18">{{$t('PAGE')}}</span>
         </div>
-        <div class="flex justify-between">
+        <div :class="pageCss">
           <button class="custorm-last-btn  border-none bg-tw-white hover:text-tw-blue cursor-pointer xs:hidden sm:block" size="md" @click="toPage(1)">{{$t('FIRST_PAGE')}}</button>
-          <q-pagination class="custorm-pag" v-model="curPage" color="tw-blue"  size="md" :min="1" :max="getMaxPage()" :max-pages="3" :ellipses="true" @input="changePage" direction-links/>
+          <q-pagination class="custorm-pag" v-model="curPage" color="tw-blue"  size="md" :min="1" :max="getMaxPage()" :max-pages="2" :ellipses="true" @input="changePage" direction-links/>
           <button class="custorm-last-btn border-none bg-tw-white hover:text-tw-blue cursor-pointer xs:hidden sm:block" size="md" @click="toPage(getMaxPage())">{{$t('LAST_PAGE')}}</button>
         </div>
       </div>
@@ -159,6 +159,11 @@ export default {
   },
   computed: {
     ...mapGetters(['loadingBool']),
+    pageCss() {
+      return isDesktop()
+        ? 'flex justify-between custorm-page-desktop'
+        : 'flex justify-between custorm-page-mobile'
+    },
     columns() {
       return this.columnsData
     }
@@ -190,6 +195,11 @@ export default {
     }
   }
 
+  
+  tr:nth-child(2n -1) {
+    background-color: #F8F8F8;
+  }
+
   tr:hover {
     transition: all ease 0.3s;
     transform: scale(1.02);
@@ -204,10 +214,6 @@ export default {
 
   thead {
     border: 1px solid #E0E1E5;
-  }
-
-  tr:nth-child(2n -1) {
-    background-color: #F8F8F8;
   }
 }
 </style>
