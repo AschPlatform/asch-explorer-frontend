@@ -148,8 +148,8 @@ export default {
           value: 1
         }
       ],
-      styleSelected: 'inline px-0 font-semibold text-20 q-btn text-tw-blue border-b-2 border-tw-blue border-solid',
-      styleUnselected: 'inline px-0 font-semibold text-20 q-btn'
+      styleSelected: 'inline px-0 font-semibold xs:text-16 sm:text-20 q-btn text-tw-blue border-b-2 border-tw-blue border-solid',
+      styleUnselected: 'inline px-0 font-semibold text-tw-grey-darkest xs:text-16 sm:text-20 q-btn'
     }
   },
   async mounted() {
