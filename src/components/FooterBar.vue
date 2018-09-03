@@ -7,14 +7,14 @@
       </div>
     </div>
     <div class="xs:w-full sm:w-163 flex justify-center items-center cursor-pointer xs:py-20 sm:py-0" @click="toHome">
-      <img class="xs:1/2 sm:w-full" :src="aschLogo" alt="">
+      <img class="xs:1/2 sm:w-full" :src="logoFooter" alt="">
     </div>
   </div>
 </template>
 
 <script>
 import { QIcon } from 'quasar'
-import aschLogo from '../assets/asch_logo2.png'
+import logoFooter from '../assets/logo_footer.png'
 export default {
   name: 'FooterBar',
   components: {
@@ -22,7 +22,7 @@ export default {
   },
   data() {
     return {
-      aschLogo
+      logoFooter
     }
   },
   methods: {

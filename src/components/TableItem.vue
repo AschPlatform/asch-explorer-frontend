@@ -14,7 +14,12 @@
       <tbody class='info-tbody w-full'>
         <tr class="flex" v-for="(arr, idx) in tableData" :key="idx">
           <div class="flex w-full" v-for="(data, index) in arr" :key="index">
-            <td class="w-1/4 xs:text-12 sm:text-18 text-tw-grey-darkest mb-15">{{$t(data.label)}}:</td>
+             <td v-if="data.type==='rate'" class="w-1/4 xs:text-12 sm:text-18 text-tw-grey-darkest mb-15 whitespace-no-wrap">
+             <span  class="text-13 text-tw-blue font-medium"> {{$t(data.label)}}:</span>
+           </td>
+            <td v-else class="w-1/4 xs:text-12 sm:text-18 text-tw-grey-darkest mb-15 whitespace-no-wrap">
+             <span v-eles> {{$t(data.label)}}:</span>
+           </td>
             <td class="truncate xs:text-12 sm:text-18 text-tw-grey-darkest w-3/4">
               <span :class="data.link?`text-tw-blue cursor-pointer`:''" @click="data.link?$router.push(data.link+data.value):null">
                 <span v-if="data.type==='number'" >{{data.value | numSeparator}}</span>
@@ -32,6 +37,7 @@
               </span>
               <span v-else-if="data.type==='argStr'" class="custom-pre-wrap">{{data.value}}</span>
               <span v-else-if="data.type==='block'" class="text-primary cursor-pointer" @click="doSearch(data.value)">{{data.value}}</span>
+              <span v-else-if="data.type==='rate'" class="text-13 text-tw-blue font-medium">{{data.value}}</span>
               <span v-else> {{data.value}} </span>
               </span>
             </td>

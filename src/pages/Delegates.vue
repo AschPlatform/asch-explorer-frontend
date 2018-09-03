@@ -10,7 +10,7 @@
     <div class="desktop-only w-full flex justify-end xs:mb-20 mb-40 xs:-mt-20 sm:mt-0">
       <span class="xs:text-12 sm:text-16 text-tw-blue">{{$t('REGIST_DELEGATE')}}: {{count}}{{$t('PERSON')}}</span>
     </div>
-    <table-container :data="data" :count="count" :params="params" :columnsData="columnsData" @getData="getData">
+    <table-container class="custorm-thead" :data="data" :count="count" :params="params" :columnsData="columnsData" @getData="getData">
       <template class="desktop-only" slot="content" slot-scope="props" v-if="props.props">
         <q-td v-if="props.props.rate" key="rate" >
           <span>{{ props.props.rate }}</span>
@@ -38,7 +38,7 @@
         </q-td>
       </template>
       <template class="mobile-only" slot="items" slot-scope="props" v-if="props.props">
-        <table-item  :data="getTableData(props.props)" :bgIcon="'icon-details'" :dataIcon="'icon-transaction'"/>
+        <table-item  :data="getTableData(props.props)" :bgIcon="'icon-trustee'" :dataIcon="'icon-transaction'"/>
       </template>
     </table-container>
   </q-page>
@@ -129,7 +129,8 @@ export default {
       const { rate, name, address, producedBlocks, productivity, approval } = data
       let rateField = {
         label: 'RANK',
-        value: rate
+        value: rate,
+        type: 'rate'
       }
       let nameField = {
         label: 'DELEGATE_NAME',

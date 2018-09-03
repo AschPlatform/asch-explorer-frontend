@@ -5,7 +5,7 @@ const lang = {
   // home
   HOME: '首页',
   BLOCK_HEIGHT: '区块高度',
-  TOTAL_SUPPLY: '代币总量',
+  TOTAL_SUPPLY: '代币供应量',
   USERS_NUMBER: '用户数',
   RUNNING_DAYS: '运行天数',
   FOOTER_LINKS: '友情链接:',
@@ -157,7 +157,7 @@ const lang = {
   DELEGATE_LIST: '受托人列表',
   REGIST_DELEGATE: '注册受托人',
   close: '关闭',
-  ISSUED_NUM: '发行资产数量',
+  ISSUED_NUM: '发行资产数',
   TOTAL_PRICE: '总市值',
 
   // page

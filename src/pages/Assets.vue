@@ -11,7 +11,7 @@
       <span class="xs:text-12 sm:text-16 text-tw-blue">{{$t('REGIST_ASSET')}}: {{count}}</span>
     </div>
 
-    <table-container :data="data" :count="count" :params="params" :columnsData="columnsData" @getData="getData">
+    <table-container class="custorm-thead" :data="data" :count="count" :params="params" :columnsData="columnsData" @getData="getData">
       <template class="desktop-only" slot="content" slot-scope="props" v-if="props.props">
         <q-td v-if="props.props.name" key="asset">
           <div class="text-primary cursor-pointer" @click="doSearch(props.props.name, 'asset')">
@@ -36,7 +36,7 @@
         </q-td>
       </template>
       <template class="mobile-only" slot="items" slot-scope="props" v-if="props.props">
-        <table-item :data="getTableData(props.props)" :bgIcon="'icon-details'" :dataIcon="'icon-transaction'"/>
+        <table-item :data="getTableData(props.props)" :bgIcon="'icon-data'" :dataIcon="'icon-transaction'"/>
       </template>
     </table-container>
   </q-page>
