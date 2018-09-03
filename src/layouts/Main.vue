@@ -21,35 +21,17 @@
         </div>
       </q-toolbar>
       <q-list class="py-0 mt-20" no-border link inset-delimiter>
-        <!-- <q-list-header class="row justify-left"> -->
-          <!-- <div class="header-left row justify-center items-center">
-            <span class="menu-logo"></span>
-          </div>
-          <div class="header-right margin-left-10">
-            <span class="header-right-top">{{$t('ASCH')}}</span>
-            <span class="header-right-bottom font-12">Asch Client CCC</span>
-          </div> -->
-        <!-- </q-list-header> -->
-        <!-- <q-item class="min-h-50" :to="getRouterConf('home')">
-          <q-item-main class="text-30 text-tw-blue" :label="$t('HOME')"/>
-        </q-item> -->
         <div class="min-h-50 q-item q-item-division relative-position">
           <a class="w-full" :class="computedRoute('home')" @click="getRouterConf('/')">
             {{$t('HOME')}}
           </a>
         </div>
-        <!-- <q-item class="min-h-50" :to="getRouterConf('delegates')">
-          <q-item-main class="text-30" :label="$t('DELEGATES')" />
-        </q-item> -->
         <q-item-separator class="sep text-tw-grey" />
         <div class="min-h-50 q-item q-item-division relative-position">
           <a class="w-full" :class="computedRoute('delegates')" @click="getRouterConf('delegates')">
             {{$t('DELEGATES')}}
           </a>
         </div>
-        <!-- <q-item class="min-h-50" :to="getRouterConf('assets')">
-          <q-item-main class="text-30" :label="$t('ASSETS')" />
-        </q-item> -->
         <q-item-separator class="sep text-tw-grey" />
         <div class="min-h-50 q-item q-item-division relative-position">
           <a class="w-full" :class="computedRoute('assets')" @click="getRouterConf('assets')">
@@ -57,23 +39,17 @@
           </a>
         </div>
         <q-item-separator class="sep text-tw-grey" />
-        <!-- <q-item class="min-h-50" @click="change()" tag="div">
-          <a class="text-30">{{$t('ZH')}}</a>
-        </q-item> -->
         <div class="min-h-50 q-item q-item-division relative-position">
-          <a class="w-full text-30" @click="change()">
-            {{$t('ZH')}}
+          <a class="w-full text-30" @click="changeLang('zh')">
+            {{$t('LANGUAGE_ZH')}}
           </a>
         </div>
         <q-item-separator class="sep text-tw-grey" />
         <div class="min-h-50 q-item q-item-division relative-position">
-          <a class="w-full text-30" @click="change()">
-            {{$t('EN')}}
+          <a class="w-full text-30" @click="changeLang('en')">
+            {{$t('LANGUAGE_EN')}}
           </a>
         </div>
-        <!-- <q-item class="min-h-50" :to="getRouterConf('home')">
-          <q-item-main class="text-30" label="EN" />
-        </q-item> -->
       </q-list>
     </q-layout-drawer>
     <code-modal :show="QRCodeShow" @close="QRCodeShow = false" :text="QRCodeText"/>
@@ -82,7 +58,21 @@
 
 <script>
 /* eslint-disable */
-import { openURL, QLayout, QLayoutHeader, QPageContainer, QLayoutFooter, QLayoutDrawer, QList, QItem, QItemMain, QListHeader, QToolbar, QBtn, QItemSeparator } from 'quasar'
+import {
+  openURL,
+  QLayout,
+  QLayoutHeader,
+  QPageContainer,
+  QLayoutFooter,
+  QLayoutDrawer,
+  QList,
+  QItem,
+  QItemMain,
+  QListHeader,
+  QToolbar,
+  QBtn,
+  QItemSeparator
+} from 'quasar'
 import FooterBar from '../components/FooterBar'
 import StateBanner from '../components/StateBanner'
 import SearchBanner from '../components/SearchBanner'
@@ -90,7 +80,7 @@ import { REGEX } from '../utils/constants'
 import Navbar from '../components/Navbar'
 import CodeModal from '../components/QRCodeModal'
 
-import { getCache } from '../utils/util'
+import { getCache, setCache } from '../utils/util'
 import { mapGetters, mapActions } from 'vuex'
 import aschLogo from '../assets/asch_logo2.png'
 
@@ -166,13 +156,22 @@ export default {
       this.$router.push({ path: '/error', query: { errorStr: str } })
     },
 
+    // switch the language
+    changeLang(lan) {
+      this.$i18n.locale = lan
+      this.$store.commit('SET_LANG', this.$i18n.locale)
+      if (window.localStorage) {
+        setCache('lang', this.$i18n.locale)
+      }
+      this.switchDrawer()
+    },
+
     // Set the language when you refresh
     setLang() {
       if (window.localStorage && getCache('lang')) {
         let lang = getCache('lang')
         this.$i18n.locale = lang
         this.$store.commit('SET_LANG', lang)
-        // moment.locale(lang === 'zh' ? 'zh-cn' : 'en-us')
       }
     },
     showQRCodeModal(content) {
@@ -184,8 +183,6 @@ export default {
     },
     getRouterConf(path = '/') {
       this.$router.push(path)
-    },
-    change() {
     },
     computedRoute(data) {
       let path = this.$route.name
