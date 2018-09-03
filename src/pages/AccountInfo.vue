@@ -15,7 +15,7 @@
       </div>
       <!-- <info-panel v-if="account" :panelData="panelData" /> -->
       <!-- <div v-else class="mt-2 mb-8 px-4 text-xs">{{$t('NO_DATA')}}</div> -->
-      <boundary-line class="xs:my-15 sm:my-30" />
+      <boundary-line class="xs:my-15 sm:my-15" />
       <!-- <q-btn-toggle v-model="model" class="mt-4 pl-15" flat text-color="#ffffff" toggle-text-color="tw-blue" @input="changeType" :options="btnGroup">
       </q-btn-toggle> -->
       <div class="btngroup">
