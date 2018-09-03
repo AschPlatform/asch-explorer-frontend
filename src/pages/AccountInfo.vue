@@ -62,7 +62,7 @@
             <span v-if="getTransAmount(props.props)">{{ getTransAmount(props.props) }}</span>
           </q-td>
           <q-td v-if="props.props.currency" class="text-right align-baseline" key="currency">
-            <span class="text-12">{{ props.props.currency !== 'XAS' ? props.props.currency.split('.')[0] : ''}}</span>
+            <sub class="text-12 align-bottom mr-5">{{ props.props.currency !== 'XAS' ? props.props.currency.split('.')[0] : ''}}</sub>
             <q-chip color="blue" text-color="white" small>{{ props.props.currency.split('.')[1] || props.props.currency.split('.')[0]}}</q-chip>
           </q-td>
          <q-td v-if="props.props.args || props.props.args === null" key="args" >
@@ -72,7 +72,7 @@
            </div>
             <span v-else>--</span>
           </q-td>
-          <q-td v-if="props.props.fee" key="fee" >
+          <q-td v-if="props.props.fee || props.props.fee === 0" key="fee" >
             <span v-if="props.props.fee">{{ props.props.fee | fee }}</span>
             <span v-else>--</span>
           </q-td>

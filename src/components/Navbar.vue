@@ -6,9 +6,15 @@
       </div>
   
       <div class="xs:hidden sm:flex w-auto">
-        <q-btn class="sm:text-14 md:text-16 xl:text-18 xll:text-20 text-tw-white hover:text-tw-blue px-0 sm:mr-10 md:mr-15 xl:mr-30 xll:mr-53" :label="$t('HOME')" flat @click="jump('/')" />
-        <q-btn class="sm:text-14 md:text-16 xl:text-18 xll:text-20 text-tw-white hover:text-tw-blue px-0 sm:mr-10 md:mr-15 xl:mr-30 xll:mr-53" flat :label="$t('DELEGATES')" @click="jump('/delegates')" />
-        <q-btn class="sm:text-14 md:text-16 xl:text-18 xll:text-20 text-tw-white hover:text-tw-blue px-0" flat :label="$t('ASSETS')" @click="jump('/assets')" />
+        <button class="sm:text-14 md:text-16 xl:text-18 xll:text-20 text-tw-white hover:text-tw-blue px-0 sm:mr-10 md:mr-15 xl:mr-30 xll:mr-53 bg-tw-transparent border-0 cursor-pointer" flat @click="jump('/')">
+        {{$t('HOME')}}
+        </button>
+        <button class="sm:text-14 md:text-16 xl:text-18 xll:text-20 text-tw-white hover:text-tw-blue px-0 sm:mr-10 md:mr-15 xl:mr-30 xll:mr-53  bg-tw-transparent border-0 cursor-pointer"  @click="jump('/delegates')" >
+        {{$t('DELEGATES')}}
+        </button>
+        <button class="sm:text-14 md:text-16 xl:text-18 xll:text-20 text-tw-white hover:text-tw-blue px-0  bg-tw-transparent border-0 cursor-pointer" @click="jump('/assets')" >
+        {{$t('ASSETS')}}
+        </button>
       </div>
     </div>
   

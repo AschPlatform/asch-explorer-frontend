@@ -87,7 +87,7 @@ export default {
       pagination: {
         page: 1,
         rowsNumber: 0,
-        rowsPerPage: 10
+        rowsPerPage: 20
       },
       isDisable: false
     }
@@ -143,7 +143,7 @@ export default {
       this.pagination = {
         page: 1,
         rowsNumber: 0,
-        rowsPerPage: 10
+        rowsPerPage: 20
       }
       this.curPage = 1
       this.selectPage = 20
@@ -191,9 +191,11 @@ export default {
   }
 
   tr:hover {
+    transition: all ease 0.3s;
     transform: scale(1.02);
     border-radius: 6px;
-    box-shadow: 0 0 10px #E0E1E5;
+    border: 1px solid rgba(224, 225, 229, 1);
+    box-shadow: -3px 3px 5px rgba(5, 4, 4, 0.09);
   }
 
   td {
