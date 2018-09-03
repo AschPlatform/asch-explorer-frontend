@@ -120,7 +120,8 @@ export default {
         },
         {
           label: 'ADDRESS',
-          value: this.address
+          value: this.address,
+          type: 'address'
         }
       ]
     }
