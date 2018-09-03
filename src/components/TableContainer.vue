@@ -65,11 +65,11 @@ export default {
     return {
       datas: [],
       curPage: 1,
-      selectPage: 20,
+      selectPage: 10,
       options: [
         {
-          label: '20',
-          value: 20
+          label: '10',
+          value: 10
         },
         {
           label: '30',
@@ -87,7 +87,7 @@ export default {
       pagination: {
         page: 1,
         rowsNumber: 0,
-        rowsPerPage: 20
+        rowsPerPage: 10
       },
       isDisable: false
     }
@@ -143,7 +143,7 @@ export default {
       this.pagination = {
         page: 1,
         rowsNumber: 0,
-        rowsPerPage: 20
+        rowsPerPage: 10
       }
       this.curPage = 1
       this.selectPage = 20
@@ -199,6 +199,9 @@ export default {
   tr:nth-child(2n -1) {
     background-color: #F8F8F8;
   }
+   tr:nth-child(2n) {
+    background-color: #FFFFFF;
+  }
 
   tr:hover {
     transition: all ease 0.3s;
@@ -206,6 +209,7 @@ export default {
     border-radius: 6px;
     border: 1px solid rgba(224, 225, 229, 1);
     box-shadow: -3px 3px 5px rgba(5, 4, 4, 0.09);
+    background-color: #F8F8F8;
   }
 
   td {

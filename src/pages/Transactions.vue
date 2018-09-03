@@ -2,9 +2,14 @@
   <q-page class="max-w-1200 m-auto xs:p-15 sm:p-0 xs:pb-20 sm:pb-40">
      <breadcrumb class="xs:mt-5 sm:mt-40" />
     <div class="xs:border-0 sm:border-1 border-solid border-tw-grey rounded-lg xs:px-0 xs:pt-0 xs:pb-15 sm:pb-30">
-      <q-btn-group class="mt-8 mobile-only" outline>
-        <q-btn outline v-for="(item, idx) in btnGroup" :label="item.label" @click="changeType(item.value)" :key="idx"></q-btn>
-      </q-btn-group>
+      <div class="mobile-only my-20">
+        <button class="px-10 py-5 border-0 text-white text-12" :class="this.type === 1 ? 'bg-tw-blue' : 'bg-tw-black'" @click="changeType(1)">
+          {{$t('TRANS_TABLE')}}
+        </button>
+        <button class="px-10 py-5 border-0 text-white text-12" :class="this.type === 0 ? 'bg-tw-blue' : 'bg-tw-black'" @click="changeType(0)">
+          {{$t('TRANSACTION_TABLE')}}
+        </button>
+      </div>
       <div class="relative desktop-only w-full border-1 border-solid border-tw-grey">
         <button :class="this.type === 1 ? styleSelected : styleUnselected" @click="changeType(1)">
           {{$t('TRANS_TABLE')}}
@@ -76,7 +81,7 @@
           </q-td>
         </template>
         <template class="mobile-only" slot="items" slot-scope="props" v-if="props.props">
-          <table-item :data="getTableData(props.props)" :bgIcon="'icon-details'" :dataIcon="'icon-transaction'"/>
+          <table-item :data="getTableData(props.props)" :bgIcon="'icon-accounts'" :dataIcon="'icon-transaction'"/>
         </template>
       </table-container>
     </div>
@@ -102,7 +107,7 @@ motivi:hover {
 </style>
 
 <script>
-import { QPage, QTd, QTooltip, QBtnGroup, QBtn, QChip } from 'quasar'
+import { QPage, QTd, QTooltip, QBtn, QChip } from 'quasar'
 import Breadcrumb from '../components/Breadcrumb'
 import TableContainer from '../components/TableContainer'
 import { fulltimestamp, convertFee, isDesktop } from '../utils/util'
@@ -118,7 +123,6 @@ export default {
     TableContainer,
     QTd,
     QTooltip,
-    QBtnGroup,
     QBtn,
     TableItem,
     QChip

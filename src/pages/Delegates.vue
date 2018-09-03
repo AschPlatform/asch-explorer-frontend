@@ -2,8 +2,8 @@
   <q-page class="max-w-1200 m-auto xs:p-15 sm:p-0 xs:pb-20 sm:pb-40">
     <div class="upperSlot flex justify-between items-center xs:mt-0 xs:mb-20 sm:mb-0 sm:mt-40">
       <div>
-        <q-icon class="xs:text-14 sm:text-24 text-tw-grey-darkest xs:mr-10 sm:mr-20" name="icon-trustee" />
-        <span class="xs:text-14 sm:text-24 font-semibold text-tw-grey-darkest">{{$t('DELEGATE_LIST')}}</span>
+        <q-icon class="xs:text-18 sm:text-24 text-tw-grey-darkest xs:mr-10 sm:mr-20" name="icon-trustee" />
+        <span class="xs:text-16 sm:text-24 font-semibold text-tw-grey-darkest">{{$t('DELEGATE_LIST')}}</span>
       </div>
       <span class="mobile-only xs:text-12 sm:text-16 text-tw-blue">{{$t('REGIST_DELEGATE')}}: {{count}}{{$t('PERSON')}}</span>
     </div>
@@ -149,11 +149,13 @@ export default {
       }
       let productivityField = {
         label: 'PRODUCTIVITY',
-        value: productivity + ' %'
+        value: productivity + ' %',
+        type: 'productivity'
       }
       let approvalField = {
         label: 'VOTE_RATE',
-        value: approval + ' %'
+        value: approval + ' %',
+        type: 'voteRate'
       }
 
       return [
