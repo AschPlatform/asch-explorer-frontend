@@ -19,7 +19,7 @@
     </div>
   
     <div class="xs:w-full sm:w-2/3 flex justify-between xs:border-t-1 xs:border-b-0 xs:border-l-0 xs:border-r-0 sm:border-none  border-solid border-tw-black-dark xs:pt-10 xs:pr-15 sm:pr-0">
-      <q-btn class="xs:flex sm:hidden w-auto" icon="menu" @click="toggle" />
+      <q-btn class="xs:w-1/6 sm:hidden w-auto" icon="menu" @click="toggle" />
       <!-- <q-toolbar-title>
       </q-toolbar-title> -->
       <div class="flex items-center xs:justify-start sm:justify-end xs:w-5/6 sm:w-full">

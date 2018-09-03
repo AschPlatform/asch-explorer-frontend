@@ -300,7 +300,8 @@ module.exports = {
     default: '1px',
     '0': '0',
     '1': '1px',
-    '2': '2px'
+    '2': '2px',
+    '3': '3px'
   },
 
   /*
@@ -372,7 +373,9 @@ module.exports = {
 
   width: {
     'auto': 'auto',
+    '3': '3px',
     '17': '17px',
+    '20': '20px',
     '23': '23px',
     '24': '24px',
     '25': '25px',
