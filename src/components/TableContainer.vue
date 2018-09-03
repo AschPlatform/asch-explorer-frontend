@@ -156,7 +156,10 @@ export default {
       text-align: center;
       font-size: 16px;
   tr:hover
+    transition: all ease .3s; 
     transform: scale(1.03);
+    border:1px solid rgba(224,225,229,1);
+    box-shadow:-3px 3px 5px rgba(5,4,4,0.09)
   td
     border: 1px solid #E0E1E5;
   thead

@@ -24,13 +24,13 @@
             <q-tooltip>{{ props.props.address }}</q-tooltip>
           </div>
         </q-td>
-        <q-td v-if="props.props.producedBlocks" key="producedBlocks" >
-          <span>{{ props.props.producedBlocks }}</span>
+        <q-td key="producedBlocks" >
+          <span>{{ props.props.producedBlocks || 0 }}</span>
         </q-td>
         <q-td v-if="props.props.productivity" key="productivity" >
           <span>{{ props.props.productivity + ' %' }}</span>
         </q-td>
-        <q-td v-if="props.props.approval" key="approval">
+        <q-td key="approval">
           <span>{{ props.props.approval + ' %' }}</span>
         </q-td>
       </template>
