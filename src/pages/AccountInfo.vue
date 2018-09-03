@@ -2,7 +2,7 @@
   <q-page class="max-w-1200 m-auto xs:p-15 sm:p-0 xs:pb-20 sm:pb-40">
     <breadcrumb class="xs:mt-5 sm:mt-40" />
     <div class="border border-solid border-tw-grey rounded-lg xs:px-10 xs:py-15 sm:px-40 sm:py-30">
-      <div class="xs:text-16 sm:text-20 text-tw-grey-darkest">
+      <div class="xs:text-16 sm:text-20 text-tw-grey-darkest font-semibold">
         {{this.$t('ACCOUNT_INFO')}}
       </div>
       <boundary-line class="xs:my-15 sm:my-30" />
@@ -15,8 +15,13 @@
       </div>
       <!-- <info-panel v-if="account" :panelData="panelData" /> -->
       <!-- <div v-else class="mt-2 mb-8 px-4 text-xs">{{$t('NO_DATA')}}</div> -->
-      <q-btn-toggle v-model="model" class="mt-4 pl-15" flat color="positive" taggle-color="tertiary" text-color="primary" toggle-text-color="positive" @input="changeType" :options="btnGroup">
-      </q-btn-toggle>
+      <boundary-line class="xs:my-15 sm:my-15" />
+      <!-- <q-btn-toggle v-model="model" class="mt-4 pl-15" flat text-color="#ffffff" toggle-text-color="tw-blue" @input="changeType" :options="btnGroup">
+      </q-btn-toggle> -->
+      <div class="btngroup">
+        <button :class="(this.type === 0 ? styleSelected : styleUnselected) + ' mr-20'" @click="changeType(0)">{{$t('TRANS_TABLE')}}</button>
+        <button :class="this.type === 1 ? styleSelected : styleUnselected" @click="changeType(1)">{{$t('TRANSACTION_TABLE')}}</button>
+      </div>
       <boundary-line class="my-20" />
       <table-container :data="data" :count="count" :params="params" :columnsData="columnsData" @getData="getData">
         <template class="desktop-only" slot="content" slot-scope="props" v-if="props.props">
@@ -142,7 +147,9 @@ export default {
           label: this.$t('TRANSACTION_TABLE'),
           value: 1
         }
-      ]
+      ],
+      styleSelected: 'inline px-0 font-semibold text-20 q-btn text-tw-blue border-b-2 border-tw-blue border-solid',
+      styleUnselected: 'inline px-0 font-semibold text-20 q-btn'
     }
   },
   async mounted() {
