@@ -1,6 +1,6 @@
 <template>
   <q-page class="max-w-1200 m-auto xs:p-15 sm:p-0 xs:pb-20 sm:pb-40">
-    <div class="xs:mt-5 xs:mb-20 sm:my-40 text-16 custom-link-btn">
+    <div class="xs:mt-5 xs:mb-20 sm:my-20 text-16 custom-link-btn">
       <button class="p-0 text-tw-grey-darkest hover:text-tw-blue text-16 border-0 bg-tw-white cursor-pointer" @click="$router.push('/assets')">{{this.$t('ASSETS')}}</button>
       <q-icon class="text-12 text-tw-grey-darkest p-0 xs:mx-5 sm:mx-10" name="icon-right" />
       <button class="p-0 text-16 text-tw-grey-darkest border-0 bg-tw-white">{{this.$t('INFO')}}</button>

@@ -1,6 +1,6 @@
 <template>
   <q-page class="max-w-1200 m-auto xs:p-15 sm:p-0 xs:pb-20 sm:pb-40">
-     <breadcrumb class="xs:mt-5 sm:mt-40" />
+     <breadcrumb class="xs:mt-5 sm:mt-20" />
     <div class="xs:border-0 sm:border-0 border-solid border-tw-grey rounded-lg xs:px-0 xs:pt-0 xs:pb-15 sm:pb-30">
       <div class="mobile-only my-20">
         <button class="px-10 py-5 border-0 text-white text-12" :class="this.type === 1 ? 'bg-tw-blue' : 'bg-tw-black'" @click="changeType(1)">
