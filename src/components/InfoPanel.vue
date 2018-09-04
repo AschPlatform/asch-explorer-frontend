@@ -5,12 +5,12 @@
         <tbody :class='tableTbodyMobile'>
           <tr v-show="data.value != null" v-for="(data, idx) in panelData" :key="idx">
             <td v-if="data.label" class="w-auto pl-0">{{$t(data.label)}} :</td>
-            <td v-else class="w-auto pl-0">{{$t(data.label)}}</td>
+            <td v-else class="w-auto pl-15">{{$t(data.label)}}</td>
             <td class="xs:w-5/6 sm:w-auto">
-              <span :class="data.link?`text-primary cursor-pointer`:''" @click="data.link?$router.push(data.link+data.value):null">
+              <span :class="data.link?`text-tw-blue cursor-pointer hover:underline`:''" @click="data.link?$router.push(data.link+data.value):null">
                               <span v-if="data.type==='number'" >{{data.value | numSeparator}}</span>
               <span v-else-if="data.type==='timestamp'">{{data.value | formatTimestamp}}</span>
-              <span v-else-if="data.type==='address'" class="text-tw-blue cursor-pointer" @click="doSearch(data.value)">
+              <span v-else-if="data.type==='address'" class="text-tw-blue cursor-pointer hover:underline" @click="doSearch(data.value)">
                 <span v-if="data.nickname">
                   {{data.nickname}}({{data.value}})
                 </span>
@@ -19,13 +19,14 @@
                 </span>
               </span>
               <span v-else-if="data.type==='id'">{{data.value}}</span>
-              <span v-else-if="data.type==='preBlock'" class="text-tw-blue cursor-pointer" @click="doSearch(data.value, 'id')">{{data.value}}</span>
+              <span v-else-if="data.type==='preBlock'" class="text-tw-blue cursor-pointer hover:underline" @click="doSearch(data.value, 'id')">{{data.value}}</span>
               <span v-else-if="data.type==='argStr'" class="text-tw-grey-darkest">{{data.value}}</span>
-              <span v-else-if="data.type==='block'" class="text-tw-blue cursor-pointer" @click="doSearch(data.value)">{{data.value}}</span>
+              <span v-else-if="data.type==='block'" class="text-tw-blue cursor-pointer hover:underline" @click="doSearch(data.value)">{{data.value}}</span>
               <span v-else-if="data.type==='qr'" class="text-tw-grey-darkest" @click="doSearch(data.value)">
                 {{data.value}}
                 <span class="qr-right-container" @click="showAddrQr(data.value)">
-                  <vue-qr class="add-qr-container text-tw-blue" :colorDark="qrDark" :colorLight="qrLight" autoColor :size="16" :text="data.value"></vue-qr>
+                 <q-icon class="text-18 text-tw-blue mr-10" name="icon-qr" />
+                  <!-- <vue-qr class="add-qr-container text-tw-blue" :colorDark="qrDark" :colorLight="qrLight" autoColor :size="16" :text="data.value"></vue-qr> -->
                 </span>
               </span>
               <span v-else>{{data.value}} </span>
@@ -35,14 +36,14 @@
         </tbody>
       </table>
       <q-inner-loading :visible="loadingBool">
-        <q-spinner-gears size="50px" color="teal-4" />
+        <q-spinner-gears size="50px" color="tw-blue" />
       </q-inner-loading>
     </div>
   </transition>
 </template>
 
 <script>
-import { QInnerLoading, QSpinnerGears } from 'quasar'
+import { QInnerLoading, QSpinnerGears, QIcon } from 'quasar'
 import ICountUp from 'vue-countup-v2'
 import { toast, isDesktop } from '../utils/util'
 import { mapActions, mapGetters } from 'vuex'
@@ -55,7 +56,8 @@ export default {
     ICountUp,
     QInnerLoading,
     QSpinnerGears,
-    VueQr
+    VueQr,
+    QIcon
   },
   data() {
     return {

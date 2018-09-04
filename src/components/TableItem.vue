@@ -1,5 +1,5 @@
 <template>
-  <div class="flex xs:mb-15 sm:mb-30 xs:pt-15 xs:pb-5 xs:px-15 sm:p-10 shadow-none hover:shadow-21 border-1 border-solid border-tw-grey-darker panelitem-container relative overflow-hidden">
+  <div class="flex xs:mb-15 sm:mb-30 xs:pt-15 xs:pb-5 xs:px-15 sm:p-10 shadow-none sm:hover:shadow-21 border-1 border-solid border-tw-grey-darker panelitem-container relative overflow-hidden">
     <div class="absolute -mr-15 -mb-15 opacity-8 pin-b pin-r">
       <q-icon class="text-60 text-tw-grey-lighter" :name="this.bgIcon" />
     </div>

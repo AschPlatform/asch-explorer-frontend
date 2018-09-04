@@ -2,6 +2,7 @@
   <q-dialog
     v-model="show"
     prevent-close
+
   >
     <span v-if="title" slot="title">{{title}}</span>
 
@@ -15,9 +16,10 @@
 
     <template  slot="buttons" slot-scope="props">
       <div class="row justify-center w-full">
-        <q-btn class="text-tw-grey-lighter" align="center" :label="$t('close')" @click="close" />
+        <button class="border-0 w-full bg-tw-blue py-15 text-white"  @click="close">
+          {{$t('CLOSE')}}
+        </button>
       </div>
-   
     </template>
   </q-dialog>
 </template>

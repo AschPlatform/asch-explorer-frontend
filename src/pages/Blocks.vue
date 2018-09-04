@@ -1,11 +1,11 @@
 <template>
   <q-page class="max-w-1200 m-auto xs:p-15 sm:p-0 xs:pb-20 sm:pb-40">
-    <breadcrumb class="xs:mt-5 sm:mt-40" />
-    <div class="xs:border-0 sm:border-1 border-solid border-tw-grey rounded-lg xs:px-0 xs:pt-0 xs:pb-15 sm:px-40 sm:py-30">
-    <table-container :data="data" :count="count" :columnsData="columnsData" @getData="getData">
+    <breadcrumb class="xs:mt-5 sm:mt-20" />
+    <div class="rounded-lg xs:px-0 xs:pt-0 xs:pb-15 sm:px-0 sm:py-0">
+    <table-container class="custorm-thead" :data="data" :count="count" :columnsData="columnsData" @getData="getData">
         <template class="desktop-only" slot="content" slot-scope="props" v-if="props.props">
           <q-td v-if="props.props.height" key="height">
-            <div class="text-primary cursor-pointer" @click="doSearch(props.props.height)">
+            <div class="text-tw-blue cursor-pointer hover:underline" @click="doSearch(props.props.height)">
               {{ props.props.height }}
               <q-tooltip>{{ props.props.height }}</q-tooltip>
             </div>
@@ -14,13 +14,13 @@
               <span>{{ fulltimestamp(props.props.timestamp) }}</span>
           </q-td>
           <q-td v-if="props.props.delegate" key="delegate" >
-            <div class="text-primary cursor-pointer" @click="doSearch(props.props.delegate)">
+            <div class="text-tw-blue cursor-pointer hover:underline" @click="doSearch(props.props.delegate)">
               {{ props.props.delegate | eclipse }}
               <q-tooltip>{{ props.props.delegate }}</q-tooltip>
             </div>
           </q-td>
           <q-td v-if="props.props.id" key="id" >
-            <div class="text-primary cursor-pointer" @click="doSearch(props.props.id)">
+            <div class="text-tw-blue cursor-pointer hover:underline" @click="doSearch(props.props.id)">
               {{ props.props.id | eclipse }}
               <q-tooltip>{{ props.props.id }}</q-tooltip>
             </div>
