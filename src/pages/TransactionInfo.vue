@@ -146,14 +146,15 @@ export default {
       this.reset()
       try {
         let result = await this.getTransactionInfo({
-          tid: this.tid
+          query: this.$route.params.id
         })
         if (result.success) {
-          this.transDetail(result.transaction)
-          this.transTime = fulltimestamp(result.transaction.timestamp)
-          this.getTransType(result.transaction)
-          this.transID = result.transaction.type
-          this.blockHeight = result.transaction.height
+          let data = result.searchResults[0].data
+          this.transDetail(data)
+          this.transTime = fulltimestamp(data.timestamp)
+          this.getTransType(data)
+          this.transID = data.type
+          this.blockHeight = data.height
         } else {
           toast(this.$t('ERR_INVALID_SEARCH'))
           this.$router.push('/')

@@ -62,6 +62,7 @@
 </template>
 
 <script>
+/* eslint-disable */
 import { QPage, QTd, QTooltip, QIcon } from 'quasar'
 import Breadcrumb from '../components/Breadcrumb'
 import BoundaryLine from '../components/BoundaryLine'
@@ -211,6 +212,7 @@ export default {
     fulltimestamp,
     ...mapActions(['getBlockInfo', 'getTransactions']),
     async envalueData() {
+      console.log(this.$route)
       let para = {}
       if (this.$route.params.height) {
         para['height'] = this.params

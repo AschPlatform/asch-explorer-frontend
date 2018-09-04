@@ -117,9 +117,9 @@ export default {
     }
   },
   methods: {
-    ...mapActions(['getHeight', 'getUsers', 'getXas', 'getAssets', 'getAssetNum', 'getXasPrice']),
+    ...mapActions(['getHeight', 'getUsers', 'getXas', 'getAssets', 'getAssetNum', 'getXasPrice', 'getTransactionInfo']),
     openURL,
-    doSearch(str, type) {
+    async doSearch(str, type) {
       if (this.searchForbidden) return
       const { hash, address, height } = REGEX
       const router = this.$router
@@ -140,7 +140,17 @@ export default {
         return
       }
       if (hash.test(str) || type === 'trans') {
-        router.push(`/transaction/${str}`)
+        let result = await this.getTransactionInfo({
+          query: str
+        })
+        if (result.success && result.searchResults) {
+          if (result.searchResults[0].type === 'block') {
+            router.push(`/blocks_id/${str}`)
+          } else if (result.searchResults[0].type === 'transaction') {
+            router.push(`/transaction/${str}`)
+          }
+        }
+        // router.push(`/transaction/${str}`)
         return
       }
       if (address.test(str) || type === 'account') {

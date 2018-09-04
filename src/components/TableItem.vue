@@ -18,7 +18,7 @@
              <span  class="text-13 text-tw-blue font-medium"> {{$t(data.label)}}:</span>
            </td>
             <td v-else class="w-1/4 xs:text-12 sm:text-18 text-tw-grey-darkest mb-15 whitespace-no-wrap">
-             <span v-eles> {{$t(data.label)}}:</span>
+             <span> {{$t(data.label)}}:</span>
            </td>
             <td class="truncate xs:text-12 sm:text-18 text-tw-grey-darkest w-3/4">
               <span :class="data.link?`text-tw-blue cursor-pointer`:''" @click="data.link?$router.push(data.link+data.value):null">
