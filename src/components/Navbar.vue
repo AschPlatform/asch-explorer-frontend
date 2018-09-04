@@ -1,7 +1,7 @@
 <template>
   <q-toolbar class="flex xs:flex-col sm:flex-row justify-between w-full bg-tw-black xs:h-auto sm:h-86 xs:px-0 xs:pb-11 sm:pb-0 sm:px-10 md:px-20 xl:px-25 xll:px-30">
     <div class="flex justify-between items-center flex-no-wrap sm:w-auto">
-      <div class="xs:w-full sm:w-auto asch-logo sm:h-20 md:h-26 xl:h-28 xll:h-30 xs:my-10 sm:my-0 sm:mr-20 lg:mr-30 cursor-pointer" @click="jump('/')">
+      <div class="xs:w-full sm:w-auto asch-logo xs:h-20 sm:h-20 md:h-26 xl:h-28 xll:h-30 xs:my-10 sm:my-0 sm:mr-20 lg:mr-30 cursor-pointer" @click="jump('/')">
         <img class="h-full" :src="logoTop" alt="">
       </div>
   
