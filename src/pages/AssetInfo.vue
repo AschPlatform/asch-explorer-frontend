@@ -6,22 +6,28 @@
       <button class="p-0 text-16 text-tw-grey-darkest border-0 bg-tw-white">{{this.$t('INFO')}}</button>
     </div>
     <div class="border border-solid border-tw-grey rounded-lg xs:px-10 xs:py-15 sm:px-30 sm:py-30">
-      <div class="xs:text-16 sm:text-20 text-tw-grey-darkest pl-15">
+      <div class="xs:text-16 sm:text-20 text-tw-grey-darkest xs:pl-0 sm:pl-15">
         {{this.$t('ASSET_INFO')}}
       </div>
+      <div class="xs:px-0 sm:px-15">
       <boundary-line class="xs:my-15 sm:my-30" />
+      </div>
       <div class="flex justify-between">
         <info-panel :panelData="panelData" />
-       <div class="self-end w-auto xs:hidden sm:block pb-10">
+       <div class="self-end w-auto xs:hidden sm:block pb-10 xs:pr-0 sm:pr-15">
           <q-icon class="text-60 text-tw-grayish" name="icon-data" />
         </div>
       </div>
+      <div class="xs:px-0 sm:px-15">
       <boundary-line class="my-30" />
-      <div class="text-20 text-tw-grey-darkest font-medium">
+      </div>
+      <div class="text-20 text-tw-grey-darkest font-medium xs:pl-0 sm:pl-15">
         {{this.$t('ASSET_DESC')}}
       </div>
+      <div class="xs:px-0 sm:px-15">
       <boundary-line class="my-30" />
-      <div class="text-16 text-tw-grey-darkest">
+      </div>
+      <div class="text-16 text-tw-grey-darkest xs:px-0 sm:px-15">
         {{this.desc}}
       </div>
     </div>

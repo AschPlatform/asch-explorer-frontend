@@ -25,7 +25,8 @@
               <span v-else-if="data.type==='qr'" class="text-tw-grey-darkest" @click="doSearch(data.value)">
                 {{data.value}}
                 <span class="qr-right-container" @click="showAddrQr(data.value)">
-                  <vue-qr class="add-qr-container text-tw-blue" :colorDark="qrDark" :colorLight="qrLight" autoColor :size="16" :text="data.value"></vue-qr>
+                 <q-icon class="text-18 text-tw-blue mr-10" name="icon-qr" />
+                  <!-- <vue-qr class="add-qr-container text-tw-blue" :colorDark="qrDark" :colorLight="qrLight" autoColor :size="16" :text="data.value"></vue-qr> -->
                 </span>
               </span>
               <span v-else>{{data.value}} </span>
@@ -35,14 +36,14 @@
         </tbody>
       </table>
       <q-inner-loading :visible="loadingBool">
-        <q-spinner-gears size="50px" color="teal-4" />
+        <q-spinner-gears size="50px" color="tw-blue" />
       </q-inner-loading>
     </div>
   </transition>
 </template>
 
 <script>
-import { QInnerLoading, QSpinnerGears } from 'quasar'
+import { QInnerLoading, QSpinnerGears, QIcon } from 'quasar'
 import ICountUp from 'vue-countup-v2'
 import { toast, isDesktop } from '../utils/util'
 import { mapActions, mapGetters } from 'vuex'
@@ -55,7 +56,8 @@ export default {
     ICountUp,
     QInnerLoading,
     QSpinnerGears,
-    VueQr
+    VueQr,
+    QIcon
   },
   data() {
     return {

@@ -11,7 +11,7 @@
       </div>
       <div class="flex justify-between">
         <info-panel :panelData="panelData" />
-        <div class="self-end w-auto xs:hidden sm:block pb-10">
+        <div class="self-end w-auto xs:hidden sm:block pb-10 xs:pl-0 sm:pr-15">
           <q-icon class="text-60 text-tw-grayish" name="icon-block" />
         </div>
       </div>
@@ -25,7 +25,7 @@
       <boundary-line class="xs:my-20 sm:mt-30 sm:mb-0" />
       </div>
       </div>
-      <table-container :data="data" :count="count" :params="params" :columnsData="columnsData" @getData="getData">
+      <table-container class="xs:p-10 sm:p-0 custorm-tr-border" :data="data" :count="count" :params="params" :columnsData="columnsData" @getData="getData">
         <template class="desktop-only" slot="content" slot-scope="props" v-if="props.props">
           <q-td v-if="props.props.id" key="id">
             <div class="text-tw-blue cursor-pointer hover:underline" @click="doSearch(props.props.id)">

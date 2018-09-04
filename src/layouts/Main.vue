@@ -52,7 +52,7 @@
         </div>
       </q-list>
     </q-layout-drawer>
-    <code-modal :show="QRCodeShow" @close="QRCodeShow = false" :text="QRCodeText"/>
+    <code-modal class="qr-container" :show="QRCodeShow" @close="QRCodeShow = false" :text="QRCodeText"/>
   </q-layout>
 </template>
 

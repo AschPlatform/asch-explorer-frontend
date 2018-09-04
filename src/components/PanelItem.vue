@@ -1,5 +1,5 @@
 <template>
-  <div class="xs:mb-15 sm:mb-30 xs:p-15 sm:p-20 shadow-none hover:shadow-21 hover:bg-tw-grey-lightet border-1 border-solid border-tw-grey-darker panelitem-container overflow-hidden relative">
+  <div class="xs:mb-15 sm:mb-30 xs:p-15 sm:p-20 shadow-none  sm:hover:shadow-21 sm:hover:bg-tw-grey-lightet border-1 border-solid border-tw-grey-darker panelitem-container overflow-hidden relative">
     <div v-if="type=='blocks'">
       <div class="right-icon-left absolute -mr-15 -mb-15 pin-b pin-r">
         <q-icon class="xs:text-70 sm:text-70 text-tw-grey-lighter opacity-8" name="icon-block" />

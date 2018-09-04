@@ -1,6 +1,6 @@
 <template>
   <q-page class="max-w-1200 m-auto xs:p-15 sm:p-0 xs:pb-20 sm:pb-40">
-    <breadcrumb class="xs:mt-5 sm:mt-40" />
+    <breadcrumb class="xs:mt-5 sm:mt-20" />
     <div class="border border-solid border-tw-grey rounded-lg ">
       <div class="xs:px-10 xs:py-15 sm:px-25 sm:pt-30 sm:pb-10">
       <div class="xs:text-16 sm:text-20 text-tw-grey-darkest font-semibold sm:pl-15">
@@ -12,7 +12,7 @@
       <div class="flex justify-between">
         <info-panel v-if="account" :panelData="panelData" />
         <div v-else class="mt-2 mb-8 px-4 text-xs">{{$t('NO_DATA')}}</div>
-        <div class="self-end w-auto xs:hidden sm:block pb-10">
+        <div class="self-end w-auto xs:hidden sm:block pb-10 pr-15">
           <q-icon class="text-60 text-tw-grayish" name="icon-details" />
         </div>
       </div>
@@ -27,7 +27,7 @@
       <boundary-line class="mt-20" />
       </div>
       </div>
-      <table-container class="xs:p-10 sm:p-0" :data="data" :count="count" :params="params" :columnsData="columnsData" @getData="getData">
+      <table-container class="xs:p-10 sm:p-0 custorm-tr-border" :data="data" :count="count" :params="params" :columnsData="columnsData" @getData="getData">
         <template class="desktop-only" slot="content" slot-scope="props" v-if="props.props">
           <q-td v-if="props.props.id" key="id">
             <div class="text-tw-blue cursor-pointer hover:underline" @click="doSearch(props.props.id)">
@@ -70,8 +70,8 @@
           <q-td v-if="props.props.transferAmount" class="text-right" key="transferAmount">
             <span v-if="getTransAmount(props.props)">{{ getTransAmount(props.props) }}</span>
           </q-td>
-          <q-td v-if="props.props.currency" class="text-right align-baseline" key="currency">
-            <sub class="text-12 align-bottom mr-5">{{ props.props.currency !== 'XAS' ? props.props.currency.split('.')[0] : ''}}</sub>
+          <q-td v-if="props.props.currency" class="text-right align-baseline custorm-chip" key="currency">
+            <sub class="text-12 mt-10 mr-10">{{ props.props.currency !== 'XAS' ? props.props.currency.split('.')[0] : ''}}</sub>
             <q-chip color="blue" text-color="white" small>{{ props.props.currency.split('.')[1] || props.props.currency.split('.')[0]}}</q-chip>
           </q-td>
          <q-td v-if="props.props.args || props.props.args === null" key="args" >

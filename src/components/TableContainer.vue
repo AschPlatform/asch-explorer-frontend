@@ -11,7 +11,7 @@
           <slot name="items" slot-scope="props" :props="props.row" />
         </div> -->
       </q-table>
-      <div v-show="data.length" class="flex justify-between xs:py-20 sm:py-40 xs:px-0 sm:px-40  xs:border-0 sm:border-1 border-solid border-tw-grey sm:border-t-0">
+      <div v-show="data.length" class="flex justify-between xs:py-20 sm:py-40 xs:px-0 sm:px-40  xs:border-0 sm:border-1 border-solid border-tw-grey sm:border-t-0 table-bottom-container">
         <div class="flex justify-start items-center">
           <span class="text-tw-grey-darkest xs:text-12 sm:text-18">{{$t('SHOW')}}</span>
           <q-select class="text-tw-grey-darkest border border-solid border-tw-grey-darker xs:mx-5 sm:mx-10 xs:px-5 sm:pl-20 sm:pr-15 py-5 custorm-page-select" v-model="selectPage" :options="options" @input="changePageNumber" hide-underline />
@@ -24,7 +24,7 @@
         </div>
       </div>
       <q-inner-loading :visible="loadingBool">
-        <q-spinner-gears size="50px" color="teal-4" />
+        <q-spinner-gears size="50px" color="tw-blue" />
       </q-inner-loading>
     </div>
   </transition>
@@ -219,10 +219,5 @@ export default {
   thead {
     border: 1px solid #E0E1E5;
   }
-}
-
-.table-bottom-container {
-  border: 1px solid #E0E1E5;
-  border-top: none;
 }
 </style>

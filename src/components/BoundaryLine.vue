@@ -1,5 +1,5 @@
 <template>
- <q-card-separator class="bg-transparent border-0 border-b-1 border-dashed border-tw-grayish-dark" />
+ <q-card-separator class="bg-transparent border-0 border-b-1 border-dashed border-tw-grey-darker" />
 </template>
 
 <script>
