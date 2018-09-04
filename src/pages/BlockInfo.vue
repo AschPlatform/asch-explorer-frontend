@@ -1,28 +1,40 @@
 <template>
   <q-page class="max-w-1200 m-auto xs:p-15 sm:p-0 xs:pb-20 sm:pb-40">
     <breadcrumb class="xs:mt-5 sm:mt-40" />
-    <div class="border border-solid border-tw-grey rounded-lg xs:px-10 xs:py-15 sm:px-40 sm:py-30">
-      <div class="xs:text-16 sm:text-20 text-tw-grey-darkest">
+    <div class="border border-solid border-tw-grey rounded-lg">
+      <div class="xs:px-10 xs:py-15 sm:px-30 sm:py-30">
+      <div class="xs:text-16 sm:text-20 text-tw-grey-darkest sm:pl-15">
         {{this.$t('BLOCK_INFO')}}
       </div>
+      <div class="xs:px-0 sm:px-15">
       <boundary-line class="xs:my-15 sm:my-30" />
+      </div>
       <div class="flex justify-between">
         <info-panel :panelData="panelData" />
         <div class="self-end w-auto xs:hidden sm:block pb-10">
           <q-icon class="text-60 text-tw-grayish" name="icon-block" />
         </div>
       </div>
-      <boundary-line class="xs:my-20 sm:mt-40 sm:mb-30" />
+      <div class="xs:px-0 sm:px-15">
+        <boundary-line class="xs:my-20 sm:mt-40 sm:mb-30" />
+      </div>
+      <div class="xs:text-16 sm:text-20 text-tw-grey-darkest font-semibold sm:pl-15">
+        {{$t('TRANS_TITLE')}}
+      </div>
+      <div class="xs:px-0 sm:px-15">
+      <boundary-line class="xs:my-20 sm:mt-30 sm:mb-0" />
+      </div>
+      </div>
       <table-container :data="data" :count="count" :params="params" :columnsData="columnsData" @getData="getData">
         <template class="desktop-only" slot="content" slot-scope="props" v-if="props.props">
           <q-td v-if="props.props.id" key="id">
-            <div class="text-primary cursor-pointer" @click="doSearch(props.props.id)">
+            <div class="text-tw-blue cursor-pointer hover:underline" @click="doSearch(props.props.id)">
               {{ props.props.id | eclipse }}
               <q-tooltip>{{ props.props.id }}</q-tooltip>
             </div>
           </q-td>
           <q-td v-if="props.props.height" key="height" >
-            <div class="text-primary cursor-pointer" @click="doSearch(props.props.height)">
+            <div class="text-tw-blue cursor-pointer hover:underline" @click="doSearch(props.props.height)">
               {{ props.props.height }}
             </div>
           </q-td>
@@ -33,7 +45,7 @@
             <span class="">{{ getTransType(props.props) }}</span>
           </q-td>
           <q-td v-if="props.props.senderId" key="senderId" >
-            <div class="text-primary cursor-pointer" @click="doSearch(props.props.senderId)">
+            <div class="text-tw-blue cursor-pointer hover:underline" @click="doSearch(props.props.senderId)">
               {{ props.props.senderId | eclipse }}
               <q-tooltip>{{ props.props.senderId }}</q-tooltip>
             </div>

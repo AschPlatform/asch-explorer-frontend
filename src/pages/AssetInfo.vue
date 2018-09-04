@@ -5,8 +5,8 @@
       <q-icon class="text-12 text-tw-grey-darkest p-0 xs:mx-5 sm:mx-10" name="icon-right" />
       <button class="p-0 text-16 text-tw-grey-darkest border-0 bg-tw-white">{{this.$t('INFO')}}</button>
     </div>
-    <div class="border border-solid border-tw-grey rounded-lg xs:px-10 xs:py-15 sm:px-40 sm:py-30">
-      <div class="xs:text-16 sm:text-20 text-tw-grey-darkest">
+    <div class="border border-solid border-tw-grey rounded-lg xs:px-10 xs:py-15 sm:px-30 sm:py-30">
+      <div class="xs:text-16 sm:text-20 text-tw-grey-darkest pl-15">
         {{this.$t('ASSET_INFO')}}
       </div>
       <boundary-line class="xs:my-15 sm:my-30" />

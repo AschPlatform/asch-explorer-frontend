@@ -1,9 +1,9 @@
 <template>
   <q-page class="max-w-1200 m-auto xs:p-15 sm:p-0 xs:pb-20 sm:pb-40">
-    <div class="upperSlot flex justify-between items-center xs:mt-0 xs:mb-20 sm:mb-0 sm:mt-40">
+    <div class="upperSlot flex justify-between items-center xs:mt-0 xs:mb-20 sm:mb-0 sm:mt-30">
       <div>
-        <q-icon class="xs:text-14 sm:text-24 text-tw-grey-darkest xs:mr-10 sm:mr-20" name="icon-data" />
-        <span class="xs:text-14 sm:text-24 font-semibold text-tw-grey-darkest">{{$t('DIGITAL_ASSET')}}</span>
+        <q-icon class="xs:text-14 sm:text-24 text-tw-grey-darkest xs:mr-10 sm:mr-20 align-middle" name="icon-data" />
+        <span class="xs:text-14 sm:text-24 font-semibold text-tw-grey-darkest  align-middle">{{$t('DIGITAL_ASSET')}}</span>
       </div>
       <span class="mobile-only xs:text-12 sm:text-16 text-tw-blue">{{$t('REGIST_ASSET')}}: {{count}}</span>
     </div>
@@ -14,15 +14,14 @@
     <table-container class="custorm-thead" :data="data" :count="count" :params="params" :columnsData="columnsData" @getData="getData">
       <template class="desktop-only" slot="content" slot-scope="props" v-if="props.props">
         <q-td v-if="props.props.name" key="asset">
-          <div class="text-primary cursor-pointer" @click="doSearch(props.props.name, 'asset')">
+          <div class="text-tw-blue cursor-pointer hover:underline" @click="doSearch(props.props.name, 'asset')">
             {{ props.props.name.split('.')[1] }}
             <q-tooltip>{{ props.props.name }}</q-tooltip>
           </div>
         </q-td>
         <q-td v-if="props.props.name" key="issuer">
-          <div class="text-primary cursor-pointer" @click="doSearch(props.props.name)">
+          <div>
             {{ props.props.name.split('.')[0]}}
-            <q-tooltip>{{ props.props.name }}</q-tooltip>
           </div>
         </q-td>
         <q-td v-if="props.props.maximum" key="maximum" >

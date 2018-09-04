@@ -5,12 +5,12 @@
         <tbody :class='tableTbodyMobile'>
           <tr v-show="data.value != null" v-for="(data, idx) in panelData" :key="idx">
             <td v-if="data.label" class="w-auto pl-0">{{$t(data.label)}} :</td>
-            <td v-else class="w-auto pl-0">{{$t(data.label)}}</td>
+            <td v-else class="w-auto pl-15">{{$t(data.label)}}</td>
             <td class="xs:w-5/6 sm:w-auto">
-              <span :class="data.link?`text-primary cursor-pointer`:''" @click="data.link?$router.push(data.link+data.value):null">
+              <span :class="data.link?`text-tw-blue cursor-pointer hover:underline`:''" @click="data.link?$router.push(data.link+data.value):null">
                               <span v-if="data.type==='number'" >{{data.value | numSeparator}}</span>
               <span v-else-if="data.type==='timestamp'">{{data.value | formatTimestamp}}</span>
-              <span v-else-if="data.type==='address'" class="text-tw-blue cursor-pointer" @click="doSearch(data.value)">
+              <span v-else-if="data.type==='address'" class="text-tw-blue cursor-pointer hover:underline" @click="doSearch(data.value)">
                 <span v-if="data.nickname">
                   {{data.nickname}}({{data.value}})
                 </span>
@@ -19,9 +19,9 @@
                 </span>
               </span>
               <span v-else-if="data.type==='id'">{{data.value}}</span>
-              <span v-else-if="data.type==='preBlock'" class="text-tw-blue cursor-pointer" @click="doSearch(data.value, 'id')">{{data.value}}</span>
+              <span v-else-if="data.type==='preBlock'" class="text-tw-blue cursor-pointer hover:underline" @click="doSearch(data.value, 'id')">{{data.value}}</span>
               <span v-else-if="data.type==='argStr'" class="text-tw-grey-darkest">{{data.value}}</span>
-              <span v-else-if="data.type==='block'" class="text-tw-blue cursor-pointer" @click="doSearch(data.value)">{{data.value}}</span>
+              <span v-else-if="data.type==='block'" class="text-tw-blue cursor-pointer hover:underline" @click="doSearch(data.value)">{{data.value}}</span>
               <span v-else-if="data.type==='qr'" class="text-tw-grey-darkest" @click="doSearch(data.value)">
                 {{data.value}}
                 <span class="qr-right-container" @click="showAddrQr(data.value)">

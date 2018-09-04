@@ -1,11 +1,14 @@
 <template>
   <q-page class="max-w-1200 m-auto xs:p-15 sm:p-0 xs:pb-20 sm:pb-40">
     <breadcrumb class="xs:mt-5 sm:mt-40" />
-    <div class="border border-solid border-tw-grey rounded-lg xs:px-10 xs:py-15 sm:px-40 sm:py-30">
-      <div class="xs:text-16 sm:text-20 text-tw-grey-darkest font-semibold">
+    <div class="border border-solid border-tw-grey rounded-lg ">
+      <div class="xs:px-10 xs:py-15 sm:px-25 sm:pt-30 sm:pb-10">
+      <div class="xs:text-16 sm:text-20 text-tw-grey-darkest font-semibold sm:pl-15">
         {{this.$t('ACCOUNT_INFO')}}
       </div>
+      <div class="xs:px-0 sm:px-15">
       <boundary-line class="xs:my-15 sm:my-30" />
+      </div>
       <div class="flex justify-between">
         <info-panel v-if="account" :panelData="panelData" />
         <div v-else class="mt-2 mb-8 px-4 text-xs">{{$t('NO_DATA')}}</div>
@@ -13,32 +16,33 @@
           <q-icon class="text-60 text-tw-grayish" name="icon-details" />
         </div>
       </div>
-      <!-- <info-panel v-if="account" :panelData="panelData" /> -->
-      <!-- <div v-else class="mt-2 mb-8 px-4 text-xs">{{$t('NO_DATA')}}</div> -->
+      <div class="xs:px-0 sm:px-15">
       <boundary-line class="xs:my-15 sm:my-15" />
-      <!-- <q-btn-toggle v-model="model" class="mt-4 pl-15" flat text-color="#ffffff" toggle-text-color="tw-blue" @input="changeType" :options="btnGroup">
-      </q-btn-toggle> -->
-      <div class="btngroup">
+      </div>
+      <div class="btngroup xs:pl-0 sm:pl-15">
         <button :class="(this.type === 0 ? styleSelected : styleUnselected) + ' mr-20'" @click="changeType(0)">{{$t('TRANS_TABLE')}}</button>
         <button :class="this.type === 1 ? styleSelected : styleUnselected" @click="changeType(1)">{{$t('TRANSACTION_TABLE')}}</button>
       </div>
-      <boundary-line class="my-20" />
-      <table-container :data="data" :count="count" :params="params" :columnsData="columnsData" @getData="getData">
+      <div class="xs:px-0 sm:px-15">
+      <boundary-line class="mt-20" />
+      </div>
+      </div>
+      <table-container class="xs:p-10 sm:p-0" :data="data" :count="count" :params="params" :columnsData="columnsData" @getData="getData">
         <template class="desktop-only" slot="content" slot-scope="props" v-if="props.props">
           <q-td v-if="props.props.id" key="id">
-            <div class="text-primary cursor-pointer" @click="doSearch(props.props.id)">
+            <div class="text-tw-blue cursor-pointer hover:underline" @click="doSearch(props.props.id)">
               {{ props.props.id | eclipse }}
               <q-tooltip>{{ props.props.id }}</q-tooltip>
             </div>
           </q-td>
           <q-td v-if="props.props.tid" key="tid" >
-            <div class="text-primary cursor-pointer" @click="doSearch(props.props.tid)">
+            <div class="text-tw-blue cursor-pointer hover:underline" @click="doSearch(props.props.tid)">
               {{ props.props.tid | eclipse }}
               <q-tooltip>{{ props.props.tid }}</q-tooltip>
             </div>
           </q-td>
           <q-td v-if="props.props.height" key="height" >
-            <div class="text-primary cursor-pointer" @click="doSearch(props.props.height)">
+            <div class="text-tw-blue cursor-pointer hover:underline" @click="doSearch(props.props.height)">
               {{ props.props.height }}
             </div>
           </q-td>
@@ -49,13 +53,13 @@
             <span class="">{{ getTransType(props.props) }}</span>
           </q-td>
           <q-td v-if="props.props.senderId" key="senderId" >
-            <div class="text-primary cursor-pointer" @click="doSearch(props.props.senderId)">
+            <div class="text-tw-blue cursor-pointer hover:underline" @click="doSearch(props.props.senderId)">
               {{ props.props.senderId | eclipse }}
               <q-tooltip>{{ props.props.senderId }}</q-tooltip>
             </div>
           </q-td>
           <q-td v-if="props.props.recipientId" key="recipientId" >
-            <div class="text-primary cursor-pointer" @click="doSearch(props.props.recipientId)">
+            <div class="text-tw-blue cursor-pointer hover:underline" @click="doSearch(props.props.recipientId)">
               {{ props.props.recipientId | eclipse }}
               <q-tooltip>{{ props.props.recipientId }}</q-tooltip>
             </div>

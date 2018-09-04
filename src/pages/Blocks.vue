@@ -5,7 +5,7 @@
     <table-container :data="data" :count="count" :columnsData="columnsData" @getData="getData">
         <template class="desktop-only" slot="content" slot-scope="props" v-if="props.props">
           <q-td v-if="props.props.height" key="height">
-            <div class="text-primary cursor-pointer" @click="doSearch(props.props.height)">
+            <div class="text-tw-blue cursor-pointer hover:underline" @click="doSearch(props.props.height)">
               {{ props.props.height }}
               <q-tooltip>{{ props.props.height }}</q-tooltip>
             </div>
@@ -14,13 +14,13 @@
               <span>{{ fulltimestamp(props.props.timestamp) }}</span>
           </q-td>
           <q-td v-if="props.props.delegate" key="delegate" >
-            <div class="text-primary cursor-pointer" @click="doSearch(props.props.delegate)">
+            <div class="text-tw-blue cursor-pointer hover:underline" @click="doSearch(props.props.delegate)">
               {{ props.props.delegate | eclipse }}
               <q-tooltip>{{ props.props.delegate }}</q-tooltip>
             </div>
           </q-td>
           <q-td v-if="props.props.id" key="id" >
-            <div class="text-primary cursor-pointer" @click="doSearch(props.props.id)">
+            <div class="text-tw-blue cursor-pointer hover:underline" @click="doSearch(props.props.id)">
               {{ props.props.id | eclipse }}
               <q-tooltip>{{ props.props.id }}</q-tooltip>
             </div>

@@ -1,5 +1,5 @@
 <template>
- <q-card-separator class="bg-transparent border-0 border-b-1 border-dashed border-tw-grey" />
+ <q-card-separator class="bg-transparent border-0 border-b-1 border-dashed border-tw-grayish-dark" />
 </template>
 
 <script>
@@ -20,4 +20,5 @@ export default {
 </script>
 
 <style lang="stylus" scoped>
+
 </style>

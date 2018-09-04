@@ -40,13 +40,13 @@
         </div>
         <q-item-separator class="sep text-tw-grey" />
         <div class="min-h-50 q-item q-item-division relative-position">
-          <a class="w-full text-20 text-tw-grey-darkest font-semibold" @click="changeLang('zh')">
+          <a class="w-full text-16 text-tw-grey-darkest font-medium" @click="changeLang('zh')">
             {{$t('LANGUAGE_ZH')}}
           </a>
         </div>
         <q-item-separator class="sep text-tw-grey" />
         <div class="min-h-50 q-item q-item-division relative-position">
-          <a class="w-full text-20 text-tw-grey-darkest font-semibold" @click="changeLang('en')">
+          <a class="w-full text-16 text-tw-grey-darkest font-medium" @click="changeLang('en')">
             {{$t('LANGUAGE_EN')}}
           </a>
         </div>
@@ -187,9 +187,9 @@ export default {
     computedRoute(data) {
       let path = this.$route.name
       if (path && path === data) {
-        return 'w-full text-20 text-tw-blue font-semibold'
+        return 'w-full text-16 text-tw-blue font-medium'
       }
-      return 'w-full text-20 text-tw-grey-darkest font-semibold'
+      return 'w-full text-16 text-tw-grey-darkest font-medium'
     }
   },
   mounted() {
