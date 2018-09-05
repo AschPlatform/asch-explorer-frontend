@@ -9,10 +9,10 @@
     <q-layout-footer class="bg-tw-black">
       <footer-bar />
     </q-layout-footer>
-    <q-layout-drawer v-model="drawer">
+    <q-layout-drawer class="custorm-drawer" v-model="drawer">
       <q-toolbar class="flex xs:flex-col sm:flex-row justify-between w-full bg-tw-black xs:h-auto sm:h-86 xs:px-0 xs:pb-11 sm:pb-0 sm:px-30">
         <div class="w-full flex justify-between items-center">
-          <div class="xs:w-full sm:w-auto asch-logo xs:h-25 sm:h-30 xs:mt-15 xs:mb-10 sm:my-0 sm:mr-20 lg:mr-53 cursor-pointer text-center">
+          <div class="xs:w-full sm:w-auto asch-logo xs:h-20 sm:h-30 xs:mt-15 xs:mb-10 sm:my-0 sm:mr-20 lg:mr-53 cursor-pointer text-center">
             <img class="h-full" :src="logoTop" alt="">
           </div>
           <div class="xs:w-full sm:w-auto flex xs:content-start sm:justify-between xs:border-t-1 xs:border-b-0 xs:border-l-0 xs:border-r-0 sm:border-none border-solid border-tw-black-dark xs:pt-10 xs:pr-15 sm:pr-0">
@@ -40,19 +40,19 @@
         </div>
         <q-item-separator class="sep text-tw-grey" />
         <div class="min-h-50 q-item q-item-division relative-position">
-          <a class="w-full text-20 text-tw-grey-darkest font-semibold" @click="changeLang('zh')">
+          <a class="w-full text-16 text-tw-grey-darkest font-normal" @click="changeLang('zh')">
             {{$t('LANGUAGE_ZH')}}
           </a>
         </div>
         <q-item-separator class="sep text-tw-grey" />
         <div class="min-h-50 q-item q-item-division relative-position">
-          <a class="w-full text-20 text-tw-grey-darkest font-semibold" @click="changeLang('en')">
+          <a class="w-full text-16 text-tw-grey-darkest font-normal" @click="changeLang('en')">
             {{$t('LANGUAGE_EN')}}
           </a>
         </div>
       </q-list>
     </q-layout-drawer>
-    <code-modal :show="QRCodeShow" @close="QRCodeShow = false" :text="QRCodeText"/>
+    <code-modal class="qr-container" :show="QRCodeShow" @close="QRCodeShow = false" :text="QRCodeText"/>
   </q-layout>
 </template>
 
@@ -197,9 +197,9 @@ export default {
     computedRoute(data) {
       let path = this.$route.name
       if (path && path === data) {
-        return 'w-full text-20 text-tw-blue font-semibold'
+        return 'w-full text-16 text-tw-blue font-medium'
       }
-      return 'w-full text-20 text-tw-grey-darkest font-semibold'
+      return 'w-full text-16 text-tw-grey-darkest font-medium'
     }
   },
   mounted() {

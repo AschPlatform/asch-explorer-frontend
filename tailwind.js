@@ -56,6 +56,7 @@ let colors = {
   'tw-grey': '#E0E1E5',
   'tw-grayish': '#F8F8F8',
   'tw-grayish-light': '#F5F5F5',
+  'tw-grayish-dark': '#959595',
   'tw-grey-dark': '#24252A',
   'tw-grey-darker': '#E0E1E5',
   'tw-grey-darkest': '#6A737D',
@@ -522,7 +523,8 @@ module.exports = {
 
   maxWidth: {
     'full': '100%',
-    '1200': '1200px'
+    '1200': '1200px',
+    '2/3': '66.66666%'
   },
 
   /*

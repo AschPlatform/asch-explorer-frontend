@@ -4,7 +4,7 @@
        <img class="w-full" :src="errorBg" alt="error bg">
        <div class="xs:w-full sm:w-2/3 xs:mt-10 sm:mt-0">
          <p class="xs:text-18 sm:text-48 text-tw-grey-lighter text-center">{{$t('SEARCH_OEEOR')}}</p>
-         <p class="w-full xs:text-12 sm:text-22 text-tw-grey-lighter text-center border-1 border-solid border-tw-grey-darker xs:py-10 sm:py-25 bg-tw-grayish-light whitespace-normal break-words xs:px-10 sm:px-20">{{this.$route.query.errorStr}}</p>
+         <p class="w-full xs:text-12 sm:text-22 text-tw-grey-lighter text-center border-1 border-solid border-tw-grey-darker xs:py-10 sm:py-15 bg-tw-grayish-light whitespace-normal break-words xs:px-10 sm:px-20">{{this.$route.query.errorStr}}</p>
          <p class="xs:text-12 sm:text-14 text-tw-grey-lighter text-center">{{$t('SEARCH_OEEOR_STATEMENT')}}</p>
        </div>
      </div>

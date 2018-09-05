@@ -6,25 +6,25 @@
           <slot name="content" slot-scope="props" :props="props.row"></slot>
         </q-tr>
       </q-table>
-      <q-table class="mobile-only no-shadow table-top-border" :data="data" :grid="true" :hide-header="true" :columns="columns" :rows-per-page-options="[3,5,10,50]" :pagination.sync="pagination" :no-data-label="$t('NO_DATA')" @request="request" row-key="name" hide-bottom>
+      <q-table class="mobile-only no-shadow" :data="data" :grid="true" :hide-header="true" :columns="columns" :rows-per-page-options="[3,5,10,50]" :pagination.sync="pagination" :no-data-label="$t('NO_DATA')" @request="request" row-key="name" hide-bottom>
         <div class="w-full mobile-only" slot="item" slot-scope="props">
           <slot name="items" slot-scope="props" :props="props.row" />
         </div> -->
       </q-table>
-      <div class="flex justify-between xs:py-20 sm:py-40 xs:px-0 sm:px-20">
+      <div v-show="data.length" class="flex justify-between xs:py-20 sm:py-40 xs:px-0 sm:px-40  xs:border-0 sm:border-1 border-solid border-tw-grey sm:border-t-0 table-bottom-container">
         <div class="flex justify-start items-center">
-          <span class="xs:text-12 sm:text-18">{{$t('SHOW')}}</span>
-          <q-select class="border border-solid border-tw-grey-darker xs:mx-5 sm:mx-10 xs:px-5 sm:px-20 py-5" v-model="selectPage" :options="options" @input="changePageNumber" hide-underline />
-          <span class="xs:text-12 sm:text-18">{{$t('PAGE')}}</span>
+          <span class="text-tw-grey-darkest xs:text-12 sm:text-18">{{$t('SHOW')}}</span>
+          <q-select class="text-tw-grey-darkest border border-solid border-tw-grey-darker xs:mx-5 sm:mx-10 xs:px-5 sm:pl-20 sm:pr-15 py-5 custorm-page-select" v-model="selectPage" :options="options" @input="changePageNumber" hide-underline />
+          <span class="text-tw-grey-darkest xs:text-12 sm:text-18">{{$t('PAGE')}}</span>
         </div>
         <div :class="pageCss">
-          <button class="custorm-last-btn  border-none bg-tw-white hover:text-tw-blue cursor-pointer xs:hidden sm:block" size="md" @click="toPage(1)">{{$t('FIRST_PAGE')}}</button>
+          <button class="custorm-last-btn text-tw-grey-darkest border-none bg-tw-white hover:text-tw-blue cursor-pointer xs:hidden sm:block" size="md" @click="toPage(1)">{{$t('FIRST_PAGE')}}</button>
           <q-pagination class="custorm-pag" v-model="curPage" color="tw-blue"  size="md" :min="1" :max="getMaxPage()" :max-pages="2" :ellipses="true" @input="changePage" direction-links/>
-          <button class="custorm-last-btn border-none bg-tw-white hover:text-tw-blue cursor-pointer xs:hidden sm:block" size="md" @click="toPage(getMaxPage())">{{$t('LAST_PAGE')}}</button>
+          <button class="custorm-last-btn border-none bg-tw-white text-tw-grey-darkest hover:text-tw-blue cursor-pointer xs:hidden sm:block" size="md" @click="toPage(getMaxPage())">{{$t('LAST_PAGE')}}</button>
         </div>
       </div>
       <q-inner-loading :visible="loadingBool">
-        <q-spinner-gears size="50px" color="teal-4" />
+        <q-spinner-gears size="50px" color="tw-blue" />
       </q-inner-loading>
     </div>
   </transition>
@@ -65,11 +65,11 @@ export default {
     return {
       datas: [],
       curPage: 1,
-      selectPage: 20,
+      selectPage: 10,
       options: [
         {
-          label: '20',
-          value: 20
+          label: '10',
+          value: 10
         },
         {
           label: '30',
@@ -87,7 +87,7 @@ export default {
       pagination: {
         page: 1,
         rowsNumber: 0,
-        rowsPerPage: 20
+        rowsPerPage: 10
       },
       isDisable: false
     }
@@ -143,7 +143,7 @@ export default {
       this.pagination = {
         page: 1,
         rowsNumber: 0,
-        rowsPerPage: 20
+        rowsPerPage: 10
       }
       this.curPage = 1
       this.selectPage = 20
@@ -195,9 +195,12 @@ export default {
     }
   }
 
-  
   tr:nth-child(2n -1) {
-    background-color: #F8F8F8;
+    background-color: #FAFBFC;
+  }
+
+  tr:nth-child(2n) {
+    background-color: #FFFFFF;
   }
 
   tr:hover {
@@ -205,7 +208,8 @@ export default {
     transform: scale(1.02);
     border-radius: 6px;
     border: 1px solid rgba(224, 225, 229, 1);
-    box-shadow: -3px 3px 5px rgba(5, 4, 4, 0.09);
+    box-shadow: 0px 3px 3px rgba(220, 220, 220, 1);
+    background-color: #F8F8F8;
   }
 
   td {

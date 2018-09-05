@@ -160,6 +160,7 @@ const lang = {
   close: '关闭',
   ISSUED_NUM: '发行资产数',
   TOTAL_PRICE: '总市值',
+  CLOSE: '关闭',
 
   // page
   SHOW: '显示',
