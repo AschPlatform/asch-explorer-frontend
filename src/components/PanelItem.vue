@@ -5,11 +5,11 @@
         <q-icon class="xs:text-70 sm:text-70 text-tw-grey-lighter opacity-8" name="icon-block" />
       </div>
       <div :class="timestampCss">
-          {{data.timestamp | secFromNow}}{{" " + $t('SECOND_BEFORE')}}
+          {{data.timestamp | secFromNow}}{{$t('SECOND_BEFORE')}}
       </div>
       <div v-if="data" class="flex justify-start">
-        <div class="flex justify-start items-start w-auto xs:mr-5 sm:mr-10 xs:pt-0 sm:pt-3">
-          <q-icon class="xs:text-14 sm:text-20 text-tw-blue" name="icon-height" />
+        <div class="flex justify-start items-start w-auto xs:mr-5 sm:mr-10 xs:pt-2 sm:pt-3">
+          <q-icon class="xs:text-15 sm:text-20 text-tw-blue" name="icon-height" />
         </div>
         <div class="w-4/5">
           <div class="flex items-center xs:mb-15 sm:mb-20">
@@ -22,33 +22,33 @@
           </div>
           <div class="flex items-center">
             <span :class="labelClass">{{$t('FORGE_REWARD')}}</span>
-            <span class="truncate xs:text-12 sm:text-18 text-tw-grey-darkest w-3/4"  >{{data.reward | fee}}{{' XAS'}}</span>
+            <span class="truncate xs:text-15 sm:text-18 text-tw-grey-darkest w-2/3"  >{{data.reward | fee}}{{' XAS'}}</span>
           </div>
         </div>
       </div>
     </div>
     <div v-else>
       <div v-if="data" class="flex justify-start">
-        <div class="flex justify-start items-start w-auto xs:mr-5 sm:mr-10 xs:pt-0 sm:pt-3">
-          <q-icon class="xs:text-14 sm:text-20 text-tw-blue" name="icon-transaction" />
+        <div class="flex justify-start items-start w-auto xs:mr-5 sm:mr-10 xs:pt-2 sm:pt-3">
+          <q-icon class="xs:text-15 sm:text-20 text-tw-blue" name="icon-transaction" />
         </div>
         <div :class="timestampCss">
           {{timeFromNow(data.timestamp)}}
         </div>
         <div class="w-4/5">
           <div class="flex items-center mb-20">
-            <span class="w-1/5 xs:text-12 sm:text-18 text-tw-grey-darkest">{{$t('TRANSACTION_ID')}}</span>
+            <span class="w-1/5 xs:text-15 sm:text-18 text-tw-grey-darkest">{{$t('TRANSACTION_ID')}}</span>
             <span  :class="linkClass" class="max-w-xs" @click="doSearch(data.id)">{{data.id}}</span>
           </div>
           <div class="flex items-center justify-start mb-20">
-            <span class="xs:mr-10 sm:mr-20 xs:text-12 sm:text-18 text-tw-grey-darkest">{{$t('FROM')}}</span>
+            <span class="xs:mr-10 sm:mr-20 xs:text-15 sm:text-18 text-tw-grey-darkest">{{$t('FROM')}}</span>
             <span :class="addressClass" @click="doSearch(data.senderId)" >{{data.senderId}}</span>
-            <span class="xs:mx-10 sm:mx-20 xs:text-12 sm:text-18 text-tw-grey-darkest">{{$t('TO')}}</span>
+            <span class="xs:mx-10 sm:mx-20 xs:text-15 sm:text-18 text-tw-grey-darkest">{{$t('TO')}}</span>
             <span :class="getProps(data,'recieve')?addressClass:''" @click="doSearch(getProps(data,'recieve'))" >{{getProps(data,'recieve') || '--'}}</span>
           </div>
           <div class="flex items-center">
-            <span class="w-auto mr-20 xs:text-12 sm:text-18 text-tw-grey-darkest">{{$t('AMOUNT')}}</span>
-            <span class="xs:text-12 sm:text-18 text-tw-grey-lighter">{{getProps(data) || '--'}}</span>
+            <span class="w-auto mr-20 xs:text-15 sm:text-18 text-tw-grey-darkest">{{$t('AMOUNT')}}</span>
+            <span class="xs:text-15 sm:text-18 text-tw-grey-lighter">{{getProps(data) || '--'}}</span>
           </div>
         </div>
         <div class="right-icon-right absolute -mr-20 -mb-10 pin-b pin-r">
@@ -113,16 +113,16 @@ export default {
   computed: {
     ...mapGetters(['assetMap']),
     timestampCss() {
-      return 'w-auto text-right xs:text-12 sm:text-18 text-tw-grey-lighter absolute xs:pt-15 xs:pr-15 sm:pt-20 sm:pr-20 pin-t pin-r'
+      return 'w-auto text-right xs:text-15 sm:text-18 text-tw-grey-lighter absolute xs:pt-15 xs:pr-15 sm:pt-20 sm:pr-20 pin-t pin-r'
     },
     linkClass() {
-      return 'truncate xs:text-12 sm:text-18 text-tw-blue hover:underline w-3/4 cursor-pointer'
+      return 'truncate xs:text-15 sm:text-18 text-tw-blue hover:underline w-2/3 cursor-pointer'
     },
     addressClass() {
-      return 'truncate xs:text-12 sm:text-18 text-tw-blue hover:underline cursor-pointer w-1/3'
+      return 'truncate xs:text-15 sm:text-18 text-tw-blue hover:underline cursor-pointer w-1/3'
     },
     labelClass() {
-      return 'w-1/4 xs:text-12 sm:text-18 text-tw-grey-darkest'
+      return 'w-auto xs:text-15 sm:text-18 text-tw-grey-darkest mr-10'
     }
   }
 }

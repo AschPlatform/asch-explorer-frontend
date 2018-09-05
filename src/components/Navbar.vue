@@ -19,7 +19,10 @@
     </div>
   
     <div class="xs:w-full sm:w-2/3 flex justify-between xs:border-t-1 xs:border-b-0 xs:border-l-0 xs:border-r-0 sm:border-none  border-solid border-tw-black-dark xs:pt-10 sm:pt-0 xs:pr-15 sm:pr-0">
-      <q-btn class="xs:w-1/6 sm:hidden w-auto" icon="menu" @click="toggle" />
+      <button class="bg-tw-transparent border-0 p-0 ml-15" @click="toggle">
+        <q-icon class="text-18 text-tw-white sm:hidden" name="icon-more" />
+      </button>
+      <!-- <q-btn class="xs:w-1/6 sm:hidden w-auto" icon="menu" @click="toggle" /> -->
       <!-- <q-toolbar-title>
       </q-toolbar-title> -->
       <div class="flex items-center xs:justify-start sm:justify-end sm:w-full" :class="stretch?'xs:w-5/6':'w-2/3'">
@@ -39,7 +42,8 @@
     QToolbarTitle,
     QBtn,
     QInput,
-    QSelect
+    QSelect,
+    QIcon
   } from 'quasar'
   import logoTop from '../assets/logo_top.png'
   
@@ -50,7 +54,8 @@
       QToolbarTitle,
       QBtn,
       QInput,
-      QSelect
+      QSelect,
+      QIcon
     },
     data() {
       return {

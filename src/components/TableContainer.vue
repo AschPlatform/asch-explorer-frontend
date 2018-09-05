@@ -1,7 +1,7 @@
 <template>
   <transition appear enter-active-class="animated fadeIn" leave-active-class="animated fadeOut">
     <div class="relative-position">
-      <q-table class="desktop-only no-shadow table-top-border" :data="data" :grid="true" :hide-header="false" :columns="columns" :rows-per-page-options="[3,5,10,50]" :pagination.sync="pagination" :no-data-label="$t('NO_DATA')" @request="request" row-key="name" hide-bottom>
+      <q-table class="desktop-only no-shadow table-top-border custorm-table" :data="data" :grid="true" :hide-header="false" :columns="columns" :rows-per-page-options="[3,5,10,50]" :pagination.sync="pagination" :no-data-label="$t('NO_DATA')" @request="request" row-key="name" hide-bottom>
         <q-tr v-if="isDesktop" slot="body" slot-scope="props" :props="props">
           <slot name="content" slot-scope="props" :props="props.row"></slot>
         </q-tr>
@@ -186,6 +186,7 @@ export default {
 <style lang="stylus" scoped>
 .q-table {
   tr {
+    -webkit-appearance:none;
     border: 1px solid #E0E1E5;
     text-align: center;
 
@@ -207,8 +208,11 @@ export default {
     transition: all ease 0.3s;
     transform: scale(1.02);
     border-radius: 6px;
-    border: 1px solid rgba(224, 225, 229, 1);
+    // border: 1px solid rgba(224, 225, 229, 1);
     box-shadow: 0px 3px 3px rgba(220, 220, 220, 1);
+    -webkit-box-shadow: 0px 3px 3px rgba(220, 220, 220, 1);
+    -moz-box-shadow: 0px 3px 3px rgba(220, 220, 220, 1);
+    -o-box-shadow: 0px 3px 3px rgba(220, 220, 220, 1);
     background-color: #F8F8F8;
   }
 

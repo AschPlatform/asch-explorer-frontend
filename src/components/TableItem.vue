@@ -8,8 +8,8 @@
     </div>
     <table class="w-5/6 flex">
       <div class="flex w-full" v-if="hasId && idField">
-        <div class="w-auto xs:text-12 sm:text-18 text-tw-grey-darkest mb-15">{{$t(idField.label)}}:</div>
-        <div class="truncate text-tw-blue xs:text-12 sm:text-18 max-w-2/3 ml-5" @click="doSearch(idField.value)">{{idField.value}}</div>
+        <div class="w-auto xs:text-14 sm:text-18 text-tw-grey-darkest mb-15">{{$t(idField.label)}}:</div>
+        <div class="truncate text-tw-blue xs:text-14 sm:text-18 max-w-2/3 ml-5" @click="doSearch(idField.value)">{{idField.value}}</div>
       </div>
       <tbody class='info-tbody w-full'>
         <tr class="flex" v-for="(arr, idx) in tableData" :key="idx">

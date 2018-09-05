@@ -158,6 +158,7 @@ module.exports = {
     '12': '12px',
     '13': '13px',
     '14': '14px',
+    '15': '15px',
     '16': '16px',
     '18': '18px',
     '20': '20px',
@@ -563,6 +564,7 @@ module.exports = {
 
   padding: {
     '0': '0px',
+    '2': '2px',
     '3': '3px',
     '5': '5px',
     '6': '6px',
@@ -663,6 +665,7 @@ module.exports = {
   shadows: {
     'none': 'none',
     '0': '0px 0px 0px',
+    '3': ' 0px 3px 3px rgba(220, 220, 220, 1)',
     '13': '0px 0px 13px rgba(0,0,0,0.1)',
     '21': '0px 0px 21px rgba(0,0,0,0.13)'
   },

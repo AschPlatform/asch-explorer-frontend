@@ -1,11 +1,11 @@
 <template>
   <div class="w-full flex flex-wrap border border-solid border-tw-grey-darker xs:border-b-0 sm:border-b-1 state-container">
-    <div class="flex xs:w-1/2 md:w-1/6 xs:h-86 sm:h-130 justify-center items-center shadow-none hover:shadow-13 z-10 hover:z-20 xs:border-0 sm:border border-solid border-tw-grey-darker xs:border-r-1 xs:border-b-1 sm:border-l-0 sm:border-t-0 sm:border-b-0 bg-tw-grey-lightet state bg-tw-white hover:bg-tw-grey-lightet" v-for="(state,idx) in stateData" :key="idx">
+    <div class="flex xs:w-1/2 md:w-1/6 xs:h-86 sm:h-130 xs:justify-start sm:justify-center items-center shadow-none hover:shadow-13 z-10 hover:z-20 xs:border-0 sm:border border-solid border-tw-grey-darker xs:border-r-1 xs:border-b-1 sm:border-l-0 sm:border-t-0 sm:border-b-0 bg-tw-grey-lightet state bg-tw-white hover:bg-tw-grey-lightet xs:pl-15 sm:pl-0" v-for="(state,idx) in stateData" :key="idx">
       <div class="xs:mr-10 sm:mr-15">
         <q-icon class="xs:text-36 sm:text-48 text-tw-blue" :name="state.icon" />
       </div>
       <div>
-        <div class="text-tw-grey-darkest xs:text-12 lg:text-14 xll:text-20 xs:mb-5 sm:mb-15">
+        <div class="text-tw-grey-darkest xs:text-14 lg:text-14 xll:text-20 xs:mb-5 sm:mb-15">
           {{$t(state.label)}}
         </div>
         <div class="xs:text-16 lg:text-22 xll:text-28 text-tw-blue font-futura">
