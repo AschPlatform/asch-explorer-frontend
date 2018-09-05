@@ -9,7 +9,7 @@
       <q-table class="mobile-only no-shadow" :data="data" :grid="true" :hide-header="true" :columns="columns" :rows-per-page-options="[3,5,10,50]" :pagination.sync="pagination" :no-data-label="$t('NO_DATA')" @request="request" row-key="name" hide-bottom>
         <div class="w-full mobile-only" slot="item" slot-scope="props">
           <slot name="items" slot-scope="props" :props="props.row" />
-        </div> -->
+        </div>
       </q-table>
       <div v-show="data.length" class="flex justify-between xs:py-20 sm:py-40 xs:px-0 sm:px-40  xs:border-0 sm:border-1 border-solid border-tw-grey sm:border-t-0 table-bottom-container">
         <div class="flex justify-start items-center">
@@ -19,7 +19,7 @@
         </div>
         <div :class="pageCss">
           <button class="custorm-last-btn text-tw-grey-darkest border-none bg-tw-white hover:text-tw-blue cursor-pointer xs:hidden sm:block" size="md" @click="toPage(1)">{{$t('FIRST_PAGE')}}</button>
-          <q-pagination class="custorm-pag" v-model="curPage" color="tw-blue"  size="md" :min="1" :max="getMaxPage()" :max-pages="2" :ellipses="true" @input="changePage" direction-links/>
+          <q-pagination class="custorm-pag" v-model="curPage" color="tw-blue" size="md" :min="1" :max="getMaxPage()" :max-pages="2" :ellipses="true" @input="changePage" direction-links/>
           <button class="custorm-last-btn border-none bg-tw-white text-tw-grey-darkest hover:text-tw-blue cursor-pointer xs:hidden sm:block" size="md" @click="toPage(getMaxPage())">{{$t('LAST_PAGE')}}</button>
         </div>
       </div>

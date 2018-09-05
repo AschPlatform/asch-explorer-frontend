@@ -41,7 +41,7 @@
               <q-tooltip>{{ props.props.tid }}</q-tooltip>
             </div>
           </q-td>
-          <q-td v-if="props.props.height" key="height" >
+          <q-td key="height" >
             <div class="text-tw-blue cursor-pointer hover:underline" @click="doSearch(props.props.height)">
               {{ props.props.height }}
             </div>
