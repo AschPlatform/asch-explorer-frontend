@@ -14,6 +14,7 @@ export default {
       {
         icon: 'icon-totalmarket',
         value: Number(runState.totalPrice),
+        after: 'BTC',
         label: 'TOTAL_PRICE'
       },
       {
