@@ -45,7 +45,6 @@
 </template>
 
 <script>
-/* eslint-disable */
 import { QPage, QIcon, QTd, QTooltip } from 'quasar'
 import Breadcrumb from '../components/Breadcrumb'
 import BoundaryLine from '../components/BoundaryLine'

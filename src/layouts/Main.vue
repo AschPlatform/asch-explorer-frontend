@@ -57,7 +57,6 @@
 </template>
 
 <script>
-/* eslint-disable */
 import {
   openURL,
   QLayout,
