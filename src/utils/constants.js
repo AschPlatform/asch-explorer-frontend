@@ -40,7 +40,7 @@ const REGEX = {
 // }
 
 const urls = {
-  serverHost: 'http://47.93.138.148:8192',
+  serverHost: 'http://192.168.1.155:10000',
   // dappId,
   // server: {
   //   development: `${host.development}/api/dapps/${dappId.development}`,
@@ -71,8 +71,13 @@ const urls = {
     url: '/api/blocks/get'
   },
   // 根据 tid 获取交易详情
-  transaction: {
-    url: '/api/v2/transactions/:tid'
+  // transaction: {
+  //   url: '/api/v2/transactions/:tid'
+  // },
+  // 根据HASH获取对象（TTRANSACTION ID / BLOCK ID）
+  hashObject: {
+    mock: '',
+    url: '/api/v2/misc/search'
   },
   uiaAssetApi: {
     mock: '',
@@ -127,16 +132,16 @@ const urls = {
     url: '/api/v2/balances/:address/:currency'
   },
   // 获取指定币种账户数
-  holders: {
-    url: '/api/v2/uia/assets/:name'
-  },
+  // holders: {
+  //   url: '/api/v2/uia/assets/:name'
+  // },
   // 获取XAS市值
   price: {
-    url: '/api/v2/misc/marketinfo'
+    url: '/api/v2/misc/marketInfo'
   },
   // 获取受托人产块列表
   delegateBlock: {
-    url: '/api/v2/blocks/forgedby/:name'
+    url: '/api/v2/misc/blocksForgedBy'
   }
 
   // 区分 local 与 mainnet 的请求头参数

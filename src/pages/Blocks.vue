@@ -48,7 +48,6 @@
 </style>
 
 <script>
-/* eslint-disable */
 import { QPage, QTd, QTooltip } from 'quasar'
 import Breadcrumb from '../components/Breadcrumb'
 import TableContainer from '../components/TableContainer'
@@ -137,8 +136,7 @@ export default {
       this.$root.$emit('doSearch', str)
     },
     getTableData(data) {
-      const { id, height, delegate, count, reward, fee, timestamp } = data.props
-      
+      const { id, height, delegate, reward, timestamp } = data.props
       let idField = {
         label: 'BLOCK_ID',
         value: id,

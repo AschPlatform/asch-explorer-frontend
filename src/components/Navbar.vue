@@ -36,7 +36,6 @@
 </template>
 
 <script>
-/* eslint-disable */
   import {
     QToolbar,
     QToolbarTitle,

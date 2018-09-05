@@ -7,7 +7,7 @@
     </div>
     <div class="border border-solid border-tw-grey rounded-lg xs:px-10 xs:py-15 sm:px-40 sm:py-30">
       <div class="xs:text-16 sm:text-20 text-tw-grey-darkest">
-        {{this.$t('BLOCK_INFO')}}
+        {{this.$t('DELEGATE_INFO')}}
       </div>
       <boundary-line class="xs:my-15 sm:my-30" />
        <div class="flex justify-between">
@@ -18,21 +18,21 @@
       </div>
       <table-container :data="data" :count="count" :params="address" :columnsData="columnsData" @getData="getData">
         <template class="desktop-only" slot="content" slot-scope="props" v-if="props.props">
-          <q-td v-if="props.props.height" key="height">
+          <q-td key="height">
             <div class="text-tw-blue cursor-pointer hover:underline" @click="doSearch(props.props.height)">
               {{ props.props.height }}
             </div>
           </q-td>
-          <q-td v-if="props.props.reward" key="reward">
+          <q-td key="reward">
             <span>{{ props.props.reward | fee }}</span>
           </q-td>
-          <q-td v-if="props.props.count" key="count">
+          <q-td key="count">
             <span>{{ props.props.count }}</span>
           </q-td>
-          <q-td v-if="props.props.fees" key="fees">
+          <q-td key="fees">
             <span>{{ props.props.fees }}</span>
           </q-td>
-          <q-td v-if="props.props.timestamp" key="timestamp" >
+          <q-td key="timestamp" >
             <span>{{ fulltimestamp(props.props.timestamp) }}</span>
           </q-td>
         </template>
@@ -76,6 +76,7 @@ export default {
       approval: '',
       productivity: '',
       data: [],
+      userName: '',
       defaultProps: {
         orderBy: 'timestamp:desc',
         limit: 10,
@@ -133,7 +134,7 @@ export default {
       return [
         {
           label: 'DELEGATE_NAME',
-          value: this.name,
+          value: this.userName,
           type: 'id'
         },
         {
@@ -166,7 +167,7 @@ export default {
     ...mapActions(['getDelegateDetail', 'getBlocks', 'getAccount', 'getDelegateBlock']),
     async envalueData() {
       let result = await this.getDelegateDetail({
-        name: this.name
+        address: this.name
       })
       if (result.success) {
         let trans = result.delegate
@@ -175,6 +176,7 @@ export default {
         this.producedBlocks = trans.producedBlocks
         this.productivity = trans.productivity
         this.approval = trans.approval
+        this.userName = trans.name
         this.getAccountLeft()
       }
     },
@@ -186,12 +188,15 @@ export default {
     },
     async getBalance(address) {},
     async getData(props = this.defaultProps) {
+      if (this.userName === '') {
+        return
+      }
       let res
       // For transactions
       // TODO: BLOCKS API should accept address or publickey
-      props.name = this.name
+      props.name = this.userName
       res = await this.getDelegateBlock(props)
-      this.data = res.transactions
+      this.data = res.blocks
       this.count = res.count
     },
     doSearch(str) {
@@ -226,7 +231,11 @@ export default {
   watch: {
     name() {
       this.envalueData()
-      this.getData()
+    },
+    userName(value) {
+      if (value !== '') {
+        this.getData()
+      }
     }
   }
 }
