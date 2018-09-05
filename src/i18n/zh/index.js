@@ -147,6 +147,7 @@ const lang = {
   MORE: 'MORE',
   SECOND_BEFORE: '秒前',
   DELEGATE: '受托人',
+  DELEGATE_INFO: '受托人详情',
   ASSET_INFO: '资产详情',
   ASSET: '资产',
   ASSET_DESC: '资产描述',

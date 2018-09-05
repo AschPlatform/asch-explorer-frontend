@@ -62,13 +62,12 @@ api.transactions = params => {
 
 // 根据 tid 获取交易详情
 api.transaction = params => {
-  return fetch(urls.transaction, params, 'get')
+  return fetch(urls.hashObject, params, 'get')
 }
 
 // 获取账户余额
 api.balances = params => {
-  return fetch(urls.balances,
-    params, 'get')
+  return fetch(urls.balances, params, 'get')
 }
 
 // //////////////////////////// 以下是频繁调用

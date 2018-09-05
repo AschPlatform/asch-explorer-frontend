@@ -16,7 +16,7 @@ export default {
     state.runState.accountCount = amount
   },
   SET_TOTALPRICE(state, info) {
-    let count = info.price_btc * info.totalSupply
+    let count = info.priceBtc * info.totalSupply
     state.runState.totalPrice = count
   },
   SET_ASSET_NUMBER(state, amount) {

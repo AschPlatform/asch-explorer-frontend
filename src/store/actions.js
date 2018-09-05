@@ -157,7 +157,7 @@ export default {
     state
   }, params) => {
     let result = await api.xasPrice(params)
-    let info = result.marketinfo
+    let info = result.marketInfo
     commit('SET_TOTALPRICE', info)
   },
   // 获取受托人产块信息

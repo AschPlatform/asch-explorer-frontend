@@ -1,4 +1,3 @@
-/* eslint-disable */
 var gulp = require('gulp')
 var replace = require('gulp-string-replace')
 const serverUrls = {
