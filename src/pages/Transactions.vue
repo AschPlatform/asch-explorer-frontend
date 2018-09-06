@@ -292,13 +292,13 @@ export default {
         return [
           {
             name: 'id',
-            label: 'ID',
+            label: this.$t('TRANSACTION_ID'),
             field: 'ID',
             align: 'center'
           },
           {
             name: 'height',
-            label: this.$t('HEIGHT'),
+            label: this.$t('BLOCK_HEIGHT'),
             field: 'height',
             align: 'center'
           },
@@ -328,7 +328,7 @@ export default {
           },
           {
             name: 'fee',
-            label: this.$t('FEE'),
+            label: this.$t('TRANS_FEE'),
             field: 'fee',
             align: 'center'
           }
@@ -343,7 +343,7 @@ export default {
           },
           {
             name: 'height',
-            label: this.$t('HEIGHT'),
+            label: this.$t('BLOCK_HEIGHT'),
             field: 'height',
             align: 'center'
           },
@@ -379,7 +379,7 @@ export default {
           },
           {
             name: 'transferFee',
-            label: this.$t('FEE'),
+            label: this.$t('TRANS_FEE'),
             field: 'fee',
             align: 'center'
           }

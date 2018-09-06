@@ -37,13 +37,13 @@
         </div>
         <div class="w-4/5">
           <div class="flex items-center mb-20">
-            <span class="w-1/5 xs:text-15 sm:text-18 text-tw-grey-darkest">{{$t('TRANSACTION_ID')}}</span>
+            <span class="w-auto mr-10 xs:text-15 sm:text-18 text-tw-grey-darkest">{{$t('TRANSACTION_ID')}}</span>
             <span  :class="linkClass" class="max-w-xs" @click="doSearch(data.id)">{{data.id|eclipse}}</span>
           </div>
           <div class="flex items-center justify-start mb-20">
             <span class="xs:mr-10 sm:mr-20 xs:text-15 sm:text-18 text-tw-grey-darkest">{{$t('FROM')}}</span>
             <span :class="addressClass" @click="doSearch(data.senderId)" >{{data.senderId|eclipse}}</span>
-            <span class="xs:mx-10 sm:mx-20 xs:text-15 sm:text-18 text-tw-grey-darkest">{{$t('TO')}}</span>
+            <span class="xs:mx-10 sm:mx-10 xs:text-15 sm:text-18 text-tw-grey-darkest">{{$t('TO')}}</span>
             <span :class="getProps(data,'recieve')?addressClass:''" @click="doSearch(getProps(data,'recieve'))" >{{getProps(data,'recieve')|| '--'}}</span>
           </div>
           <div class="flex items-center">
@@ -119,7 +119,7 @@ export default {
       return 'w-auto text-right xs:text-15 sm:text-18 text-tw-grey-lighter absolute xs:pt-15 xs:pr-15 sm:pt-20 sm:pr-20 pin-t pin-r'
     },
     linkClass() {
-      return 'truncate xs:text-15 sm:text-18 text-tw-blue hover:underline w-2/3 cursor-pointer'
+      return 'truncate xs:text-15 sm:text-18 text-tw-blue hover:underline w-auto cursor-pointer'
     },
     addressClass() {
       return 'truncate xs:text-15 sm:text-18 text-tw-blue hover:underline cursor-pointer w-1/3'
