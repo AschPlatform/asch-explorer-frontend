@@ -3,7 +3,7 @@
     <div class="flex xs:flex-col sm:flex-row xs:justify-center sm:justify-left ">
       <div class="flex items-center justify-center xs:text-16 sm:text-18 text-tw-white xs:mt-20 sm:mt-0 sm:mb-0">{{$t('FOOTER_LINKS')}}</div>
       <div class="flex justify-center items-center xs:mt-20 sm:mt-0" v-for="(link,idx) in links" :key="idx">
-        <a class="xs:text-12 sm:text-18 text-tw-white hover:text-tw-blue no-underline xs:ml-0 sm:ml-40" :href="link.href" target="_blank">{{link.label}}</a>
+        <a class="xs:text-14 sm:text-18 text-tw-white hover:text-tw-blue no-underline xs:ml-0 sm:ml-40" :href="link.href" target="_blank">{{link.label}}</a>
       </div>
     </div>
     <div class="xs:w-full sm:w-163 flex justify-center items-center cursor-pointer xs:py-20 sm:py-0" @click="toHome">
@@ -40,10 +40,10 @@ export default {
             ? 'https://github.com/AschPlatform/asch-docs/blob/master/http_api/zh-cn.md'
             : 'https://github.com/AschPlatform/asch-docs/blob/master/http_api/en.md'
         },
-        { label: 'Github', href: 'https://github.com/AschPlatform/asch' },
         { label: t('HOMEPAGE'), href: 'https://www.asch.io' },
-        { label: t('FORUM'), href: 'https://bbs.asch.io' },
-        { label: t('ONLINE_WALLET'), href: 'https://wallet.asch.io/#/login' }
+        { label: 'Github', href: 'https://github.com/AschPlatform/asch' },
+        { label: t('ONLINE_WALLET'), href: 'https://wallet.asch.io/#/login' },
+        { label: t('FORUM'), href: 'https://bbs.asch.io' }
       ]
     },
     isZH() {

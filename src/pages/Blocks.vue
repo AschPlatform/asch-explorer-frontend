@@ -2,7 +2,7 @@
   <q-page class="max-w-1200 m-auto xs:p-15 sm:p-0 xs:pb-20 sm:pb-40">
     <breadcrumb class="xs:mt-5 sm:mt-20" />
     <div class="rounded-lg xs:px-0 xs:pt-0 xs:pb-15 sm:px-0 sm:py-0">
-    <table-container class="custorm-thead" :data="data" :count="count" :columnsData="columnsData" @getData="getData">
+    <table-container class="custom-thead" :data="data" :count="count" :columnsData="columnsData" @getData="getData">
         <template class="desktop-only" slot="content" slot-scope="props" v-if="props.props">
           <q-td v-if="props.props.height" key="height">
             <div class="text-tw-blue cursor-pointer hover:underline" @click="doSearch(props.props.height)">
@@ -77,13 +77,13 @@ export default {
       columnsData: [
         {
           name: 'height',
-          label: this.$t('HEIGHT'),
+          label: this.$t('BLOCK_HEIGHT'),
           field: 'height',
           align: 'center'
         },
         {
           name: 'timestamp',
-          label: this.$t('TRANS_TIME'),
+          label: this.$t('PRODUCER_TIME'),
           field: 'timestamp',
           align: 'center'
         },
@@ -113,7 +113,7 @@ export default {
         },
         {
           name: 'fees',
-          label: this.$t('FEE'),
+          label: this.$t('TRANS_FEE'),
           field: 'fees',
           align: 'center'
         }
@@ -141,7 +141,7 @@ export default {
       let idField = {
         label: 'BLOCK_ID',
         value: id,
-        type: 'id'
+        type: 'transactionId'
       }
       let heightField = {
         label: 'HEIGHT',

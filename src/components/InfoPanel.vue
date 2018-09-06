@@ -2,11 +2,15 @@
   <transition appear enter-active-class="animated fadeIn" leave-active-class="animated fadeOut">
     <div class="flex relative-position">
       <table class="q-table horizontal-separator highlight loose accountinfo-table margin-t-20 table-tr-td-p-0">
-        <tbody :class='tableTbodyMobile'>
+        <tbody :class='tableBodyClass'>
           <tr v-show="data.value != null" v-for="(data, idx) in panelData" :key="idx">
-            <td v-if="data.label" class="w-auto pl-0">{{$t(data.label)}} :</td>
-            <td v-else class="w-auto pl-15">{{$t(data.label)}}</td>
-            <td class="xs:w-5/6 sm:w-auto">
+            <td v-if="data.label" class="w-auto pl-15 flex">
+              <span>{{$t(data.label)}}:</span>  
+            </td>
+            <td v-else class="w-auto pl-15 flex">
+              <span>{{$t(data.label)}}</span>  
+            </td>
+            <td class="xs:w-2/3 sm:w-auto">
               <span :class="data.link?`text-tw-blue cursor-pointer hover:underline`:''" @click="data.link?$router.push(data.link+data.value):null">
                               <span v-if="data.type==='number'" >{{data.value | numSeparator}}</span>
               <span v-else-if="data.type==='timestamp'">{{data.value | formatTimestamp}}</span>
@@ -22,11 +26,10 @@
               <span v-else-if="data.type==='preBlock'" class="text-tw-blue cursor-pointer hover:underline" @click="doSearch(data.value, 'id')">{{data.value}}</span>
               <span v-else-if="data.type==='argStr'" class="text-tw-grey-darkest">{{data.value}}</span>
               <span v-else-if="data.type==='block'" class="text-tw-blue cursor-pointer hover:underline" @click="doSearch(data.value)">{{data.value}}</span>
-              <span v-else-if="data.type==='qr'" class="text-tw-grey-darkest" @click="doSearch(data.value)">
+              <span v-else-if="data.type==='qr'" class="xs:w-3/4 sm:w-auto inline-block text-tw-grey-darkest" @click="doSearch(data.value)">
                 {{data.value}}
                 <span class="qr-right-container" @click="showAddrQr(data.value)">
-                 <q-icon class="text-18 text-tw-blue mr-10" name="icon-qr" />
-                  <!-- <vue-qr class="add-qr-container text-tw-blue" :colorDark="qrDark" :colorLight="qrLight" autoColor :size="16" :text="data.value"></vue-qr> -->
+                 <q-icon class="text-14 text-tw-blue xs:mr-0 sm:mr-10" name="icon-qr" />
                 </span>
               </span>
               <span v-else>{{data.value}} </span>
@@ -100,7 +103,7 @@ export default {
   },
   computed: {
     ...mapGetters(['loadingBool']),
-    tableTbodyMobile() {
+    tableBodyClass() {
       return isDesktop() ? 'info-tbody table-desktop' : 'info-tbody table-mobile'
     }
   },

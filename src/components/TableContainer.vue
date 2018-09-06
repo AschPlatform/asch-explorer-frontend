@@ -1,7 +1,7 @@
 <template>
   <transition appear enter-active-class="animated fadeIn" leave-active-class="animated fadeOut">
     <div class="relative-position">
-      <q-table class="desktop-only no-shadow table-top-border" :data="data" :grid="true" :hide-header="false" :columns="columns" :rows-per-page-options="[3,5,10,50]" :pagination.sync="pagination" :no-data-label="$t('NO_DATA')" @request="request" row-key="name" hide-bottom>
+      <q-table class="desktop-only no-shadow table-top-border custom-table" :data="data" :grid="true" :hide-header="false" :columns="columns" :rows-per-page-options="[3,5,10,50]" :pagination.sync="pagination" :no-data-label="$t('NO_DATA')" @request="request" row-key="name" hide-bottom>
         <q-tr v-if="isDesktop" slot="body" slot-scope="props" :props="props">
           <slot name="content" slot-scope="props" :props="props.row"></slot>
         </q-tr>
@@ -14,13 +14,13 @@
       <div v-show="data.length" class="flex justify-between xs:py-20 sm:py-40 xs:px-0 sm:px-40  xs:border-0 sm:border-1 border-solid border-tw-grey sm:border-t-0 table-bottom-container">
         <div class="flex justify-start items-center">
           <span class="text-tw-grey-darkest xs:text-12 sm:text-18">{{$t('SHOW')}}</span>
-          <q-select class="text-tw-grey-darkest border border-solid border-tw-grey-darker xs:mx-5 sm:mx-10 xs:px-5 sm:pl-20 sm:pr-15 py-5 custorm-page-select" v-model="selectPage" :options="options" @input="changePageNumber" hide-underline />
+          <q-select class="text-tw-grey-darkest border border-solid border-tw-grey-darker xs:mx-5 sm:mx-10 xs:pl-10 xs:pr-5 sm:pl-20 sm:pr-15 xs:py-0 sm:py-5" :class="selectClass" v-model="selectPage" :options="options" @input="changePageNumber" hide-underline />
           <span class="text-tw-grey-darkest xs:text-12 sm:text-18">{{$t('PAGE')}}</span>
         </div>
-        <div :class="pageCss">
-          <button class="custorm-last-btn text-tw-grey-darkest border-none bg-tw-white hover:text-tw-blue cursor-pointer xs:hidden sm:block" size="md" @click="toPage(1)">{{$t('FIRST_PAGE')}}</button>
-          <q-pagination class="custorm-pag" v-model="curPage" color="tw-blue" size="md" :min="1" :max="getMaxPage()" :max-pages="2" :ellipses="true" @input="changePage" direction-links/>
-          <button class="custorm-last-btn border-none bg-tw-white text-tw-grey-darkest hover:text-tw-blue cursor-pointer xs:hidden sm:block" size="md" @click="toPage(getMaxPage())">{{$t('LAST_PAGE')}}</button>
+        <div :class="pageClass">
+          <button class="custom-last-btn text-tw-grey-darkest border-none bg-tw-white hover:text-tw-blue cursor-pointer xs:hidden sm:block" size="md" @click="toPage(1)">{{$t('FIRST_PAGE')}}</button>
+          <q-pagination v-model="curPage" color="tw-blue"  size="md" :min="1" :max="getMaxPage()" :max-pages="2" :ellipses="true" @input="changePage" direction-links/>
+          <button class="custom-last-btn border-none bg-tw-white text-tw-grey-darkest hover:text-tw-blue cursor-pointer xs:hidden sm:block" size="md" @click="toPage(getMaxPage())">{{$t('LAST_PAGE')}}</button>
         </div>
       </div>
       <q-inner-loading :visible="loadingBool">
@@ -159,10 +159,15 @@ export default {
   },
   computed: {
     ...mapGetters(['loadingBool']),
-    pageCss() {
+    pageClass() {
       return isDesktop()
-        ? 'flex justify-between custorm-page-desktop'
-        : 'flex justify-between custorm-page-mobile'
+        ? 'flex justify-between custom-page-desktop'
+        : 'flex justify-between custom-page-mobile'
+    },
+    selectClass() {
+      return isDesktop()
+        ? 'custom-page-select-desktop'
+        : 'custom-page-select-mobile'
     },
     columns() {
       return this.columnsData
@@ -186,6 +191,7 @@ export default {
 <style lang="stylus" scoped>
 .q-table {
   tr {
+    -webkit-appearance: none;
     border: 1px solid #E0E1E5;
     text-align: center;
 
@@ -207,8 +213,11 @@ export default {
     transition: all ease 0.3s;
     transform: scale(1.02);
     border-radius: 6px;
-    border: 1px solid rgba(224, 225, 229, 1);
+    // border: 1px solid rgba(224, 225, 229, 1);
     box-shadow: 0px 3px 3px rgba(220, 220, 220, 1);
+    -webkit-box-shadow: 0px 3px 3px rgba(220, 220, 220, 1);
+    -moz-box-shadow: 0px 3px 3px rgba(220, 220, 220, 1);
+    -o-box-shadow: 0px 3px 3px rgba(220, 220, 220, 1);
     background-color: #F8F8F8;
   }
 

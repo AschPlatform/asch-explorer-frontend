@@ -42,7 +42,7 @@ const REGEX = {
 const urls = {
   serverHost: 'http://192.168.1.155:10000',
   // dappId,
-  // server: {
+  // server: {`
   //   development: `${host.development}/api/dapps/${dappId.development}`,
   //   production: `${host.production}/api/dapps/${dappId.production}`
   // },

@@ -11,7 +11,7 @@ const lang = {
   FOOTER_LINKS: '友情链接:',
   HOMEPAGE: '官网',
   FORUM: '社区论坛',
-  ONLINE_WALLET: '在线钱包',
+  ONLINE_WALLET: '阿希客户端',
   HOME_PLACEHOLDER: '请输入区块高度/地址/交易ID',
   LANGUAGE_CONTEXT: '语言环境:',
   LANGUAGE_ZH: 'ZH',
@@ -27,7 +27,7 @@ const lang = {
   TRANS_FEE: '交易费',
   PRODUCER_TIME: '产块时间',
   PRE_BLOCK: '前一个块',
-  ADDRESS: '账户地址',
+  ADDRESS: '地址',
   BLOCK_INFO: '区块详情',
   TRANSACTION_INFO: '交易详情',
   ACCOUNT_INFO: '账户详情',
@@ -35,6 +35,7 @@ const lang = {
   // delegates
   RANK: '排名',
   DELEGATE_NAME: '受托人名称',
+  DELEGATE_ADDRESS: '受托人地址',
   BLOCK_NUM: '产块数量',
   PRODUCTIVITY: '生产率',
   VOTE_RATE: '得票率',
@@ -42,9 +43,10 @@ const lang = {
   // assets
   ASSET_NAME: '资产名称',
   ISSUER: '发行商',
-  MAXIMUN: '总发行量',
+  MAXIMUN: '发行上限',
   PRECISION: '精度',
   ISSUE_TIME: '发行时间',
+  ISSUE_ADDRESS: '发行商地址',
 
   // transactionsInfo
   TRANSACTION: '交易',
@@ -72,7 +74,7 @@ const lang = {
   FEE: '手续费',
 
   // blocks
-  BLOCK_GENERATOR: '产块者',
+  BLOCK_GENERATOR: '生产者',
 
   // tips
   TIPS_COPY_SUCCESS: '复制成功',
@@ -141,7 +143,7 @@ const lang = {
   SEARCH_OEEOR_STATEMENT: '未找到符合查询的数据，请更换关键词后重试。',
   // common
   LOADING: '读取中',
-  FORGE: '锻造',
+  FORGE: '产块',
   FROM: '从',
   TO: '至',
   MORE: 'MORE',

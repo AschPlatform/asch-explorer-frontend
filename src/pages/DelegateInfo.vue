@@ -6,10 +6,12 @@
       <button class="p-0 text-16 text-tw-grey-darkest border-0 bg-tw-white">{{this.$t('INFO')}}</button>
     </div>
     <div class="border border-solid border-tw-grey rounded-lg xs:px-10 xs:py-15 sm:px-40 sm:py-30">
-      <div class="xs:text-16 sm:text-20 text-tw-grey-darkest">
+      <div class="xs:text-16 sm:text-20 text-tw-grey-darkest font-normal xs:pl-5 sm:pl-15">
         {{this.$t('DELEGATE_INFO')}}
       </div>
-      <boundary-line class="xs:my-15 sm:my-30" />
+      <div class="xs:px-5 sm:px-15">
+        <boundary-line class="xs:my-15 sm:my-30" />
+      </div>
        <div class="flex justify-between">
         <info-panel :panelData="panelData" />
         <div class="self-end w-auto xs:hidden sm:block pb-10">
@@ -155,7 +157,7 @@ export default {
           value: this.approval
         },
         {
-          label: 'ADDRESS',
+          label: 'DELEGATE_ADDRESS',
           value: this.address,
           type: 'address'
         }

@@ -2,11 +2,11 @@
   <q-page class="max-w-1200 m-auto xs:p-15 sm:p-0 xs:pb-20 sm:pb-40">
     <breadcrumb class="xs:mt-5 sm:mt-20" />
     <div class="border border-solid border-tw-grey rounded-lg">
-      <div class="xs:px-10 xs:py-15 sm:px-30 sm:py-30">
-      <div class="xs:text-16 sm:text-20 text-tw-grey-darkest sm:pl-15">
+      <div class="xs:px-10 xs:pt-15 xs:pb-0 sm:px-30 sm:py-30">
+      <div class="xs:text-16 sm:text-20 text-tw-grey-darkest xs:pl-5 sm:pl-15">
         {{this.$t('BLOCK_INFO')}}
       </div>
-      <div class="xs:px-0 sm:px-15">
+      <div class="xs:px-5 sm:px-15">
       <boundary-line class="xs:my-15 sm:my-30" />
       </div>
       <div class="flex justify-between">
@@ -15,17 +15,18 @@
           <q-icon class="text-60 text-tw-grayish" name="icon-block" />
         </div>
       </div>
-      <div class="xs:px-0 sm:px-15">
+      <div class="xs:px-5 sm:px-15">
         <boundary-line class="xs:my-20 sm:mt-40 sm:mb-30" />
       </div>
-      <div class="xs:text-16 sm:text-20 text-tw-grey-darkest font-semibold sm:pl-15">
+      <div class="xs:text-16 sm:text-20 text-tw-grey-darkest font-semibold xs:pl-5 sm:pl-15">
         {{$t('TRANS_TITLE')}}
       </div>
-      <div class="xs:px-0 sm:px-15">
+      <div class="xs:px-5 sm:px-15">
       <boundary-line class="xs:my-20 sm:mt-30 sm:mb-0" />
       </div>
       </div>
-      <table-container class="xs:p-10 sm:p-0 custorm-tr-border" :data="data" :count="count" :params="params" :columnsData="columnsData" @getData="getData">
+      <div class="text-16 text-tw-grey-darkest pl-15" v-if="!data.length">{{$t('NO_DATA')}}</div>
+      <table-container class="xs:p-10 xs:pt-0 sm:p-0 custom-tr-border" :data="data" :count="count" :params="params" :columnsData="columnsData" @getData="getData">
         <template class="desktop-only" slot="content" slot-scope="props" v-if="props.props">
           <q-td v-if="props.props.id" key="id">
             <div class="text-tw-blue cursor-pointer hover:underline" @click="doSearch(props.props.id)">
@@ -284,7 +285,7 @@ export default {
       let idField = {
         label: 'TRANSACTION_ID',
         value: id,
-        type: 'id'
+        type: 'transactionId'
       }
       let typeField = {
         label: 'TRANSACTION_TYPE',
