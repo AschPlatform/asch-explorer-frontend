@@ -146,7 +146,7 @@ export default {
         rowsPerPage: 10
       }
       this.curPage = 1
-      this.selectPage = 20
+      this.selectPage = 10
       this.getMaxPage()
     },
     changePage(val) {
