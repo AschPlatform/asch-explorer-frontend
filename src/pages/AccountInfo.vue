@@ -46,7 +46,7 @@
               {{ props.props.height }}
             </div>
           </q-td>
-          <q-td v-if="props.props.timestamp > -1" key="timestamp" >
+          <q-td v-if="props.props.timestamp > -1" key="timestamp">
             <span>{{ fulltimestamp(props.props.timestamp) }}</span>
           </q-td>
           <q-td v-if="props.props.type" key="type" >
