@@ -27,7 +27,7 @@
       <boundary-line class="mt-20" />
       </div>
       </div>
-      <table-container class="xs:p-10 xs:pt-0 sm:p-0 custorm-tr-border" :data="data" :count="count" :params="params" :columnsData="columnsData" @getData="getData">
+      <table-container class="xs:p-10 xs:pt-15 sm:p-0 custorm-tr-border" :data="data" :count="count" :params="params" :columnsData="columnsData" @getData="getData">
         <template class="desktop-only" slot="content" slot-scope="props" v-if="props.props">
           <q-td v-if="props.props.id" key="id">
             <div class="text-tw-blue cursor-pointer hover:underline" @click="doSearch(props.props.id)">
@@ -41,7 +41,7 @@
               <q-tooltip>{{ props.props.tid }}</q-tooltip>
             </div>
           </q-td>
-          <q-td v-if="props.props.height" key="height" >
+          <q-td key="height" >
             <div class="text-tw-blue cursor-pointer hover:underline" @click="doSearch(props.props.height)">
               {{ props.props.height }}
             </div>
