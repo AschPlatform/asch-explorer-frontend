@@ -2,7 +2,7 @@
   <transition appear enter-active-class="animated fadeIn" leave-active-class="animated fadeOut">
     <div class="flex relative-position">
       <table class="q-table horizontal-separator highlight loose accountinfo-table margin-t-20 table-tr-td-p-0">
-        <tbody :class='tableTbodyCss'>
+        <tbody :class='tableBodyClass'>
           <tr v-show="data.value != null" v-for="(data, idx) in panelData" :key="idx">
             <td v-if="data.label" class="w-auto pl-15 flex">
               <span>{{$t(data.label)}}:</span>  
@@ -103,11 +103,8 @@ export default {
   },
   computed: {
     ...mapGetters(['loadingBool']),
-    tableTbodyCss() {
+    tableBodyClass() {
       return isDesktop() ? 'info-tbody table-desktop' : 'info-tbody table-mobile'
-    },
-    qrCss() {
-      return isDesktop() ? 'qr-container-desktop' : 'qr-container-mobile'
     }
   },
   watch: {

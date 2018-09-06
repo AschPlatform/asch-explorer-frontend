@@ -126,7 +126,7 @@ export default {
           value: this.time
         },
         {
-          label: 'ADDRESS',
+          label: 'ISSUE_ADDRESS',
           value: this.address,
           type: 'address'
         }

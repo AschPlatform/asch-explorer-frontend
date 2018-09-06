@@ -9,7 +9,7 @@
     <q-layout-footer class="bg-tw-black">
       <footer-bar />
     </q-layout-footer>
-    <q-layout-drawer class="custorm-drawer" v-model="drawer">
+    <q-layout-drawer class="custom-drawer" v-model="drawer">
       <q-toolbar class="flex xs:flex-col sm:flex-row justify-between w-full bg-tw-black xs:h-auto sm:h-86 xs:px-0 sm:pb-0 sm:px-30">
         <div class="w-full flex justify-between items-center">
            <div class="flex justify-center xs:w-full xs:h-25 sm:w-144 sm:h-30 cursor-pointer xs:mr-0 sm:mr-20 lg:mr-30 xs:my-15 sm:my-0" @click="jump('/')">

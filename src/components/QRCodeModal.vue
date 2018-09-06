@@ -2,7 +2,7 @@
   <q-dialog
     v-model="show"
     prevent-close
-    class="custorm-qr"
+    class="custom-qr"
   >
     <span v-if="title" slot="title">{{title}}</span>
 

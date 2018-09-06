@@ -11,7 +11,7 @@
       <span class="xs:text-12 sm:text-16 text-tw-blue">{{$t('REGIST_ASSET')}}: {{count}}</span>
     </div>
 
-    <table-container class="custorm-thead" :data="data" :count="count" :params="params" :columnsData="columnsData" @getData="getData">
+    <table-container class="custom-thead" :data="data" :count="count" :params="params" :columnsData="columnsData" @getData="getData">
       <template class="desktop-only" slot="content" slot-scope="props" v-if="props.props">
         <q-td v-if="props.props.name" key="asset">
           <div class="text-tw-blue cursor-pointer hover:underline" @click="doSearch(props.props.name, 'asset')">

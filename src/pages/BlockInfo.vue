@@ -26,7 +26,7 @@
       </div>
       </div>
       <div class="text-16 text-tw-grey-darkest pl-15" v-if="!data.length">{{$t('NO_DATA')}}</div>
-      <table-container class="xs:p-10 xs:pt-0 sm:p-0 custorm-tr-border" :data="data" :count="count" :params="params" :columnsData="columnsData" @getData="getData">
+      <table-container class="xs:p-10 xs:pt-0 sm:p-0 custom-tr-border" :data="data" :count="count" :params="params" :columnsData="columnsData" @getData="getData">
         <template class="desktop-only" slot="content" slot-scope="props" v-if="props.props">
           <q-td v-if="props.props.id" key="id">
             <div class="text-tw-blue cursor-pointer hover:underline" @click="doSearch(props.props.id)">

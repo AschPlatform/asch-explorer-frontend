@@ -4,7 +4,7 @@
       <div class="right-icon-left absolute -mr-15 -mb-15 pin-b pin-r">
         <q-icon class="xs:text-70 sm:text-70 text-tw-grey-lighter opacity-8" name="icon-block" />
       </div>
-      <div :class="timestampCss">
+      <div :class="timestampClass">
           {{data.timestamp | secFromNow}}{{$t('SECOND_BEFORE')}}
       </div>
       <div v-if="data" class="flex justify-start">
@@ -32,7 +32,7 @@
         <div class="flex justify-start items-start w-auto xs:mr-5 sm:mr-10 xs:pt-2 sm:pt-3">
           <q-icon class="xs:text-15 sm:text-20 text-tw-blue" name="icon-transaction" />
         </div>
-        <div :class="timestampCss">
+        <div :class="timestampClass">
           {{timeFromNow(data.timestamp)}}
         </div>
         <div class="w-4/5">
@@ -112,7 +112,7 @@ export default {
   },
   computed: {
     ...mapGetters(['assetMap']),
-    timestampCss() {
+    timestampClass() {
       return 'w-auto text-right xs:text-15 sm:text-18 text-tw-grey-lighter absolute xs:pt-15 xs:pr-15 sm:pt-20 sm:pr-20 pin-t pin-r'
     },
     linkClass() {

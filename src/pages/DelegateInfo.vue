@@ -157,7 +157,7 @@ export default {
           value: this.approval
         },
         {
-          label: 'ADDRESS',
+          label: 'DELEGATE_ADDRESS',
           value: this.address,
           type: 'address'
         }

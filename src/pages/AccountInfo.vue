@@ -27,7 +27,7 @@
       <boundary-line class="mt-20" />
       </div>
       </div>
-      <table-container class="xs:p-10 xs:pt-15 sm:p-0 custorm-tr-border" :data="data" :count="count" :params="params" :columnsData="columnsData" @getData="getData">
+      <table-container class="xs:p-10 xs:pt-15 sm:p-0 custom-tr-border" :data="data" :count="count" :params="params" :columnsData="columnsData" @getData="getData">
         <template class="desktop-only" slot="content" slot-scope="props" v-if="props.props">
           <q-td v-if="props.props.id" key="id">
             <div class="text-tw-blue cursor-pointer hover:underline" @click="doSearch(props.props.id)">
@@ -70,7 +70,7 @@
           <q-td v-if="props.props.transferAmount" class="text-right" key="transferAmount">
             <span v-if="getTransAmount(props.props)">{{ getTransAmount(props.props) }}</span>
           </q-td>
-          <q-td v-if="props.props.currency" class="text-right align-baseline custorm-chip" key="currency">
+          <q-td v-if="props.props.currency" class="text-right align-baseline custom-chip" key="currency">
             <sub class="text-12 text-tw-grey-darkest mt-10 mr-10">{{ props.props.currency !== 'XAS' ? props.props.currency.split('.')[0] : ''}}</sub>
             <q-chip color="blue" text-color="white" small>{{ props.props.currency.split('.')[1] || props.props.currency.split('.')[0]}}</q-chip>
           </q-td>
