@@ -22,7 +22,7 @@
         <q-icon class="text-16 text-tw-white sm:hidden" name="icon-more" />
       </button>
       <div class="flex items-center xs:justify-start sm:justify-end sm:w-full" :class="(stretch?'xs:w-5/6':'w-2/3') +' '+ inputClass">
-        <q-input class="xs:w-full shadow appearance-none xs:h-25 sm:h-30 border-solid border hover:border-tw-blue px-11 rounded-15 text-tw-white leading-tight" :class="stretch?'sm:w-2/3 border-tw-blue':'sm:w-1/3 border-tw-grey-light'" v-model="searchStr" @keyup.enter="search"
+        <q-input class="xs:w-full trans shadow appearance-none xs:h-25 sm:h-30 border-solid border sm:hover:border-tw-blue px-11 rounded-15 text-tw-white leading-tight " :class="stretch?'sm:w-2/3 border-tw-blue trans':'sm:w-1/3 border-tw-grey-light trans'" v-model="searchStr" @keyup.enter="search"
           :after="searchIcon" type="text" :placeholder="getPlaceholder" hide-underline @focus="stretch=true" @blur="stretch=false" />
         <q-select class="xs:hidden sm:flex h-30 ml-30 border border-solid border-tw-grey-light pl-6 custom-select rounded-15" v-model="lang" :options="getLangOpts" hide-underline />
       </div>
@@ -118,4 +118,7 @@ export default {
 </script>
 
 <style lang="stylus" scoped>
+.trans {
+  transition: all ease .1s;
+}
 </style>
