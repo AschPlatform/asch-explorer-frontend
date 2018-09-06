@@ -98,6 +98,7 @@
 </template>
 
 <script>
+/* disable-eslint */
 import { QPage, QBtnGroup, QBtnToggle, QBtn, QTd, QTooltip, QIcon, QChip } from 'quasar'
 import BoundaryLine from '../components/BoundaryLine'
 import Breadcrumb from '../components/Breadcrumb'
@@ -443,7 +444,7 @@ export default {
       // }
 
       let tablePanelData =
-        this.type === 0
+        this.type === 1
           ? [idField, timeField, typeField, senderField]
           : [idField, timeField, senderField, receiverField]
 

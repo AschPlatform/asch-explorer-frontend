@@ -62,6 +62,7 @@
 <script>
 import { QIcon } from 'quasar'
 import { getAddress, convertFee, fulltimestamp } from '../utils/util'
+import { REGEX } from '../utils/constants'
 import { mapGetters } from 'vuex'
 import moment from 'moment'
 
@@ -93,7 +94,9 @@ export default {
       return value
     },
     doSearch(str) {
-      this.$root.$emit('doSearch', str)
+      if (REGEX.address.test(str)) {
+        return this.$root.$emit('doSearch', str)
+      }
     },
     timeFromNow(timestamp) {
       const lang = this.$store.state.locale

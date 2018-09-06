@@ -15,8 +15,8 @@
           </q-td>
           <q-td v-if="props.props.delegate" key="delegate" >
             <div class="text-tw-blue cursor-pointer hover:underline" @click="doSearch(props.props.delegate)">
-              {{ props.props.delegate | eclipse }}
-              <q-tooltip>{{ props.props.delegate }}</q-tooltip>
+              {{ getAddress(props.props.delegate) | eclipse }}
+              <q-tooltip>{{ getAddress(props.props.delegate) }}</q-tooltip>
             </div>
           </q-td>
           <q-td v-if="props.props.id" key="id" >
@@ -51,7 +51,7 @@
 import { QPage, QTd, QTooltip } from 'quasar'
 import Breadcrumb from '../components/Breadcrumb'
 import TableContainer from '../components/TableContainer'
-import { fulltimestamp, convertFee } from '../utils/util'
+import { fulltimestamp, convertFee, getAddress } from '../utils/util'
 import TableItem from '../components/TableItem'
 import { mapActions } from 'vuex'
 
@@ -121,6 +121,7 @@ export default {
     }
   },
   methods: {
+    getAddress,
     ...mapActions(['getBlocks']),
     fulltimestamp,
     async getData(props = this.defaultProps) {
@@ -149,7 +150,7 @@ export default {
       }
       let delegateField = {
         label: 'BLOCK_GENERATOR',
-        value: delegate
+        value: getAddress(delegate)
       }
       let rewardField = {
         label: 'FORGE_REWARD',
