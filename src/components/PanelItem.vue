@@ -38,7 +38,7 @@
         <div class="w-4/5">
           <div class="flex items-center mb-20">
             <span class="w-1/5 xs:text-15 sm:text-18 text-tw-grey-darkest">{{$t('TRANSACTION_ID')}}</span>
-            <span  :class="linkClass" class="max-w-xs" @click="doSearch(data.id)">{{data.id|eclipse}}</span>
+            <span  :class="linkClass" class="max-w-xs" @click="doSearch(data.id, 'trans')">{{data.id|eclipse}}</span>
           </div>
           <div class="flex items-center justify-start mb-20">
             <span class="xs:mr-10 sm:mr-20 xs:text-15 sm:text-18 text-tw-grey-darkest">{{$t('FROM')}}</span>
@@ -94,7 +94,7 @@ export default {
       return value
     },
     doSearch(str, type) {
-      if (type === 'height') {
+      if (type === 'height' || 'trans') {
         return this.$root.$emit('doSearch', str)
       } else if (REGEX.address.test(str)) {
         return this.$root.$emit('doSearch', str)
