@@ -3556,6 +3556,14 @@
   font-size: 70px;
 }
 
+.text-100 {
+  font-size: 100px;
+}
+
+.text-140 {
+  font-size: 140px;
+}
+
 .italic {
   font-style: italic;
 }
@@ -3854,6 +3862,10 @@
 
 .w-90 {
   width: 90px;
+}
+
+.w-100 {
+  width: 100px;
 }
 
 .w-123 {
@@ -7537,6 +7549,14 @@
     font-size: 70px;
   }
 
+  .xs\:text-100 {
+    font-size: 100px;
+  }
+
+  .xs\:text-140 {
+    font-size: 140px;
+  }
+
   .xs\:italic {
     font-style: italic;
   }
@@ -7835,6 +7855,10 @@
 
   .xs\:w-90 {
     width: 90px;
+  }
+
+  .xs\:w-100 {
+    width: 100px;
   }
 
   .xs\:w-123 {
@@ -11504,6 +11528,14 @@
     font-size: 70px;
   }
 
+  .sm\:text-100 {
+    font-size: 100px;
+  }
+
+  .sm\:text-140 {
+    font-size: 140px;
+  }
+
   .sm\:italic {
     font-style: italic;
   }
@@ -11802,6 +11834,10 @@
 
   .sm\:w-90 {
     width: 90px;
+  }
+
+  .sm\:w-100 {
+    width: 100px;
   }
 
   .sm\:w-123 {
@@ -15471,6 +15507,14 @@
     font-size: 70px;
   }
 
+  .md\:text-100 {
+    font-size: 100px;
+  }
+
+  .md\:text-140 {
+    font-size: 140px;
+  }
+
   .md\:italic {
     font-style: italic;
   }
@@ -15769,6 +15813,10 @@
 
   .md\:w-90 {
     width: 90px;
+  }
+
+  .md\:w-100 {
+    width: 100px;
   }
 
   .md\:w-123 {
@@ -19438,6 +19486,14 @@
     font-size: 70px;
   }
 
+  .lg\:text-100 {
+    font-size: 100px;
+  }
+
+  .lg\:text-140 {
+    font-size: 140px;
+  }
+
   .lg\:italic {
     font-style: italic;
   }
@@ -19736,6 +19792,10 @@
 
   .lg\:w-90 {
     width: 90px;
+  }
+
+  .lg\:w-100 {
+    width: 100px;
   }
 
   .lg\:w-123 {
@@ -23405,6 +23465,14 @@
     font-size: 70px;
   }
 
+  .xl\:text-100 {
+    font-size: 100px;
+  }
+
+  .xl\:text-140 {
+    font-size: 140px;
+  }
+
   .xl\:italic {
     font-style: italic;
   }
@@ -23703,6 +23771,10 @@
 
   .xl\:w-90 {
     width: 90px;
+  }
+
+  .xl\:w-100 {
+    width: 100px;
   }
 
   .xl\:w-123 {
@@ -27372,6 +27444,14 @@
     font-size: 70px;
   }
 
+  .xll\:text-100 {
+    font-size: 100px;
+  }
+
+  .xll\:text-140 {
+    font-size: 140px;
+  }
+
   .xll\:italic {
     font-style: italic;
   }
@@ -27670,6 +27750,10 @@
 
   .xll\:w-90 {
     width: 90px;
+  }
+
+  .xll\:w-100 {
+    width: 100px;
   }
 
   .xll\:w-123 {

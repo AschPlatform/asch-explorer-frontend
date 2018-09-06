@@ -18,7 +18,7 @@
           </div>
           <div class="flex items-center xs:mb-15 sm:mb-20">
             <span :class="labelClass">{{$t('PRODUCER')}}</span>
-            <span :class="linkClass"  @click="doSearch(getAddress(data.delegate))" >{{getAddress(data.delegate)}}</span>
+            <span :class="linkClass"  @click="doSearch(getAddress(data.delegate))" >{{getAddress(data.delegate)|eclipse }}</span>
           </div>
           <div class="flex items-center">
             <span :class="labelClass">{{$t('FORGE_REWARD')}}</span>
@@ -38,13 +38,13 @@
         <div class="w-4/5">
           <div class="flex items-center mb-20">
             <span class="w-1/5 xs:text-15 sm:text-18 text-tw-grey-darkest">{{$t('TRANSACTION_ID')}}</span>
-            <span  :class="linkClass" class="max-w-xs" @click="doSearch(data.id)">{{data.id}}</span>
+            <span  :class="linkClass" class="max-w-xs" @click="doSearch(data.id)">{{data.id|eclipse}}</span>
           </div>
           <div class="flex items-center justify-start mb-20">
             <span class="xs:mr-10 sm:mr-20 xs:text-15 sm:text-18 text-tw-grey-darkest">{{$t('FROM')}}</span>
-            <span :class="addressClass" @click="doSearch(data.senderId)" >{{data.senderId}}</span>
+            <span :class="addressClass" @click="doSearch(data.senderId)" >{{data.senderId|eclipse}}</span>
             <span class="xs:mx-10 sm:mx-20 xs:text-15 sm:text-18 text-tw-grey-darkest">{{$t('TO')}}</span>
-            <span :class="getProps(data,'recieve')?addressClass:''" @click="doSearch(getProps(data,'recieve'))" >{{getProps(data,'recieve') || '--'}}</span>
+            <span :class="getProps(data,'recieve')?addressClass:''" @click="doSearch(getProps(data,'recieve'))" >{{getProps(data,'recieve')|| '--'}}</span>
           </div>
           <div class="flex items-center">
             <span class="w-auto mr-20 xs:text-15 sm:text-18 text-tw-grey-darkest">{{$t('AMOUNT')}}</span>

@@ -2,11 +2,11 @@
   <q-page class="max-w-1200 m-auto xs:p-15 sm:p-0 xs:pb-20 sm:pb-40">
     <breadcrumb class="xs:mt-5 sm:mt-20" />
     <div class="border border-solid border-tw-grey rounded-lg ">
-      <div class="xs:px-10 xs:py-15 sm:px-25 sm:pt-30 sm:pb-10">
-      <div class="xs:text-16 sm:text-20 text-tw-grey-darkest font-semibold sm:pl-15">
+      <div class="xs:px-5 xs:pt-15 xs:pb-0 sm:px-25 sm:pt-30 sm:pb-10">
+      <div class="xs:text-16 sm:text-20 text-tw-grey-darkest font-normal xs:pl-5 sm:pl-15">
         {{this.$t('ACCOUNT_INFO')}}
       </div>
-      <div class="xs:px-0 sm:px-15">
+      <div class="xs:px-5 sm:px-15">
       <boundary-line class="xs:my-15 sm:my-30" />
       </div>
       <div class="flex justify-between">
@@ -16,18 +16,18 @@
           <q-icon class="text-60 text-tw-grayish" name="icon-details" />
         </div>
       </div>
-      <div class="xs:px-0 sm:px-15">
+      <div class="xs:px-5 sm:px-15">
       <boundary-line class="xs:my-15 sm:my-15" />
       </div>
-      <div class="btngroup xs:pl-0 sm:pl-15">
+      <div class="btngroup xs:pl-5 sm:pl-15">
         <button :class="(this.type === 0 ? styleSelected : styleUnselected) + ' mr-20'" @click="changeType(0)">{{$t('TRANS_TABLE')}}</button>
         <button :class="this.type === 1 ? styleSelected : styleUnselected" @click="changeType(1)">{{$t('TRANSACTION_TABLE')}}</button>
       </div>
-      <div class="xs:px-0 sm:px-15">
+      <div class="xs:px-5 sm:px-15">
       <boundary-line class="mt-20" />
       </div>
       </div>
-      <table-container class="xs:p-10 sm:p-0 custorm-tr-border" :data="data" :count="count" :params="params" :columnsData="columnsData" @getData="getData">
+      <table-container class="xs:p-10 xs:pt-0 sm:p-0 custorm-tr-border" :data="data" :count="count" :params="params" :columnsData="columnsData" @getData="getData">
         <template class="desktop-only" slot="content" slot-scope="props" v-if="props.props">
           <q-td v-if="props.props.id" key="id">
             <div class="text-tw-blue cursor-pointer hover:underline" @click="doSearch(props.props.id)">
@@ -152,8 +152,8 @@ export default {
           value: 1
         }
       ],
-      styleSelected: 'inline px-0 font-semibold xs:text-16 sm:text-20 q-btn text-tw-blue border-b-2 border-tw-blue border-solid',
-      styleUnselected: 'inline px-0 font-semibold text-tw-grey-darkest xs:text-16 sm:text-20 q-btn'
+      styleSelected: 'inline px-0 font-semibold xs:text-16 sm:text-20 q-btn text-tw-blue border-b-2 border-tw-blue border-solid bg-tw-transparent shadow-none',
+      styleUnselected: 'inline px-0 font-semibold text-tw-grey-darkest xs:text-16 sm:text-20 q-btn bg-tw-transparent shadow-none'
     }
   },
   async mounted() {
@@ -391,7 +391,7 @@ export default {
       let idField = {
         label: 'TRANSACTION_ID',
         value: id || tid,
-        type: 'id'
+        type: 'transactionId'
       }
 
       // let heightField = {

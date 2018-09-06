@@ -39,10 +39,10 @@
 .icon-asch:before {
   content: "\e901";
 }
-.icon-block-height:before {
+.icon-block:before {
   content: "\e902";
 }
-.icon-block:before {
+.icon-block-height:before {
   content: "\e903";
 }
 .icon-data:before {
@@ -69,10 +69,11 @@
 .icon-light:before {
   content: "\e90b";
 }
-.icon-more:before {
+.icon-logo:before {
   content: "\e90c";
+  color: #fff;
 }
-.icon-users:before {
+.icon-more:before {
   content: "\e90d";
 }
 .icon-operating:before {
@@ -108,6 +109,9 @@
 .icon-turn:before {
   content: "\e918";
 }
-.icon-watermark:before {
+.icon-users:before {
   content: "\e919";
+}
+.icon-watermark:before {
+  content: "\e91a";
 }

@@ -10,13 +10,16 @@
       <footer-bar />
     </q-layout-footer>
     <q-layout-drawer class="custorm-drawer" v-model="drawer">
-      <q-toolbar class="flex xs:flex-col sm:flex-row justify-between w-full bg-tw-black xs:h-auto sm:h-86 xs:px-0 xs:pb-11 sm:pb-0 sm:px-30">
+      <q-toolbar class="flex xs:flex-col sm:flex-row justify-between w-full bg-tw-black xs:h-auto sm:h-86 xs:px-0 sm:pb-0 sm:px-30">
         <div class="w-full flex justify-between items-center">
-          <div class="xs:w-full sm:w-auto asch-logo xs:h-20 sm:h-30 xs:mt-15 xs:mb-10 sm:my-0 sm:mr-20 lg:mr-53 cursor-pointer text-center">
-            <img class="h-full" :src="logoTop" alt="">
+           <div class="flex justify-center xs:w-full xs:h-25 sm:w-144 sm:h-30 cursor-pointer xs:mr-0 sm:mr-20 lg:mr-30 xs:my-15 sm:my-0" @click="jump('/')">
+           <q-icon class="text-140 text-tw-white" name="icon-logo" />
           </div>
-          <div class="xs:w-full sm:w-auto flex xs:content-start sm:justify-between xs:border-t-1 xs:border-b-0 xs:border-l-0 xs:border-r-0 sm:border-none border-solid border-tw-black-dark xs:pt-10 xs:pr-15 sm:pr-0">
-            <q-btn class="xs:flex sm:hidden text-12" icon="icon-delete" @click="switchDrawer(false)"/>
+          <div class="xs:w-full sm:w-auto flex xs:content-start sm:justify-between xs:border-t-1 xs:border-b-0 xs:border-l-0 xs:border-r-0 sm:border-none border-solid border-tw-black-dark">
+            <button class="flex justify-center items-center bg-tw-transparent border-0 pt-15 p-0 pb-11 ml-15" @click="switchDrawer(false)">
+              <q-icon class="xs:flex sm:hidden text-16 text-tw-white" name="icon-delete" />
+            </button>
+            <!-- <q-btn class="xs:flex sm:hidden text-12" icon="icon-delete" @click="switchDrawer(false)"/> -->
           </div>
         </div>
       </q-toolbar>
@@ -70,6 +73,7 @@ import {
   QListHeader,
   QToolbar,
   QBtn,
+  QIcon,
   QItemSeparator
 } from 'quasar'
 import FooterBar from '../components/FooterBar'
@@ -81,7 +85,6 @@ import CodeModal from '../components/QRCodeModal'
 
 import { getCache, setCache } from '../utils/util'
 import { mapGetters, mapActions } from 'vuex'
-import logoTop from '../assets/logo_top.png'
 
 export default {
   name: 'MyLayout',
@@ -102,11 +105,11 @@ export default {
     QListHeader,
     QToolbar,
     QBtn,
+    QIcon,
     QItemSeparator
   },
   data() {
     return {
-      logoTop,
       searchForbidden: false,
       isHomeFlg: true,
       intervalStats: null,

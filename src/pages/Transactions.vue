@@ -218,7 +218,7 @@ export default {
       let idField = {
         label: 'TRANSACTION_ID',
         value: id || tid,
-        type: 'id'
+        type: 'transactionId'
       }
 
       // let heightField = {

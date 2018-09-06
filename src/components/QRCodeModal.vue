@@ -2,7 +2,7 @@
   <q-dialog
     v-model="show"
     prevent-close
-
+    class="custorm-qr"
   >
     <span v-if="title" slot="title">{{title}}</span>
 
@@ -14,7 +14,7 @@
       </div>
     </div>
 
-    <template  slot="buttons" slot-scope="props">
+    <template   slot="buttons" slot-scope="props">
       <div class="row justify-center w-full">
         <button class="border-0 w-full bg-tw-blue py-15 text-white"  @click="close">
           {{$t('CLOSE')}}

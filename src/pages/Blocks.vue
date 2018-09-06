@@ -140,7 +140,7 @@ export default {
       let idField = {
         label: 'BLOCK_ID',
         value: id,
-        type: 'id'
+        type: 'transactionId'
       }
       let heightField = {
         label: 'HEIGHT',
