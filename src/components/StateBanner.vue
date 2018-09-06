@@ -10,6 +10,7 @@
         </div>
         <div class="xs:text-16 lg:text-22 xll:text-28 text-tw-blue font-futura">
           <ICountUp :endVal="Number(state.value)||0" />
+          <span class="ml-10" v-if="state.after">{{state.after}}</span>
         </div>
       </div>
     </div>
