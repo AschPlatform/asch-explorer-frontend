@@ -94,7 +94,7 @@ const lang = {
   TRS_TYPE_SET_AGENT: '设置投票代理人',
   TRS_TYPE_REPEAL_AGENT: '取消投票代理',
   TRS_TYPE_ACTIVATE_DELEGATE: '激活提案',
-  TRS_TYPE_REPEAL_VOTE: '受托人投票',
+  TRS_TYPE_REPEAL_VOTE: '撤销投票',
 
   TRS_TYPE_LAUNCH_PROPOSAL: '发起提案',
   TRS_TYPE_VOTE_PROPOSAL: '对提案投票',
