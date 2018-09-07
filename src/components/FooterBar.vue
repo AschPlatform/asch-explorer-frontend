@@ -37,7 +37,9 @@ export default {
       return [
         {
           label: 'API',
-          href: 'https://github.com/AschPlatform/asch-docs/tree/master/http_api'
+          href: this.isZH
+            ? 'https://github.com/AschPlatform/asch-docs/blob/master/http_api/zh-cn.md'
+            : 'https://github.com/AschPlatform/asch-docs/blob/master/http_api/en.md'
         },
         {
           label: 'Github',
@@ -56,6 +58,9 @@ export default {
           href: 'https://wallet.asch.io/#/login'
         }
       ]
+    },
+    isZH() {
+      return this.$store.state.locale === 'zh'
     }
   }
 }
