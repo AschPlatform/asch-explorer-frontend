@@ -43,7 +43,7 @@
           </q-td>
           <q-td key="height" >
             <div class="text-tw-blue cursor-pointer hover:underline" @click="doSearch(props.props.height)">
-              {{ props.props.height }}
+              {{ props.props.height | numSeparator}}
             </div>
           </q-td>
           <q-td v-if="props.props.timestamp > -1" key="timestamp">
@@ -60,7 +60,7 @@
           </q-td>
           <q-td v-if="props.props.recipientId" key="recipientId" >
             <div class="text-tw-blue cursor-pointer hover:underline" @click="doSearch(props.props.recipientId)">
-              {{ props.props.recipientId | eclipse }}
+              {{ props.props.recipientName ? props.props.recipientName : props.props.recipientId | eclipse }}
               <q-tooltip>{{ props.props.recipientId }}</q-tooltip>
             </div>
           </q-td>
