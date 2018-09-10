@@ -9,7 +9,7 @@
     <table class="w-5/6 flex">
       <div class="flex w-full" v-if="hasId && idField">
         <div class="w-auto xs:text-15 sm:text-18 text-tw-grey-darkest mb-15">{{$t(idField.label)}}:</div>
-        <div class="truncate text-tw-blue xs:text-15 sm:text-18 max-w-2/3 ml-5" @click="doSearch(idField.value)">{{idField.value}}</div>
+        <div class="truncate text-tw-blue hover:underline xs:text-15 sm:text-18 max-w-2/3 ml-5" @click="doSearch(idField.value)">{{idField.value}}</div>
       </div>
       <tbody class='info-tbody w-full'>
         <tr class="flex" v-for="(arr, idx) in tableData" :key="idx">
@@ -21,13 +21,13 @@
              <span>{{$t(data.label)}}:</span>
             </td>
             <td class="truncate xs:text-15 sm:text-18 text-tw-grey-darkest max-w-2/3 ml-5">
-              <span :class="data.link?`text-tw-blue cursor-pointer`:''" @click="data.link?$router.push(data.link+data.value):null">
+              <span :class="data.link?`text-tw-blue cursor-pointer hover:underline`:''" @click="data.link?$router.push(data.link+data.value):null">
               <span v-if="data.type==='number'" >{{data.value | numSeparator}}</span>
               <span v-else-if="data.type==='timestamp'">{{data.value | formatTimestamp(true)}}</span>
-              <span v-else-if="data.type==='delegate'" class="text-tw-blue cursor-pointer" @click="doSearch(data.value, 'delegate')">{{data.value}}</span>
-              <span v-else-if="data.type==='asset'" class="text-tw-blue cursor-pointer" @click="doSearch(data.value, 'asset')">{{data.value.split('.')[1]}}</span>
+              <span v-else-if="data.type==='delegate'" class="text-tw-blue cursor-pointer hover:underline" @click="doSearch(data.value, 'delegate')">{{data.value}}</span>
+              <span v-else-if="data.type==='asset'" class="text-tw-blue cursor-pointer hover:underline" @click="doSearch(data.value, 'asset')">{{data.value.split('.')[1]}}</span>
               <span v-else-if="data.type==='countDown'">{{data.value | secFromNow}} {{$t('SECOND_BEFORE')}}</span>
-              <span v-else-if="data.type==='address'" class="text-tw-blue cursor-pointer" @click="doSearch(data.value)">
+              <span v-else-if="data.type==='address'" class="text-tw-blue cursor-pointer hover:underline" @click="doSearch(data.value)">
                 <span v-if="data.nickname" >
                   {{data.nickname}}({{data.value}})
                 </span>
@@ -35,9 +35,9 @@
                 {{data.value|eclipse}}
               </span>
               </span>
-              <span v-else-if="data.type==='argStr'" class="custom-pre-wrap">{{data.value}}</span>
-              <span v-else-if="data.type==='block'" class="text-tw-blue cursor-pointer" @click="doSearch(data.value)">{{data.value}}</span>
-              <span v-else-if="data.type==='transactionId'" class="text-tw-blue cursor-pointer" @click="doSearch(data.value)">{{data.value|eclipse}}</span>
+              <span v-else-if="data.type==='argStr'">{{data.value}}</span>
+              <span v-else-if="data.type==='block'" class="text-tw-blue cursor-pointer hover:underline" @click="doSearch(data.value)">{{data.value}}</span>
+              <span v-else-if="data.type==='transactionId'" class="text-tw-blue cursor-pointer hover:underline" @click="doSearch(data.value)">{{data.value|eclipse}}</span>
               <span v-else-if="data.type==='rate'" class="text-15 text-tw-blue font-semibold">{{data.value}}</span>
               <span v-else> {{data.value}} </span>
               </span>

@@ -60,7 +60,7 @@
            </div>
             <span v-else>--</span>
           </q-td>
-          <q-td v-if="props.props.fee" key="fee" >
+          <q-td v-if="props.props.fee" key="fee" class="text-right">
             <span v-if="props.props.fee">{{ props.props.fee | fee }}</span>
             <span v-else>--</span>
           </q-td>
@@ -182,7 +182,7 @@ export default {
       return [
         {
           label: 'BLOCK_HEIGHT',
-          value: this.blockHeight,
+          value: this.height,
           type: 'number'
         },
         {
