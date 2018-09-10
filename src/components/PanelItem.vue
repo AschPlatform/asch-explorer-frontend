@@ -22,7 +22,7 @@
           </div>
           <div class="flex items-center">
             <span :class="labelClass">{{$t('FORGE_REWARD')}}</span>
-            <span class="truncate xs:text-15 sm:text-18 text-tw-grey-darkest w-auto"  >{{data.reward | fee}}{{' XAS'}}</span>
+            <span class="truncate xs:text-15 sm:text-18 text-tw-grey-darkest w-auto"  >{{rewardCount(data.height)}}</span>
           </div>
         </div>
       </div>
@@ -61,7 +61,7 @@
 
 <script>
 import { QIcon } from 'quasar'
-import { getAddress, convertFee, fulltimestamp } from '../utils/util'
+import { getAddress, convertFee, fulltimestamp, rewardCount } from '../utils/util'
 import { REGEX } from '../utils/constants'
 import { mapGetters } from 'vuex'
 import moment from 'moment'
@@ -74,6 +74,7 @@ export default {
     return {}
   },
   methods: {
+    rewardCount,
     getAddress,
     getProps(trans, props = 'amount') {
       // get rec address

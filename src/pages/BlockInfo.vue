@@ -33,7 +33,7 @@
               <q-tooltip>{{ props.props.id }}</q-tooltip>
             </div>
           </q-td>
-          <q-td v-if="props.props.height" key="height" >
+          <q-td key="height" >
             <div class="text-tw-blue cursor-pointer hover:underline" @click="doSearch(props.props.height)">
               {{ props.props.height }}
             </div>
@@ -60,9 +60,8 @@
            </div>
             <span v-else>--</span>
           </q-td>
-          <q-td  key="fee" class="text-right">
-            <span v-if="props.props.fee">{{ props.props.fee | fee }}</span>
-            <span v-else>0</span>
+          <q-td key="fee" class="text-right">
+            <span v-if="props.props.fee || props.props.fee === 0">{{ props.props.fee | fee }}</span>
           </q-td>
         </template>
         <template class="mobile-only" slot="items" slot-scope="props" v-if="props.props">

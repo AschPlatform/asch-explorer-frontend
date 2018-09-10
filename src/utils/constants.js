@@ -11,7 +11,7 @@ const I18N_OPT = [{
 
 const REGEX = {
   hash: /([a-fA-F0-9]{64})/,
-  height: /^\+?[1-9][0-9]*$/,
+  height: /(^\+?[1-9][0-9]*$|^0$)/,
   address: /^[A|G|C][\w]{32,34}$/,
   nickname: /^[a-z0-9_]{2,20}$/
 }
