@@ -25,7 +25,7 @@
               <span v-else-if="data.type==='id'">{{data.value}}</span>
               <span v-else-if="data.type==='preBlock'" class="text-tw-blue cursor-pointer hover:underline" @click="doSearch(data.value, 'id')">{{data.value}}</span>
               <span v-else-if="data.type==='argStr'" class="text-tw-grey-darkest">{{data.value}}</span>
-              <span v-else-if="data.type==='block'" class="text-tw-blue cursor-pointer hover:underline" @click="doSearch(data.value)">{{data.value}}</span>
+              <span v-else-if="data.type==='block'" class="text-tw-blue cursor-pointer hover:underline" @click="doSearch(data.value)">{{data.value | numSeparator}}</span>
               <span v-else-if="data.type==='qr'" class="xs:w-5/6 sm:w-auto inline-block text-tw-grey-darkest" @click="doSearch(data.value)">
                <span class="sm:align-middle xs:mr-10 sm:mr-5">{{data.value}}</span>
                 <span class="qr-right-container sm:align-middle" @click="showAddrQr(data.value)">
