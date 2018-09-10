@@ -1,7 +1,10 @@
 <template>
   <div class="flex flex-row xs:flex-col sm:flex-row flex-wrap justify-between text-center sm:h-86 bg-tw-black w-full max-w-1200 m-auto">
     <div class="flex xs:flex-col sm:flex-row xs:justify-center sm:justify-left ">
-      <div class="flex items-center justify-center xs:text-16 sm:text-18 text-tw-white xs:mt-20 sm:mt-0 sm:mb-0">{{$t('FOOTER_LINKS')}}</div>
+      <div class="flex items-center justify-center xs:text-16 sm:text-18 text-tw-white xs:mt-20 sm:mt-0 sm:mb-0">
+        <span>{{$t('FOOTER_LINKS')}}</span>
+        <span>{{footerLink}}</span>   
+      </div>
       <div class="flex justify-center items-center xs:mt-20 sm:mt-0" v-for="(link,idx) in links" :key="idx">
         <a class="xs:text-14 sm:text-18 text-tw-white hover:text-tw-blue no-underline xs:ml-0 sm:ml-40" :href="link.href" target="_blank">{{link.label}}</a>
       </div>
@@ -15,6 +18,8 @@
 <script>
 import { QIcon } from 'quasar'
 import logoFooter from '../assets/logo_footer.png'
+import { isDesktop } from '../utils/util'
+
 export default {
   name: 'FooterBar',
   components: {
@@ -31,6 +36,9 @@ export default {
     }
   },
   computed: {
+    footerLink() {
+      return isDesktop() ? ':' : ''
+    },
     links() {
       const t = this.$t
       return [

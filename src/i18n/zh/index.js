@@ -8,7 +8,7 @@ const lang = {
   TOTAL_SUPPLY: '代币供应量',
   USERS_NUMBER: '用户数',
   RUNNING_DAYS: '运行天数',
-  FOOTER_LINKS: '友情链接:',
+  FOOTER_LINKS: '友情链接',
   HOMEPAGE: '官网',
   FORUM: '社区论坛',
   ONLINE_WALLET: '阿希客户端',
@@ -30,7 +30,7 @@ const lang = {
   ADDRESS: '地址',
   BLOCK_INFO: '区块详情',
   TRANSACTION_INFO: '交易详情',
-  ACCOUNT_INFO: '账户详情',
+  ACCOUNT_INFO: '账户地址详情',
 
   // delegates
   RANK: '排名',
