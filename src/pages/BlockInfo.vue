@@ -60,9 +60,9 @@
            </div>
             <span v-else>--</span>
           </q-td>
-          <q-td v-if="props.props.fee" key="fee" class="text-right">
+          <q-td  key="fee" class="text-right">
             <span v-if="props.props.fee">{{ props.props.fee | fee }}</span>
-            <span v-else>--</span>
+            <span v-else>0</span>
           </q-td>
         </template>
         <template class="mobile-only" slot="items" slot-scope="props" v-if="props.props">

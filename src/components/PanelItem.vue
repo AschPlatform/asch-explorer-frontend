@@ -41,16 +41,10 @@
             <span  :class="linkClass" class="max-w-xs" @click="doSearch(data.id, 'trans')">{{data.id|eclipse}}</span>
           </div>
           <div class="flex items-center justify-start mb-20">
-            <div v-if="getProps(data,'recieve')">
               <span class="xs:mr-10 sm:mr-20 xs:text-15 sm:text-18 text-tw-grey-darkest">{{$t('FROM')}}</span>
               <span :class="addressClass" @click="doSearch(data.senderId)" >{{data.senderId|eclipse}}</span>
               <span class="xs:mx-5 sm:mx-10 xs:text-15 sm:text-18 text-tw-grey-darkest">{{$t('TO')}}</span>
-              <span :class="getProps(data,'recieve')?addressClass:''" @click="doSearch(getProps(data,'recieve'))" >{{getProps(data,'recieve')|eclipse}}</span>
-            </div>
-            <div v-else>
-              <span class="xs:mr-10 sm:mr-20 xs:text-15 sm:text-18 text-tw-grey-darkest">{{$t('TRANS_SENDER')}}</span>
-              <span :class="addressClass" @click="doSearch(data.senderId)" >{{data.senderId|eclipse}}</span>
-            </div>
+              <span :class="getProps(data,'recieve')?addressClass:''" @click="doSearch(getProps(data,'recieve'))" >{{getProps(data,'recieve')|| '--'}}</span>
           </div>
           <div class="flex items-center">
             <span class="w-auto xs:mr-10 sm:mr-20 xs:text-15 sm:text-18 text-tw-grey-darkest">{{$t('AMOUNT')}}</span>
