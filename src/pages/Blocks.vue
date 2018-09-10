@@ -31,9 +31,9 @@
           <q-td v-if="props.props.reward" key="reward" >
             <span>{{ props.props.reward | fee }}</span>
           </q-td>
-          <q-td key="fee" >
+          <q-td key="fee" class="text-right">
             <span v-if="props.props.fees">{{ props.props.fees | fee }}</span>
-            <span v-else>--</span>
+            <span v-else>0</span>
           </q-td>
         </template>
         <template class="moblie-only" slot="items" slot-scope="props" v-if="props.props">
@@ -109,7 +109,7 @@ export default {
           name: 'reward',
           label: this.$t('FORGE_REWARD'),
           field: 'reward',
-          align: 'center'
+          align: 'left'
         },
         {
           name: 'fees',

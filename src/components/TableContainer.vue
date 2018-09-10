@@ -19,7 +19,7 @@
         </div>
         <div :class="pageClass">
           <button class="custom-last-btn text-tw-grey-darkest border-none bg-tw-white hover:text-tw-blue cursor-pointer xs:hidden sm:block" size="md" @click="toPage(1)">{{$t('FIRST_PAGE')}}</button>
-          <q-pagination v-model="curPage" color="tw-blue"  size="md" :min="1" :max="getMaxPage()" :max-pages="2" :ellipses="true" @input="changePage" direction-links/>
+          <q-pagination v-model="curPage" color="tw-blue"  size="md" :min="1" :max="getMaxPage()" :max-pages="maxPages" :ellipses="true" @input="changePage" direction-links/>
           <button class="custom-last-btn border-none bg-tw-white text-tw-grey-darkest hover:text-tw-blue cursor-pointer xs:hidden sm:block" size="md" @click="toPage(getMaxPage())">{{$t('LAST_PAGE')}}</button>
         </div>
       </div>
@@ -159,15 +159,16 @@ export default {
   },
   computed: {
     ...mapGetters(['loadingBool']),
+    maxPages() {
+      return isDesktop() ? 5 : 2
+    },
     pageClass() {
       return isDesktop()
         ? 'flex justify-between custom-page-desktop'
         : 'flex justify-between custom-page-mobile'
     },
     selectClass() {
-      return isDesktop()
-        ? 'custom-page-select-desktop'
-        : 'custom-page-select-mobile'
+      return isDesktop() ? 'custom-page-select-desktop' : 'custom-page-select-mobile'
     },
     columns() {
       return this.columnsData

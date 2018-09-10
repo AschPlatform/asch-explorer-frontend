@@ -2,7 +2,7 @@
   <div class="xs:mb-15 sm:mb-30 xs:p-15 sm:p-20 shadow-none  sm:hover:shadow-21 sm:hover:bg-tw-grey-lightet border-1 border-solid border-tw-grey-darker panelitem-container overflow-hidden relative">
     <div v-if="type=='blocks'">
       <div class="right-icon-left absolute -mr-15 -mb-15 pin-b pin-r">
-        <q-icon class="xs:text-70 sm:text-70 text-tw-grey-lighter opacity-8" name="icon-block" />
+        <q-icon class="xs:text-70 sm:text-70 text-tw-grey-darkest opacity-8" name="icon-block" />
       </div>
       <div :class="timestampClass">
           {{data.timestamp | secFromNow}}{{$t('SECOND_BEFORE')}}
@@ -22,7 +22,7 @@
           </div>
           <div class="flex items-center">
             <span :class="labelClass">{{$t('FORGE_REWARD')}}</span>
-            <span class="truncate xs:text-15 sm:text-18 text-tw-grey-darkest w-2/3"  >{{data.reward | fee}}{{' XAS'}}</span>
+            <span class="truncate xs:text-15 sm:text-18 text-tw-grey-darkest w-auto"  >{{data.reward | fee}}{{' XAS'}}</span>
           </div>
         </div>
       </div>
@@ -41,14 +41,20 @@
             <span  :class="linkClass" class="max-w-xs" @click="doSearch(data.id, 'trans')">{{data.id|eclipse}}</span>
           </div>
           <div class="flex items-center justify-start mb-20">
-            <span class="xs:mr-10 sm:mr-20 xs:text-15 sm:text-18 text-tw-grey-darkest">{{$t('FROM')}}</span>
-            <span :class="addressClass" @click="doSearch(data.senderId)" >{{data.senderId|eclipse}}</span>
-            <span class="xs:mx-10 sm:mx-10 xs:text-15 sm:text-18 text-tw-grey-darkest">{{$t('TO')}}</span>
-            <span :class="getProps(data,'recieve')?addressClass:''" @click="doSearch(getProps(data,'recieve'))" >{{getProps(data,'recieve')|| '--'}}</span>
+            <div v-if="getProps(data,'recieve')">
+              <span class="xs:mr-10 sm:mr-20 xs:text-15 sm:text-18 text-tw-grey-darkest">{{$t('FROM')}}</span>
+              <span :class="addressClass" @click="doSearch(data.senderId)" >{{data.senderId|eclipse}}</span>
+              <span class="xs:mx-5 sm:mx-10 xs:text-15 sm:text-18 text-tw-grey-darkest">{{$t('TO')}}</span>
+              <span :class="getProps(data,'recieve')?addressClass:''" @click="doSearch(getProps(data,'recieve'))" >{{getProps(data,'recieve')|eclipse}}</span>
+            </div>
+            <div v-else>
+              <span class="xs:mr-10 sm:mr-20 xs:text-15 sm:text-18 text-tw-grey-darkest">{{$t('TRANS_SENDER')}}</span>
+              <span :class="addressClass" @click="doSearch(data.senderId)" >{{data.senderId|eclipse}}</span>
+            </div>
           </div>
           <div class="flex items-center">
-            <span class="w-auto mr-20 xs:text-15 sm:text-18 text-tw-grey-darkest">{{$t('AMOUNT')}}</span>
-            <span class="xs:text-15 sm:text-18 text-tw-grey-lighter">{{getProps(data) || '--'}}</span>
+            <span class="w-auto xs:mr-10 sm:mr-20 xs:text-15 sm:text-18 text-tw-grey-darkest">{{$t('AMOUNT')}}</span>
+            <span class="xs:text-15 sm:text-18 text-tw-grey-darkest">{{getProps(data) || '--'}}</span>
           </div>
         </div>
         <div class="right-icon-right absolute -mr-20 -mb-10 pin-b pin-r">
@@ -117,14 +123,17 @@ export default {
   },
   computed: {
     ...mapGetters(['assetMap']),
+    // getProp() {
+    //   return this.getProps(data, 'recieve') ? this.getProps(data, 'recieve') : '--'
+    // },
     timestampClass() {
-      return 'w-auto text-right xs:text-15 sm:text-18 text-tw-grey-lighter absolute xs:pt-15 xs:pr-15 sm:pt-20 sm:pr-20 pin-t pin-r'
+      return 'w-auto text-right xs:text-15 sm:text-18 text-tw-grey-darkest absolute xs:pt-15 xs:pr-15 sm:pt-20 sm:pr-20 pin-t pin-r'
     },
     linkClass() {
       return 'truncate xs:text-15 sm:text-18 text-tw-blue hover:underline w-auto cursor-pointer'
     },
     addressClass() {
-      return 'truncate xs:text-15 sm:text-18 text-tw-blue hover:underline cursor-pointer w-1/3'
+      return 'truncate xs:text-15 sm:text-18 text-tw-blue hover:underline cursor-pointer max-w-1/3'
     },
     labelClass() {
       return 'w-auto xs:text-15 sm:text-18 text-tw-grey-darkest mr-10'

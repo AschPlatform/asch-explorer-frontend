@@ -47,12 +47,12 @@ const lang = {
   PRECISION: '精度',
   ISSUE_TIME: '发行时间',
   ISSUE_ADDRESS: '发行商地址',
+  ASSET_TYPE: '资产类型',
 
   // transactionsInfo
   TRANSACTION: '交易',
   TRANSACTIONS: '交易列表',
   TRANSACTION_ID: '交易ID',
-  TRANS_TYPE: '交易类型',
   TRANS_TABLE: '转账列表',
   TRANSACTION_TYPE: '交易类型',
   TRANSACTION_TABLE: '交易列表',
