@@ -11,7 +11,7 @@
       </div>
       <div class="flex justify-between">
         <info-panel v-if="account" :panelData="panelData" />
-        <div v-else class="mt-2 mb-8 px-4 text-xs">{{$t('NO_DATA')}}</div>
+        <div v-else class="mt-2 mb-8 px-4 text-tw-grey-darkest xs:pl-5 sm:pl-15">{{$t('NO_DATA')}}</div>
         <div class="self-end w-auto xs:hidden sm:block pb-10 pr-15">
           <q-icon class="text-60 text-tw-grayish" name="icon-details" />
         </div>
@@ -20,8 +20,8 @@
       <boundary-line class="xs:my-15 sm:my-15" />
       </div>
       <div class="btngroup xs:pl-5 sm:pl-15">
-        <button :class="(this.type === 0 ? styleSelected : styleUnselected) + ' mr-20'" @click="changeType(0)">{{$t('TRANS_TABLE')}}</button>
-        <button :class="this.type === 1 ? styleSelected : styleUnselected" @click="changeType(1)">{{$t('TRANSACTION_TABLE')}}</button>
+        <button :class="(this.type === 0 ? styleSelected : styleUnselected) + ' mr-20'" @click="changeType(0)">{{$t('TRS_TYPE_TRANSFER_RECORD')}}</button>
+        <button :class="this.type === 1 ? styleSelected : styleUnselected" @click="changeType(1)">{{$t('TRANS_TITLE')}}</button>
       </div>
       <div class="xs:px-5 sm:px-15">
       <boundary-line class="mt-20" />
@@ -153,8 +153,10 @@ export default {
           value: 1
         }
       ],
-      styleSelected: 'inline px-0 font-semibold xs:text-16 sm:text-20 q-btn text-tw-blue border-b-2 border-tw-blue border-solid bg-tw-transparent shadow-none',
-      styleUnselected: 'inline px-0 font-semibold text-tw-grey-darkest xs:text-16 sm:text-20 q-btn bg-tw-transparent shadow-none'
+      styleSelected:
+        'inline px-0 font-semibold xs:text-16 sm:text-20 q-btn text-tw-blue border-b-2 border-tw-blue border-solid bg-tw-transparent shadow-none',
+      styleUnselected:
+        'inline px-0 font-semibold text-tw-grey-darkest xs:text-16 sm:text-20 q-btn bg-tw-transparent shadow-none'
     }
   },
   async mounted() {
@@ -181,7 +183,7 @@ export default {
         })
 
         datas.push({
-          label: 'ADDRESS',
+          label: 'ACCOUNT_ADDRESS',
           value: this.account.address,
           type: 'qr'
         })
@@ -196,13 +198,13 @@ export default {
         return [
           {
             name: 'id',
-            label: 'ID',
+            label: this.$t('TRANSACTION_ID'),
             field: 'ID',
             align: 'center'
           },
           {
             name: 'height',
-            label: this.$t('HEIGHT'),
+            label: this.$t('BLOCK_HEIGHT'),
             field: 'height',
             align: 'center'
           },
@@ -232,7 +234,7 @@ export default {
           },
           {
             name: 'fee',
-            label: this.$t('FEE'),
+            label: this.$t('TRANS_FEE'),
             field: 'fee',
             align: 'center'
           }
@@ -241,13 +243,13 @@ export default {
         return [
           {
             name: 'tid',
-            label: 'ID',
+            label: this.$t('TRANSACTION_ID'),
             field: 'tid',
             align: 'center'
           },
           {
             name: 'height',
-            label: this.$t('HEIGHT'),
+            label: this.$t('BLOCK_HEIGHT'),
             field: 'height',
             align: 'center'
           },
@@ -257,6 +259,7 @@ export default {
             field: 'timestamp',
             align: 'center'
           },
+
           {
             name: 'senderId',
             label: this.$t('TRANS_SENDER'),
@@ -283,7 +286,7 @@ export default {
           },
           {
             name: 'transferFee',
-            label: this.$t('FEE'),
+            label: this.$t('TRANS_FEE'),
             field: 'fee',
             align: 'center'
           }

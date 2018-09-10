@@ -2,71 +2,130 @@
 // so you can safely delete all default props below
 
 const lang = {
- // home
- HOME: 'Home',
- BLOCK_HEIGHT: 'Block Height',
- TOTAL_SUPPLY: 'Total Supply',
- USERS_NUMBER: 'Number of Users',
- RUNNING_DAYS: 'Operational Days',
- FOOTER_LINKS: 'Links:',
- HOMEPAGE: 'Official Website',
- FORUM: 'Forum',
- ONLINE_WALLET: 'Online Wallet',
- HOME_PLACEHOLDER: 'Please enter block height/address/transaction ID',
- LANGUAGE_CONTEXT: 'Language:',
- LANGUAGE_ZH: 'ZH',
- LANGUAGE_EN: 'EN',
+  // home
+  HOME: 'Home',
+  BLOCK_HEIGHT: 'Block Height',
+  TOTAL_SUPPLY: 'Total Supply',
+  USERS_NUMBER: 'Users',
+  RUNNING_DAYS: 'Operational Days',
+  FOOTER_LINKS: 'Links',
+  HOMEPAGE: 'Website',
+  FORUM: 'Forum',
+  ONLINE_WALLET: 'Web Wallet',
+  HOME_PLACEHOLDER: 'Please enter block height/address/transaction ID',
+  LANGUAGE_CONTEXT: 'Language:',
+  LANGUAGE_ZH: 'ZH',
+  LANGUAGE_EN: 'EN',
 
- // panel
- BLOCK: 'Block',
- BLOCK_ID: 'Block ID',
- PRODUCER: 'Forged by',
- FORGE_REWARD: 'Forged Quantity',
- TRANS_NUM: 'Transactions',
- TRANS_FEE: 'Fee',
- PRODUCER_TIME: 'Generated Time',
- PRE_BLOCK: 'Previous Block',
- ADDRESS: 'Address',
- BLOCK_INFO: 'Block Info',
- TRANSACTION_INFO: 'Transaction Info',
- ACCOUNT_INFO: 'Account Info',
+  // panel
+  BLOCK: 'Block',
+  BLOCKS: 'Block List',
+  BLOCK_ID: 'Block ID',
+  PRODUCER: 'Forged by',
+  FORGE_REWARD: 'Reward',
+  TRANS_NUM: 'Amount',
+  TRANS_FEE: 'Fee',
+  PRODUCER_TIME: 'Time',
+  PRE_BLOCK: 'Previous Block',
+  ADDRESS: 'Address',
+  BLOCK_INFO: 'Block Info',
+  TRANSACTION_INFO: 'Transaction Info',
+  ACCOUNT_INFO: 'Account Info',
 
- // transactionsInfo
- TRANSACTION: 'Transaction ID',
- TRANS_TYPE: 'Asset Type',
- TRANS_TABLE: 'Transfer List',
- TRANSACTION_TYPE: 'Transaction Type',
- TRANSACTION_TABLE: 'Transaction List',
- AMOUNT: 'Amount',
- TRANS_TIME: 'Transaction Time',
- ARGUMENTS: 'Parameter',
+  // delegates
+  RANK: 'Rank',
+  DELEGATE_NAME: 'Name',
+  DELEGATE_ADDRESS: 'Address',
+  BLOCK_NUM: 'Forged Quantity',
+  PRODUCTIVITY: 'Productivity',
+  VOTE_RATE: 'Vote Rate',
 
- // accountInfo
- NICKNAME: 'Nickname',
- ACCOUNT_BALANCE: 'Account Balance',
- ACCOUNT_ADDRESS: 'Address',
- HEIGHT: 'Height',
+  // assets
+  ASSET_NAME: 'Asset',
+  ISSUER: 'Issuer',
+  MAXIMUN: 'Upper Limit',
+  PRECISION: 'Precision',
+  ISSUE_TIME: 'Issue Date',
+  ISSUE_ADDRESS: 'Issuer Address',
 
- // trans
- TRANS: 'Transaction',
- TRANS_SENDER: 'Sender',
- TRANS_RECRIVER: 'Receiver',
- FEE: 'Fee',
+  // transactionsInfo
+  TRANSACTION: 'Transactions',
+  TRANSACTIONS: 'Transaction List',
+  TRANSACTION_ID: 'Transaction ID',
+  TRANS_TYPE: 'Type',
+  TRANS_TABLE: 'Transfer List',
+  TRANSACTION_TYPE: 'Transaction Type',
+  TRANSACTION_TABLE: 'Transaction List',
+  AMOUNT: 'Amount',
+  TRANS_TIME: 'Transaction Time',
+  TIME: 'Time',
+  ARGUMENTS: 'Parameters',
 
- // tips
- TIPS_COPY_SUCCESS: 'Copied successfully',
- // error
- ERR_INVALID_SEARCH: 'Invalid search',
+  // accountInfo
+  NICKNAME: 'Nickname',
+  ACCOUNT_BALANCE: 'Balance',
+  ACCOUNT_ADDRESS: 'Address',
+  HEIGHT: 'Height',
 
- // table type
- TRANS_TITLE: 'Transaction History',
- BLOCK_TITLE: 'Block History',
- NO_DATA: 'No data found',
+  // trans
+  TRANS: 'Transaction',
+  TRANS_SENDER: 'Sender',
+  TRANS_RECRIVER: 'Recipient',
+  FEE: 'Fee',
+
+  // blocks
+  BLOCK_GENERATOR: 'Forged by',
+
+  // tips
+  TIPS_COPY_SUCCESS: 'Copied successfully',
+  // error
+  ERR_INVALID_SEARCH: 'Invalid search',
+
+  // table type
+  TRANS_TITLE: 'Transactions',
+  BLOCK_TITLE: 'Block Record',
+  NO_DATA: 'No data',
+
+  // added
+  DELEGATES: 'Delegates',
+  INFO: 'Info',
+  PERSON: 'People',
+  ASSETS: 'Asset',
+  SEARCH_OEEOR: 'Oops!',
+  SEARCH_OEEOR_STATEMENT: 'No data matching the query is found. Please try again with different keyword',
+  // common
+  LOADING: 'Loading',
+  FORGE: 'Forge',
+  FROM: 'From',
+  TO: 'To',
+  MORE: 'MORE',
+  SECOND_BEFORE: 'seconds ago',
+  DELEGATE: 'Delegates',
+  DELEGATE_INFO: 'Delegate Info',
+  ASSET_INFO: 'Asset Info',
+  ASSET: 'Asset',
+  ASSET_DESC: 'Asset Description',
+  ASSET_ACCOUNT: 'Account',
+  ASSET_PUBLISH: 'Amount Issued',
+  DIGITAL_ASSET: 'Digital Asset',
+  REGIST_ASSET: 'On-Chain Asset',
+  DELEGATE_LIST: 'Delegate List',
+  REGIST_DELEGATE: 'Registered Delegates',
+  close: 'Close',
+  ISSUED_NUM: 'Issued Asset',
+  TOTAL_PRICE: 'Market Cap.',
+  CLOSE: 'Close',
+
+  // page
+  SHOW: 'Show',
+  PAGE: 'Page',
+  FIRST_PAGE: 'Fisrt',
+  LAST_PAGE: 'Last',
 
   // transaction type filter
   TRS_TYPE_TRANSFER: 'Transfer',
   TRS_TYPE_NICKNAME: 'Set Nickname',
-  TRS_TYPE_TRANSFER_RECORD: 'Transfer Record',
+  TRS_TYPE_TRANSFER_RECORD: 'Transfers',
   TRS_TYPE_TRANSFER_RECORD_LATELY: 'Transfer Record Lately',
   TRS_TYPE_SECOND_PASSWORD: 'Second Secret',
   TRS_TYPE_DELEGATE: 'Delegate',
@@ -108,9 +167,6 @@ const lang = {
   TRS_TYPE_GROUP_ACTIVE: 'Council Activate',
   TRS_TYPE_GROUP_ADDMEMBER: 'Council Add Member',
   TRS_TYPE_GROUP_REMOVEMEMBER: 'Council Remove Member',
-  TRS_TYPE_GROUP_REPLACEMEMBER: 'Council Replace Member',
-
-  // common
-  LOADING: 'LOADING'
+  TRS_TYPE_GROUP_REPLACEMEMBER: 'Council Replace Member'
 }
 export default lang

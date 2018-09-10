@@ -25,8 +25,7 @@
       <boundary-line class="xs:my-20 sm:mt-30 sm:mb-0" />
       </div>
       </div>
-      <div class="text-16 text-tw-grey-darkest pl-15" v-if="!data.length">{{$t('NO_DATA')}}</div>
-      <table-container class="xs:p-10 xs:pt-0 sm:p-0 custom-tr-border" :data="data" :count="count" :params="params" :columnsData="columnsData" @getData="getData">
+      <table-container v-if="data" class="xs:p-10 xs:pt-0 sm:p-0 custom-tr-border" :data="data" :count="count" :params="params" :columnsData="columnsData" @getData="getData">
         <template class="desktop-only" slot="content" slot-scope="props" v-if="props.props">
           <q-td v-if="props.props.id" key="id">
             <div class="text-tw-blue cursor-pointer hover:underline" @click="doSearch(props.props.id)">
@@ -70,6 +69,7 @@
           <table-item  :data="getTableData(props)" :bgIcon="'icon-details'" :dataIcon="'icon-transaction'"/>
         </template>
       </table-container>
+      <div v-else class="text-16 text-tw-grey-darkest xs:pl-5 sm:pl-15">{{$t('NO_DATA')}}</div>
     </div>
   </q-page>
 </template>

@@ -3,10 +3,10 @@
      <breadcrumb class="xs:mt-5 sm:mt-20" />
     <div class="xs:border-0 sm:border-0 border-solid border-tw-grey rounded-lg xs:px-0 xs:pt-0 xs:pb-15 sm:pb-30">
       <div class="mobile-only my-20">
-        <button class="px-10 py-5 border-0 text-white text-12" :class="this.type === 1 ? 'bg-tw-blue' : 'bg-tw-black'" @click="changeType(1)">
+        <button class="px-12 py-6 border-0 text-white text-16" :class="this.type === 1 ? 'bg-tw-blue' : 'bg-tw-grey-darkest'" @click="changeType(1)">
           {{$t('TRANS_TABLE')}}
         </button>
-        <button class="px-10 py-5 border-0 text-white text-12" :class="this.type === 0 ? 'bg-tw-blue' : 'bg-tw-black'" @click="changeType(0)">
+        <button class="px-12 py-6 border-0 text-white text-16" :class="this.type === 0 ? 'bg-tw-blue' : 'bg-tw-grey-darkest'" @click="changeType(0)">
           {{$t('TRANSACTION_TABLE')}}
         </button>
       </div>
@@ -292,13 +292,13 @@ export default {
         return [
           {
             name: 'id',
-            label: 'ID',
+            label: this.$t('TRANSACTION_ID'),
             field: 'ID',
             align: 'center'
           },
           {
             name: 'height',
-            label: this.$t('HEIGHT'),
+            label: this.$t('BLOCK_HEIGHT'),
             field: 'height',
             align: 'center'
           },
@@ -328,7 +328,7 @@ export default {
           },
           {
             name: 'fee',
-            label: this.$t('FEE'),
+            label: this.$t('TRANS_FEE'),
             field: 'fee',
             align: 'center'
           }
@@ -343,7 +343,7 @@ export default {
           },
           {
             name: 'height',
-            label: this.$t('HEIGHT'),
+            label: this.$t('BLOCK_HEIGHT'),
             field: 'height',
             align: 'center'
           },
@@ -379,7 +379,7 @@ export default {
           },
           {
             name: 'transferFee',
-            label: this.$t('FEE'),
+            label: this.$t('TRANS_FEE'),
             field: 'fee',
             align: 'center'
           }
