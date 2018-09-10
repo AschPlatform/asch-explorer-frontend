@@ -31,13 +31,13 @@
         </div>
         <q-item-separator class="sep text-tw-grey" />
         <div class="min-h-50 q-item q-item-division relative-position">
-          <a :class="computedRoute('delegates')" @click="getRouterConf('delegates')">
+          <a :class="computedRoute('delegates')" @click="getRouterConf('/delegates')">
             {{$t('DELEGATES')}}
           </a>
         </div>
         <q-item-separator class="sep text-tw-grey" />
         <div class="min-h-50 q-item q-item-division relative-position">
-          <a :class="computedRoute('assets')" @click="getRouterConf('assets')">
+          <a :class="computedRoute('assets')" @click="getRouterConf('/assets')">
             {{$t('ASSETS')}}
           </a>
         </div>
