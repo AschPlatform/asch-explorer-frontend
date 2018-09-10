@@ -60,6 +60,7 @@
 </template>
 
 <script>
+/* eslint-disable */
 import {
   openURL,
   QLayout,
@@ -122,8 +123,9 @@ export default {
     ...mapActions(['getHeight', 'getUsers', 'getXas', 'getAssets', 'getAssetNum', 'getXasPrice', 'getTransactionInfo']),
     openURL,
     async doSearch(str, type) {
+      console.log(str, type)
       if (this.searchForbidden) return
-      const { hash, address, height } = REGEX
+      const { hash, address, height, nickname } = REGEX
       const router = this.$router
       this.searchForbidden = true
       this._.delay(() => (this.searchForbidden = false), 2000)
@@ -132,8 +134,16 @@ export default {
         router.push(`/delegate/${str}`)
         return
       }
+      if (type === 'nick') {
+        router.push(`/address/${str}`)
+        return
+      }
       if (type === 'id') {
         router.push(`/blocks_id/${str}`)
+        return
+      }
+      if (type === 'transaction') {
+        router.push(`/transaction/${str}`)
         return
       }
       if (type === 'asset') {

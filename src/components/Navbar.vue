@@ -1,5 +1,5 @@
 <template>
-  <q-toolbar class="flex xs:flex-col sm:flex-row justify-between w-full bg-tw-black xs:h-auto sm:h-86 xs:px-0 xs:pb-11 sm:pb-0 sm:px-10 md:px-20 xl:px-25 xll:px-30">
+  <q-toolbar class="flex xs:flex-col overflow-visible sm:flex-row justify-between w-full bg-tw-black xs:h-auto sm:h-86 xs:px-0 xs:pb-11 sm:pb-0 sm:px-10 md:px-20 xl:px-25 xll:px-30">
     <div class="flex justify-between items-center flex-no-wrap sm:w-auto">
       <div class="flex justify-center xs:w-100 xs:h-25 sm:w-144 sm:h-30 cursor-pointer xs:mr-0 sm:mr-20 lg:mr-30 xs:my-15 sm:my-0" @click="jump('/')">
         <q-icon class="text-140 text-tw-white" name="icon-logo" />
@@ -22,8 +22,25 @@
         <q-icon class="text-16 text-tw-white sm:hidden" name="icon-more" />
       </button>
       <div class="flex items-center xs:justify-start sm:justify-end sm:w-full" :class="(stretch?'xs:w-5/6':'w-2/3') +' '+ inputClass">
-        <q-input class="xs:w-full trans shadow appearance-none xs:h-25 sm:h-30 border-solid border sm:hover:border-tw-blue px-11 rounded-15 text-tw-white leading-tight " :class="stretch?'sm:w-2/3 border-tw-blue trans':'sm:w-1/3 border-tw-grey-light trans'" v-model="searchStr" @keyup.enter="search"
-          :after="searchIcon" type="text" :placeholder="getPlaceholder" hide-underline @focus="stretch=true" @blur="stretch=false" />
+        <q-input class="xs:w-full relative trans shadow appearance-none xs:h-25 sm:h-30 border-solid border sm:hover:border-tw-blue px-11 rounded-15 text-tw-white leading-tight " :class="stretch?'sm:w-2/3 border-tw-blue trans':'sm:w-1/3 border-tw-grey-light trans'" v-model="searchStr" @keyup.enter="search"
+          :after="searchIcon" type="text" :placeholder="getPlaceholder" hide-underline @focus="searchExpand()" @blur="searchSeize()" @clear="resetSearch()">
+          <q-list class="absolute pin-t xs:w-full border border-solid border-tw-grey-light bg-black text-tw-white rounded-3 top-30" :class="searchList.length > 0 && stretch ? 'visible' : 'invisible'">
+            <!-- <q-item class="hover:text-tw-blue hover:bg-tw-grey cursor-pointer" v-for="(item, index) in this.searchList" :key="index" @click="searchSelect(item)">
+              <q-item-main :label="item.title"/>
+              <q-item-side right>{{item.label}}</q-item-side>
+            </q-item> -->
+            <div class="q-item q-item-division relative-position hover:text-tw-blue hover:bg-tw-grey cursor-pointer" v-for="(item, index) in this.searchList" :key="index" @click="searchSelect(item)">
+              <div class="q-item-main q-item-section">
+                <div class="q-item-label" style="overflow: hidden; display: -webkit-box; -webkit-box-orient: vertical;">
+                  {{item.title}}
+                </div>
+              </div>
+              <div class="q-item-side q-item-section q-item-side-right">
+                {{item.label}}
+              </div>
+            </div>
+          </q-list>
+          </q-input>
         <q-select class="xs:hidden sm:flex h-30 ml-30 border border-solid border-tw-grey-light pl-6 custom-select rounded-15" v-model="lang" :options="getLangOpts" hide-underline />
       </div>
     </div>
@@ -32,8 +49,10 @@
 </template>
 
 <script>
-import { QToolbar, QToolbarTitle, QBtn, QInput, QSelect, QIcon } from 'quasar'
+/* eslint-disable */
+import { QToolbar, QToolbarTitle, QBtn, QInput, QSelect, QIcon, QList, QItem, QItemMain, QItemSide } from 'quasar'
 import { isDesktop } from '../utils/util'
+import { REGEX } from '../utils/constants'
 
 export default {
   name: 'Navbar',
@@ -43,13 +62,27 @@ export default {
     QBtn,
     QInput,
     QSelect,
-    QIcon
+    QIcon,
+    QList,
+    QItem,
+    QItemMain,
+    QItemSide
   },
   data() {
     return {
       searchStr: '',
       stretch: false,
       lang: ''
+      // searchList: [
+      //   // {
+      //   //   title: '2323',
+      //   //   type: 'HEIGHT'
+      //   // },
+      //   // {
+      //   //   title: '2323',
+      //   //   type: 'NAME'
+      //   // }
+      // ]
     }
   },
   mounted() {
@@ -65,9 +98,83 @@ export default {
     },
     toggle() {
       this.$root.$emit('showDrawer', true)
+    },
+    searchExpand() {
+      this.stretch = true
+    },
+    searchSeize() {
+      this.stretch = false
+    },
+    resetSearch() {
+      this.searchList = []
+    },
+    searchSelect(item) {
+      console.log(item)
+      let {title, type} = item
+      this.$root.$emit('doSearch', title, type)
     }
+    // filter(val) {
+    //   const { hash, height, nickname } = REGEX
+    //   if (hash.test(val)) {
+    //     this.searchList.push({
+    //       title: val,
+    //       label: this.$t('BLOCK_ID'),
+    //       type: 'id'
+    //     },
+    //     {
+    //       title: val,
+    //       label: this.$t('TRANSACTION_ID'),
+    //       type: 'transaction'
+    //     })
+    //   }
+    //   if (height.test(val)) {
+    //     this.searchList.push({
+    //       title: val,
+    //       label: this.$t('BLOCK_HEIGHT'),
+    //       type: 'block'
+    //     })
+    //   }
+    //   if (nickname.test(val)) {
+    //     this.searchList.push({
+    //       title: val,
+    //       label: this.$t('NICKNAME'),
+    //       type: 'nick'
+    //     })
+    //   }
+    // }
   },
   computed: {
+    searchList() {
+      let arr = []
+      const { hash, height, nickname } = REGEX
+      if (hash.test(this.searchStr)) {
+        arr.push({
+          title: this.searchStr,
+          label: this.$t('BLOCK_ID'),
+          type: 'id'
+        },
+        {
+          title: this.searchStr,
+          label: this.$t('TRANSACTION_ID'),
+          type: 'transaction'
+        })
+      }
+      if (height.test(this.searchStr)) {
+        arr.push({
+          title: this.searchStr,
+          label: this.$t('BLOCK_HEIGHT'),
+          type: 'block'
+        })
+      }
+      if (nickname.test(this.searchStr)) {
+        arr.push({
+          title: this.searchStr,
+          label: this.$t('NICKNAME'),
+          type: 'nick'
+        })
+      }
+      return arr
+    },
     inputClass() {
       return isDesktop() ? 'custom-search-icon-desktop' : 'custom-search-icon-mobile'
     },
@@ -120,5 +227,8 @@ export default {
 <style lang="stylus" scoped>
 .trans {
   transition: all ease .1s;
+}
+.top-30 {
+  top: 30px;
 }
 </style>
