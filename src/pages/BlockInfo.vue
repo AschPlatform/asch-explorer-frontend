@@ -33,7 +33,7 @@
               <q-tooltip>{{ props.props.id }}</q-tooltip>
             </div>
           </q-td>
-          <q-td v-if="props.props.height" key="height" >
+          <q-td key="height" >
             <div class="text-tw-blue cursor-pointer hover:underline" @click="doSearch(props.props.height)">
               {{ props.props.height }}
             </div>
@@ -60,9 +60,8 @@
            </div>
             <span v-else>--</span>
           </q-td>
-          <q-td v-if="props.props.fee" key="fee" class="text-right">
-            <span v-if="props.props.fee">{{ props.props.fee | fee }}</span>
-            <span v-else>--</span>
+          <q-td key="fee" class="text-right">
+            <span v-if="props.props.fee || props.props.fee === 0">{{ props.props.fee | fee }}</span>
           </q-td>
         </template>
         <template class="mobile-only" slot="items" slot-scope="props" v-if="props.props">
@@ -83,7 +82,7 @@ import TableContainer from '../components/TableContainer'
 import { transTypes } from '../utils/constants'
 import { mapActions, mapGetters } from 'vuex'
 import TableItem from '../components/TableItem'
-import { convertFee, fulltimestamp, getAddress, rewardCount } from '../utils/util'
+import { convertFee, fulltimestamp, getAddress, rewardCount, toastError } from '../utils/util'
 import infoImge from '../assets/asch_logo.png'
 
 export default {
@@ -241,6 +240,9 @@ export default {
         this.preBlock = trans.previousBlock
         this.produceTime = fulltimestamp(trans.timestamp)
         this.reward = convertFee(trans.reward)
+      } else {
+        toastError(this.$t('ERR_INVALID_SEARCH'))
+        this._.delay(() => this.$router.push('/'), 1000)
       }
     },
     async getData(props = this.defaultProps) {

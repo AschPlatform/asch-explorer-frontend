@@ -300,7 +300,7 @@ export default {
     ...mapActions(['getAccount', 'getBalance', 'getTransactions', 'getTransfers']),
     async getAccountInfo() {
       let res = await this.getAccount(this.$route.params.address || this.$route.params.nickname)
-      if (res.success) {
+      if (res.success && res.account) {
         this.account = res.account
         this.balances = [convertFee(res.account.xas) + ' XAS'].concat(this.balances)
       } else {
