@@ -103,7 +103,7 @@ export default {
         },
         {
           label: 'ASSET_ACCOUNT',
-          value: this.holders
+          value: this.account
         },
         {
           label: 'ISSUER',
