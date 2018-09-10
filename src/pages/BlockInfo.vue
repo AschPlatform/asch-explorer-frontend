@@ -83,7 +83,7 @@ import TableContainer from '../components/TableContainer'
 import { transTypes } from '../utils/constants'
 import { mapActions, mapGetters } from 'vuex'
 import TableItem from '../components/TableItem'
-import { convertFee, fulltimestamp, getAddress, rewardCount } from '../utils/util'
+import { convertFee, fulltimestamp, getAddress, rewardCount, toastError } from '../utils/util'
 import infoImge from '../assets/asch_logo.png'
 
 export default {
@@ -241,6 +241,9 @@ export default {
         this.preBlock = trans.previousBlock
         this.produceTime = fulltimestamp(trans.timestamp)
         this.reward = convertFee(trans.reward)
+      } else {
+        toastError(this.$t('ERR_INVALID_SEARCH'))
+        this._.delay(() => this.$router.push('/'), 1000)
       }
     },
     async getData(props = this.defaultProps) {
