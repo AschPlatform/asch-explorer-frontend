@@ -9,7 +9,7 @@
       <boundary-line class="xs:my-15 sm:my-30" />
       </div>
       <div class="flex justify-between">
-        <info-panel :panelData="panelData" />
+        <info-panel class="xs:max-w-full sm:max-w-2/3" :panelData="panelData" />
         <div class="self-end w-auto xs:hidden sm:block pb-10 pr-15">
           <q-icon class="text-60 text-tw-grayish" name="icon-turn" />
         </div>
@@ -84,7 +84,7 @@ export default {
           type: 'address'
         },
         {
-          label: 'TRANS_TYPE',
+          label: 'TRANSACTION_TYPE',
           value: this.finalType
         },
         {
@@ -140,7 +140,7 @@ export default {
           this.transSender = trans.senderId
           this.transFee = convertFee(trans.fee) + ' XAS'
           if (trans.args) {
-            this.argStr = trans.args.join(', ')
+            this.argStr = trans.args
           }
           break
       }

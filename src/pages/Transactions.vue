@@ -72,11 +72,11 @@
            </div>
             <span v-else>--</span>
           </q-td>
-          <q-td v-if="props.props.fee" key="fee" >
+          <q-td v-if="props.props.fee" key="fee" class="text-right">
             <span v-if="props.props.fee">{{ props.props.fee | fee }}</span>
             <span v-else>--</span>
           </q-td>
-          <q-td v-if="props.props.transaction && props.props.transaction.fee" key="transferFee" >
+          <q-td v-if="props.props.transaction && props.props.transaction.fee" key="transferFee" class="text-right">
             <span>0.1</span>
           </q-td>
         </template>
@@ -373,7 +373,7 @@ export default {
           },
           {
             name: 'currency',
-            label: this.$t('TRANS_TYPE'),
+            label: this.$t('TRANSACTION_TYPE'),
             field: 'currency',
             align: 'center'
           },
