@@ -14,7 +14,7 @@
         <div class="w-4/5">
           <div class="flex items-center xs:mb-15 sm:mb-20">
             <span :class="labelClass">{{$t('BLOCK_HEIGHT')}}</span>
-            <span :class="linkClass"  @click="doSearch(data.height, 'height')" >{{data.height | numSeparator}}</span>
+            <span :class="linkClass"  @click="doSearch(data.height, 'height')">{{data.height | numSeparator}}</span>
           </div>
           <div class="flex items-center xs:mb-15 sm:mb-20">
             <span :class="labelClass">{{$t('PRODUCER')}}</span>
