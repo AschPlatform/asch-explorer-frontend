@@ -14,12 +14,12 @@
         <div class="w-4/5">
           <div class="flex items-center xs:mb-15 sm:mb-20">
             <span :class="labelClass">{{$t('BLOCK_HEIGHT')}}</span>
-            <span :class="linkClass" @click="doSearch(data.height, 'height')">{{data.height | numSeparator}}</span>
+            <span :class="linkClass"  @click="doSearch(data.height, 'height')">{{data.height | numSeparator}}</span>
           </div>
           <div class="flex items-center xs:mb-15 sm:mb-20">
             <span :class="labelClass">{{$t('PRODUCER')}}</span>
-            <span :class="linkClass" @click="doSearch(getAddress(data.delegate))">{{getAddress(data.delegate)|eclipse }}</span>
-          </div>
+            <span :class="linkClass"  @click="$router.push('/delegate/'+getAddress(data.delegate))" >{{getAddress(data.delegate)|eclipse }}</span>
+.         </div>
           <div class="flex items-center">
             <span :class="labelClass">{{$t('FORGE_REWARD')}}</span>
             <span class="truncate xs:text-15 sm:text-18 text-tw-grey-darkest w-auto">{{rewardCount(data.height)}}</span>

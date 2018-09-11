@@ -141,6 +141,7 @@ const lang = {
   ASSETS: '数字资产',
   SEARCH_OEEOR: '哎呀!',
   SEARCH_OEEOR_STATEMENT: '未找到符合查询的数据，请更换关键词后重试。',
+  MESSAGE: '备注',
   // common
   LOADING: '读取中',
   FORGE: '产块',
