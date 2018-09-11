@@ -1,4 +1,7 @@
-import { setCache } from '../utils/util'
+import {
+  setCache,
+  convertFee
+} from '../utils/util'
 
 export default {
   SET_LANG(state, locale) {
@@ -16,7 +19,7 @@ export default {
     state.runState.accountCount = amount
   },
   SET_TOTALPRICE(state, info) {
-    let count = info.priceBtc * info.totalSupply
+    let count = info.priceBtc * convertFee(info.totalSupply)
     state.runState.totalPrice = count
   },
   SET_ASSET_NUMBER(state, amount) {
