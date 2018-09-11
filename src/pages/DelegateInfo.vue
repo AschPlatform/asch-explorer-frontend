@@ -197,6 +197,7 @@ export default {
       // For transactions
       // TODO: BLOCKS API should accept address or publickey
       props.name = this.userName
+      props.reverse = 1
       res = await this.getDelegateBlock(props)
       this.data = res.blocks
       this.count = res.count
