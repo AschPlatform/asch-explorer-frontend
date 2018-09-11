@@ -24,7 +24,7 @@
               </span>
               <span v-else-if="data.type==='id'">{{data.value}}</span>
               <span v-else-if="data.type==='preBlock'" class="text-tw-blue cursor-pointer hover:underline" @click="doSearch(data.value, 'id')">{{data.value}}</span>
-              <span v-else-if="data.type==='argStr'" class="text-tw-grey-darkest">{{data.value}}</span>
+              <span v-else-if="data.type==='argStr'" class="text-tw-grey-darkest"><pre class="pre-wrap">{{data.value}}</pre></span>
               <span v-else-if="data.type==='block'" class="text-tw-blue cursor-pointer hover:underline" @click="doSearch(data.value)">{{data.value | numSeparator}}</span>
               <span v-else-if="data.type==='qr'" class="xs:w-5/6 sm:w-auto inline-block text-tw-grey-darkest" @click="doSearch(data.value)">
                <span class="sm:align-middle xs:mr-10 sm:mr-5">{{data.value}}</span>
@@ -123,5 +123,13 @@ export default {
 .add-qr-container {
   display: inline-block;
   vertical-align: middle !important;
+}
+.pre-wrap {
+  text-align: left;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  margin: 0 0 24px;
+  overflow-x: auto;
+  padding: 8px;
 }
 </style>
