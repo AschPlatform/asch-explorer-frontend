@@ -177,7 +177,7 @@ export default {
         this.fees = convertFee(trans.fees)
         this.producedBlocks = trans.producedBlocks
         this.productivity = trans.productivity
-        this.approval = trans.approval
+        this.approval = trans.approval + '%'
         this.userName = trans.name
         this.getAccountLeft()
       }
