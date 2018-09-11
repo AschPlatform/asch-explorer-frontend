@@ -52,7 +52,8 @@ export default {
       blockHeight: 0,
       transTime: null,
       argStr: null,
-      finalType: null
+      finalType: null,
+      message: null
     }
   },
   async mounted() {
@@ -82,6 +83,10 @@ export default {
           label: 'TRANS_RECRIVER',
           value: this.transReceiver,
           type: 'address'
+        },
+        {
+          label: 'MESSAGE',
+          value: this.message
         },
         {
           label: 'TRANSACTION_TYPE',
@@ -127,6 +132,7 @@ export default {
           this.transReceiver = trans.args[1] || '--'
           this.transNum = convertFee(trans.args[0])
           this.transFee = convertFee(trans.fee) + ' XAS'
+          this.message = trans.message
           break
         case 103:
           // TODO: set global precision map
@@ -134,6 +140,8 @@ export default {
           this.transSender = trans.senderId
           this.transReceiver = trans.args[2] || '--'
           this.transNum = convertFee(trans.args[1], precision)
+          this.transFee = convertFee(trans.fee) + ' XAS'
+          this.message = trans.message
           break
         // case
         default:
