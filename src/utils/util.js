@@ -282,7 +282,7 @@ export const getAddress = (pubKey) => {
 export const getSecFromNow = (timestamp) => {
   let time = moment(fulltimestamp(timestamp))
   // return time.startOf('seconds').fromNow()
-  return moment().diff(time, 'seconds')
+  return moment().diff(time, 's')
 }
 
 export const getTimeFromNow = (timestamp) => {

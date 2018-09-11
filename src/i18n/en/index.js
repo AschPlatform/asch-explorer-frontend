@@ -119,7 +119,7 @@ const lang = {
   // page
   SHOW: 'Show',
   PAGE: 'Page',
-  FIRST_PAGE: 'Fisrt',
+  FIRST_PAGE: 'First',
   LAST_PAGE: 'Last',
 
   // transaction type filter

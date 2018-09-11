@@ -18,7 +18,7 @@
           </div>
           <div class="flex items-center xs:mb-15 sm:mb-20">
             <span :class="labelClass">{{$t('PRODUCER')}}</span>
-            <span :class="linkClass"  @click="doSearch(getAddress(data.delegate))" >{{getAddress(data.delegate)|eclipse }}</span>
+            <span :class="linkClass"  @click="doSearch(getAddress(data.delegate))" >{{ getAddress(data.delegate) | eclipse }}</span>
           </div>
           <div class="flex items-center">
             <span :class="labelClass">{{$t('FORGE_REWARD')}}</span>
