@@ -140,7 +140,7 @@ export default {
           this.transSender = trans.senderId
           this.transFee = convertFee(trans.fee) + ' XAS'
           if (trans.args) {
-            this.argStr = trans.args
+            this.argStr = trans.args.join(', ')
           }
           break
       }

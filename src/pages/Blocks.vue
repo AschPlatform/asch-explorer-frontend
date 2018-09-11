@@ -14,7 +14,7 @@
               <span>{{ fulltimestamp(props.props.timestamp) }}</span>
           </q-td>
           <q-td v-if="props.props.delegate" key="delegate" >
-            <div class="text-tw-blue cursor-pointer hover:underline" @click="doSearch(props.props.delegate)">
+            <div class="text-tw-blue cursor-pointer hover:underline" @click="doSearch(getAddress(props.props.delegate))">
               {{ getAddress(props.props.delegate) | eclipse }}
               <q-tooltip>{{ getAddress(props.props.delegate) }}</q-tooltip>
             </div>

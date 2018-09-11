@@ -5,7 +5,7 @@
         <q-icon class="xs:text-70 sm:text-70 text-tw-grey-darkest opacity-8" name="icon-block" />
       </div>
       <div :class="timestampClass">
-          {{data.timestamp | secFromNow}}{{$t('SECOND_BEFORE')}}
+        {{data.timestamp | secFromNow}}{{$t('SECOND_BEFORE')}}
       </div>
       <div v-if="data" class="flex justify-start">
         <div class="flex justify-start items-start w-auto xs:mr-5 sm:mr-10 xs:pt-2 sm:pt-3">
@@ -14,15 +14,15 @@
         <div class="w-4/5">
           <div class="flex items-center xs:mb-15 sm:mb-20">
             <span :class="labelClass">{{$t('BLOCK_HEIGHT')}}</span>
-            <span :class="linkClass"  @click="doSearch(data.height, 'height')" >{{data.height | numSeparator}}</span>
+            <span :class="linkClass" @click="doSearch(data.height, 'height')">{{data.height | numSeparator}}</span>
           </div>
           <div class="flex items-center xs:mb-15 sm:mb-20">
             <span :class="labelClass">{{$t('PRODUCER')}}</span>
-            <span :class="linkClass"  @click="doSearch(getAddress(data.delegate))" >{{getAddress(data.delegate)|eclipse }}</span>
+            <span :class="linkClass" @click="doSearch(getAddress(data.delegate))">{{getAddress(data.delegate)|eclipse }}</span>
           </div>
           <div class="flex items-center">
             <span :class="labelClass">{{$t('FORGE_REWARD')}}</span>
-            <span class="truncate xs:text-15 sm:text-18 text-tw-grey-darkest w-auto"  >{{rewardCount(data.height)}}</span>
+            <span class="truncate xs:text-15 sm:text-18 text-tw-grey-darkest w-auto">{{rewardCount(data.height)}}</span>
           </div>
         </div>
       </div>
@@ -38,17 +38,23 @@
         <div class="w-4/5">
           <div class="flex items-center mb-20">
             <span class="w-auto mr-10 xs:text-15 sm:text-18 text-tw-grey-darkest">{{$t('TRANSACTION_ID')}}</span>
-            <span  :class="linkClass" class="max-w-xs" @click="doSearch(data.id, 'trans')">{{data.id|eclipse}}</span>
+            <span :class="linkClass" class="max-w-xs" @click="doSearch(data.id, 'trans')">{{data.id|eclipse}}</span>
           </div>
           <div class="flex items-center justify-start mb-20">
-              <span class="xs:mr-10 sm:mr-20 xs:text-15 sm:text-18 text-tw-grey-darkest">{{$t('FROM')}}</span>
-              <span :class="addressClass" @click="doSearch(data.senderId)" >{{data.senderId|eclipse}}</span>
-              <span class="xs:mx-5 sm:mx-10 xs:text-15 sm:text-18 text-tw-grey-darkest">{{$t('TO')}}</span>
-              <span :class="getProps(data,'recieve')?addressClass:''" @click="doSearch(getProps(data,'recieve'))" >{{getProps(data,'recieve')|| '--'}}</span>
+            <span class="xs:mr-10 sm:mr-20 xs:text-15 sm:text-18 text-tw-grey-darkest">{{$t('FROM')}}</span>
+            <span :class="addressClass" @click="doSearch(data.senderId)">{{data.senderId|eclipse}}</span>
+            <span class="xs:mx-5 sm:mx-10 xs:text-15 sm:text-18 text-tw-grey-darkest">{{$t('TO')}}</span>
+            <span :class="getProps(data,'recieve')?addressClass:''" @click="doSearch(getProps(data,'recieve'))">
+              {{getProps(data,'recieve')|| '--'}}
+            </span>
           </div>
           <div class="flex items-center">
             <span class="w-auto xs:mr-10 sm:mr-20 xs:text-15 sm:text-18 text-tw-grey-darkest">{{$t('AMOUNT')}}</span>
-            <span class="xs:text-15 sm:text-18 text-tw-grey-darkest">{{getProps(data) || '--'}}</span>
+            <span v-if="getProps(data)" class="xs:text-15 sm:text-18 text-tw-grey-darkest">
+                  {{getresult(getProps(data),4)+ ' XAS' }}
+                <q-tooltip>{{ getProps(data) + ' XAS' }}</q-tooltip>
+              </span>
+            <span v-else class="xs:text-15 sm:text-18 text-tw-grey-darkest">{{'--'}}</span>
           </div>
         </div>
         <div class="right-icon-right absolute -mr-20 -mb-10 pin-b pin-r">
@@ -60,7 +66,7 @@
 </template>
 
 <script>
-import { QIcon } from 'quasar'
+import { QIcon, QTooltip } from 'quasar'
 import { getAddress, convertFee, fulltimestamp, rewardCount } from '../utils/util'
 import { REGEX } from '../utils/constants'
 import { mapGetters } from 'vuex'
@@ -69,7 +75,10 @@ import moment from 'moment'
 export default {
   name: 'PanelItem',
   props: ['type', 'data'],
-  components: { QIcon },
+  components: {
+    QIcon,
+    QTooltip
+  },
   data() {
     return {}
   },
@@ -85,7 +94,7 @@ export default {
       let value = ''
       if (type === 1) {
         value = isAmount ? args[len - 2] : args[len - 1]
-        if (isAmount) value = convertFee(value) + ' XAS'
+        if (isAmount) value = convertFee(value)
       } else if (type === 103) {
         value = isAmount ? args[len - 2] : args[len - 1]
         if (isAmount && this.assetMap.get(args[0])) {
@@ -114,13 +123,13 @@ export default {
         timeStr = timeStr.replace('an', '1')
       }
       return timeStr
+    },
+    getresult(str, n) {
+      return str.replace(new RegExp('^(\\-?\\d*\\.?\\d{0,' + n + '})(\\d*)$'), '$1')
     }
   },
   computed: {
     ...mapGetters(['assetMap']),
-    // getProp() {
-    //   return this.getProps(data, 'recieve') ? this.getProps(data, 'recieve') : '--'
-    // },
     timestampClass() {
       return 'w-auto text-right xs:text-15 sm:text-18 text-tw-grey-darkest absolute xs:pt-15 xs:pr-15 sm:pt-20 sm:pr-20 pin-t pin-r'
     },
@@ -128,7 +137,7 @@ export default {
       return 'truncate xs:text-15 sm:text-18 text-tw-blue hover:underline w-auto cursor-pointer'
     },
     addressClass() {
-      return 'truncate xs:text-15 sm:text-18 text-tw-blue hover:underline cursor-pointer max-w-1/3'
+      return 'truncate xs:text-15 sm:text-18 text-tw-blue hover:underline w-1/3  cursor-pointer'
     },
     labelClass() {
       return 'w-auto xs:text-15 sm:text-18 text-tw-grey-darkest mr-10'
