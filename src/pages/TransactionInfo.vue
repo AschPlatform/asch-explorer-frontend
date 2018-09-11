@@ -101,13 +101,13 @@ export default {
           type: 'block'
         },
         {
+          label: 'TRANS_TIME',
+          value: this.transTime
+        },
+        {
           label: 'ARGUMENTS',
           value: this.argStr,
           type: 'argStr'
-        },
-        {
-          label: 'TRANS_TIME',
-          value: this.transTime
         }
       ]
     },

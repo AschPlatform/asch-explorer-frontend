@@ -68,7 +68,7 @@
          <q-td v-if="props.props.args || props.props.args === null" key="args" >
            <div v-if="props.props.args && props.props.args.length > 0" >
             <span>{{ props.props.args.join(',') | eclipse }}</span>
-              <q-tooltip>{{ props.props.args }}</q-tooltip>
+              <q-tooltip><pre>{{ props.props.args }}</pre></q-tooltip>
            </div>
             <span v-else>--</span>
           </q-td>

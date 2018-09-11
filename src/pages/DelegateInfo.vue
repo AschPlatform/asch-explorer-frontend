@@ -32,7 +32,7 @@
             <span>{{ props.props.count }}</span>
           </q-td>
           <q-td key="fees" class="text-right">
-            <span>{{ props.props.fees }}</span>
+            <span>{{ props.props.fees | fee}}</span>
           </q-td>
           <q-td key="timestamp" >
             <span>{{ fulltimestamp(props.props.timestamp) }}</span>
