@@ -61,7 +61,7 @@
           <q-td v-if="props.props.recipientId" key="recipientId" >
             <div class="text-tw-blue cursor-pointer hover:underline" @click="doSearch(props.props.recipientId)">
               <!-- {{ props.props.recipientName ? props.props.recipientName : props.props.recipientId | eclipse }} -->
-              {{ props.props.type === 1 ? props.props.transaction.args[1] : props.props.recipientId  | eclipse }}
+              {{ props.props.transaction.args[props.props.transaction.args.length - 1] | eclipse }}
               <q-tooltip>{{ props.props.recipientId }}</q-tooltip>
             </div>
           </q-td>
@@ -316,7 +316,7 @@ export default {
           let { precision } = balance.asset
           if (balance.balance >= 1) {
             balances.push(
-              convertFee(balance.balance, precision) + ' ' + balance.currency.split('.')[1]
+              convertFee(balance.balance, precision) + ' ' + balance.currency
             )
           }
         })

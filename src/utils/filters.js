@@ -65,7 +65,7 @@ const filters = {
     return getTimeFromNow(timestamp)
   },
   eclipse: (str = '', head = 5, tail = 5) => {
-    if (str.length > head + tail) {
+    if (str.length > head + tail + 5) {
       return str.slice(0, head) + '...' + str.slice(-tail)
     } else {
       return str
