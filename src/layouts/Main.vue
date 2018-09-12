@@ -134,6 +134,10 @@ export default {
         return
       }
       if (type === 'nick') {
+        router.push(`/account/${str}`)
+        return
+      }
+      if (type === 'address') {
         router.push(`/address/${str}`)
         return
       }
