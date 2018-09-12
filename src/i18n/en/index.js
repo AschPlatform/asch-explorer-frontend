@@ -99,7 +99,7 @@ const lang = {
   FROM: 'From',
   TO: 'To',
   MORE: 'MORE',
-  SECOND_BEFORE: 'seconds ago',
+  SECOND_BEFORE: 's ago',
   DELEGATE: 'Delegates',
   DELEGATE_INFO: 'Delegate Info',
   ASSET_INFO: 'Asset Info',

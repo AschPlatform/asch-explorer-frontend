@@ -5,7 +5,7 @@
         <q-icon class="xs:text-70 sm:text-70 text-tw-grey-darkest opacity-8" name="icon-block" />
       </div>
       <div :class="timestampClass">
-          {{data.timestamp | secFromNow}}{{$t('SECOND_BEFORE')}}
+          {{data.timestamp | secFromNow}}{{' ' + $t('SECOND_BEFORE')}}
       </div>
       <div v-if="data" class="flex justify-start">
         <div class="flex justify-start items-start w-auto xs:mr-5 sm:mr-10 xs:pt-2 sm:pt-3">
