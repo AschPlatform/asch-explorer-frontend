@@ -219,7 +219,7 @@ export default {
     -webkit-box-shadow: 0px 3px 3px rgba(220, 220, 220, 1);
     -moz-box-shadow: 0px 3px 3px rgba(220, 220, 220, 1);
     -o-box-shadow: 0px 3px 3px rgba(220, 220, 220, 1);
-    background-color: #F8F8F8;
+    background-color: #F3F3F3;
   }
 
   td {

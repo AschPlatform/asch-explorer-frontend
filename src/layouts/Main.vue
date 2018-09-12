@@ -123,6 +123,7 @@ export default {
     ...mapActions(['getHeight', 'getUsers', 'getXas', 'getAssets', 'getAssetNum', 'getXasPrice', 'getTransactionInfo']),
     openURL,
     async doSearch(str, type) {
+      console.log(str, type)
       if (this.searchForbidden) return
       const { hash, address, height, nickname } = REGEX
       const router = this.$router
