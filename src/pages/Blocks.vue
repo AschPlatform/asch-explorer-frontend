@@ -15,13 +15,13 @@
           </q-td>
           <q-td v-if="props.props.delegate" key="delegate" >
             <div class="text-tw-blue cursor-pointer hover:underline" @click="doSearch(getAddress(props.props.delegate))">
-              {{ getAddress(props.props.delegate) | eclipse }}
+               <span class="w-136 inline-block"><a class="custom-link-desktop text-tw-blue cursor-pointer hover:underline">{{ getAddress(props.props.delegate) }}</a></span>
               <q-tooltip>{{ getAddress(props.props.delegate) }}</q-tooltip>
             </div>
           </q-td>
           <q-td v-if="props.props.id" key="id" >
             <div class="text-tw-blue cursor-pointer hover:underline" @click="doSearch(props.props.id)">
-              {{ props.props.id | eclipse }}
+              <span class="w-136 inline-block"><a class="custom-link-desktop text-tw-blue cursor-pointer hover:underline">{{ props.props.id }}</a></span>
               <q-tooltip>{{ props.props.id }}</q-tooltip>
             </div>
           </q-td>
