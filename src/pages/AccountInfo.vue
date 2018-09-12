@@ -84,7 +84,7 @@
           </q-td>
           <q-td v-if="props.props.fee || props.props.fee === 0" key="fee" class="text-right">
             <span v-if="props.props.fee">{{ props.props.fee | fee }}</span>
-            <span v-else>0 XAS</span>
+            <span v-else>0</span>
           </q-td>
           <q-td v-if="props.props.transaction && props.props.transaction.fee" key="transferFee" class="text-right" >
             <span>0.1</span>
@@ -303,7 +303,6 @@ export default {
       if (res.success && res.account) {
         this.account = res.account
         this.balances = [convertFee(res.account.xas) + ' XAS'].concat(this.balances)
-        // todo
       } else {
         toastError(this.$t('ERR_INVALID_SEARCH'))
         this._.delay(() => this.$router.push('/'), 1000)

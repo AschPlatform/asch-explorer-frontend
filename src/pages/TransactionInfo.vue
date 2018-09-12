@@ -27,7 +27,7 @@ import Breadcrumb from '../components/Breadcrumb'
 import BoundaryLine from '../components/BoundaryLine'
 import InfoPanel from '../components/InfoPanel'
 import { convertFee, fulltimestamp, toast } from '../utils/util'
-import { transTypes } from '../utils/constants'
+import { transTypes, REGEX } from '../utils/constants'
 import { mapGetters, mapActions } from 'vuex'
 import infoImge from '../assets/asch_logo.png'
 
@@ -43,6 +43,7 @@ export default {
   },
   data() {
     return {
+      REGEX,
       infoImge,
       transSender: null,
       transReceiver: null,
@@ -82,7 +83,7 @@ export default {
         {
           label: 'TRANS_RECRIVER',
           value: this.transReceiver,
-          type: 'address'
+          type: REGEX.address.test(this.transReceiver) ? 'address' : 'nick'
         },
         {
           label: 'MESSAGE',
@@ -133,6 +134,7 @@ export default {
           this.transNum = convertFee(trans.args[0])
           this.transFee = convertFee(trans.fee) + ' XAS'
           this.message = trans.message
+          this.argStr = trans.args
           break
         case 103:
           // TODO: set global precision map
@@ -142,14 +144,13 @@ export default {
           this.transNum = convertFee(trans.args[1], precision)
           this.transFee = convertFee(trans.fee) + ' XAS'
           this.message = trans.message
+          this.argStr = trans.args
           break
         // case
         default:
           this.transSender = trans.senderId
           this.transFee = convertFee(trans.fee) + ' XAS'
-          if (trans.args) {
-            this.argStr = trans.args.join(', ')
-          }
+          this.argStr = trans.args
           break
       }
     },

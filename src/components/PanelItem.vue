@@ -63,8 +63,8 @@
           <div class="flex items-center">
             <span class="w-auto xs:mr-10 sm:mr-20 xs:text-15 sm:text-18 text-tw-grey-darkest">{{$t('AMOUNT')}}</span>
             <span v-if="getProps(data)" class="xs:text-15 sm:text-18 text-tw-grey-darkest">
-                    {{getresult(getProps(data),4)+ ' XAS' }}
-                  <q-tooltip>{{ getProps(data) + ' XAS' }}</q-tooltip>
+                    {{getresult(getProps(data),4) }}
+                  <q-tooltip>{{ getProps(data) }}</q-tooltip>
                 </span>
             <span v-else class="xs:text-15 sm:text-18 text-tw-grey-darkest">{{'--'}}</span>
           </div>
@@ -78,6 +78,7 @@
 </template>
 
 <script>
+/* eslint-disable */
   import {
     QIcon,
     QTooltip
@@ -131,10 +132,12 @@
         return value
       },
       doSearch(str, type) {
-        if (type === 'height' || 'trans') {
+        if (type === 'height' || type === 'trans') {
           return this.$root.$emit('doSearch', str)
         } else if (REGEX.address.test(str)) {
-          return this.$root.$emit('doSearch', str)
+          return this.$root.$emit('doSearch', str, 'address')
+        } else {
+          return this.$root.$emit('doSearch', str, 'nick')
         }
       },
       timeFromNow(timestamp) {
