@@ -31,13 +31,13 @@
         <template class="desktop-only" slot="content" slot-scope="props" v-if="props.props">
           <q-td v-if="props.props.id" key="id">
             <div class="text-tw-blue cursor-pointer hover:underline" @click="doSearch(props.props.id)">
-              {{ props.props.id | eclipse }}
+             <span class="w-136 inline-block"><a class="custom-link-desktop text-tw-blue cursor-pointer hover:underline">{{ props.props.id }}</a></span>
               <q-tooltip>{{ props.props.id }}</q-tooltip>
             </div>
           </q-td>
           <q-td v-if="props.props.tid" key="tid" >
             <div class="text-tw-blue cursor-pointer hover:underline" @click="doSearch(props.props.tid)">
-              {{ props.props.tid | eclipse }}
+              <span class="w-136 inline-block"><a class="custom-link-desktop text-tw-blue cursor-pointer hover:underline">{{ props.props.tid }}</a></span>
               <q-tooltip>{{ props.props.tid }}</q-tooltip>
             </div>
           </q-td>
@@ -54,14 +54,13 @@
           </q-td>
           <q-td v-if="props.props.senderId" key="senderId" >
             <div class="text-tw-blue cursor-pointer hover:underline" @click="doSearch(props.props.senderId)">
-              {{ props.props.senderId | eclipse }}
+               <span class="w-136 inline-block"><a class="custom-link-desktop text-tw-blue cursor-pointer hover:underline">{{ props.props.senderId }}</a></span>
               <q-tooltip>{{ props.props.senderId }}</q-tooltip>
             </div>
           </q-td>
           <q-td v-if="props.props.recipientId" key="recipientId" >
             <div class="text-tw-blue cursor-pointer hover:underline" @click="doSearch(props.props.recipientId)">
-              <!-- {{ props.props.recipientName ? props.props.recipientName : props.props.recipientId | eclipse }} -->
-              {{ props.props.type === 1 ? props.props.transaction.args[1] : props.props.recipientId  | eclipse }}
+              <span class="w-136 inline-block"><a class="custom-link-desktop text-tw-blue cursor-pointer hover:underline">{{ props.props.type === 1 ? props.props.transaction.args[1] : props.props.recipientId }}</a></span>
               <q-tooltip>{{ props.props.recipientId }}</q-tooltip>
             </div>
           </q-td>
