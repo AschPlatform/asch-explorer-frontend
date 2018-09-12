@@ -32,7 +32,7 @@
             <span>{{ props.props.count }}</span>
           </q-td>
           <q-td key="fees" class="text-right">
-            <span>{{ props.props.fees }}</span>
+            <span>{{ props.props.fees | fee}}</span>
           </q-td>
           <q-td key="timestamp" >
             <span>{{ fulltimestamp(props.props.timestamp) }}</span>
@@ -177,7 +177,7 @@ export default {
         this.fees = convertFee(trans.fees)
         this.producedBlocks = trans.producedBlocks
         this.productivity = trans.productivity
-        this.approval = trans.approval
+        this.approval = trans.approval + '%'
         this.userName = trans.name
         this.getAccountLeft()
       }
@@ -197,6 +197,7 @@ export default {
       // For transactions
       // TODO: BLOCKS API should accept address or publickey
       props.name = this.userName
+      props.reverse = 1
       res = await this.getDelegateBlock(props)
       this.data = res.blocks
       this.count = res.count

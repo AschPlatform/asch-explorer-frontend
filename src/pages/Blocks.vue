@@ -4,13 +4,13 @@
     <div class="rounded-lg xs:px-0 xs:pt-0 xs:pb-15 sm:px-0 sm:py-0">
     <table-container class="custom-thead" :data="data"  :params="params" :count="count" :columnsData="columnsData" @getData="getData">
         <template class="desktop-only" slot="content" slot-scope="props" v-if="props.props">
-          <q-td v-if="props.props.height" key="height">
+          <q-td  key="height">
             <div class="text-tw-blue cursor-pointer hover:underline" @click="doSearch(props.props.height)">
               {{ props.props.height }}
               <q-tooltip>{{ props.props.height }}</q-tooltip>
             </div>
           </q-td>
-          <q-td v-if="props.props.timestamp" key="timestamp" >
+          <q-td key="timestamp" >
               <span>{{ fulltimestamp(props.props.timestamp) }}</span>
           </q-td>
           <q-td v-if="props.props.delegate" key="delegate" >
@@ -28,7 +28,7 @@
           <q-td key="count" >
             <span>{{ props.props.count }}</span>
           </q-td>
-          <q-td v-if="props.props.reward" key="reward" >
+          <q-td key="reward" >
             <span>{{ props.props.reward | fee }}</span>
           </q-td>
           <q-td key="fee" class="text-right">
@@ -165,7 +165,7 @@ export default {
       //   value: fee
       // }
       let timeField = {
-        label: 'FEE',
+        label: 'PRODUCER_TIME',
         value: timestamp,
         type: 'countDown'
       }

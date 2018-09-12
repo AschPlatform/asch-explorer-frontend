@@ -34,7 +34,8 @@
           <span>{{ props.props.productivity + ' %' }}</span>
         </q-td>
         <q-td key="approval">
-          <span>{{ props.props.approval + ' %' }}</span>
+          <span>{{ props.props.approval.toFixed(2) + ' %' }}</span>
+          <q-tooltip>{{ props.props.approval + '%'}}</q-tooltip>
         </q-td>
       </template>
       <template class="mobile-only" slot="items" slot-scope="props" v-if="props.props">
