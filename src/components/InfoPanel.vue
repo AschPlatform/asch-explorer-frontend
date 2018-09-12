@@ -3,7 +3,7 @@
     <div class="flex relative-position">
       <table class="q-table horizontal-separator highlight loose accountinfo-table margin-t-20 table-tr-td-p-0">
         <tbody :class='tableBodyClass'>
-          <tr v-show="data.value != null" v-for="(data, idx) in panelData" :key="idx">
+          <tr v-show="data.value != null && data.value != ''" v-for="(data, idx) in panelData" :key="idx">
             <td v-if="data.label" class="w-auto pl-15 flex">
               <span>{{$t(data.label)}}:</span>  
             </td>
@@ -12,7 +12,7 @@
             </td>
             <td class="xs:w-2/3 sm:w-auto">
               <span :class="data.link?`text-tw-blue cursor-pointer hover:underline`:''" @click="data.link?$router.push(data.link+data.value):null">
-                              <span v-if="data.type==='number'" >{{data.value | numSeparator}}</span>
+              <span v-if="data.type==='number'" >{{data.value | numSeparator}}</span>
               <span v-else-if="data.type==='timestamp'">{{data.value | formatTimestamp}}</span>
               <span v-else-if="data.type==='address'" class="text-tw-blue cursor-pointer hover:underline" @click="doSearch(data.value, 'nick')">
                 <span v-if="data.nickname">

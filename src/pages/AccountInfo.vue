@@ -303,6 +303,7 @@ export default {
       if (res.success && res.account) {
         this.account = res.account
         this.balances = [convertFee(res.account.xas) + ' XAS'].concat(this.balances)
+        // todo
       } else {
         toastError(this.$t('ERR_INVALID_SEARCH'))
         this._.delay(() => this.$router.push('/'), 1000)
