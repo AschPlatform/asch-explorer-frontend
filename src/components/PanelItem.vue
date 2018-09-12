@@ -133,13 +133,10 @@
       },
       doSearch(str, type) {
         if (type === 'height' || type === 'trans') {
-          console.log('1', str, type, REGEX)
           return this.$root.$emit('doSearch', str)
         } else if (REGEX.address.test(str)) {
-          console.log('2', str, type)
           return this.$root.$emit('doSearch', str, 'address')
         } else {
-          console.log('3', str, type)
           return this.$root.$emit('doSearch', str, 'nick')
         }
       },
