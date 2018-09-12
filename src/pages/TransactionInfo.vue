@@ -134,6 +134,7 @@ export default {
           this.transNum = convertFee(trans.args[0])
           this.transFee = convertFee(trans.fee) + ' XAS'
           this.message = trans.message
+          this.argStr = trans.args
           break
         case 103:
           // TODO: set global precision map
@@ -143,14 +144,13 @@ export default {
           this.transNum = convertFee(trans.args[1], precision)
           this.transFee = convertFee(trans.fee) + ' XAS'
           this.message = trans.message
+          this.argStr = trans.args
           break
         // case
         default:
           this.transSender = trans.senderId
           this.transFee = convertFee(trans.fee) + ' XAS'
-          if (trans.args) {
-            this.argStr = trans.args.join(', ')
-          }
+          this.argStr = trans.args
           break
       }
     },
