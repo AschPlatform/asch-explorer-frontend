@@ -46,10 +46,10 @@
                 </a>
               </span>
           </div>
-          <div class="flex items-center justify-start mb-20">
+          <p class="flex items-center justify-start mb-20">
             <span class="xs:mr-10 sm:mr-20 xs:text-15 sm:text-18 text-tw-grey-darkest">{{$t('FROM')}}</span>
             <span :class="addressClass" @click="doSearch(data.senderId)">
-                <a :class="customLinkClass">
+                <a :class="customLinkClass" href="javascript:;">
                   {{data.senderId}}
                 </a>
             </span>
@@ -59,7 +59,7 @@
                  {{getProps(data,'recieve')|| 'SYSTEM'}}
                 </a>
               </span>
-          </div>
+          </p>
           <div class="flex items-center">
             <span class="w-auto xs:mr-10 sm:mr-20 xs:text-15 sm:text-18 text-tw-grey-darkest">{{$t('AMOUNT')}}</span>
             <span v-if="getProps(data)" class="xs:text-15 sm:text-18 text-tw-grey-darkest">
@@ -150,8 +150,8 @@ export default {
     },
     customLinkClass() {
       return isDesktop()
-        ? 'custom-link-desktop xs:text-15 sm:text-18 text-tw-blue hover:underline cursor-pointer'
-        : 'custom-link-mobile xs:text-15 sm:text-18 text-tw-blue hover:underline cursor-pointer'
+        ? 'custom-link-desktop xs:text-15 sm:text-18 text-tw-blue no-underline hover:underline cursor-pointer'
+        : 'custom-link-mobile xs:text-15 sm:text-18 text-tw-blue no-underline hover:underline cursor-pointer'
     },
     addressClass() {
       return 'xs:text-15 sm:text-18 text-tw-blue hover:underline  cursor-pointer custom-link w-1/3'
