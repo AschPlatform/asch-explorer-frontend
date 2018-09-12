@@ -60,7 +60,7 @@
           </q-td>
           <q-td v-if="props.props.recipientId" key="recipientId" >
             <div class="text-tw-blue cursor-pointer hover:underline" @click="doSearch(props.props.recipientId)">
-              <span class="w-136 inline-block"><a class="custom-link-desktop text-tw-blue cursor-pointer hover:underline">{{ props.props.type === 1 ? props.props.transaction.args[1] : props.props.recipientId }}</a></span>
+              <span class="w-136 inline-block"><a class="custom-link-desktop text-tw-blue cursor-pointer hover:underline">{{ props.props.transaction.args[props.props.transaction.args.length - 1]}}</a></span>
               <q-tooltip>{{ props.props.recipientId }}</q-tooltip>
             </div>
           </q-td>
