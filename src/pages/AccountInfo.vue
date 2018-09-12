@@ -61,7 +61,7 @@
           <q-td v-if="props.props.recipientId" key="recipientId" >
             <div class="text-tw-blue cursor-pointer hover:underline" @click="doSearch(props.props.recipientId)">
               <!-- {{ props.props.recipientName ? props.props.recipientName : props.props.recipientId | eclipse }} -->
-              {{ props.props.transaction.args[1]  | eclipse }}
+              {{ props.props.type === 1 ? props.props.transaction.args[1] : props.props.recipientId  | eclipse }}
               <q-tooltip>{{ props.props.recipientId }}</q-tooltip>
             </div>
           </q-td>
