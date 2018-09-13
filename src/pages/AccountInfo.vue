@@ -107,7 +107,7 @@ import InfoPanel from '../components/InfoPanel'
 import TableItem from '../components/TableItem'
 import PanelItem from '../components/PanelItem'
 import TableContainer from '../components/TableContainer'
-import { convertFee, toastError, fulltimestamp } from '../utils/util'
+import { convertFee, fulltimestamp } from '../utils/util'
 import { transTypes } from '../utils/constants'
 import { mapActions, mapGetters } from 'vuex'
 import infoImge from '../assets/asch_logo.png'
@@ -315,8 +315,7 @@ export default {
           weight > 0 ? '( ' + this.$t('LOCKED') + convertFee(weight) + ' XAS )' : ''
         this.balances = [convertFee(xasBalance) + ' XAS ' + lockedWeight].concat(this.balances)
       } else {
-        toastError(this.$t('ERR_INVALID_SEARCH'))
-        this._.delay(() => this.$router.push('/'), 1000)
+        this.$router.push({ path: '/error', query: { errorStr: this.$route.params.address || this.$route.params.nickname } })
       }
     },
     async getAccountBalances() {

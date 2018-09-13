@@ -24,7 +24,7 @@
               <span :class="data.link?`text-tw-blue cursor-pointer hover:underline`:''" @click="data.link?$router.push(data.link+data.value):null">
               <span v-if="data.type==='number'" class="text-tw-blue cursor-pointer hover:underline" @click="doSearch(data.value)">{{data.value | numSeparator}}</span>
               <span v-else-if="data.type==='timestamp'">{{data.value | formatTimestamp(true)}}</span>
-              <span v-else-if="data.type==='delegate'" class="text-tw-blue cursor-pointer hover:underline" @click="doSearch(data.value, 'delegate')">{{data.value}}</span>
+              <span v-else-if="data.type==='delegate'" class="text-tw-blue cursor-pointer hover:underline" @click="doSearch(data.value[1], 'delegate')">{{data.value[0]}}</span>
               <span v-else-if="data.type==='asset'" class="text-tw-blue cursor-pointer hover:underline" @click="doSearch(data.value, 'asset')">{{data.value.split('.')[1]}}</span>
               <span v-else-if="data.type==='countDown'">{{fulltimestamp(data.value)}}</span>
               <span v-else-if="data.type==='address'" class="text-tw-blue cursor-pointer hover:underline" @click="doSearch(data.value)">
