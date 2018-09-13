@@ -160,7 +160,7 @@ export default {
         let result = await this.getTransactionInfo({
           query: this.$route.params.id
         })
-        if (result.success && result.type === 'transaction') {
+        if (result.success && result.searchResults[0].type === 'transaction') {
           let data = result.searchResults[0].data
           this.transDetail(data)
           this.transTime = fulltimestamp(data.timestamp)
