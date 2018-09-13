@@ -196,7 +196,6 @@ export default {
       }
       let res
       // For transactions
-      // TODO: BLOCKS API should accept address or publickey
       props.name = this.userName
       props.reverse = 1
       res = await this.getDelegateBlock(props)
@@ -207,7 +206,7 @@ export default {
       this.$root.$emit('doSearch', str)
     },
     getTableData(data) {
-      const { height, reward, count, fees, timestamp } = data
+      const { height, count, fees, timestamp } = data
 
       let heightField = {
         label: 'BLOCK_HEIGHT',
