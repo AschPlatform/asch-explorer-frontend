@@ -116,10 +116,12 @@ export default {
       return value
     },
     doSearch(str, type) {
-      if (type === 'height' || 'trans') {
+      if (type === 'height' || type === 'trans') {
         return this.$root.$emit('doSearch', str)
       } else if (REGEX.address.test(str)) {
         return this.$root.$emit('doSearch', str)
+      } else {
+        return this.$root.$emit('doSearch', str, 'nick')
       }
     },
     timeFromNow(timestamp) {
