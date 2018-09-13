@@ -26,7 +26,7 @@
             </div>
           </q-td>
           <q-td key="reward">
-            <span>{{ props.props.reward | fee }}</span>
+            <span>{{ rewardCount(props.props.reward) | fee }}</span>
           </q-td>
           <q-td key="count">
             <span>{{ props.props.count }}</span>
@@ -53,7 +53,7 @@ import BoundaryLine from '../components/BoundaryLine'
 import InfoPanel from '../components/InfoPanel'
 import TableContainer from '../components/TableContainer'
 import { mapActions } from 'vuex'
-import { convertFee, fulltimestamp } from '../utils/util'
+import { convertFee, fulltimestamp, rewardCount } from '../utils/util'
 import TableItem from '../components/TableItem'
 
 export default {
@@ -165,6 +165,7 @@ export default {
     }
   },
   methods: {
+    rewardCount,
     fulltimestamp,
     ...mapActions(['getDelegateDetail', 'getBlocks', 'getAccount', 'getDelegateBlock']),
     async envalueData() {
@@ -195,7 +196,6 @@ export default {
       }
       let res
       // For transactions
-      // TODO: BLOCKS API should accept address or publickey
       props.name = this.userName
       props.reverse = 1
       res = await this.getDelegateBlock(props)
@@ -206,7 +206,7 @@ export default {
       this.$root.$emit('doSearch', str)
     },
     getTableData(data) {
-      const { height, reward, count, fees, timestamp } = data
+      const { height, count, fees, timestamp } = data
 
       let heightField = {
         label: 'BLOCK_HEIGHT',
@@ -214,7 +214,7 @@ export default {
       }
       let rewardField = {
         label: 'FORGE_REWARD',
-        value: reward
+        value: rewardCount(height)
       }
       let countField = {
         label: 'TRANS_NUM',
