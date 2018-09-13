@@ -35,7 +35,7 @@
           </q-td>
           <q-td key="height" >
             <div class="text-tw-blue cursor-pointer hover:underline" @click="doSearch(props.props.height)">
-              {{ props.props.height }}
+              {{ props.props.height | numSeparator }}
             </div>
           </q-td>
           <q-td v-if="props.props.timestamp > -1" key="timestamp" >
