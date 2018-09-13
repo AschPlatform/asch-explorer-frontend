@@ -31,6 +31,7 @@ const lang = {
   BLOCK_INFO: '区块详情',
   TRANSACTION_INFO: '交易详情',
   ACCOUNT_INFO: '账户地址详情',
+  LOCKED: '已锁仓',
 
   // delegates
   RANK: '排名',

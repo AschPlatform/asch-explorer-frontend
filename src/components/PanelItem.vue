@@ -19,7 +19,7 @@
           <div class="flex items-center xs:mb-15 sm:mb-20">
             <span :class="labelClass">{{$t('PRODUCER')}}</span>
             <span :class="linkClass" @click="$router.push('/delegate/'+getAddress(data.delegate))">
-            <a class="custom-address xs:text-15 sm:text-18 text-tw-blue hover:underline cursor-pointer">{{getAddress(data.delegate)}}</a>
+            <a :class="customLinkClass">{{getAddress(data.delegate)}}</a>
             </span>
           </div>
           <div class="flex items-center">
@@ -41,29 +41,29 @@
           <div class="flex items-center mb-20">
             <span class="w-auto mr-10 xs:text-15 sm:text-18 text-tw-grey-darkest">{{$t('TRANSACTION_ID')}}</span>
             <span :class="linkClass" class="max-w-xs" @click="doSearch(data.id, 'trans')">
-               <a class="custom-address xs:text-15 sm:text-18 text-tw-blue hover:underline cursor-pointer">
+               <a :class="customLinkClass">
                   {{data.id}}
                 </a>
               </span>
           </div>
-          <div class="flex items-center justify-start mb-20">
+          <p class="flex items-center justify-start mb-20">
             <span class="xs:mr-10 sm:mr-20 xs:text-15 sm:text-18 text-tw-grey-darkest">{{$t('FROM')}}</span>
             <span :class="addressClass" @click="doSearch(data.senderId)">
-                <a class="custom-address xs:text-15 sm:text-18 text-tw-blue hover:underline cursor-pointer">
+                <a :class="customLinkClass" href="javascript:;">
                   {{data.senderId}}
                 </a>
             </span>
             <span class="xs:mx-5 sm:mx-10 xs:text-15 sm:text-18 text-tw-grey-darkest">{{$t('TO')}}</span>
             <span :class="getProps(data,'recieve')?addressClass:''" @click="doSearch(getProps(data,'recieve'))">
-                <a class="custom-address xs:text-15 sm:text-18 text-tw-blue hover:underline cursor-pointer" >
-                 {{getProps(data,'recieve')|| '--'}}
+                <a :class="customLinkClass" >
+                 {{getProps(data,'recieve')|| 'SYSTEM'}}
                 </a>
               </span>
-          </div>
+          </p>
           <div class="flex items-center">
             <span class="w-auto xs:mr-10 sm:mr-20 xs:text-15 sm:text-18 text-tw-grey-darkest">{{$t('AMOUNT')}}</span>
             <span v-if="getProps(data)" class="xs:text-15 sm:text-18 text-tw-grey-darkest">
-                    {{getresult(getProps(data),4) }}
+                    {{getresult(getProps(data),4)}}
                   <q-tooltip>{{ getProps(data) }}</q-tooltip>
                 </span>
             <span v-else class="xs:text-15 sm:text-18 text-tw-grey-darkest">{{'--'}}</span>
@@ -78,109 +78,90 @@
 </template>
 
 <script>
-/* eslint-disable */
-  import {
+import { QIcon, QTooltip } from 'quasar'
+import { getAddress, convertFee, fulltimestamp, rewardCount, isDesktop } from '../utils/util'
+import { REGEX } from '../utils/constants'
+import { mapGetters } from 'vuex'
+import moment from 'moment'
+
+export default {
+  name: 'PanelItem',
+  props: ['type', 'data'],
+  components: {
     QIcon,
     QTooltip
-  } from 'quasar'
-  import {
+  },
+  data() {
+    return {}
+  },
+  methods: {
+    rewardCount,
     getAddress,
-    convertFee,
-    fulltimestamp,
-    rewardCount
-  } from '../utils/util'
-  import {
-    REGEX
-  } from '../utils/constants'
-  import {
-    mapGetters
-  } from 'vuex'
-  import moment from 'moment'
-  
-  export default {
-    name: 'PanelItem',
-    props: ['type', 'data'],
-    components: {
-      QIcon,
-      QTooltip
+    getProps(trans, props = 'amount') {
+      // get rec address
+      // const filterTransType = [1, 103]
+      const { type, args } = trans
+      const isAmount = props === 'amount'
+      const len = args.length
+      let value = ''
+      if (type === 1) {
+        value = isAmount ? args[len - 2] : args[len - 1]
+        if (isAmount) value = convertFee(value)
+      } else if (type === 103) {
+        value = isAmount ? args[len - 2] : args[len - 1]
+        if (isAmount && this.assetMap.get(args[0])) {
+          value = convertFee(value, this.assetMap.get(args[0]).precision)
+        }
+      }
+      return value
     },
-    data() {
-      return {}
-    },
-    methods: {
-      rewardCount,
-      getAddress,
-      getProps(trans, props = 'amount') {
-        // get rec address
-        // const filterTransType = [1, 103]
-        const {
-          type,
-          args
-        } = trans
-        const isAmount = props === 'amount'
-        const len = args.length
-        let value = ''
-        if (type === 1) {
-          value = isAmount ? args[len - 2] : args[len - 1]
-          if (isAmount) value = convertFee(value)
-        } else if (type === 103) {
-          value = isAmount ? args[len - 2] : args[len - 1]
-          if (isAmount && this.assetMap.get(args[0])) {
-            value = convertFee(value, this.assetMap.get(args[0]).precision) + ' ' + args[0]
-          }
-        }
-        return value
-      },
-      doSearch(str, type) {
-        if (type === 'height' || type === 'trans') {
-          return this.$root.$emit('doSearch', str)
-        } else if (REGEX.address.test(str)) {
-          return this.$root.$emit('doSearch', str, 'address')
-        } else {
-          return this.$root.$emit('doSearch', str, 'nick')
-        }
-      },
-      timeFromNow(timestamp) {
-        const lang = this.$store.state.locale
-        moment.locale(lang === 'zh' ? 'zh-cn' : 'en-us')
-        let timeStr = moment(fulltimestamp(timestamp)).fromNow()
-        if (lang === 'en') {
-          timeStr = timeStr.replace('seconds', 's')
-          timeStr = timeStr.replace('minutes', 'm')
-          timeStr = timeStr.replace('minute', 'm')
-          timeStr = timeStr.replace('hours', 'h')
-          timeStr = timeStr.replace('hour', 'h')
-          timeStr = timeStr.replace('an', '1')
-        }
-        return timeStr
-      },
-      getresult(str, n) {
-        return str.replace(new RegExp('^(\\-?\\d*\\.?\\d{0,' + n + '})(\\d*)$'), '$1')
+    doSearch(str, type) {
+      if (type === 'height' || 'trans') {
+        return this.$root.$emit('doSearch', str)
+      } else if (REGEX.address.test(str)) {
+        return this.$root.$emit('doSearch', str)
       }
     },
-    computed: {
-      ...mapGetters(['assetMap']),
-      timestampClass() {
-        return 'w-auto text-right xs:text-15 sm:text-18 text-tw-grey-darkest absolute xs:pt-15 xs:pr-15 sm:pt-20 sm:pr-20 pin-t pin-r'
-      },
-      linkClass() {
-        return 'truncate xs:text-15 sm:text-18 text-tw-blue hover:underline w-auto cursor-pointer'
-      },
-      addressClass() {
-        return 'xs:text-15 sm:text-18 text-tw-blue hover:underline  cursor-pointer custom-address w-1/3'
-      },
-      labelClass() {
-        return 'w-auto xs:text-15 sm:text-18 text-tw-grey-darkest mr-10'
+    timeFromNow(timestamp) {
+      const lang = this.$store.state.locale
+      moment.locale(lang === 'zh' ? 'zh-cn' : 'en-us')
+      let timeStr = moment(fulltimestamp(timestamp)).fromNow()
+      if (lang === 'en') {
+        timeStr = timeStr.replace('seconds', 's')
+        timeStr = timeStr.replace('minutes', 'm')
+        timeStr = timeStr.replace('minute', 'm')
+        timeStr = timeStr.replace('hours', 'h')
+        timeStr = timeStr.replace('hour', 'h')
+        timeStr = timeStr.replace('an', '1')
       }
+      return timeStr
+    },
+    getresult(str, n) {
+      return str.replace(new RegExp('^(\\-?\\d*\\.?\\d{0,' + n + '})(\\d*)$'), '$1')
+    }
+  },
+  computed: {
+    ...mapGetters(['assetMap']),
+    timestampClass() {
+      return 'w-auto text-right xs:text-15 sm:text-18 text-tw-grey-darkest absolute xs:pt-15 xs:pr-15 sm:pt-20 sm:pr-20 pin-t pin-r'
+    },
+    linkClass() {
+      return 'truncate xs:text-15 sm:text-18 text-tw-blue hover:underline w-auto cursor-pointer w-1/2'
+    },
+    customLinkClass() {
+      return isDesktop()
+        ? 'custom-link-desktop xs:text-15 sm:text-18 text-tw-blue no-underline hover:underline cursor-pointer'
+        : 'custom-link-mobile xs:text-15 sm:text-18 text-tw-blue no-underline hover:underline cursor-pointer'
+    },
+    addressClass() {
+      return 'xs:text-15 sm:text-18 text-tw-blue hover:underline  cursor-pointer custom-link w-1/3'
+    },
+    labelClass() {
+      return 'w-auto xs:text-15 sm:text-18 text-tw-grey-darkest mr-10'
     }
   }
+}
 </script>
 
 <style lang="stylus" scoped>
-.custom-address {
-  width: 132px;
-  display: inline-block;
-  text-overflow: ellipsis;
-  overflow: hidden;
-}
 </style>

@@ -29,13 +29,13 @@
         <template class="desktop-only" slot="content" slot-scope="props" v-if="props.props">
           <q-td v-if="props.props.id" key="id">
             <div class="text-tw-blue cursor-pointer hover:underline" @click="doSearch(props.props.id)">
-              {{ props.props.id | eclipse }}
+              <span class="w-136 inline-block"><a class="custom-link-desktop text-tw-blue cursor-pointer hover:underline">{{ props.props.id }}</a></span>
               <q-tooltip>{{ props.props.id }}</q-tooltip>
             </div>
           </q-td>
           <q-td key="height" >
             <div class="text-tw-blue cursor-pointer hover:underline" @click="doSearch(props.props.height)">
-              {{ props.props.height }}
+              {{ props.props.height | numSeparator }}
             </div>
           </q-td>
           <q-td v-if="props.props.timestamp > -1" key="timestamp" >
@@ -46,7 +46,7 @@
           </q-td>
           <q-td v-if="props.props.senderId" key="senderId" >
             <div class="text-tw-blue cursor-pointer hover:underline" @click="doSearch(props.props.senderId)">
-              {{ props.props.senderId | eclipse }}
+              <span class="w-136 inline-block"><a class="custom-link-desktop text-tw-blue cursor-pointer hover:underline">{{ props.props.senderId }}</a></span>
               <q-tooltip>{{ props.props.senderId }}</q-tooltip>
             </div>
           </q-td>

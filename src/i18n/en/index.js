@@ -31,6 +31,7 @@ const lang = {
   BLOCK_INFO: 'Block Info',
   TRANSACTION_INFO: 'Transaction Info',
   ACCOUNT_INFO: 'Account Info',
+  LOCKED: 'Locked',
 
   // delegates
   RANK: 'Rank',
@@ -153,7 +154,7 @@ const lang = {
   TRS_TYPE_ACTIVATE_DELEGATE: 'Activate Delegate',
   TRS_TYPE_REPEAL_VOTE: 'Vote',
 
-  TRS_TYPE_LAUNCH_PROPOSAL: 'Creat Proposal',
+  TRS_TYPE_LAUNCH_PROPOSAL: 'Create Proposal',
   TRS_TYPE_VOTE_PROPOSAL: 'Vote Proposal',
   TRS_TYPE_ACTIVATE_PROPOSAL: 'Activate Proposal',
 

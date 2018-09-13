@@ -22,7 +22,7 @@
         <template class="desktop-only" slot="content" slot-scope="props" v-if="props.props">
           <q-td key="height">
             <div class="text-tw-blue cursor-pointer hover:underline" @click="doSearch(props.props.height)">
-              {{ props.props.height }}
+              {{ props.props.height |numSeparator}}
             </div>
           </q-td>
           <q-td key="reward">

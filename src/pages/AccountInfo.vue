@@ -31,13 +31,13 @@
         <template class="desktop-only" slot="content" slot-scope="props" v-if="props.props">
           <q-td v-if="props.props.id" key="id">
             <div class="text-tw-blue cursor-pointer hover:underline" @click="doSearch(props.props.id)">
-              {{ props.props.id | eclipse }}
+             <span class="w-136 inline-block"><a class="custom-link-desktop text-tw-blue cursor-pointer hover:underline">{{ props.props.id }}</a></span>
               <q-tooltip>{{ props.props.id }}</q-tooltip>
             </div>
           </q-td>
           <q-td v-if="props.props.tid" key="tid" >
             <div class="text-tw-blue cursor-pointer hover:underline" @click="doSearch(props.props.tid)">
-              {{ props.props.tid | eclipse }}
+              <span class="w-136 inline-block"><a class="custom-link-desktop text-tw-blue cursor-pointer hover:underline">{{ props.props.tid }}</a></span>
               <q-tooltip>{{ props.props.tid }}</q-tooltip>
             </div>
           </q-td>
@@ -54,15 +54,14 @@
           </q-td>
           <q-td v-if="props.props.senderId" key="senderId" >
             <div class="text-tw-blue cursor-pointer hover:underline" @click="doSearch(props.props.senderId)">
-              {{ props.props.senderId | eclipse }}
+               <span class="w-136 inline-block"><a class="custom-link-desktop text-tw-blue cursor-pointer hover:underline">{{ props.props.senderId }}</a></span>
               <q-tooltip>{{ props.props.senderId }}</q-tooltip>
             </div>
           </q-td>
           <q-td v-if="props.props.recipientId" key="recipientId" >
             <div class="text-tw-blue cursor-pointer hover:underline" @click="doSearch(props.props.recipientId)">
-              <!-- {{ props.props.recipientName ? props.props.recipientName : props.props.recipientId | eclipse }} -->
-              {{ props.props.transaction.args[props.props.transaction.args.length - 1] | eclipse }}
-              <q-tooltip>{{ props.props.recipientId }}</q-tooltip>
+              <span class="w-136 inline-block"><a class="custom-link-desktop text-tw-blue cursor-pointer hover:underline">{{ props.props.transaction.args[props.props.transaction.args.length - 1]}}</a></span>
+              <q-tooltip>{{ props.props.transaction.args[props.props.transaction.args.length - 1]}}</q-tooltip>
             </div>
           </q-td>
           <q-td v-if="props.props.amount" class="text-right" key="amount" >
@@ -302,7 +301,10 @@ export default {
       let res = await this.getAccount(this.$route.params.address || this.$route.params.nickname)
       if (res.success && res.account) {
         this.account = res.account
-        this.balances = [convertFee(res.account.xas) + ' XAS'].concat(this.balances)
+        const weight = res.account.weight
+        let xasBalance = weight > 0 ? weight + res.account.xas : res.account.xas
+        let lockedWeight = weight > 0 ? '( ' + this.$t('LOCKED') + convertFee(weight) + ' XAS )' : ''
+        this.balances = [convertFee(xasBalance) + ' XAS ' + lockedWeight].concat(this.balances)
       } else {
         toastError(this.$t('ERR_INVALID_SEARCH'))
         this._.delay(() => this.$router.push('/'), 1000)
@@ -315,9 +317,7 @@ export default {
         res.balances.forEach(balance => {
           let { precision } = balance.asset
           if (balance.balance >= 1) {
-            balances.push(
-              convertFee(balance.balance, precision) + ' ' + balance.currency
-            )
+            balances.push(convertFee(balance.balance, precision) + ' ' + balance.currency)
           }
         })
         this.balances = this.balances.concat(balances)

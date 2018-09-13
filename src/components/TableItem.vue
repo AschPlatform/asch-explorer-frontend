@@ -31,13 +31,13 @@
                 <span v-if="data.nickname" >
                   {{data.nickname}}({{data.value}})
                 </span>
-              <span v-else class="">
-                {{data.value|eclipse}}
-              </span>
+              <span v-else class="w-136 inline-block"><a class="custom-link-desktop text-tw-blue cursor-pointer hover:underline">{{data.value}}</a></span>
               </span>
               <span v-else-if="data.type==='argStr'">{{data.value}}</span>
               <span v-else-if="data.type==='block'" class="text-tw-blue cursor-pointer hover:underline" @click="doSearch(data.value)">{{data.value}}</span>
-              <span v-else-if="data.type==='transactionId'" class="text-tw-blue cursor-pointer hover:underline" @click="doSearch(data.value)">{{data.value|eclipse}}</span>
+              <span v-else-if="data.type==='transactionId'" class="text-tw-blue cursor-pointer hover:underline" @click="doSearch(data.value)">
+                <span class="w-136 inline-block"><a class="custom-link-desktop text-tw-blue cursor-pointer hover:underline">{{data.value}}</a></span>
+                </span>
               <span v-else-if="data.type==='rate'" class="text-15 text-tw-blue font-semibold">{{data.value}}</span>
               <span v-else> {{data.value}} </span>
               </span>
