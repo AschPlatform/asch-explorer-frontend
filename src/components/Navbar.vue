@@ -84,16 +84,6 @@ export default {
       searchStr: '',
       stretch: false,
       lang: ''
-      // searchList: [
-      //   // {
-      //   //   title: '2323',
-      //   //   type: 'HEIGHT'
-      //   // },
-      //   // {
-      //   //   title: '2323',
-      //   //   type: 'NAME'
-      //   // }
-      // ]
     }
   },
   mounted() {
@@ -120,39 +110,11 @@ export default {
       this.searchList = []
     },
     searchSelect(item) {
-      let { title, type } = item
+      this.searchStr = ''
+      let {title, type} = item
       this.$root.$emit('doSearch', title, type)
       this.searchStr = ''
     }
-    // filter(val) {
-    //   const { hash, height, nickname } = REGEX
-    //   if (hash.test(val)) {
-    //     this.searchList.push({
-    //       title: val,
-    //       label: this.$t('BLOCK_ID'),
-    //       type: 'id'
-    //     },
-    //     {
-    //       title: val,
-    //       label: this.$t('TRANSACTION_ID'),
-    //       type: 'transaction'
-    //     })
-    //   }
-    //   if (height.test(val)) {
-    //     this.searchList.push({
-    //       title: val,
-    //       label: this.$t('BLOCK_HEIGHT'),
-    //       type: 'block'
-    //     })
-    //   }
-    //   if (nickname.test(val)) {
-    //     this.searchList.push({
-    //       title: val,
-    //       label: this.$t('NICKNAME'),
-    //       type: 'nick'
-    //     })
-    //   }
-    // }
   },
   computed: {
     searchList() {

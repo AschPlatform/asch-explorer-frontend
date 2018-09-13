@@ -3,95 +3,96 @@
     <breadcrumb class="xs:mt-5 sm:mt-20" />
     <div class="border border-solid border-tw-grey rounded-lg ">
       <div class="xs:px-5 xs:pt-15 xs:pb-0 sm:px-25 sm:pt-30 sm:pb-10">
-      <div class="xs:text-16 sm:text-20 text-tw-grey-darkest font-normal xs:pl-5 sm:pl-15">
-        {{this.$t('ACCOUNT_INFO')}}
-      </div>
-      <div class="xs:px-5 sm:px-15">
-      <boundary-line class="xs:my-15 sm:my-30" />
-      </div>
-      <div class="flex justify-between">
-        <info-panel v-if="account" :panelData="panelData" />
-        <div v-else class="mt-2 mb-8 px-4 text-tw-grey-darkest xs:pl-5 sm:pl-15">{{$t('NO_DATA')}}</div>
-        <div class="self-end w-auto xs:hidden sm:block pb-10 pr-15">
-          <q-icon class="text-60 text-tw-grayish" name="icon-details" />
+        <div class="xs:text-16 sm:text-20 text-tw-grey-darkest font-normal xs:pl-5 sm:pl-15">
+          {{this.$t('ACCOUNT_INFO')}}
         </div>
-      </div>
-      <div class="xs:px-5 sm:px-15">
-      <boundary-line class="xs:my-15 sm:my-15" />
-      </div>
-      <div class="btngroup xs:pl-5 sm:pl-15">
-        <button :class="(this.type === 0 ? styleSelected : styleUnselected) + ' mr-20'" @click="changeType(0)">{{$t('TRS_TYPE_TRANSFER_RECORD')}}</button>
-        <button :class="this.type === 1 ? styleSelected : styleUnselected" @click="changeType(1)">{{$t('TRANS_TITLE')}}</button>
-      </div>
-      <div class="xs:px-5 sm:px-15">
-      <boundary-line class="mt-20" />
-      </div>
+        <div class="xs:px-5 sm:px-15">
+          <boundary-line class="xs:my-15 sm:my-30" />
+        </div>
+        <div class="flex justify-between">
+          <info-panel v-if="account" :panelData="panelData" />
+          <div v-else class="mt-2 mb-8 px-4 text-tw-grey-darkest xs:pl-5 sm:pl-15">{{$t('NO_DATA')}}</div>
+          <div class="self-end w-auto xs:hidden sm:block pb-10 pr-15">
+            <q-icon class="text-60 text-tw-grayish" name="icon-details" />
+          </div>
+        </div>
+        <div class="xs:px-5 sm:px-15">
+          <boundary-line class="xs:my-15 sm:my-15" />
+        </div>
+        <div class="btngroup xs:pl-5 sm:pl-15">
+          <button :class="(this.type === 0 ? styleSelected : styleUnselected) + ' mr-20'" @click="changeType(0)">{{$t('TRS_TYPE_TRANSFER_RECORD')}}</button>
+          <button :class="this.type === 1 ? styleSelected : styleUnselected" @click="changeType(1)">{{$t('TRANS_TITLE')}}</button>
+        </div>
+        <div class="xs:px-5 sm:px-15">
+          <boundary-line class="mt-20" />
+        </div>
       </div>
       <table-container class="xs:p-10 xs:pt-15 sm:p-0 custom-tr-border" :data="data" :count="count" :params="params" :columnsData="columnsData" @getData="getData">
         <template class="desktop-only" slot="content" slot-scope="props" v-if="props.props">
-          <q-td v-if="props.props.id" key="id">
-            <div class="text-tw-blue cursor-pointer hover:underline" @click="doSearch(props.props.id)">
-             <span class="w-136 inline-block"><a class="custom-link-desktop text-tw-blue cursor-pointer hover:underline">{{ props.props.id }}</a></span>
-              <q-tooltip>{{ props.props.id }}</q-tooltip>
-            </div>
-          </q-td>
-          <q-td v-if="props.props.tid" key="tid" >
-            <div class="text-tw-blue cursor-pointer hover:underline" @click="doSearch(props.props.tid)">
-              <span class="w-136 inline-block"><a class="custom-link-desktop text-tw-blue cursor-pointer hover:underline">{{ props.props.tid }}</a></span>
-              <q-tooltip>{{ props.props.tid }}</q-tooltip>
-            </div>
-          </q-td>
-          <q-td key="height" >
-            <div class="text-tw-blue cursor-pointer hover:underline" @click="doSearch(props.props.height)">
-              {{ props.props.height | numSeparator}}
-            </div>
-          </q-td>
-          <q-td v-if="props.props.timestamp > -1" key="timestamp">
-            <span>{{ fulltimestamp(props.props.timestamp) }}</span>
-          </q-td>
-          <q-td v-if="props.props.type" key="type" >
-            <span class="">{{ getTransType(props.props) }}</span>
-          </q-td>
-          <q-td v-if="props.props.senderId" key="senderId" >
-            <div class="text-tw-blue cursor-pointer hover:underline" @click="doSearch(props.props.senderId)">
-               <span class="w-136 inline-block"><a class="custom-link-desktop text-tw-blue cursor-pointer hover:underline">{{ props.props.senderId }}</a></span>
-              <q-tooltip>{{ props.props.senderId }}</q-tooltip>
-            </div>
-          </q-td>
-          <q-td v-if="props.props.recipientId" key="recipientId" >
-            <div class="text-tw-blue cursor-pointer hover:underline" @click="doSearch(props.props.recipientId)">
-              <span class="w-136 inline-block"><a class="custom-link-desktop text-tw-blue cursor-pointer hover:underline">{{ props.props.transaction.args[props.props.transaction.args.length - 1]}}</a></span>
-              <q-tooltip>{{ props.props.recipientId }}</q-tooltip>
-            </div>
-          </q-td>
-          <q-td v-if="props.props.amount" class="text-right" key="amount" >
-            <span v-if="getAmount(props.props.transaction)">{{ getAmount(props.props.transaction) }}</span>
-          </q-td>
-          <q-td v-if="props.props.transferAmount" class="text-right" key="transferAmount">
-            <span v-if="getTransAmount(props.props)">{{ getTransAmount(props.props) }}</span>
-          </q-td>
-          <q-td v-if="props.props.currency" class="text-right align-baseline custom-chip" key="currency">
-            <sub class="text-12 text-tw-grey-darkest mt-10 mr-10">{{ props.props.currency !== 'XAS' ? props.props.currency.split('.')[0] : ''}}</sub>
-            <q-chip color="blue" text-color="white" small>{{ props.props.currency.split('.')[1] || props.props.currency.split('.')[0]}}</q-chip>
-          </q-td>
-         <q-td v-if="props.props.args || props.props.args === null" key="args" >
-           <div v-if="props.props.args && props.props.args.length > 0" >
-            <span>{{ props.props.args.join(',') | eclipse }}</span>
-              <q-tooltip>{{ props.props.args }}</q-tooltip>
-           </div>
-            <span v-else>--</span>
-          </q-td>
-          <q-td v-if="props.props.fee || props.props.fee === 0" key="fee" class="text-right">
-            <span v-if="props.props.fee">{{ props.props.fee | fee }}</span>
-            <span v-else>0</span>
-          </q-td>
-          <q-td v-if="props.props.transaction && props.props.transaction.fee" key="transferFee" class="text-right" >
-            <span>0.1</span>
-          </q-td>
-        </template>
-        <template class="mobile-only" slot="items" slot-scope="props" v-if="props.props">
-          <table-item :data="getTableData(props.props)" :bgIcon="'icon-details'" :dataIcon="'icon-transaction'"/>
-        </template>
+            <q-td v-if="props.props.id" key="id">
+              <div class="text-tw-blue cursor-pointer hover:underline" @click="doSearch(props.props.id)">
+               <span class="w-136 inline-block"><a class="custom-link-desktop text-tw-blue cursor-pointer hover:underline">{{ props.props.id }}</a></span>
+                <q-tooltip>{{ props.props.id }}</q-tooltip>
+              </div>
+            </q-td>
+            <q-td v-if="props.props.tid" key="tid" >
+              <div class="text-tw-blue cursor-pointer hover:underline" @click="doSearch(props.props.tid)">
+                <span class="w-136 inline-block"><a class="custom-link-desktop text-tw-blue cursor-pointer hover:underline">{{ props.props.tid }}</a></span>
+                <q-tooltip>{{ props.props.tid }}</q-tooltip>
+              </div>
+            </q-td>
+            <q-td key="height" >
+              <div class="text-tw-blue cursor-pointer hover:underline" @click="doSearch(props.props.height)">
+                {{ props.props.height | numSeparator}}
+              </div>
+            </q-td>
+            <q-td v-if="props.props.timestamp > -1" key="timestamp">
+              <span>{{ fulltimestamp(props.props.timestamp) }}</span>
+            </q-td>
+            <q-td v-if="props.props.type" key="type" >
+              <span class="">{{ getTransType(props.props) }}</span>
+            </q-td>
+            <q-td v-if="props.props.senderId" key="senderId" >
+              <div class="text-tw-blue cursor-pointer hover:underline" @click="doSearch(props.props.senderId)">
+                 <span class="w-136 inline-block"><a class="custom-link-desktop text-tw-blue cursor-pointer hover:underline">{{ props.props.senderId }}</a></span>
+                <q-tooltip>{{ props.props.senderId }}</q-tooltip>
+              </div>
+            </q-td>
+            <q-td v-if="props.props.recipientId" key="recipientId" >
+              <div class="text-tw-blue cursor-pointer hover:underline" @click="doSearch(props.props.recipientId)">
+                <span class="w-136 inline-block"><a class="custom-link-desktop text-tw-blue cursor-pointer hover:underline">{{ props.props.transaction.args[props.props.transaction.args.length - 1]}}</a></span>
+                <q-tooltip>{{ props.props.transaction.args[props.props.transaction.args.length - 1]}}</q-tooltip>
+              </div>
+            </q-td>
+            <q-td v-if="props.props.amount" class="text-right" key="amount" >
+              <span v-if="getAmount(props.props.transaction)">{{ getAmount(props.props.transaction) }}</span>
+            </q-td>
+            <q-td v-if="props.props.transferAmount" class="text-right" key="transferAmount">
+              <span v-if="getTransAmount(props.props)">{{ getTransAmount(props.props) }}</span>
+            </q-td>
+            <q-td v-if="props.props.currency" class="text-right align-baseline custom-chip" key="currency">
+              <sub class="text-12 text-tw-grey-darkest mt-10 mr-10">{{ props.props.currency !== 'XAS' ? props.props.currency.split('.')[0] : ''}}</sub>
+              <q-chip color="blue" text-color="white" small>{{ props.props.currency.split('.')[1] || props.props.currency.split('.')[0]}}</q-chip>
+            </q-td>
+           <q-td v-if="props.props.args || props.props.args === null" key="args" >
+             <div v-if="props.props.args && props.props.args.length > 0" >
+              <span>{{ props.props.args.join(',') | eclipse }}</span>
+                <q-tooltip>{{ props.props.args }}</q-tooltip>
+             </div>
+              <span v-else>--</span>
+            </q-td>
+            <q-td v-if="props.props.fee || props.props.fee === 0" key="fee" class="text-right">
+              <span v-if="props.props.fee">{{ props.props.fee | fee }}</span>
+              <span v-else>0</span>
+            </q-td>
+            <q-td v-if="props.props.transaction && props.props.transaction.fee" key="transferFee" class="text-right" >
+              <span>0.1</span>
+            </q-td>
+</template>
+
+<template class="mobile-only" slot="items" slot-scope="props" v-if="props.props">
+  <table-item :data="getTableData(props.props)" :bgIcon="'icon-details'" :dataIcon="'icon-transaction'" />
+</template>
       </table-container>
     </div>
   </q-page>
@@ -106,7 +107,7 @@ import InfoPanel from '../components/InfoPanel'
 import TableItem from '../components/TableItem'
 import PanelItem from '../components/PanelItem'
 import TableContainer from '../components/TableContainer'
-import { convertFee, toastError, fulltimestamp } from '../utils/util'
+import { convertFee, fulltimestamp } from '../utils/util'
 import { transTypes } from '../utils/constants'
 import { mapActions, mapGetters } from 'vuex'
 import infoImge from '../assets/asch_logo.png'
@@ -177,7 +178,9 @@ export default {
           })
         }
         this.balances.map((balance, idx) => {
-          let balanceItem = { value: balance }
+          let balanceItem = {
+            value: balance
+          }
           if (idx === 0) balanceItem.label = 'ACCOUNT_BALANCE'
           datas.push(balanceItem)
         })
@@ -191,7 +194,12 @@ export default {
       }
     },
     params() {
-      return this._.merge({ type: this.type }, this.$route.params)
+      return this._.merge(
+        {
+          type: this.type
+        },
+        this.$route.params
+      )
     },
     columnsData() {
       if (this.type === 1) {
@@ -303,11 +311,11 @@ export default {
         this.account = res.account
         const weight = res.account.weight
         let xasBalance = weight > 0 ? weight + res.account.xas : res.account.xas
-        let lockedWeight = weight > 0 ? '( ' + this.$t('LOCKED') + convertFee(weight) + ' XAS )' : ''
+        let lockedWeight =
+          weight > 0 ? '( ' + this.$t('LOCKED') + convertFee(weight) + ' XAS )' : ''
         this.balances = [convertFee(xasBalance) + ' XAS ' + lockedWeight].concat(this.balances)
       } else {
-        toastError(this.$t('ERR_INVALID_SEARCH'))
-        this._.delay(() => this.$router.push('/'), 1000)
+        this.$router.push({ path: '/error', query: { errorStr: this.$route.params.address || this.$route.params.nickname } })
       }
     },
     async getAccountBalances() {

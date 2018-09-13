@@ -5,28 +5,39 @@
       <q-icon class="text-12 text-tw-grey-darkest p-0 xs:mx-5 sm:mx-10" name="icon-right" />
       <button class="p-0 text-16 text-tw-grey-darkest border-0 bg-tw-white">{{this.$t('INFO')}}</button>
     </div>
-    <div class="border border-solid border-tw-grey rounded-lg xs:px-10 xs:py-15 sm:px-40 sm:py-30">
-      <div class="xs:text-16 sm:text-20 text-tw-grey-darkest font-normal xs:pl-5 sm:pl-15">
-        {{this.$t('DELEGATE_INFO')}}
-      </div>
-      <div class="xs:px-5 sm:px-15">
-        <boundary-line class="xs:my-15 sm:my-30" />
-      </div>
-       <div class="flex justify-between">
-        <info-panel :panelData="panelData" />
-        <div class="self-end w-auto xs:hidden sm:block pb-10">
-          <q-icon class="text-60 text-tw-grayish" name="icon-trustee" />
+    <div class="border border-solid border-tw-grey rounded-lg ">
+      <div class="xs:px-10 xs:pt-15 xs:pb-0 sm:px-30 sm:py-30">
+        <div class="xs:text-16 sm:text-20 text-tw-grey-darkest font-normal xs:pl-5 sm:pl-15">
+          {{this.$t('DELEGATE_INFO')}}
+        </div>
+        <div class="xs:px-5 sm:px-15">
+          <boundary-line class="xs:my-15 sm:my-30" />
+        </div>
+        <div class="flex justify-between">
+          <info-panel :panelData="panelData" />
+          <div class="self-end w-auto xs:hidden sm:block pb-10 xs:pl-0 sm:pr-15">
+            <q-icon class="text-60 text-tw-grayish" name="icon-trustee" />
+          </div>
+        </div>
+         <div class="xs:px-5 sm:px-15">
+          <boundary-line class="xs:my-20 sm:mt-40 sm:mb-30" />
+        </div>
+        <div class="xs:text-16 sm:text-20 text-tw-grey-darkest font-semibold xs:pl-5 sm:pl-15">
+          {{$t('FORGE_INFO')}}
+        </div>
+        <div class="xs:px-5 sm:px-15">
+          <boundary-line class="xs:my-20 sm:mt-30 sm:mb-0" />
         </div>
       </div>
-      <table-container :data="data" :count="count" :params="address" :columnsData="columnsData" @getData="getData">
+      <table-container  class="xs:p-10 xs:pt-0 sm:p-0 custom-tr-border" :data="data" :count="count" :params="address" :columnsData="columnsData" @getData="getData">
         <template class="desktop-only" slot="content" slot-scope="props" v-if="props.props">
           <q-td key="height">
             <div class="text-tw-blue cursor-pointer hover:underline" @click="doSearch(props.props.height)">
-              {{ props.props.height }}
+              {{ props.props.height |numSeparator}}
             </div>
           </q-td>
           <q-td key="reward">
-            <span>{{ props.props.reward | fee }}</span>
+            <span>{{ rewardCount(props.props.reward) | fee }}</span>
           </q-td>
           <q-td key="count">
             <span>{{ props.props.count }}</span>
@@ -38,8 +49,9 @@
             <span>{{ fulltimestamp(props.props.timestamp) }}</span>
           </q-td>
         </template>
+
         <template class="mobile-only" slot="items" slot-scope="props" v-if="props.props">
-          <table-item  :data="getTableData(props.props)" :bgIcon="'icon-details'" :dataIcon="'icon-transaction'"/>
+          <table-item :data="getTableData(props.props)" :bgIcon="'icon-details'" :dataIcon="'icon-transaction'" />
         </template>
       </table-container>
     </div>
@@ -53,7 +65,7 @@ import BoundaryLine from '../components/BoundaryLine'
 import InfoPanel from '../components/InfoPanel'
 import TableContainer from '../components/TableContainer'
 import { mapActions } from 'vuex'
-import { convertFee, fulltimestamp } from '../utils/util'
+import { convertFee, fulltimestamp, rewardCount } from '../utils/util'
 import TableItem from '../components/TableItem'
 
 export default {
@@ -165,6 +177,7 @@ export default {
     }
   },
   methods: {
+    rewardCount,
     fulltimestamp,
     ...mapActions(['getDelegateDetail', 'getBlocks', 'getAccount', 'getDelegateBlock']),
     async envalueData() {
@@ -195,7 +208,6 @@ export default {
       }
       let res
       // For transactions
-      // TODO: BLOCKS API should accept address or publickey
       props.name = this.userName
       props.reverse = 1
       res = await this.getDelegateBlock(props)
@@ -206,15 +218,16 @@ export default {
       this.$root.$emit('doSearch', str)
     },
     getTableData(data) {
-      const { height, reward, count, fees, timestamp } = data
+      const { height, count, fees, timestamp } = data
 
       let heightField = {
         label: 'BLOCK_HEIGHT',
-        value: height
+        value: height,
+        type: 'number'
       }
       let rewardField = {
         label: 'FORGE_REWARD',
-        value: reward
+        value: rewardCount(height)
       }
       let countField = {
         label: 'TRANS_NUM',

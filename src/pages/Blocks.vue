@@ -6,7 +6,7 @@
         <template class="desktop-only" slot="content" slot-scope="props" v-if="props.props">
           <q-td  key="height">
             <div class="text-tw-blue cursor-pointer hover:underline" @click="doSearch(props.props.height)">
-              {{ props.props.height }}
+              {{ props.props.height|numSeparator }}
               <q-tooltip>{{ props.props.height }}</q-tooltip>
             </div>
           </q-td>
@@ -151,7 +151,8 @@ export default {
       }
       let delegateField = {
         label: 'BLOCK_GENERATOR',
-        value: getAddress(delegate)
+        value: getAddress(delegate),
+        type: 'address'
       }
       let rewardField = {
         label: 'FORGE_REWARD',

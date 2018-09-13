@@ -160,7 +160,7 @@ export default {
         let result = await this.getTransactionInfo({
           query: this.$route.params.id
         })
-        if (result.success) {
+        if (result.success && result.searchResults[0].type === 'transaction') {
           let data = result.searchResults[0].data
           this.transDetail(data)
           this.transTime = fulltimestamp(data.timestamp)
@@ -168,8 +168,7 @@ export default {
           this.transID = data.type
           this.blockHeight = data.height
         } else {
-          toast(this.$t('ERR_INVALID_SEARCH'))
-          this.$router.push('/')
+          this.$router.push({ path: '/error', query: { errorStr: this.$route.params.id } })
         }
       } catch (e) {
         toast(this.$t('ERR_INVALID_SEARCH'))
