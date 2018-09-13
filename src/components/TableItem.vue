@@ -22,11 +22,11 @@
             </td>
             <td class="truncate xs:text-15 sm:text-18 text-tw-grey-darkest max-w-2/3 ml-5">
               <span :class="data.link?`text-tw-blue cursor-pointer hover:underline`:''" @click="data.link?$router.push(data.link+data.value):null">
-              <span v-if="data.type==='number'" >{{data.value | numSeparator}}</span>
+              <span v-if="data.type==='number'" class="text-tw-blue cursor-pointer hover:underline" @click="doSearch(data.value)">{{data.value | numSeparator}}</span>
               <span v-else-if="data.type==='timestamp'">{{data.value | formatTimestamp(true)}}</span>
               <span v-else-if="data.type==='delegate'" class="text-tw-blue cursor-pointer hover:underline" @click="doSearch(data.value, 'delegate')">{{data.value}}</span>
               <span v-else-if="data.type==='asset'" class="text-tw-blue cursor-pointer hover:underline" @click="doSearch(data.value, 'asset')">{{data.value.split('.')[1]}}</span>
-              <span v-else-if="data.type==='countDown'">{{data.value | secFromNow}} {{$t('SECOND_BEFORE')}}</span>
+              <span v-else-if="data.type==='countDown'">{{fulltimestamp(data.value)}}</span>
               <span v-else-if="data.type==='address'" class="text-tw-blue cursor-pointer hover:underline" @click="doSearch(data.value)">
                 <span v-if="data.nickname" >
                   {{data.nickname}}({{data.value}})
@@ -51,7 +51,7 @@
 
 <script>
 import { QTd, QIcon } from 'quasar'
-// import { getAddress, convertFee } from '../utils/util'
+import { fulltimestamp } from '../utils/util'
 // import { mapGetters } from 'vuex'
 
 export default {
@@ -67,6 +67,7 @@ export default {
     }
   },
   methods: {
+    fulltimestamp,
     doSearch(value, type) {
       this.$root.$emit('doSearch', value, type)
     }
