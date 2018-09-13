@@ -31,6 +31,7 @@ const lang = {
   BLOCK_INFO: 'Block Info',
   TRANSACTION_INFO: 'Transaction Info',
   ACCOUNT_INFO: 'Account Info',
+  LOCKED: 'Locked',
 
   // delegates
   RANK: 'Rank',
