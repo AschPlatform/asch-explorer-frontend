@@ -3,69 +3,69 @@
     <breadcrumb class="xs:mt-5 sm:mt-20" />
     <div class="border border-solid border-tw-grey rounded-lg">
       <div class="xs:px-10 xs:pt-15 xs:pb-0 sm:px-30 sm:py-30">
-      <div class="xs:text-16 sm:text-20 text-tw-grey-darkest xs:pl-5 sm:pl-15">
-        {{this.$t('BLOCK_INFO')}}
-      </div>
-      <div class="xs:px-5 sm:px-15">
-      <boundary-line class="xs:my-15 sm:my-30" />
-      </div>
-      <div class="flex justify-between">
-        <info-panel :panelData="panelData" />
-        <div class="self-end w-auto xs:hidden sm:block pb-10 xs:pl-0 sm:pr-15">
-          <q-icon class="text-60 text-tw-grayish" name="icon-block" />
+        <div class="xs:text-16 sm:text-20 text-tw-grey-darkest xs:pl-5 sm:pl-15">
+          {{this.$t('BLOCK_INFO')}}
         </div>
-      </div>
-      <div class="xs:px-5 sm:px-15">
-        <boundary-line class="xs:my-20 sm:mt-40 sm:mb-30" />
-      </div>
-      <div class="xs:text-16 sm:text-20 text-tw-grey-darkest font-semibold xs:pl-5 sm:pl-15">
-        {{$t('TRANS_TITLE')}}
-      </div>
-      <div class="xs:px-5 sm:px-15">
-      <boundary-line class="xs:my-20 sm:mt-30 sm:mb-0" />
-      </div>
+        <div class="xs:px-5 sm:px-15">
+          <boundary-line class="xs:my-15 sm:my-30" />
+        </div>
+        <div class="flex justify-between">
+          <info-panel :panelData="panelData" />
+          <div class="self-end w-auto xs:hidden sm:block pb-10 xs:pl-0 sm:pr-15">
+            <q-icon class="text-60 text-tw-grayish" name="icon-block" />
+          </div>
+        </div>
+        <div class="xs:px-5 sm:px-15">
+          <boundary-line class="xs:my-20 sm:mt-40 sm:mb-30" />
+        </div>
+        <div class="xs:text-16 sm:text-20 text-tw-grey-darkest font-semibold xs:pl-5 sm:pl-15">
+          {{$t('TRANS_TITLE')}}
+        </div>
+        <div class="xs:px-5 sm:px-15">
+          <boundary-line class="xs:my-20 sm:mt-30 sm:mb-0" />
+        </div>
       </div>
       <table-container v-if="data" class="xs:p-10 xs:pt-0 sm:p-0 custom-tr-border" :data="data" :count="count" :params="params" :columnsData="columnsData" @getData="getData">
         <template class="desktop-only" slot="content" slot-scope="props" v-if="props.props">
-          <q-td v-if="props.props.id" key="id">
-            <div class="text-tw-blue cursor-pointer hover:underline" @click="doSearch(props.props.id)">
-              <span class="w-136 inline-block"><a class="custom-link-desktop text-tw-blue cursor-pointer hover:underline">{{ props.props.id }}</a></span>
-              <q-tooltip>{{ props.props.id }}</q-tooltip>
-            </div>
-          </q-td>
-          <q-td key="height" >
-            <div class="text-tw-blue cursor-pointer hover:underline" @click="doSearch(props.props.height)">
-              {{ props.props.height | numSeparator }}
-            </div>
-          </q-td>
-          <q-td v-if="props.props.timestamp > -1" key="timestamp" >
-            <span>{{ fulltimestamp(props.props.timestamp) }}</span>
-          </q-td>
-          <q-td v-if="props.props.type" key="type" >
-            <span class="">{{ getTransType(props.props) }}</span>
-          </q-td>
-          <q-td v-if="props.props.senderId" key="senderId" >
-            <div class="text-tw-blue cursor-pointer hover:underline" @click="doSearch(props.props.senderId)">
-              <span class="w-136 inline-block"><a class="custom-link-desktop text-tw-blue cursor-pointer hover:underline">{{ props.props.senderId }}</a></span>
-              <q-tooltip>{{ props.props.senderId }}</q-tooltip>
-            </div>
-          </q-td>
-          <q-td v-if="props.props.amount" key="amount" >
-            <span v-if="getAmount(props.props.transaction)">{{ getAmount(props.props.transaction) }}</span>
-          </q-td>
-          <q-td v-if="props.props.args || props.props.args === null" key="args" >
-           <div v-if="props.props.args && props.props.args.length > 0" >
-            <span>{{ props.props.args.join(',') | eclipse }}</span>
-              <q-tooltip>{{ props.props.args }}</q-tooltip>
-           </div>
-            <span v-else>--</span>
-          </q-td>
-          <q-td key="fee" class="text-right">
-            <span v-if="props.props.fee || props.props.fee === 0">{{ props.props.fee | fee }}</span>
-          </q-td>
+            <q-td v-if="props.props.id" key="id">
+              <div class="text-tw-blue cursor-pointer hover:underline" @click="doSearch(props.props.id)">
+                <span class="w-136 inline-block"><a class="custom-link-desktop text-tw-blue cursor-pointer hover:underline">{{ props.props.id }}</a></span>
+                <q-tooltip>{{ props.props.id }}</q-tooltip>
+              </div>
+            </q-td>
+            <q-td key="height" >
+              <div class="text-tw-blue cursor-pointer hover:underline" @click="doSearch(props.props.height)">
+                {{ props.props.height | numSeparator }}
+              </div>
+            </q-td>
+            <q-td v-if="props.props.timestamp > -1" key="timestamp" >
+              <span>{{ fulltimestamp(props.props.timestamp) }}</span>
+            </q-td>
+            <q-td v-if="props.props.type" key="type" >
+              <span class="">{{ getTransType(props.props) }}</span>
+            </q-td>
+            <q-td v-if="props.props.senderId" key="senderId" >
+              <div class="text-tw-blue cursor-pointer hover:underline" @click="doSearch(props.props.senderId)">
+                <span class="w-136 inline-block"><a class="custom-link-desktop text-tw-blue cursor-pointer hover:underline">{{ props.props.senderId }}</a></span>
+                <q-tooltip>{{ props.props.senderId }}</q-tooltip>
+              </div>
+            </q-td>
+            <q-td v-if="props.props.amount" key="amount" >
+              <span v-if="getAmount(props.props.transaction)">{{ getAmount(props.props.transaction) }}</span>
+            </q-td>
+            <q-td v-if="props.props.args || props.props.args === null" key="args" >
+             <div v-if="props.props.args && props.props.args.length > 0" >
+              <span>{{ props.props.args.join(',') | eclipse }}</span>
+                <q-tooltip>{{ props.props.args }}</q-tooltip>
+             </div>
+              <span v-else>--</span>
+            </q-td>
+            <q-td key="fee" class="text-right">
+              <span v-if="props.props.fee || props.props.fee === 0">{{ props.props.fee | fee }}</span>
+            </q-td>
         </template>
         <template class="mobile-only" slot="items" slot-scope="props" v-if="props.props">
-          <table-item  :data="getTableData(props)" :bgIcon="'icon-details'" :dataIcon="'icon-transaction'"/>
+          <table-item :data="getTableData(props)" :bgIcon="'icon-details'" :dataIcon="'icon-transaction'" />
         </template>
       </table-container>
       <div v-else class="text-16 text-tw-grey-darkest xs:pl-5 sm:pl-15">{{$t('NO_DATA')}}</div>
