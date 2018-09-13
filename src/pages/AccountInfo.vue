@@ -301,7 +301,10 @@ export default {
       let res = await this.getAccount(this.$route.params.address || this.$route.params.nickname)
       if (res.success && res.account) {
         this.account = res.account
-        this.balances = [convertFee(res.account.xas) + ' XAS'].concat(this.balances)
+        const weight = res.account.weight
+        let xasBalance = weight > 0 ? weight + res.account.xas : res.account.xas
+        let lockedWeight = weight > 0 ? '( ' + this.$t('LOCKED') + convertFee(weight) + ' XAS )' : ''
+        this.balances = [convertFee(xasBalance) + ' XAS ' + lockedWeight].concat(this.balances)
       } else {
         toastError(this.$t('ERR_INVALID_SEARCH'))
         this._.delay(() => this.$router.push('/'), 1000)
@@ -314,9 +317,7 @@ export default {
         res.balances.forEach(balance => {
           let { precision } = balance.asset
           if (balance.balance >= 1) {
-            balances.push(
-              convertFee(balance.balance, precision) + ' ' + balance.currency
-            )
+            balances.push(convertFee(balance.balance, precision) + ' ' + balance.currency)
           }
         })
         this.balances = this.balances.concat(balances)
