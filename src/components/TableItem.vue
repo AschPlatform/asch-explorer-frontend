@@ -20,7 +20,7 @@
             <td v-else class="w-auto xs:text-15 sm:text-18 text-tw-grey-darkest  whitespace-no-wrap">
              <span>{{$t(data.label)}}:</span>
             </td>
-            <td class="truncate xs:text-15 sm:text-18 text-tw-grey-darkest max-w-2/3 ml-5">
+            <td class="xs:text-15 sm:text-18 text-tw-grey-darkest max-w-2/3 ml-5 whitespace-no-wrap">
               <span :class="data.link?`text-tw-blue cursor-pointer hover:underline`:''" @click="data.link?$router.push(data.link+data.value):null">
               <span v-if="data.type==='number'" class="text-tw-blue cursor-pointer hover:underline" @click="doSearch(data.value)">{{data.value | numSeparator}}</span>
               <span v-else-if="data.type==='timestamp'">{{data.value | formatTimestamp(true)}}</span>
