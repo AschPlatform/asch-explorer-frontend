@@ -1,7 +1,8 @@
 <template>
-  <div class="xs:mb-15 sm:mb-30 xs:p-15 sm:p-20 shadow-none  sm:hover:shadow-21 sm:hover:bg-tw-grey-lightet border-1 border-solid border-tw-grey-darker panelitem-container overflow-hidden relative">
+  <div class="xs:mb-15 sm:mb-30 xs:p-15 sm:p-20 shadow-none  sm:hover:shadow-21 sm:hover:bg-tw-grey-lightet border-1 border-solid border-tw-grey-darker panelitem-container overflow-hidden relative" :data-aos="panelClass"  data-aos-delay="0" data-aos-easing="ease-in-sine" data-aos-duration="800" data-aos-offset="0"
+     >
     <div v-if="type=='blocks'">
-      <div class="right-icon-left absolute -mr-15 -mb-15 pin-b pin-r">
+      <div class="absolute -mr-15 -mb-15 pin-b pin-r">
         <q-icon class="xs:text-70 sm:text-70 text-tw-grey-darkest opacity-8" name="icon-block" />
       </div>
       <div :class="timestampClass">
@@ -12,7 +13,7 @@
           <q-icon class="xs:text-15 sm:text-20 text-tw-blue" name="icon-height" />
         </div>
         <div class="w-4/5">
-          <div class="flex items-center xs:mb-15 sm:mb-20">
+          <div class="flex items-center xs:h-20 sm:h-25 xs:mb-15 sm:mb-20">
             <span :class="labelClass">{{$t('BLOCK_HEIGHT')}}</span>
             <span :class="linkClass" @click="doSearch(data.height, 'height')">{{data.height | numSeparator}}</span>
           </div>
@@ -30,23 +31,26 @@
       </div>
     </div>
     <div v-else>
+      <div :class="timestampClass">
+          {{timeFromNow(data.timestamp)}}
+      </div>
+      <div class="absolute -mr-20 -mb-10 pin-b pin-r">
+          <q-icon class="xs:text-60 sm:text-60 text-tw-grey-lighter opacity-8" name="icon-watermark" />
+      </div>
       <div v-if="data" class="flex justify-start">
         <div class="flex justify-start items-start w-auto xs:mr-5 sm:mr-10 xs:pt-2 sm:pt-3">
           <q-icon class="xs:text-15 sm:text-20 text-tw-blue" name="icon-transaction" />
         </div>
-        <div :class="timestampClass">
-          {{timeFromNow(data.timestamp)}}
-        </div>
         <div class="w-4/5">
-          <div class="flex items-center mb-20">
-            <span class="w-auto mr-10 xs:text-15 sm:text-18 text-tw-grey-darkest">{{$t('TRANSACTION_ID')}}</span>
-            <span :class="linkClass" class="max-w-xs" @click="doSearch(data.id, 'trans')">
+          <div class="flex items-center xs:h-20 sm:h-25 xs:mb-15 sm:mb-20">
+            <span :class="labelClass">{{$t('TRANSACTION_ID')}}</span>
+            <span :class="linkClass"  @click="doSearch(data.id, 'trans')">
                <a :class="customLinkClass">
                   {{data.id}}
                 </a>
               </span>
           </div>
-          <p class="flex items-center justify-start mb-20">
+          <div class="flex items-center justify-start xs:mb-15 sm:mb-20">
             <span class="xs:mr-10 sm:mr-20 xs:text-15 sm:text-18 text-tw-grey-darkest">{{$t('FROM')}}</span>
             <span :class="addressClass" @click="doSearch(data.senderId)">
                 <a :class="customLinkClass" href="javascript:;">
@@ -59,7 +63,7 @@
                  {{getProps(data,'recieve')|| 'SYSTEM'}}
                 </a>
               </span>
-          </p>
+          </div>
           <div class="flex items-center">
             <span class="w-auto xs:mr-10 sm:mr-20 xs:text-15 sm:text-18 text-tw-grey-darkest">{{$t('AMOUNT')}}</span>
             <span v-if="getProps(data)" class="xs:text-15 sm:text-18 text-tw-grey-darkest">
@@ -68,9 +72,6 @@
                 </span>
             <span v-else class="xs:text-15 sm:text-18 text-tw-grey-darkest">{{'--'}}</span>
           </div>
-        </div>
-        <div class="right-icon-right absolute -mr-20 -mb-10 pin-b pin-r">
-          <q-icon class="xs:text-60 sm:text-60 text-tw-grey-lighter opacity-8" name="icon-watermark" />
         </div>
       </div>
     </div>
@@ -144,6 +145,9 @@ export default {
   },
   computed: {
     ...mapGetters(['assetMap']),
+    panelClass() {
+      return isDesktop() ? (this.type === 'trans' ? 'fade-left' : 'fade-right') : 'fade-up'
+    },
     timestampClass() {
       return 'w-auto text-right xs:text-15 sm:text-18 text-tw-grey-darkest absolute xs:pt-15 xs:pr-15 sm:pt-20 sm:pr-20 pin-t pin-r'
     },

@@ -120,7 +120,15 @@ export default {
     }
   },
   methods: {
-    ...mapActions(['getHeight', 'getUsers', 'getXas', 'getAssets', 'getAssetNum', 'getXasPrice', 'getTransactionInfo']),
+    ...mapActions([
+      'getHeight',
+      'getUsers',
+      'getXas',
+      'getAssets',
+      'getAssetNum',
+      'getXasPrice',
+      'getTransactionInfo'
+    ]),
     openURL,
     async doSearch(str, type) {
       if (this.searchForbidden) return
