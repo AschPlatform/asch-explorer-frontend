@@ -170,6 +170,11 @@ export default {
         return this.$route.params.address
       }
     },
+    params() {
+      if (this.$route.params) {
+        return this.$route.params
+      }
+    },
     panelData() {
       let datas = []
       if (this.account) {
@@ -472,7 +477,7 @@ export default {
     }
   },
   watch: {
-    address(val) {
+    params(val) {
       if (val) this.init()
     }
   }
