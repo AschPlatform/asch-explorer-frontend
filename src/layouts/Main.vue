@@ -87,6 +87,8 @@ import CodeModal from '../components/QRCodeModal'
 import { getCache, setCache } from '../utils/util'
 import { mapGetters, mapActions } from 'vuex'
 
+import 'aos/dist/aos.css'
+
 export default {
   name: 'MyLayout',
   components: {
