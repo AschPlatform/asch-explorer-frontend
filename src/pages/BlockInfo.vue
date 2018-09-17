@@ -241,7 +241,7 @@ export default {
         this.produceTime = fulltimestamp(trans.timestamp)
         this.reward = convertFee(trans.reward)
       } else {
-        this._.delay(() => this.$router.push({path: '/error', query: { errorStr: this.$route.params.id || this.$route.params.height }}), 1000)
+        this.$router.push({path: '/error', query: { errorStr: this.$route.params.id || this.$route.params.height }})
       }
     },
     async getData(props = this.defaultProps) {
