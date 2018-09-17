@@ -18,7 +18,6 @@
 </template>
 
 <script>
-import AOS from 'aos'
 import { QIcon } from 'quasar'
 import ICountUp from 'vue-countup-v2'
 import { isDesktop } from '../utils/util'
@@ -32,9 +31,6 @@ export default {
   },
   data() {
     return {}
-  },
-  mounted() {
-    AOS.init()
   },
   methods: {},
   computed: {

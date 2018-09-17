@@ -52,7 +52,6 @@
 </template>
 
 <script>
-import AOS from 'aos'
 import { QTd, QIcon } from 'quasar'
 import { fulltimestamp } from '../utils/util'
 // import { mapGetters } from 'vuex'
@@ -68,9 +67,6 @@ export default {
     return {
       idField: null
     }
-  },
-  mounted() {
-    AOS.init()
   },
   methods: {
     fulltimestamp,

@@ -14,7 +14,6 @@
 </template>
 
 <script>
-import AOS from 'aos'
 import { QIcon } from 'quasar'
 import PanelItem from './PanelItem'
 import { mapActions, mapGetters } from 'vuex'
@@ -35,7 +34,6 @@ export default {
   async mounted() {
     this.assetMap.size === 0 && (await this.getAssets())
     this.getData()
-    AOS.init()
   },
   methods: {
     ...mapActions(['getBlocks', 'getTransactions', 'getAssets']),

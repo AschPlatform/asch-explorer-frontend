@@ -87,8 +87,6 @@ import CodeModal from '../components/QRCodeModal'
 import { getCache, setCache } from '../utils/util'
 import { mapGetters, mapActions } from 'vuex'
 
-import 'aos/dist/aos.css'
-
 export default {
   name: 'MyLayout',
   components: {
@@ -122,7 +120,15 @@ export default {
     }
   },
   methods: {
-    ...mapActions(['getHeight', 'getUsers', 'getXas', 'getAssets', 'getAssetNum', 'getXasPrice', 'getTransactionInfo']),
+    ...mapActions([
+      'getHeight',
+      'getUsers',
+      'getXas',
+      'getAssets',
+      'getAssetNum',
+      'getXasPrice',
+      'getTransactionInfo'
+    ]),
     openURL,
     async doSearch(str, type) {
       if (this.searchForbidden) return

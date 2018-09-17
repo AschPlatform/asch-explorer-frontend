@@ -19,7 +19,6 @@
 </template>
 
 <script>
-import AOS from 'aos'
 import { QIcon } from 'quasar'
 import logoFooter from '../assets/logo_footer.png'
 import { isDesktop } from '../utils/util'
@@ -33,9 +32,6 @@ export default {
     return {
       logoFooter
     }
-  },
-  mounted() {
-    AOS.init()
   },
   methods: {
     toHome() {
