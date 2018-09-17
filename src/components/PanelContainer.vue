@@ -1,6 +1,6 @@
 <template>
   <div class="">
-    <div class="flex justify-between items-center xs:mb-15 sm:mb-30">
+    <div class="flex justify-between items-center xs:mb-15 sm:mb-30"             :data-aos="panelContainerClass"  data-aos-delay="0" data-aos-easing="ease-in-sine" data-aos-duration="800" data-aos-offset="0">
       <div class="flex items-center">
         <q-icon class="xs:text-18 sm:text-26 text-tw-grey-darkest mr-10" :name="panelIcon" />
         <span class="xs:text-16 sm:text-24 text-tw-grey-darkest font-medium">{{panelName}}</span>
@@ -14,10 +14,11 @@
 </template>
 
 <script>
+import AOS from 'aos'
 import { QIcon } from 'quasar'
 import PanelItem from './PanelItem'
 import { mapActions, mapGetters } from 'vuex'
-import { toastError } from '../utils/util'
+import { toastError, isDesktop } from '../utils/util'
 
 export default {
   name: 'PanelContainer',
@@ -34,6 +35,7 @@ export default {
   async mounted() {
     this.assetMap.size === 0 && (await this.getAssets())
     this.getData()
+    AOS.init()
   },
   methods: {
     ...mapActions(['getBlocks', 'getTransactions', 'getAssets']),
@@ -61,6 +63,9 @@ export default {
   },
   computed: {
     ...mapGetters(['getHeight', 'assetMap']),
+    panelContainerClass() {
+      return isDesktop() ? (this.type === 'trans' ? 'fade-left' : 'fade-right') : 'fade-up'
+    },
     panelIcon() {
       return this.type === 'trans' ? 'icon-transfer' : 'icon-forging'
     },
