@@ -151,7 +151,8 @@ export default {
       }
       let delegateField = {
         label: 'BLOCK_GENERATOR',
-        value: getAddress(delegate)
+        value: getAddress(delegate),
+        type: 'address'
       }
       let rewardField = {
         label: 'FORGE_REWARD',

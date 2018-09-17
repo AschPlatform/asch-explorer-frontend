@@ -29,6 +29,7 @@ const lang = {
   PRE_BLOCK: '前一个块',
   ADDRESS: '地址',
   BLOCK_INFO: '区块详情',
+  FORGE_INFO: '产块信息',
   TRANSACTION_INFO: '交易详情',
   ACCOUNT_INFO: '账户地址详情',
   LOCKED: '已锁仓',

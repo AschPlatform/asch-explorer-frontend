@@ -29,6 +29,7 @@ const lang = {
   PRE_BLOCK: 'Previous Block',
   ADDRESS: 'Address',
   BLOCK_INFO: 'Block Info',
+  FORGE_INFO: 'Forged Blocks',
   TRANSACTION_INFO: 'Transaction Info',
   ACCOUNT_INFO: 'Account Info',
   LOCKED: 'Locked',
