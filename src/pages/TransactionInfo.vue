@@ -26,7 +26,7 @@ import { QPage, QIcon } from 'quasar'
 import Breadcrumb from '../components/Breadcrumb'
 import BoundaryLine from '../components/BoundaryLine'
 import InfoPanel from '../components/InfoPanel'
-import { convertFee, fulltimestamp, toast } from '../utils/util'
+import { convertFee, fulltimestamp } from '../utils/util'
 import { transTypes, REGEX } from '../utils/constants'
 import { mapGetters, mapActions } from 'vuex'
 import infoImge from '../assets/asch_logo.png'
@@ -171,8 +171,7 @@ export default {
           this.$router.push({ path: '/error', query: { errorStr: this.$route.params.id } })
         }
       } catch (e) {
-        toast(this.$t('ERR_INVALID_SEARCH'))
-        this._.delay(() => this.$router.push('/'), 1000)
+        this._.delay(() => this.$router.push({ path: '/error', query: { errorStr: this.$route.params.id } }), 1000)
       }
     },
     getTransType(trans) {
