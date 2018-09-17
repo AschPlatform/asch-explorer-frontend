@@ -50,7 +50,18 @@
 
 <script>
 /* eslint-disable */
-import { QToolbar, QToolbarTitle, QBtn, QInput, QSelect, QIcon, QList, QItem, QItemMain, QItemSide } from 'quasar'
+import {
+  QToolbar,
+  QToolbarTitle,
+  QBtn,
+  QInput,
+  QSelect,
+  QIcon,
+  QList,
+  QItem,
+  QItemMain,
+  QItemSide
+} from 'quasar'
 import { isDesktop } from '../utils/util'
 import { REGEX } from '../utils/constants'
 
@@ -83,6 +94,10 @@ export default {
       this.$router.push(path)
     },
     search() {
+      if (this.searchList.length > 0) {
+        this.searchSelect(this.searchList[0])
+        return
+      }
       this.$root.$emit('doSearch', this.searchStr)
       this.searchStr = ''
     },
@@ -102,6 +117,7 @@ export default {
       this.searchStr = ''
       let {title, type} = item
       this.$root.$emit('doSearch', title, type)
+      this.searchStr = ''
     }
   },
   computed: {
@@ -109,16 +125,18 @@ export default {
       let arr = []
       const { hash, height, nickname } = REGEX
       if (hash.test(this.searchStr)) {
-        arr.push({
-          title: this.searchStr,
-          label: this.$t('BLOCK_ID'),
-          type: 'id'
-        },
-        {
-          title: this.searchStr,
-          label: this.$t('TRANSACTION_ID'),
-          type: 'transaction'
-        })
+        arr.push(
+          {
+            title: this.searchStr,
+            label: this.$t('BLOCK_ID'),
+            type: 'id'
+          },
+          {
+            title: this.searchStr,
+            label: this.$t('TRANSACTION_ID'),
+            type: 'transaction'
+          }
+        )
       }
       if (height.test(this.searchStr)) {
         arr.push({
@@ -140,17 +158,25 @@ export default {
       return isDesktop() ? 'custom-search-icon-desktop' : 'custom-search-icon-mobile'
     },
     searchIcon() {
-      return [
-        {
-          icon: 'search',
-          // required function to call when
-          // icon is clicked/tapped
-          handler: () => this.search(),
-          // Optional. Show icon button
-          // if model has a value
-          content: true
-        }
-      ]
+      const deleteIcon = {
+        icon: 'close',
+        // required function to call when
+        // icon is clicked/tapped
+        handler: () => (this.searchStr = ''),
+        // Optional. Show icon button
+        // if model has a value
+        content: true
+      }
+      const searchIcon = {
+        icon: 'search',
+        // required function to call when
+        // icon is clicked/tapped
+        handler: () => this.search(),
+        // Optional. Show icon button
+        // if model has a value
+        content: true
+      }
+      return this.searchStr ? [deleteIcon, searchIcon] : [searchIcon]
     },
     getPlaceholder() {
       const t = this.$t
@@ -187,8 +213,9 @@ export default {
 
 <style lang="stylus" scoped>
 .trans {
-  transition: all ease .1s;
+  transition: all ease 0.1s;
 }
+
 .top-30 {
   top: 30px;
 }
