@@ -170,7 +170,7 @@ export default {
         return this.$route.params.address
       }
     },
-    params() {
+    alia() {
       if (this.$route.params) {
         return this.$route.params
       }
@@ -477,7 +477,7 @@ export default {
     }
   },
   watch: {
-    params(val) {
+    alia(val) {
       if (val) this.init()
     }
   }
