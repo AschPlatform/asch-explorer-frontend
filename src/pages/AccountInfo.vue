@@ -321,7 +321,7 @@ export default {
       }
     },
     async getAccountBalances() {
-      let res = await this.getBalance(this.$route.params.address || this.$route.params.nickname)
+      let res = await this.getBalance(this.$route.params.address || this.account.address)
       if (res.success) {
         let balances = []
         res.balances.forEach(balance => {
@@ -333,11 +333,11 @@ export default {
         this.balances = this.balances.concat(balances)
       }
     },
-    init() {
+    async init() {
       this.account = null
       this.balances = []
-      this.getAccountInfo()
-      this.getAccountBalances()
+      await this.getAccountInfo()
+      await this.getAccountBalances()
     },
     changeType(val) {
       this.type = val
