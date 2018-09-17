@@ -94,6 +94,10 @@ export default {
       this.$router.push(path)
     },
     search() {
+      if (this.searchList.length > 0) {
+        this.searchSelect(this.searchList[0])
+        return
+      }
       this.$root.$emit('doSearch', this.searchStr)
       this.searchStr = ''
     },

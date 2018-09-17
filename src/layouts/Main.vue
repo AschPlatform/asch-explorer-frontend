@@ -129,30 +129,20 @@ export default {
       this.searchForbidden = true
       this._.delay(() => (this.searchForbidden = false), 2000)
       // TODO: add public key reg
-      if (type === 'delegate') {
-        router.push(`/delegate/${str}`)
-        return
-      }
-      if (type === 'nick') {
-        router.push(`/account/${str}`)
-        return
-      }
-      if (type === 'address') {
-        router.push(`/address/${str}`)
-        return
-      }
-      if (type === 'id') {
-        router.push(`/blocks_id/${str}`)
-        return
-      }
-      if (type === 'transaction') {
-        router.push(`/transaction/${str}`)
-        return
-      }
-      if (type === 'asset') {
-        str = str.replace('.', '-')
-        router.push(`/asset/${str}`)
-        return
+      switch (type) {
+        case 'delegate':
+          return router.push(`/delegate/${str}`)
+        case 'nick':
+          return router.push(`/account/${str}`)
+        case 'address':
+          return router.push(`/address/${str}`)
+        case 'id':
+          return router.push(`/blocks_id/${str}`)
+        case 'transaction':
+          return router.push(`/transaction/${str}`)
+        case 'asset':
+          str = str.replace('.', '-')
+          return router.push(`/asset/${str}`)
       }
       if (hash.test(str) || type === 'trans') {
         let result = await this.getTransactionInfo({

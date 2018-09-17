@@ -166,7 +166,9 @@ export default {
   computed: {
     ...mapGetters(['getPrecision']),
     address() {
-      return this.$route.params.address || ''
+      if (this.$route.params.address) {
+        return this.$route.params.address
+      }
     },
     panelData() {
       let datas = []
@@ -319,7 +321,7 @@ export default {
       }
     },
     async getAccountBalances() {
-      let res = await this.getBalance(this.$route.params.address)
+      let res = await this.getBalance(this.$route.params.address || this.$route.params.nickname)
       if (res.success) {
         let balances = []
         res.balances.forEach(balance => {
@@ -346,18 +348,24 @@ export default {
     async getData(props = this.defaultProps) {
       this.data = []
       let res
-      if (this.type === 1) {
-        // For transactions
-        props.senderId = this.address
-        res = await this.getTransactions(props)
-        this.data = res.transactions
-        this.count = res.count
+      if (this.account) {
+        if (this.type === 1) {
+          // For transactions
+          props.senderId = this.account.address
+          res = await this.getTransactions(props)
+          this.data = res.transactions
+          this.count = res.count
+        } else {
+          // For transfers
+          props.ownerId = this.account.address
+          res = await this.getTransfers(props)
+          this.data = res.transfers
+          this.count = res.count
+        }
       } else {
-        // For transfers
-        props.ownerId = this.address
-        res = await this.getTransfers(props)
-        this.data = res.transfers
-        this.count = res.count
+        setTimeout(() => {
+          this.getData(props)
+        }, 0)
       }
     },
     reset() {
