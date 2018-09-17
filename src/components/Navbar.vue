@@ -114,7 +114,6 @@ export default {
       this.searchList = []
     },
     searchSelect(item) {
-      console.log('item', item)
       this.searchStr = ''
       let {title, type} = item
       this.$root.$emit('doSearch', title, type)
