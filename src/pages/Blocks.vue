@@ -51,7 +51,7 @@
 import { QPage, QTd, QTooltip } from 'quasar'
 import Breadcrumb from '../components/Breadcrumb'
 import TableContainer from '../components/TableContainer'
-import { fulltimestamp, convertFee, getAddress, rewardCount } from '../utils/util'
+import { fulltimestamp, getAddress, rewardCount } from '../utils/util'
 import TableItem from '../components/TableItem'
 import { mapActions } from 'vuex'
 
@@ -138,7 +138,7 @@ export default {
       this.$root.$emit('doSearch', str)
     },
     getTableData(data) {
-      const { id, height, delegate, reward, timestamp } = data.props
+      const { id, height, delegate, timestamp } = data.props
       let idField = {
         label: 'BLOCK_ID',
         value: id,
@@ -156,7 +156,7 @@ export default {
       }
       let rewardField = {
         label: 'FORGE_REWARD',
-        value: convertFee(reward)
+        value: this.rewardCount(height)
       }
       // let countField = {
       //   label: 'TRANS_NUM',
@@ -176,7 +176,7 @@ export default {
     }
   },
   computed: {
-       params() {
+    params() {
       return this.$route.params
     }
   }

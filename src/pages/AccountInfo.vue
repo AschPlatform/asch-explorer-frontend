@@ -20,8 +20,8 @@
           <boundary-line class="xs:my-15 sm:my-15" />
         </div>
         <div class="btngroup xs:pl-5 sm:pl-15">
-          <button :class="(this.type === 0 ? styleSelected : styleUnselected) + ' mr-20'" @click="changeType(0)">{{$t('TRS_TYPE_TRANSFER_RECORD')}}</button>
-          <button :class="this.type === 1 ? styleSelected : styleUnselected" @click="changeType(1)">{{$t('TRANS_TITLE')}}</button>
+          <button :class="(this.type === 0 ? styleSelected : styleUnselected) + ' mr-20'" @click="changeType(0)" >{{$t('TRS_TYPE_TRANSFER_RECORD')}}</button>
+          <button :class="this.type === 1 ? styleSelected : styleUnselected" @click="changeType(1)" >{{$t('TRANS_TITLE')}}</button>
         </div>
         <div class="xs:px-5 sm:px-15">
           <boundary-line class="mt-20" />
@@ -100,7 +100,7 @@
 
 <script>
 /* disable-eslint */
-import { QPage, QBtnGroup, QBtnToggle, QBtn, QTd, QTooltip, QIcon, QChip } from 'quasar'
+import { QPage, QBtn, QTd, QTooltip, QIcon, QChip } from 'quasar'
 import BoundaryLine from '../components/BoundaryLine'
 import Breadcrumb from '../components/Breadcrumb'
 import InfoPanel from '../components/InfoPanel'
@@ -120,8 +120,6 @@ export default {
     InfoPanel,
     TableContainer,
     BoundaryLine,
-    QBtnGroup,
-    QBtnToggle,
     TableItem,
     PanelItem,
     QBtn,
@@ -144,16 +142,6 @@ export default {
         offset: 0
       },
       count: 0,
-      btnGroup: [
-        {
-          label: this.$t('TRANS_TABLE'),
-          value: 0
-        },
-        {
-          label: this.$t('TRANSACTION_TABLE'),
-          value: 1
-        }
-      ],
       styleSelected:
         'inline px-0 font-semibold xs:text-16 sm:text-20 q-btn text-tw-blue border-b-2 border-tw-blue border-solid bg-tw-transparent shadow-none',
       styleUnselected:
@@ -322,7 +310,10 @@ export default {
           weight > 0 ? '( ' + this.$t('LOCKED') + convertFee(weight) + ' XAS )' : ''
         this.balances = [convertFee(xasBalance) + ' XAS ' + lockedWeight].concat(this.balances)
       } else {
-        this.$router.push({ path: '/error', query: { errorStr: this.$route.params.address || this.$route.params.nickname } })
+        this.$router.push({
+          path: '/error',
+          query: { errorStr: this.$route.params.address || this.$route.params.nickname }
+        })
       }
     },
     async getAccountBalances() {

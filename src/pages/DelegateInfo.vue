@@ -218,8 +218,12 @@ export default {
       this.$root.$emit('doSearch', str)
     },
     getTableData(data) {
-      const { height, count, fees, timestamp } = data
-
+      const { id, height, timestamp } = data
+      let idField = {
+        label: 'BLOCK_ID',
+        value: id,
+        type: 'id'
+      }
       let heightField = {
         label: 'BLOCK_HEIGHT',
         value: height,
@@ -229,19 +233,19 @@ export default {
         label: 'FORGE_REWARD',
         value: rewardCount(height)
       }
-      let countField = {
-        label: 'TRANS_NUM',
-        value: count
-      }
-      let feeField = {
-        label: 'TRANS_FEE',
-        value: fees
-      }
+      // let countField = {
+      //   label: 'TRANS_NUM',
+      //   value: count
+      // }
+      // let feeField = {
+      //   label: 'TRANS_FEE',
+      //   value: fees
+      // }
       let timeField = {
         label: 'PRODUCER_TIME',
         value: fulltimestamp(timestamp)
       }
-      return [heightField, rewardField, countField, feeField, timeField]
+      return [idField, heightField, rewardField, timeField]
     }
   },
   watch: {
