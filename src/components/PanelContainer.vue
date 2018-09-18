@@ -1,6 +1,6 @@
 <template>
   <div class="">
-    <div class="flex justify-between items-center xs:mb-15 sm:mb-30"             :data-aos="panelContainerClass"  data-aos-delay="0" data-aos-easing="ease-in-sine" data-aos-duration="800" data-aos-offset="0">
+    <div class="flex justify-between items-center xs:mb-15 sm:mb-30" :data-aos="panelContainerClass" data-aos-delay="0" data-aos-easing="ease-in-sine" data-aos-duration="800" data-aos-offset="0">
       <div class="flex items-center">
         <q-icon class="xs:text-18 sm:text-26 text-tw-grey-darkest mr-10" :name="panelIcon" />
         <span class="xs:text-16 sm:text-24 text-tw-grey-darkest font-medium">{{panelName}}</span>

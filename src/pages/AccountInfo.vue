@@ -65,7 +65,8 @@
               </div>
             </q-td>
             <q-td v-if="props.props.amount" class="text-right" key="amount" >
-              <span v-if="getAmount(props.props.transaction)">{{ getAmount(props.props.transaction) }}</span>
+              <span v-if="getAmount(props.props.transaction)">{{ getresult(getAmount(props.props.transaction),5) }}</span>
+              <q-tooltip>{{ getAmount(props.props.transaction) }}</q-tooltip>
             </q-td>
             <q-td v-if="props.props.transferAmount" class="text-right" key="transferAmount">
               <span v-if="getTransAmount(props.props)">{{ getTransAmount(props.props) }}</span>
@@ -322,7 +323,10 @@ export default {
           weight > 0 ? '( ' + this.$t('LOCKED') + convertFee(weight) + ' XAS )' : ''
         this.balances = [convertFee(xasBalance) + ' XAS ' + lockedWeight].concat(this.balances)
       } else {
-        this.$router.push({ path: '/error', query: { errorStr: this.$route.params.address || this.$route.params.nickname } })
+        this.$router.push({
+          path: '/error',
+          query: { errorStr: this.$route.params.address || this.$route.params.nickname }
+        })
       }
     },
     async getAccountBalances() {
@@ -409,6 +413,9 @@ export default {
         return '--'
       }
       // return args[len - 2]
+    },
+    getresult(str, n) {
+      return str.replace(new RegExp('^(\\-?\\d*\\.?\\d{0,' + n + '})(\\d*)$'), '$1')
     },
     // get data array for tableItem
     getTableData(data) {
