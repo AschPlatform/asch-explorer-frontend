@@ -27,9 +27,9 @@
             <q-tooltip>{{ props.props.address }}</q-tooltip>
           </div>
         </q-td>
-        <q-td key="producedBlocks" >
+        <!-- <q-td key="producedBlocks" >
           <span>{{ props.props.producedBlocks || 0 }}</span>
-        </q-td>
+        </q-td> -->
         <q-td v-if="props.props.productivity" key="productivity" >
           <span>{{ props.props.productivity + ' %' }}</span>
         </q-td>
@@ -127,7 +127,7 @@ export default {
       this.$root.$emit('doSearch', str, type)
     },
     getTableData(data) {
-      const { rate, name, address, producedBlocks, productivity, approval } = data
+      const { rate, name, address, productivity, approval } = data
       let rateField = {
         label: 'RANK',
         value: rate,
@@ -143,11 +143,11 @@ export default {
         value: address,
         type: 'address'
       }
-      let producedBlocksField = {
-        label: 'BLOCK_NUM',
-        value: producedBlocks,
-        type: 'number'
-      }
+      // let producedBlocksField = {
+      //   label: 'BLOCK_NUM',
+      //   value: producedBlocks,
+      //   type: 'number'
+      // }
       let productivityField = {
         label: 'PRODUCTIVITY',
         value: productivity + ' %',
@@ -163,7 +163,7 @@ export default {
         rateField,
         nameField,
         addressField,
-        producedBlocksField,
+        // producedBlocksField,
         productivityField,
         approvalField
       ]

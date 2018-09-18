@@ -1019,7 +1019,7 @@ anymatch@^2.0.0:
 
 aos@^2.3.3:
   version "2.3.3"
-  resolved "https://registry.yarnpkg.com/aos/-/aos-2.3.3.tgz#bddbe68fc73f7e90ff95f5d0f3810fee5acacbe2"
+  resolved "http://r.cnpmjs.org/aos/download/aos-2.3.3.tgz#bddbe68fc73f7e90ff95f5d0f3810fee5acacbe2"
   dependencies:
     classlist-polyfill "^1.0.3"
     lodash.debounce "^4.0.6"

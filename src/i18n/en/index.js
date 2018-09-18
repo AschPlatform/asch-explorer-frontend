@@ -49,7 +49,7 @@ const lang = {
   PRECISION: 'Precision',
   ISSUE_TIME: 'Issue Date',
   ISSUE_ADDRESS: 'Issuer Address',
-
+  ASSET_TYPE: 'Asset Type',
   // transactionsInfo
   TRANSACTION: 'Transactions',
   TRANSACTIONS: 'Transaction List',
@@ -96,6 +96,7 @@ const lang = {
   SEARCH_OEEOR: 'Oops!',
   SEARCH_OEEOR_STATEMENT: 'No data matching the query is found. Please try again with different keyword',
   // common
+  MESSAGE: 'Memo',
   LOADING: 'Loading',
   FORGE: 'Forge',
   FROM: 'From',
