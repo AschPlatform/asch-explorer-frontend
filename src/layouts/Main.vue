@@ -53,6 +53,7 @@
             {{$t('LANGUAGE_EN')}}
           </a>
         </div>
+        <q-item-separator class="sep text-tw-grey block" />
       </q-list>
     </q-layout-drawer>
     <code-modal class="qr-container" :show="QRCodeShow" @close="QRCodeShow = false" :text="QRCodeText"/>
