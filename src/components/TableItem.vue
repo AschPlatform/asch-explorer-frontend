@@ -28,6 +28,9 @@
               <span v-else-if="data.type==='delegate'" class="text-tw-blue cursor-pointer hover:underline" @click="doSearch(data.value[1], 'delegate')">{{data.value[0]}}</span>
               <span v-else-if="data.type==='asset'" class="text-tw-blue cursor-pointer hover:underline" @click="doSearch(data.value, 'asset')">{{data.value.split('.')[1]}}</span>
               <span v-else-if="data.type==='countDown'">{{fulltimestamp(data.value)}}</span>
+              <span v-else-if="data.type==='nick'" class="text-tw-blue cursor-pointer hover:underline" @click="doSearch(data.value,'nick')">
+                <span class="w-136 inline-block"><a class="custom-link-desktop text-tw-blue cursor-pointer hover:underline">{{data.value}}</a></span>
+              </span>
               <span v-else-if="data.type==='address'" class="text-tw-blue cursor-pointer hover:underline" @click="doSearch(data.value)">
                 <span v-if="data.nickname" >
                   {{data.nickname}}({{data.value}})

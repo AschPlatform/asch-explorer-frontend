@@ -51,8 +51,9 @@
             </q-td>
             <q-td v-if="props.props.recipientId" key="recipientId" >
               <div class="text-tw-blue cursor-pointer hover:underline" @click="doSearch(props.props.recipientId)">
-                 <span class="w-136 inline-block"><a class="custom-link-desktop text-tw-blue cursor-pointer hover:underline">{{ props.props.transaction.args[props.props.transaction.args.length-1]}}</a></span>
-                <q-tooltip>{{ props.props.transaction.args[props.props.transaction.args.length-1]}}</q-tooltip>
+                 <span class="w-136 inline-block"><a class="custom-link-desktop text-tw-blue cursor-pointer hover:underline">
+                   {{ getRecipientId(props.props) }}</a></span>
+                <q-tooltip>{{ getRecipientId(props.props) }}</q-tooltip>
               </div>
             </q-td>
             <q-td v-if="props.props.amount" class="text-right" key="amount" >
@@ -218,11 +219,18 @@ export default {
       }
       // return args[len - 2]
     },
+    getRecipientId(trans) {
+      if (trans.transaction) {
+        return trans.transaction.args[trans.transaction.args.length - 1]
+      } else {
+        return trans.recipientId
+      }
+    },
     getresult(str, n) {
       return str.replace(new RegExp('^(\\-?\\d*\\.?\\d{0,' + n + '})(\\d*)$'), '$1')
     },
     getTableData(data) {
-      const { id = null, tid = null, recipientId, senderId, timestamp } = data
+      const { id = null, tid = null, senderId, timestamp } = data
 
       let idField = {
         label: 'TRANSACTION_ID',
@@ -264,8 +272,8 @@ export default {
 
       let receiverField = {
         label: 'TRANS_RECRIVER',
-        value: recipientId,
-        type: 'address'
+        value: this.getRecipientId(data),
+        type: 'nick'
       }
 
       // let currencyField = {
