@@ -17,13 +17,13 @@
             <span :class="labelClass">{{$t('BLOCK_HEIGHT')}}</span>
             <span :class="linkClass" @click="doSearch(data.height, 'height')">{{data.height | numSeparator}}</span>
           </div>
-          <div class="flex  xs:mb-15 sm:mb-20">
+          <div class="flex items-center xs:mb-15 sm:mb-20">
             <span :class="labelClass">{{$t('PRODUCER')}}</span>
             <span :class="linkClass" @click="$router.push('/delegate/'+getAddress(data.delegate))">
-                <a :class="customLinkClass">{{getAddress(data.delegate)}}</a>
-                </span>
+              <a :class="customLinkClass">{{getAddress(data.delegate)}}</a>
+            </span>
           </div>
-          <div class="flex">
+          <div class="flex items-center">
             <span :class="labelClass">{{$t('FORGE_REWARD')}}</span>
             <span class="truncate xs:text-15 sm:text-18 text-tw-grey-darkest w-auto">{{rewardCount(data.height)}}</span>
           </div>
@@ -45,30 +45,30 @@
           <div class="flex xs:h-20 sm:h-25 xs:mb-15 sm:mb-20">
             <span :class="labelClass">{{$t('TRANSACTION_ID')}}</span>
             <span :class="linkClass" @click="doSearch(data.id, 'trans')">
-                   <a :class="customLinkClass" href="javascript:;">
-                      {{data.id}}
-                    </a>
-                  </span>
+              <a :class="customLinkClass" href="javascript:;">
+                {{data.id}}
+              </a>
+            </span>
           </div>
           <div class="flex justify-start xs:mb-15 sm:mb-20">
             <span class="xs:mr-10 sm:mr-20 xs:text-15 sm:text-18 text-tw-grey-darkest">{{$t('FROM')}}</span>
             <span :class="addressClass" @click="doSearch(data.senderId)">
-                    <a :class="customLinkClass" href="javascript:;">
-                      {{data.senderId}}
-                    </a>
-                </span>
-            <span class="xs:mx-5 sm:mx-10 xs:text-15 sm:text-18 text-tw-grey-darkest">{{$t('TO')}}</span>
+              <a :class="customLinkClass" href="javascript:;">
+                {{data.senderId}}
+              </a>
+            </span>
+            <span class="xs:mx-5 sm:mx-20 xs:text-15 sm:text-18 text-tw-grey-darkest">{{$t('TO')}}</span>
             <span :class="getProps(data,'recieve')?addressClass:''" @click="doSearch(getProps(data,'recieve'))">
-                    <a :class="customLinkClass" href="javascript:;">
-                     {{getProps(data,'recieve')|| 'SYSTEM'}}
-                    </a>
-                  </span>
+              <a :class="customLinkClass" href="javascript:;">
+                {{getProps(data,'recieve')|| 'SYSTEM'}}
+              </a>
+            </span>
           </div>
-          <div class="flex">
+          <div class="flex items-center">
             <span class="w-auto xs:mr-10 sm:mr-20 xs:text-15 sm:text-18 text-tw-grey-darkest align-middle">{{$t('AMOUNT')}}</span>
             <span v-if="getProps(data)" class="xs:text-15 sm:text-18 text-tw-grey-darkest align-middle">
-                        {{getProps(data)}}
-                    </span>
+              {{getProps(data)}}
+            </span>
             <span v-else class="xs:text-15 sm:text-18 text-tw-grey-darkest align-middle">{{'--'}}</span>
           </div>
         </div>
@@ -156,10 +156,10 @@ export default {
         : 'custom-link-mobile xs:text-15 sm:text-18 text-tw-blue no-underline hover:underline cursor-pointer'
     },
     addressClass() {
-      return 'xs:text-15 sm:text-18 text-tw-blue hover:underline  cursor-pointer custom-link w-1/3'
+      return 'xs:text-15 sm:text-18 text-tw-blue hover:underline cursor-pointer custom-link w-1/3'
     },
     labelClass() {
-      return 'w-auto xs:text-15 sm:text-18 text-tw-grey-darkest mr-10'
+      return 'w-auto xs:text-15 sm:text-18 text-tw-grey-darkest mr-10 '
     }
   }
 }
