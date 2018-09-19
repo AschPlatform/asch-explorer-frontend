@@ -144,7 +144,7 @@ export default {
           this.transNum = convertFee(trans.args[1], precision)
           this.transFee = convertFee(trans.fee) + ' XAS'
           this.message = trans.message
-          this.argStr = trans.args
+          // this.argStr = trans.args
           break
         // case
         default:

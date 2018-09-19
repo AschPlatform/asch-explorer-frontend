@@ -12,15 +12,12 @@ const runTask = (type) => {
 }
 
 gulp.task('dev', () => {
-  console.log('dev..')
   runTask('develop')
 })
 gulp.task('pro', () => {
-  console.log('pro..')
   runTask('production')
 })
 gulp.task('test', () => {
-  console.log('test..')
   runTask('test')
 })
 
