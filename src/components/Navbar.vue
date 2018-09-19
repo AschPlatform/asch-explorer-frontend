@@ -1,8 +1,11 @@
 <template>
   <q-toolbar class="flex xs:flex-col overflow-visible sm:flex-row justify-between w-full bg-tw-black xs:h-auto sm:h-86 xs:px-0 xs:pb-11 sm:pb-0 sm:px-10 md:px-20 xl:px-25 xll:px-30">
     <div class="flex justify-between items-center flex-no-wrap sm:w-auto">
-      <div class="flex justify-center xs:w-100 xs:h-25 sm:w-144 sm:h-30 cursor-pointer xs:mr-0 sm:mr-20 lg:mr-30 xs:my-15 sm:my-0" @click="jump('/')">
+      <div v-if="setLogo()" class="flex justify-center xs:w-100 xs:h-25 sm:w-144 sm:h-30 cursor-pointer xs:mr-0 sm:mr-20 lg:mr-30 xs:my-15 sm:my-0" @click="jump('/')">
         <q-icon class="text-140 text-tw-white" name="icon-logo" />
+      </div>
+      <div v-else class="flex justify-center xs:w-100 xs:h-25 sm:w-144 sm:h-30 cursor-pointer xs:mr-0 sm:mr-20 lg:mr-30 xs:my-15 sm:my-0" @click="jump('/')">
+        <img class="xs:1/2 sm:w-full" :src="logoTop" alt="">
       </div>
       <div class="xs:hidden sm:flex w-auto">
         <button class="sm:text-14 md:text-16 xl:text-18 xll:text-20 text-tw-white hover:text-tw-blue px-0 sm:mr-10 md:mr-15 xl:mr-30 xll:mr-53 bg-tw-transparent border-0 cursor-pointer" flat @click="jump('/')">
@@ -64,6 +67,7 @@ import {
 } from 'quasar'
 import { isDesktop, setCache, getCache } from '../utils/util'
 import { REGEX } from '../utils/constants'
+import logoTop from '../assets/logo_top.png'
 
 export default {
   name: 'Navbar',
@@ -81,15 +85,25 @@ export default {
   },
   data() {
     return {
+      logoTop,
       searchStr: '',
       stretch: false,
-      lang: ''
+      lang: '',
+      isFirefox: true
     }
   },
   mounted() {
     this.getLang()
   },
   methods: {
+    setLogo() {
+      return navigator.userAgent.indexOf('Firefox') != -1 ? !this.isFirefox : this.isFirefox
+      // if (navigator.userAgent.indexOf('Firefox') != -1) {
+      //   return isFirefox
+      // } else {
+      //   return isFirefox
+      // }
+    },
     getLang() {
       if (window.localStorage && getCache('lang')) {
         let lang = getCache('lang')
@@ -137,6 +151,9 @@ export default {
       this._.delay(() => document.activeElement.blur(), 500)
       // this.$refs['search'].blur()
     }
+    // isFirefox(){
+    //   return
+    // }
   },
   computed: {
     searchList() {
