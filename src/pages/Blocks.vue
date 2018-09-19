@@ -2,7 +2,7 @@
   <q-page class="max-w-1200 m-auto xs:p-15 sm:p-0 xs:pb-20 sm:pb-40">
     <breadcrumb class="xs:mt-5 sm:mt-20" />
     <div class="rounded-lg xs:px-0 xs:pt-0 xs:pb-15 sm:px-0 sm:py-0">
-    <table-container class="custom-thead" :data="data"  :params="params" :count="count" :columnsData="columnsData" @getData="getData">
+      <table-container class="custom-thead" :data="data"  :params="params" :count="count" :columnsData="columnsData" @getData="getData">
         <template class="desktop-only" slot="content" slot-scope="props" v-if="props.props">
           <q-td  key="height">
             <div class="text-tw-blue cursor-pointer hover:underline" @click="doSearch(props.props.height)">
