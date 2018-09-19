@@ -22,13 +22,13 @@
         <template class="desktop-only" slot="content" slot-scope="props" v-if="props.props">
             <q-td v-if="props.props.id" key="id">
               <div class="text-tw-blue cursor-pointer hover:underline" @click="doSearch(props.props.id)">
-                 <span class="w-136 inline-block"><a class="custom-link-desktop text-tw-blue cursor-pointer hover:underline">{{ props.props.id }}</a></span>
+                 <span class="w-123 inline-block"><a class="custom-link-desktop text-tw-blue cursor-pointer hover:underline">{{ props.props.id }}</a></span>
                 <q-tooltip>{{ props.props.id }}</q-tooltip>
               </div>
             </q-td>
             <q-td v-if="props.props.tid" key="tid">
               <div class="text-tw-blue cursor-pointer hover:underline" @click="doSearch(props.props.tid)">
-                 <span class="w-136 inline-block"><a class="custom-link-desktop text-tw-blue cursor-pointer hover:underline">{{ props.props.tid }}</a></span>
+                 <span class="w-123 inline-block"><a class="custom-link-desktop text-tw-blue cursor-pointer hover:underline">{{ props.props.tid }}</a></span>
                 <q-tooltip>{{ props.props.tid }}</q-tooltip>
               </div>
             </q-td>
@@ -45,13 +45,13 @@
             </q-td>
             <q-td v-if="props.props.senderId" key="senderId" >
               <div class="text-tw-blue cursor-pointer hover:underline" @click="doSearch(props.props.senderId)">
-                 <span class="w-136 inline-block"><a class="custom-link-desktop text-tw-blue cursor-pointer hover:underline">{{ props.props.senderId }}</a></span>
+                 <span class="w-123 inline-block"><a class="custom-link-desktop text-tw-blue cursor-pointer hover:underline">{{ props.props.senderId }}</a></span>
                 <q-tooltip>{{ props.props.senderId }}</q-tooltip>
               </div>
             </q-td>
             <q-td v-if="props.props.recipientId" key="recipientId" >
               <div class="text-tw-blue cursor-pointer hover:underline" @click="doSearch(props.props.recipientId)">
-                 <span class="w-136 inline-block"><a class="custom-link-desktop text-tw-blue cursor-pointer hover:underline">
+                 <span class="w-123 inline-block"><a class="custom-link-desktop text-tw-blue cursor-pointer hover:underline">
                    {{ getRecipientId(props.props) }}</a></span>
                 <q-tooltip>{{ getRecipientId(props.props) }}</q-tooltip>
               </div>
@@ -80,11 +80,11 @@
             <q-td v-if="props.props.transaction && props.props.transaction.fee" key="transferFee" class="text-right">
               <span>0.1</span>
             </q-td>
-</template>
+          </template>
 
-<template class="mobile-only" slot="items" slot-scope="props" v-if="props.props">
-  <table-item :data="getTableData(props.props)" :bgIcon="'icon-accounts'" :dataIcon="'icon-transaction'" />
-</template>
+          <template class="mobile-only" slot="items" slot-scope="props" v-if="props.props">
+            <table-item :data="getTableData(props.props)" :bgIcon="'icon-accounts'" :dataIcon="'icon-transaction'" />
+          </template>
       </table-container>
     </div>
   </q-page>
