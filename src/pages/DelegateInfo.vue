@@ -51,7 +51,7 @@
         </template>
 
         <template class="mobile-only" slot="items" slot-scope="props" v-if="props.props">
-          <table-item :data="getTableData(props.props)" :bgIcon="'icon-details'" :dataIcon="'icon-transaction'" />
+          <table-item :data="getTableData(props.props)" :bgIcon="'icon-block'" :dataIcon="'icon-height'" />
         </template>
       </table-container>
     </div>

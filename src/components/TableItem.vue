@@ -4,7 +4,7 @@
     <div class="absolute -mr-15 -mb-15 opacity-8 pin-b pin-r">
       <q-icon class="text-60 text-tw-grey-lighter" :name="this.bgIcon" />
     </div>
-    <div v-if="hasId && idField" class="flex justify-start items-start w-auto mr-10 pt-2">
+    <div v-if="hasId && idField" class="flex justify-start items-start w-auto mr-10 pt-3">
       <q-icon class="xs:text-14 sm:text-26 text-tw-blue" :name="this.dataIcon" />
     </div>
     <table class="w-5/6 flex">
@@ -93,7 +93,7 @@ export default {
       return tableData
     },
     hasId() {
-      return this.data[0].type === 'id'
+      return this.data[0].type === 'id' || this.data[0].type === 'transactionId'
     },
     icIcon() {
       return this.idIcon + ' xs:text-12 sm:text-20 text-tw-blue material-icons'

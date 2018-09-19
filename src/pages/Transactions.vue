@@ -80,11 +80,11 @@
             <q-td v-if="props.props.transaction && props.props.transaction.fee" key="transferFee" class="text-right">
               <span>0.1</span>
             </q-td>
-</template>
+          </template>
 
-<template class="mobile-only" slot="items" slot-scope="props" v-if="props.props">
-  <table-item :data="getTableData(props.props)" :bgIcon="'icon-accounts'" :dataIcon="'icon-transaction'" />
-</template>
+          <template class="mobile-only" slot="items" slot-scope="props" v-if="props.props">
+            <table-item :data="getTableData(props.props)" :bgIcon="'icon-accounts'" :dataIcon="'icon-transaction'" />
+          </template>
       </table-container>
     </div>
   </q-page>
