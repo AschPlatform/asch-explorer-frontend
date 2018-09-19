@@ -98,11 +98,6 @@ export default {
   methods: {
     setLogo() {
       return navigator.userAgent.indexOf('Firefox') != -1 ? !this.isFirefox : this.isFirefox
-      // if (navigator.userAgent.indexOf('Firefox') != -1) {
-      //   return isFirefox
-      // } else {
-      //   return isFirefox
-      // }
     },
     getLang() {
       if (window.localStorage && getCache('lang')) {
