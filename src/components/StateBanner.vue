@@ -1,6 +1,6 @@
 <template>
   <div class="w-full flex flex-wrap border border-solid border-tw-grey-darker xs:border-b-0 sm:border-b-1 state-container">
-    <div class="flex xs:w-1/2 md:w-1/6 xs:h-86 sm:h-130 xs:justify-start sm:justify-center items-center shadow-none hover:shadow-13 z-10 hover:z-20 xs:border-0 sm:border border-solid border-tw-grey-darker xs:border-r-1 xs:border-b-1 sm:border-l-0 sm:border-t-0 sm:border-b-0 bg-tw-grey-lightet state bg-tw-white hover:bg-tw-grey-lightet xs:pl-15 sm:pl-0" v-for="(state,idx) in stateData" :key="idx"  :data-aos="stateClass" :data-aos-delay="idx*100" data-aos-easing="ease-in-sine" data-aos-duration="600">
+    <div class="flex xs:w-1/2 md:w-1/6 xs:h-86 sm:h-130 xs:justify-start sm:justify-center items-center shadow-none hover:shadow-13 z-10 hover:z-20 xs:border-0 sm:border border-solid border-tw-grey-darker xs:border-r-1 xs:border-b-1 sm:border-l-0 sm:border-t-0 sm:border-b-0 bg-tw-grey-lightet state bg-tw-white hover:bg-tw-grey-lightet xs:pl-15 sm:pl-0" v-for="(state,idx) in stateData" :key="idx"  :data-aos="stateClass" :data-aos-delay="idx*100" data-aos-easing="ease-in-sine" data-aos-duration="600" data-aos-once="true">
       <div class="xs:mr-10 sm:mr-15">
         <q-icon class="xs:text-36 sm:text-48 text-tw-blue" :name="state.icon" />
       </div>

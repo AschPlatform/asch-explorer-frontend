@@ -62,7 +62,7 @@ import {
   QItemMain,
   QItemSide
 } from 'quasar'
-import { isDesktop } from '../utils/util'
+import { isDesktop, setCache, getCache } from '../utils/util'
 import { REGEX } from '../utils/constants'
 
 export default {
@@ -87,9 +87,25 @@ export default {
     }
   },
   mounted() {
-    this.lang = this.$store.state.locale
+    this.getLang()
   },
   methods: {
+    getLang() {
+      if (window.localStorage && getCache('lang')) {
+        let lang = getCache('lang')
+        this.lang = lang
+        this.$store.commit('SET_LANG', lang)
+      } else {
+        var defaultLanguage = navigator.language || navigator.userLanguage
+        if (defaultLanguage.toUpperCase().indexOf('ZH') != -1) {
+          this.lang = 'zh'
+          this.$store.commit('SET_LANG', 'zh')
+        } else {
+          this.lang = 'en'
+          this.$store.commit('SET_LANG', 'en')
+        }
+      }
+    },
     jump(path = '/') {
       this.$router.push(path)
     },
@@ -208,6 +224,9 @@ export default {
     lang(val) {
       this.$i18n.locale = val
       this.$store.commit('SET_LANG', val)
+      if (window.localStorage) {
+        setCache('lang', val)
+      }
     }
   }
 }
