@@ -1,7 +1,7 @@
 <template>
   <q-toolbar class="flex xs:flex-col overflow-visible sm:flex-row justify-between w-full bg-tw-black xs:h-auto sm:h-86 xs:px-0 xs:pb-11 sm:pb-0 sm:px-10 md:px-20 xl:px-25 xll:px-30">
     <div class="flex justify-between items-center flex-no-wrap sm:w-auto">
-      <div v-if="setLogo()" class="flex justify-center xs:w-100 xs:h-25 sm:w-144 sm:h-30 cursor-pointer xs:mr-0 sm:mr-20 lg:mr-30 xs:my-15 sm:my-0" @click="jump('/')">
+      <div v-if="setLogo" class="flex justify-center xs:w-100 xs:h-25 sm:w-144 sm:h-30 cursor-pointer xs:mr-0 sm:mr-20 lg:mr-30 xs:my-15 sm:my-0" @click="jump('/')">
         <q-icon class="text-140 text-tw-white" name="icon-logo" />
       </div>
       <div v-else class="flex justify-center xs:w-100 xs:h-25 sm:w-144 sm:h-30 cursor-pointer xs:mr-0 sm:mr-20 lg:mr-30 xs:my-15 sm:my-0" @click="jump('/')">
@@ -96,9 +96,6 @@ export default {
     this.getLang()
   },
   methods: {
-    setLogo() {
-      return navigator.userAgent.indexOf('Firefox') != -1 ? !this.isFirefox : this.isFirefox
-    },
     getLang() {
       if (window.localStorage && getCache('lang')) {
         let lang = getCache('lang')
@@ -146,11 +143,11 @@ export default {
       this._.delay(() => document.activeElement.blur(), 500)
       // this.$refs['search'].blur()
     }
-    // isFirefox(){
-    //   return
-    // }
   },
   computed: {
+    setLogo() {
+      return navigator.userAgent.indexOf('Firefox') != -1 ? !this.isFirefox : this.isFirefox
+    },
     searchList() {
       let arr = []
       const { hash, height, nickname } = REGEX
