@@ -256,5 +256,4 @@ export default {
   margin-left: 16px;
   margin-right: 16px;
 }
-
 </style>

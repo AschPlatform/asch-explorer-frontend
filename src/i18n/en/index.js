@@ -53,13 +53,13 @@ const lang = {
   // transactionsInfo
   TRANSACTION: 'Transactions',
   TRANSACTIONS: 'Transaction List',
-  TRANSACTION_ID: 'Transaction ID',
+  TRANSACTION_ID: 'Trans ID',
   TRANS_TYPE: 'Type',
-  TRANS_TABLE: 'Transfer List',
+  TRANS_TABLE: 'Transfer List',
   TRANSACTION_TYPE: 'Transaction Type',
   TRANSACTION_TABLE: 'Transaction List',
   AMOUNT: 'Amount',
-  TRANS_TIME: 'Transaction Time',
+  TRANS_TIME: 'Time',
   TIME: 'Time',
   ARGUMENTS: 'Parameters',
 
