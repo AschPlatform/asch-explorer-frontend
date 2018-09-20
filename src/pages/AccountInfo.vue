@@ -441,7 +441,7 @@ export default {
       }
 
       let typeField = {
-        label: 'TYPE',
+        label: 'TRANSACTION_TYPE',
         value: this.getTransType(data)
       }
 

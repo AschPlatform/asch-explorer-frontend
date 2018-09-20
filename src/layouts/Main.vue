@@ -242,7 +242,11 @@ export default {
   computed: {
     ...mapGetters(['getRunState', 'assetMap']),
     pageContainerClass() {
-      return isDesktop() ? '' : 'custom-min-height'
+      if (this.$route.name === 'error') {
+        return ''
+      } else {
+        return isDesktop() ? '' : 'custom-min-height'
+      }
     },
     isHome() {
       return this.$route.name === 'home' ? this.isHomeFlg : !this.isHomeFlg
