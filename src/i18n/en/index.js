@@ -56,7 +56,7 @@ const lang = {
   TRANSACTION_ID: 'Trans ID',
   TRANS_TYPE: 'Type',
   TRANS_TABLE: 'Transfer List',
-  TRANSACTION_TYPE: 'Transaction Type',
+  TRANSACTION_TYPE: 'Trans Type',
   TRANSACTION_TABLE: 'Transaction List',
   AMOUNT: 'Amount',
   TRANS_TIME: 'Time',
