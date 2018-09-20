@@ -3,11 +3,11 @@
     <q-layout-header>
       <navbar  />
     </q-layout-header>
-    <q-page-container>
+    <q-page-container :class="pageContainerClass">
       <router-view />
     </q-page-container>
-    <q-layout-footer class="shadow-none" :class="footerClass">
-      <footer-bar data-aos="fade-up" :data-aos-delay="footerAosDaly" data-aos-easing="ease-in-sine" data-aos-duration="0" data-aos-offset="0" data-aos-once="true"/>
+    <q-layout-footer class="shadow-none bg-tw-black">
+      <footer-bar />
     </q-layout-footer>
     <q-layout-drawer class="custom-drawer" v-model="drawer">
       <q-toolbar class="flex xs:flex-col sm:flex-row justify-between w-full bg-tw-black xs:h-auto sm:h-86 xs:px-0 sm:pb-0 sm:px-30">
@@ -241,11 +241,8 @@ export default {
   },
   computed: {
     ...mapGetters(['getRunState', 'assetMap']),
-    footerClass() {
-      return isDesktop() ? 'bg-tw-black' : 'footerMobileClass'
-    },
-    footerAosDaly() {
-      return isDesktop() ? '0' : '1000'
+    pageContainerClass() {
+      return isDesktop() ? '' : 'custom-min-height'
     },
     isHome() {
       return this.$route.name === 'home' ? this.isHomeFlg : !this.isHomeFlg
@@ -259,4 +256,5 @@ export default {
   margin-left: 16px;
   margin-right: 16px;
 }
+
 </style>
