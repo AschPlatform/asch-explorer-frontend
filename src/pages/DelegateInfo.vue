@@ -37,7 +37,7 @@
             </div>
           </q-td>
           <q-td key="reward">
-            <span>{{ rewardCount(props.props.reward) | fee }}</span>
+            <span>{{ rewardCount(props.props.height) }}</span>
           </q-td>
           <q-td key="count">
             <span>{{ props.props.count }}</span>
