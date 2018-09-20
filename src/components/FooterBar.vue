@@ -9,7 +9,7 @@
         <a class="xs:text-14 sm:text-18 text-tw-white hover:text-tw-blue no-underline xs:ml-0 sm:ml-40" :href="link.href" target="_blank">{{link.label}}</a>
       </div>
     </div>
-    <div class="xs:w-full sm:w-163 flex justify-center items-center cursor-pointer xs:py-20 sm:py-0" @click="toHome" :data-aos="linkClass" data-aos-delay="300" data-aos-easing="ease-in-sine" data-aos-duration="800" data-aos-offset="0">
+    <div class="xs:w-full sm:w-163 flex justify-center items-center cursor-pointer xs:py-20 sm:py-0" @click="toHome" :data-aos="linkClass" data-aos-delay="800" data-aos-easing="ease-in-sine" data-aos-duration="800" data-aos-offset="0">
       <img class="xs:1/2 sm:w-full" :src="logoFooter" alt="">
     </div>
   </div>
