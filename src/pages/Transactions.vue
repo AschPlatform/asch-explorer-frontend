@@ -37,8 +37,9 @@
                 {{ props.props.height|numSeparator }}
               </div>
             </q-td>
-            <q-td v-if="props.props.timestamp > -1" key="timestamp" >
-              <span>{{ fulltimestamp(props.props.timestamp) }}</span>
+            <q-td key="timestamp" >
+              <span v-if="props.props.timestamp > -1" >{{ fulltimestamp(props.props.timestamp) }}</span>
+              <span v-else> -- </span>
             </q-td>
             <q-td v-if="props.props.type" key="type" >
               <span class="">{{ getTransType(props.props) }}</span>
@@ -67,7 +68,7 @@
               <span class="text-12 tw-grey-darkest mt-10 mr-10">{{ props.props.currency !== 'XAS' ? props.props.currency.split('.')[0] : ''}}</span>
               <q-chip class="text-12" color="blue" text-color="white">{{ props.props.currency.split('.')[1] || props.props.currency.split('.')[0]}}</q-chip>
             </q-td>
-           <q-td v-if="props.props.args || props.props.args === null" key="args" >
+           <q-td key="args" >
              <div v-if="props.props.args && props.props.args.length > 0" >
               <span>{{ props.props.args.join(',') | eclipse }}</span>
                 <q-tooltip><pre>{{ props.props.args }}</pre></q-tooltip>
