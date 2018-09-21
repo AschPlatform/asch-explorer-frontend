@@ -41,7 +41,7 @@ const REGEX = {
 // }
 
 const urls = {
-  serverHost: 'http://47.52.37.126:8192',
+  serverHost: 'https://exnode.asch.io',
   // dappId,
   // server: {`
   //   development: `${host.development}/api/dapps/${dappId.development}`,
