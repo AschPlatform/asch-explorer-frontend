@@ -230,6 +230,7 @@ export const dealGiantNumber = (num, precision) => {
 
 // Non-aschJS support really time computed
 export const fulltimestamp = (timeStamp, short = false) => {
+  if (timeStamp < 0) return null
   let timestamp1 = new Date(Date.UTC(2016, 5, 27, 20, 0, 0, 0))
   timestamp1 = timestamp1 / 1000
   timeStamp += timestamp1

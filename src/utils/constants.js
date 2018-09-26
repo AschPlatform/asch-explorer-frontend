@@ -30,7 +30,7 @@ const REGEX = {
 //   1007: 'STATE_CHANGE'
 // }
 
-// const host: 'http://47.93.138.148:8192',
+//   const host: 'http://47.93.138.148:8192',
 //   development: 'http://47.93.138.148:8192',
 //   production: 'http://mainnet.asch.cn'
 //   // production: 'https://webnode.asch.io:443'
@@ -41,7 +41,7 @@ const REGEX = {
 // }
 
 const urls = {
-  serverHost: 'https://exnode.asch.io',
+  serverHost: 'http://192.168.1.155:8192',
   // dappId,
   // server: {`
   //   development: `${host.development}/api/dapps/${dappId.development}`,
