@@ -85,7 +85,7 @@ import { REGEX } from '../utils/constants'
 import Navbar from '../components/Navbar'
 import CodeModal from '../components/QRCodeModal'
 
-import { getCache, setCache, isDesktop } from '../utils/util'
+import { getCache, setCache, isDesktop, checkNumber } from '../utils/util'
 import { mapGetters, mapActions } from 'vuex'
 
 export default {
@@ -121,6 +121,7 @@ export default {
     }
   },
   methods: {
+    checkNumber,
     ...mapActions([
       'getHeight',
       'getUsers',
@@ -133,6 +134,7 @@ export default {
     openURL,
     async doSearch(str, type) {
       if (this.searchForbidden) return
+      if (checkNumber(str)) return
       const { hash, address, height, nickname } = REGEX
       const router = this.$router
       this.searchForbidden = true
