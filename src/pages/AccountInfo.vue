@@ -46,8 +46,9 @@
                 {{ props.props.height | numSeparator}}
               </div>
             </q-td>
-            <q-td v-if="props.props.timestamp > -1" key="timestamp">
-              <span>{{ fulltimestamp(props.props.timestamp) }}</span>
+            <q-td  key="timestamp">
+              <span v-if="props.props.timestamp >0">{{ fulltimestamp(props.props.timestamp) }}</span>
+              <span v-else>--</span>
             </q-td>
             <q-td v-if="props.props.type" key="type" >
               <span class="">{{ getTransType(props.props) }}</span>
@@ -67,17 +68,18 @@
               </div>
             </q-td>
             <q-td v-if="props.props.amount" class="text-right" key="amount" >
-              <span v-if="getAmount(props.props.transaction)">{{ getresult(getAmount(props.props.transaction),2) }}</span>
-              <q-tooltip>{{ getAmount(props.props.transaction) }}</q-tooltip>
+              <span v-if="getAmount(props.props)">{{ getResult(getAmount(props.props), 2) }}</span>
+              <q-tooltip>{{ getAmount(props.props) }}</q-tooltip>
             </q-td>
-            <q-td v-if="props.props.transferAmount" class="text-right" key="transferAmount">
+            
+            <!-- <q-td v-if="props.props.transferAmount" class="text-right" key="transferAmount">
               <span v-if="getTransAmount(props.props)">{{ getTransAmount(props.props) }}</span>
-            </q-td>
+            </q-td> -->
             <q-td v-if="props.props.currency" class="text-right align-baseline custom-chip" key="currency">
               <sub class="text-12 text-tw-grey-darkest mt-10 mr-10">{{ props.props.currency !== 'XAS' ? props.props.currency.split('.')[0] : ''}}</sub>
               <q-chip color="blue" text-color="white" small>{{ props.props.currency.split('.')[1] || props.props.currency.split('.')[0]}}</q-chip>
             </q-td>
-           <q-td v-if="props.props.args || props.props.args === null" key="args" >
+           <q-td v-if="type==1" key="args" >
              <div v-if="props.props.args && props.props.args.length > 0" >
               <span>{{ props.props.args.join(',') | eclipse }}</span>
                 <q-tooltip>{{ props.props.args }}</q-tooltip>
@@ -88,7 +90,7 @@
               <span v-if="props.props.fee">{{ props.props.fee | fee }}</span>
               <span v-else>0</span>
             </q-td>
-            <q-td v-if="props.props.transaction && props.props.transaction.fee" key="transferFee" class="text-right" >
+            <q-td v-if="props.props.transaction" key="transferFee" class="text-right" >
               <span>0.1</span>
             </q-td>
           </template>
@@ -137,7 +139,7 @@ export default {
       model: 0,
       account: null,
       balances: [],
-      type: 0, // trans: 0 , transfer:1
+      type: 0, // trans: 1 , transfer: 0
       data: [],
       defaultProps: {
         orderBy: 'timestamp:desc',
@@ -200,7 +202,7 @@ export default {
       )
     },
     columnsData() {
-      if (this.type === 1) {
+      if (this.type === 1) { // trans
         return [
           {
             name: 'id',
@@ -246,7 +248,7 @@ export default {
           }
         ]
       } else {
-        return [
+        return [ // transfer
           {
             name: 'tid',
             label: this.$t('TRANSACTION_ID'),
@@ -391,6 +393,11 @@ export default {
       }
     },
     getAmount(trans) {
+      if (trans.amount && this.type === 0 && trans.transaction.args.length === 2) {
+        return convertFee(trans.amount)
+      } else {
+        trans = trans.transaction
+      }
       if (!trans.args) return '--'
       const filterTransType = [1, 103]
       const { args } = trans
@@ -411,7 +418,7 @@ export default {
         return trans.recipientId
       }
     },
-    getresult(str, n) {
+    getResult(str, n) {
       return str.replace(new RegExp('^(\\-?\\d*\\.?\\d{0,' + n + '})(\\d*)$'), '$1')
     },
     // get data array for tableItem

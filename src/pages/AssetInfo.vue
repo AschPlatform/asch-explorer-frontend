@@ -43,7 +43,7 @@ import Breadcrumb from '../components/Breadcrumb'
 import BoundaryLine from '../components/BoundaryLine'
 import InfoPanel from '../components/InfoPanel'
 import { mapActions } from 'vuex'
-import { fulltimestamp, convertFee } from '../utils/util'
+import { fulltimestamp, dealHighPercision } from '../utils/util'
 import infoImge from '../assets/asch_logo.png'
 
 export default {
@@ -69,7 +69,7 @@ export default {
     }
   },
   methods: {
-    convertFee,
+    dealHighPercision,
     ...mapActions(['getAssetInfo']),
     async getData() {
       let result = await this.getAssetInfo({
@@ -111,11 +111,11 @@ export default {
         },
         {
           label: 'MAXIMUN',
-          value: this.convertFee(this.max, this.precision)
+          value: this.dealHighPercision(this.max, this.precision)
         },
         {
           label: 'ASSET_PUBLISH',
-          value: this.convertFee(this.publish, this.precision)
+          value: this.dealHighPercision(this.publish, this.precision)
         },
         {
           label: 'PRECISION',

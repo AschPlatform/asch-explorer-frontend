@@ -34,8 +34,8 @@
           <span>{{ props.props.productivity + ' %' }}</span>
         </q-td>
         <q-td key="approval">
-          <span>{{ props.props.approval.toFixed(2) + ' %' }}</span>
-          <q-tooltip>{{ props.props.approval + '%'}}</q-tooltip>
+          <span>{{ props.props.approval>0?props.props.approval.toFixed(2) + ' %':'0.00%' }}</span>
+          <q-tooltip>{{ props.props.approval>0?props.props.approval + '%':'0.00%'}}</q-tooltip>
         </q-td>
       </template>
       <template class="mobile-only" slot="items" slot-scope="props" v-if="props.props">
@@ -155,7 +155,7 @@ export default {
       }
       let approvalField = {
         label: 'VOTE_RATE',
-        value: approval + ' %',
+        value: approval > 0 ? approval + ' %' : '0.00%',
         type: 'voteRate'
       }
 

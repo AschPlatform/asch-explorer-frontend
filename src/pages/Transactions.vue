@@ -58,27 +58,29 @@
               </div>
             </q-td>
             <q-td v-if="props.props.amount" class="text-right" key="amount" >
-              <span v-if="getAmount(props.props.transaction)">{{ getresult(getAmount(props.props.transaction),5)}}</span>
-              <q-tooltip>{{ getAmount(props.props.transaction) }}</q-tooltip>
+              <span v-if="getAmount(props.props)">{{ getResult(getAmount(props.props),5)}}</span>
+              <q-tooltip>{{ getAmount(props.props) }}</q-tooltip>
             </q-td>
-            <q-td v-if="props.props.transferAmount" class="text-right" key="transferAmount">
+            <!-- <q-td v-if="props.props.transferAmount" class="text-right" key="transferAmount">
               <span v-if="getTransAmount(props.props)">{{ getTransAmount(props.props) }}</span>
-            </q-td>
+            </q-td> -->
             <q-td v-if="props.props.currency" class="text-right align-baseline custom-chip" key="currency">
               <span class="text-12 tw-grey-darkest mt-10 mr-10">{{ props.props.currency !== 'XAS' ? props.props.currency.split('.')[0] : ''}}</span>
               <q-chip class="text-12" color="blue" text-color="white">{{ props.props.currency.split('.')[1] || props.props.currency.split('.')[0]}}</q-chip>
             </q-td>
-           <q-td key="args" >
+           <q-td key="args" v-if="type==0">
              <div v-if="props.props.args && props.props.args.length > 0" >
               <span>{{ props.props.args.join(',') | eclipse }}</span>
                 <q-tooltip><pre>{{ props.props.args }}</pre></q-tooltip>
              </div>
               <span v-else>--</span>
             </q-td>
+            
             <q-td v-if="props.props.fee || props.props.fee === 0" key="fee" class="text-right">
               <span>{{ props.props.fee | fee }}</span>
             </q-td>
-            <q-td v-if="props.props.transaction && props.props.transaction.fee" key="transferFee" class="text-right">
+
+            <q-td v-if="props.props.transaction&&type==1" key="transferFee" class="text-right">
               <span>0.1</span>
             </q-td>
           </template>
@@ -137,12 +139,12 @@ export default {
     return {
       data: [],
       defaultProps: {
-        orderBy: 'timestamp:desc',
+        orderBy: 'height:asc',
         limit: 10,
         offset: 0
       },
       count: 0,
-      type: 0,
+      type: 0, // trans: 0 , transfer:
       btnGroup: [
         {
           label: this.$t('TRANSACTION_TABLE'),
@@ -169,13 +171,14 @@ export default {
       if (this.type === 0) {
         // For transactions
         res = await this.getTransactions(props)
-        this.data = res.transactions
-        this.count = res.count
+        // this.data = res.transactions
+        this.data = res.transactions.filter(trans => trans.timestamp >= 0)
+        this.count = res.count - 34
       } else {
         // For transfers
         res = await this.getTransfers(props)
-        this.data = res.transfers
-        this.count = res.count
+        this.data = res.transfers.filter(trans => trans.timestamp >= 0)
+        this.count = res.count - 34
       }
     },
     doSearch(str) {
@@ -207,6 +210,11 @@ export default {
       }
     },
     getAmount(trans) {
+      if (trans.amount && this.type === 1 && trans.transaction.args.length === 2) {
+        return convertFee(trans.amount)
+      } else {
+        trans = trans.transaction
+      }
       if (!trans.args) return '--'
       const filterTransType = [1, 103]
       const { args } = trans
@@ -227,7 +235,7 @@ export default {
         return trans.recipientId
       }
     },
-    getresult(str, n) {
+    getResult(str, n) {
       return str.replace(new RegExp('^(\\-?\\d*\\.?\\d{0,' + n + '})(\\d*)$'), '$1')
     },
     getTableData(data) {
@@ -247,7 +255,7 @@ export default {
 
       let timeField = {
         label: 'TIME',
-        value: fulltimestamp(timestamp)
+        value: timestamp < 0 ? '--' : fulltimestamp(timestamp)
       }
       let senderField = {
         label: 'TRANS_SENDER',
@@ -307,6 +315,7 @@ export default {
     },
     columnsData() {
       if (this.type === 0) {
+        // trans
         return [
           {
             name: 'id',
@@ -353,6 +362,7 @@ export default {
         ]
       } else {
         return [
+          // transfer
           {
             name: 'tid',
             label: this.$t('TRANSACTION_ID'),

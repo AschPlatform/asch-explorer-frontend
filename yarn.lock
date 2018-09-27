@@ -1259,6 +1259,10 @@ big.js@^3.1.3:
   version "3.2.0"
   resolved "http://registry.npm.taobao.org/big.js/download/big.js-3.2.0.tgz#a5fc298b81b9e0dca2e458824784b65c52ba588e"
 
+bignumber.js@^7.2.1:
+  version "7.2.1"
+  resolved "http://r.cnpmjs.org/bignumber.js/download/bignumber.js-7.2.1.tgz#80c048759d826800807c4bfd521e50edbba57a5f"
+
 bignumber@^1.1.0:
   version "1.1.0"
   resolved "http://registry.npm.taobao.org/bignumber/download/bignumber-1.1.0.tgz#e6ab0a743da5f3ea018e5c17597d121f7868c159"
