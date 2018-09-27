@@ -1,27 +1,17 @@
-import {
-  SessionStorage,
-  LocalStorage,
-  Notify,
-  Dialog,
-  Platform
-} from 'quasar'
+import { SessionStorage, LocalStorage, Notify, Dialog, Platform } from 'quasar'
 import moment from 'moment'
 import AschJs from 'asch-js'
-import {
-  BigNumber
-} from 'bignumber'
-import {
-  transTypes
-} from '../utils/constants'
+import { BigNumber } from 'bignumber.js'
+import { transTypes } from '../utils/constants'
 
 // confirm compontent
 export const confirm = (conf, cancel = () => {}, confirm = () => {}) => {
   Dialog.create({
-      title: conf.title || 'Confirm',
-      message: conf.message,
-      ok: conf.confirm || 'Agree',
-      cancel: conf.cancel || 'Disagree'
-    })
+    title: conf.title || 'Confirm',
+    message: conf.message,
+    ok: conf.confirm || 'Agree',
+    cancel: conf.cancel || 'Disagree'
+  })
     .then(() => {
       confirm()
     })
@@ -31,12 +21,12 @@ export const confirm = (conf, cancel = () => {}, confirm = () => {}) => {
 }
 export const prompt = (config, cb = () => {}, cbCancel = () => {}) => {
   Dialog.create({
-      title: config.title || 'Prompt',
-      message: config.message || '',
-      prompt: config.prompt,
-      cancel: config.cancel || true,
-      color: config.color || 'primary'
-    })
+    title: config.title || 'Prompt',
+    message: config.message || '',
+    prompt: config.prompt,
+    cancel: config.cancel || true,
+    color: config.color || 'primary'
+  })
     .then(data => {
       cb(data)
     })
@@ -89,16 +79,19 @@ export const deCompileContent = value => {
   return JSON.parse(value)
 }
 
-export const countDown = (timestamp) => {
+export const countDown = timestamp => {
   moment.locale('zh-cn')
-  return moment(timestamp).endOf('hour').fromNow()
+  return moment(timestamp)
+    .endOf('hour')
+    .fromNow()
 }
 // server error message translator
 export const translateErrMsg = (t, input) => {
   if (typeof input === 'string') {
     input = input.split(':')
     input = input[input.length - 1]
-    var translateMap = [{
+    var translateMap = [
+      {
         error: 'Failed to verify second signature',
         key: 'ERR_TOAST_SECONDKEY_WRONG'
       },
@@ -191,9 +184,9 @@ export const convertFee = (fee, precision = 8) => {
   if (!fee) {
     return 0
   }
-  fee = fee.toString()
+  fee = new BigNumber(Number(fee)).toString()
   var clearView = false
-  while (fee.length < (precision + 1)) {
+  while (fee.length < precision + 1) {
     fee = '0'.concat(fee)
   }
   if (precision !== 0) {
@@ -212,6 +205,12 @@ export const convertFee = (fee, precision = 8) => {
   }
   return fee
 }
+
+export const dealHighPercision = (num, precision) => {
+  let precisionNum = Math.pow(10, precision)
+  return (num / precisionNum).toFixed(0)
+}
+
 export const dealBigNumber = num => {
   let dealNumB = new BigNumber(num)
   let dealNum = dealNumB.toFormat(0).toString()
@@ -238,25 +237,22 @@ export const fulltimestamp = (timeStamp, short = false) => {
   date.setTime(timeStamp * 1000)
   var y = date.getFullYear()
   var m = date.getMonth() + 1
-  m = m < 10 ? ('0' + m) : m
+  m = m < 10 ? '0' + m : m
   var d = date.getDate()
-  d = d < 10 ? ('0' + d) : d
+  d = d < 10 ? '0' + d : d
   if (short) return y + '-' + m + '-' + d
   var h = date.getHours()
-  h = h < 10 ? ('0' + h) : h
+  h = h < 10 ? '0' + h : h
   var minute = date.getMinutes()
   var second = date.getSeconds()
-  minute = minute < 10 ? ('0' + minute) : minute
-  second = second < 10 ? ('0' + second) : second
+  minute = minute < 10 ? '0' + minute : minute
+  second = second < 10 ? '0' + second : second
   return y + '-' + m + '-' + d + ' ' + h + ':' + minute + ':' + second
 }
 
 // get translated type by transaction arg
 export const getTransType = (trans, t) => {
-  let {
-    type,
-    args
-  } = trans
+  let { type, args } = trans
   let typeFilters = [1, 103, 204, 205]
   let symbol
   if (typeFilters.indexOf(type)) {
@@ -276,22 +272,22 @@ export const getTransType = (trans, t) => {
   return t(transTypes[type])
 }
 
-export const getAddress = (pubKey) => {
+export const getAddress = pubKey => {
   return AschJs.crypto.getAddress(pubKey)
 }
 
-export const getSecFromNow = (timestamp) => {
+export const getSecFromNow = timestamp => {
   let time = moment(fulltimestamp(timestamp))
   // return time.startOf('seconds').fromNow()
   return moment().diff(time, 'seconds')
 }
 
-export const getTimeFromNow = (timestamp) => {
+export const getTimeFromNow = timestamp => {
   // return time.startOf('seconds').fromNow()
   return moment(fulltimestamp(timestamp)).fromNow()
 }
 
-export const rewardCount = (blockHeight) => {
+export const rewardCount = blockHeight => {
   if (blockHeight) {
     if (blockHeight < 3464500 && blockHeight >= 464500) {
       return '3.5 XAS'
