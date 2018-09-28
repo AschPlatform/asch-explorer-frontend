@@ -308,3 +308,12 @@ export const rewardCount = blockHeight => {
     return ''
   }
 }
+
+export const checkNumber = (strId) => {
+  let reg = /^[0-9]+.?[0-9]*$/
+  if (strId.length > 18 && strId.length < 22 && reg.test(strId)) {
+    return true
+  } else {
+    return false
+  }
+}
