@@ -157,7 +157,7 @@ export default {
         },
         {
           label: 'BLOCK_NUM',
-          value: this.producedBlocks,
+          value: this.count,
           type: 'number'
         },
         {
