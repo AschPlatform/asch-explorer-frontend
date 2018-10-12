@@ -75,6 +75,7 @@ const urls = {
   // transaction: {
   //   url: '/api/v2/transactions/:tid'
   // },
+
   // 根据HASH获取对象（TTRANSACTION ID / BLOCK ID）
   hashObject: {
     mock: '',

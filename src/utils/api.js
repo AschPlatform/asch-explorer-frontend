@@ -152,7 +152,10 @@ api.xasPrice = params => {
 api.getDelegateBlock = params => {
   return fetch(urls.delegateBlock, params, 'get')
 }
-
+// 获取 hash 查询结果
+api.getHashResult = params => {
+  return fetch(urls.hashObject, params, 'get')
+}
 // api.deposit = params => {
 //   return createInTransfer(urls.dappId[process.env.NODE_ENV], 'koumei.KMC', params.amount, params.secret, params.secondPassword || '')
 // }

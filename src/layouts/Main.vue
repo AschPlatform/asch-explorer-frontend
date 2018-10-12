@@ -129,7 +129,8 @@ export default {
       'getAssets',
       'getAssetNum',
       'getXasPrice',
-      'getTransactionInfo'
+      'getTransactionInfo',
+      'getHashResult'
     ]),
     openURL,
     async doSearch(str, type) {
@@ -155,15 +156,17 @@ export default {
           str = str.replace('.', '-')
           return router.push(`/asset/${str}`)
       }
-      if (hash.test(str) || type === 'trans') {
-        let result = await this.getTransactionInfo({
+      if (hash.test(str)) {
+        let result = await this.getHashResult({
           query: str
         })
         if (result.success && result.searchResults) {
           if (result.searchResults[0].type === 'block') {
             router.push(`/blocks_id/${str}`)
+            return
           } else if (result.searchResults[0].type === 'transaction') {
             router.push(`/transaction/${str}`)
+            return
           }
         }
         // router.push(`/transaction/${str}`)
