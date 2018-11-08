@@ -297,12 +297,10 @@ export const rewardCount = (blockHeight) => {
     } else if (blockHeight < 6464500 && blockHeight >= 3464500) {
       return '3.0 XAS'
     } else if (blockHeight < 9464500 && blockHeight >= 6464500) {
-      return '2.5 XAS'
-    } else if (blockHeight < 12464500 && blockHeight >= 9464500) {
       return '2 XAS'
-    } else if (blockHeight < 15464500 && blockHeight >= 12464500) {
+    } else if (blockHeight < 12464500 && blockHeight >= 9464500) {
       return '1 XAS'
-    } else if (blockHeight >= 15464500) {
+    } else if (blockHeight >= 12464500) {
       return '0.5 XAS'
     } else {
       return '0 XAS'
