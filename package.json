@@ -18,9 +18,10 @@
     "deploy": "gulp pro & quasar build -t ios & scp -r dist/spa-ios/* root@47.52.37.126:/var/www/html"
   },
   "dependencies": {
+    "aos": "^2.3.3",
     "asch-js": "^1.3.10",
     "axios": "^0.18.0",
-    "bignumber": "^1.1.0",
+    "bignumber.js": "^7.2.1",
     "countup.js": "^1.9.3",
     "lodash": "^4.17.10",
     "moment": "^2.22.2",

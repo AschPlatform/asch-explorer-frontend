@@ -167,6 +167,13 @@ export default {
   }, params) => {
     return api.getDelegateBlock(params)
   },
+  // 获取受托人产块信息
+  getHashResult: ({
+    commit,
+    state
+  }, params) => {
+    return api.getHashResult(params)
+  },
   setLoadingflag: ({
     commit,
     state

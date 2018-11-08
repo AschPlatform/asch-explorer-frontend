@@ -1,9 +1,10 @@
 <template>
-  <div class="flex xs:mb-15 sm:mb-30 xs:pt-15 xs:pb-5 xs:px-15 sm:p-10 shadow-none sm:hover:shadow-21 border-1 border-solid border-tw-grey-darker panelitem-container relative overflow-hidden">
+  <div class="flex xs:mb-15 sm:mb-30 xs:pt-15 xs:pb-5 xs:px-15 sm:p-10 shadow-none sm:hover:shadow-21 border-1 border-solid border-tw-grey-darker panelitem-container relative overflow-hidden" data-aos="fade-up" data-aos-delay="0" data-aos-easing="ease-in-sine" data-aos-duration="800"
+     data-aos-offset="0">
     <div class="absolute -mr-15 -mb-15 opacity-8 pin-b pin-r">
       <q-icon class="text-60 text-tw-grey-lighter" :name="this.bgIcon" />
     </div>
-    <div v-if="hasId && idField" class="flex justify-start items-start w-auto mr-10 pt-2">
+    <div v-if="hasId && idField" class="flex justify-start items-start w-auto mr-10 pt-3">
       <q-icon class="xs:text-14 sm:text-26 text-tw-blue" :name="this.dataIcon" />
     </div>
     <table class="w-5/6 flex">
@@ -27,6 +28,9 @@
               <span v-else-if="data.type==='delegate'" class="text-tw-blue cursor-pointer hover:underline" @click="doSearch(data.value[1], 'delegate')">{{data.value[0]}}</span>
               <span v-else-if="data.type==='asset'" class="text-tw-blue cursor-pointer hover:underline" @click="doSearch(data.value, 'asset')">{{data.value.split('.')[1]}}</span>
               <span v-else-if="data.type==='countDown'">{{fulltimestamp(data.value)}}</span>
+              <span v-else-if="data.type==='nick'" class="text-tw-blue cursor-pointer hover:underline" @click="doSearch(data.value,'nick')">
+                <span class="w-136 inline-block"><a class="custom-link-desktop text-tw-blue cursor-pointer hover:underline">{{data.value}}</a></span>
+              </span>
               <span v-else-if="data.type==='address'" class="text-tw-blue cursor-pointer hover:underline" @click="doSearch(data.value)">
                 <span v-if="data.nickname" >
                   {{data.nickname}}({{data.value}})
@@ -89,7 +93,7 @@ export default {
       return tableData
     },
     hasId() {
-      return this.data[0].type === 'id'
+      return this.data[0].type === 'id' || this.data[0].type === 'transactionId'
     },
     icIcon() {
       return this.idIcon + ' xs:text-12 sm:text-20 text-tw-blue material-icons'

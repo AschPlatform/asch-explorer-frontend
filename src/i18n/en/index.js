@@ -49,17 +49,17 @@ const lang = {
   PRECISION: 'Precision',
   ISSUE_TIME: 'Issue Date',
   ISSUE_ADDRESS: 'Issuer Address',
-
+  ASSET_TYPE: 'Asset Type',
   // transactionsInfo
   TRANSACTION: 'Transactions',
   TRANSACTIONS: 'Transaction List',
-  TRANSACTION_ID: 'Transaction ID',
+  TRANSACTION_ID: 'Trans ID',
   TRANS_TYPE: 'Type',
-  TRANS_TABLE: 'Transfer List',
-  TRANSACTION_TYPE: 'Transaction Type',
+  TRANS_TABLE: 'Transfer List',
+  TRANSACTION_TYPE: 'Trans Type',
   TRANSACTION_TABLE: 'Transaction List',
   AMOUNT: 'Amount',
-  TRANS_TIME: 'Transaction Time',
+  TRANS_TIME: 'Time',
   TIME: 'Time',
   ARGUMENTS: 'Parameters',
 
@@ -96,6 +96,7 @@ const lang = {
   SEARCH_OEEOR: 'Oops!',
   SEARCH_OEEOR_STATEMENT: 'No data matching the query is found. Please try again with different keyword',
   // common
+  MESSAGE: 'Memo',
   LOADING: 'Loading',
   FORGE: 'Forge',
   FROM: 'From',

@@ -3,10 +3,10 @@
     <q-layout-header>
       <navbar  />
     </q-layout-header>
-    <q-page-container>
+    <q-page-container :class="pageContainerClass">
       <router-view />
     </q-page-container>
-    <q-layout-footer class="bg-tw-black">
+    <q-layout-footer class="shadow-none bg-tw-black">
       <footer-bar />
     </q-layout-footer>
     <q-layout-drawer class="custom-drawer" v-model="drawer">
@@ -53,6 +53,7 @@
             {{$t('LANGUAGE_EN')}}
           </a>
         </div>
+        <q-item-separator class="sep text-tw-grey block" />
       </q-list>
     </q-layout-drawer>
     <code-modal class="qr-container" :show="QRCodeShow" @close="QRCodeShow = false" :text="QRCodeText"/>
@@ -84,7 +85,7 @@ import { REGEX } from '../utils/constants'
 import Navbar from '../components/Navbar'
 import CodeModal from '../components/QRCodeModal'
 
-import { getCache, setCache } from '../utils/util'
+import { getCache, setCache, isDesktop, checkNumber } from '../utils/util'
 import { mapGetters, mapActions } from 'vuex'
 
 export default {
@@ -120,10 +121,21 @@ export default {
     }
   },
   methods: {
-    ...mapActions(['getHeight', 'getUsers', 'getXas', 'getAssets', 'getAssetNum', 'getXasPrice', 'getTransactionInfo']),
+    checkNumber,
+    ...mapActions([
+      'getHeight',
+      'getUsers',
+      'getXas',
+      'getAssets',
+      'getAssetNum',
+      'getXasPrice',
+      'getTransactionInfo',
+      'getHashResult'
+    ]),
     openURL,
     async doSearch(str, type) {
       if (this.searchForbidden) return
+      if (checkNumber(str)) return
       const { hash, address, height, nickname } = REGEX
       const router = this.$router
       this.searchForbidden = true
@@ -144,15 +156,17 @@ export default {
           str = str.replace('.', '-')
           return router.push(`/asset/${str}`)
       }
-      if (hash.test(str) || type === 'trans') {
-        let result = await this.getTransactionInfo({
+      if (hash.test(str)) {
+        let result = await this.getHashResult({
           query: str
         })
         if (result.success && result.searchResults) {
           if (result.searchResults[0].type === 'block') {
             router.push(`/blocks_id/${str}`)
+            return
           } else if (result.searchResults[0].type === 'transaction') {
             router.push(`/transaction/${str}`)
+            return
           }
         }
         // router.push(`/transaction/${str}`)
@@ -232,6 +246,13 @@ export default {
   },
   computed: {
     ...mapGetters(['getRunState', 'assetMap']),
+    pageContainerClass() {
+      if (this.$route.name === 'error') {
+        return ''
+      } else {
+        return isDesktop() ? '' : 'custom-min-height'
+      }
+    },
     isHome() {
       return this.$route.name === 'home' ? this.isHomeFlg : !this.isHomeFlg
     }

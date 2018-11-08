@@ -30,7 +30,7 @@ const REGEX = {
 //   1007: 'STATE_CHANGE'
 // }
 
-// const host: 'http://47.93.138.148:8192',
+//   const host: 'http://47.93.138.148:8192',
 //   development: 'http://47.93.138.148:8192',
 //   production: 'http://mainnet.asch.cn'
 //   // production: 'https://webnode.asch.io:443'
@@ -41,7 +41,7 @@ const REGEX = {
 // }
 
 const urls = {
-  serverHost: 'https://exnode.asch.io:443',
+  serverHost: 'https://exnode.asch.io',
   // dappId,
   // server: {`
   //   development: `${host.development}/api/dapps/${dappId.development}`,
@@ -75,6 +75,7 @@ const urls = {
   // transaction: {
   //   url: '/api/v2/transactions/:tid'
   // },
+
   // 根据HASH获取对象（TTRANSACTION ID / BLOCK ID）
   hashObject: {
     mock: '',

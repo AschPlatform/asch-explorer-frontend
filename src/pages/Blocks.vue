@@ -2,7 +2,7 @@
   <q-page class="max-w-1200 m-auto xs:p-15 sm:p-0 xs:pb-20 sm:pb-40">
     <breadcrumb class="xs:mt-5 sm:mt-20" />
     <div class="rounded-lg xs:px-0 xs:pt-0 xs:pb-15 sm:px-0 sm:py-0">
-    <table-container class="custom-thead" :data="data"  :params="params" :count="count" :columnsData="columnsData" @getData="getData">
+      <table-container class="custom-thead" :data="data"  :params="params" :count="count" :columnsData="columnsData" @getData="getData">
         <template class="desktop-only" slot="content" slot-scope="props" v-if="props.props">
           <q-td  key="height">
             <div class="text-tw-blue cursor-pointer hover:underline" @click="doSearch(props.props.height)">
@@ -51,7 +51,7 @@
 import { QPage, QTd, QTooltip } from 'quasar'
 import Breadcrumb from '../components/Breadcrumb'
 import TableContainer from '../components/TableContainer'
-import { fulltimestamp, convertFee, getAddress, rewardCount } from '../utils/util'
+import { fulltimestamp, getAddress, rewardCount } from '../utils/util'
 import TableItem from '../components/TableItem'
 import { mapActions } from 'vuex'
 
@@ -138,7 +138,7 @@ export default {
       this.$root.$emit('doSearch', str)
     },
     getTableData(data) {
-      const { id, height, delegate, reward, timestamp } = data.props
+      const { id, height, delegate, timestamp } = data.props
       let idField = {
         label: 'BLOCK_ID',
         value: id,
@@ -156,7 +156,7 @@ export default {
       }
       let rewardField = {
         label: 'FORGE_REWARD',
-        value: convertFee(reward)
+        value: this.rewardCount(height)
       }
       // let countField = {
       //   label: 'TRANS_NUM',
@@ -176,7 +176,7 @@ export default {
     }
   },
   computed: {
-       params() {
+    params() {
       return this.$route.params
     }
   }

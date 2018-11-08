@@ -197,6 +197,11 @@
   tr{
     border-left: none!important;
     border-right: none!important;
+    td{
+      // max-width: 10%;
+      // padding 0px !important;
+    }
+    
   }
   .table-bottom-container{
     border:none!important;
@@ -284,16 +289,34 @@
   background:rgba(0,0,0,0.5)
 }
 
+.custom-transaction-link-desktop {
+  width: 100px;
+  display: inline-block;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+
 .custom-link-desktop {
-  width: 136px;
+  width: 123px;
   display: inline-block;
   text-overflow: ellipsis;
   overflow: hidden;
 }
 
 .custom-link-mobile {
-  width: 100%;
+  width: 90px;
   display: inline-block;
   text-overflow: ellipsis;
   overflow: hidden;
+}
+
+.custom-h-25{
+  height: 25px;
+  line-height: 25px;
+}
+
+.custom-min-height{
+  .q-layout-page{
+    min-height: 100vh!important;
+  }
 }

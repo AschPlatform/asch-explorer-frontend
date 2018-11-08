@@ -59,7 +59,7 @@ const lang = {
   TRANSACTION_TYPE: '交易类型',
   TRANSACTION_TABLE: '交易列表',
   AMOUNT: '金额',
-  TRANS_TIME: '交易时间',
+  TRANS_TIME: '时间',
   TIME: '时间',
   ARGUMENTS: '参数',
 

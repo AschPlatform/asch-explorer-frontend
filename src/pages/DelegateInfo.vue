@@ -37,7 +37,7 @@
             </div>
           </q-td>
           <q-td key="reward">
-            <span>{{ rewardCount(props.props.reward) | fee }}</span>
+            <span>{{ rewardCount(props.props.height) }}</span>
           </q-td>
           <q-td key="count">
             <span>{{ props.props.count }}</span>
@@ -51,7 +51,7 @@
         </template>
 
         <template class="mobile-only" slot="items" slot-scope="props" v-if="props.props">
-          <table-item :data="getTableData(props.props)" :bgIcon="'icon-details'" :dataIcon="'icon-transaction'" />
+          <table-item :data="getTableData(props.props)" :bgIcon="'icon-block'" :dataIcon="'icon-height'" />
         </template>
       </table-container>
     </div>
@@ -157,7 +157,7 @@ export default {
         },
         {
           label: 'BLOCK_NUM',
-          value: this.producedBlocks,
+          value: this.count,
           type: 'number'
         },
         {
@@ -190,7 +190,7 @@ export default {
         this.fees = convertFee(trans.fees)
         this.producedBlocks = trans.producedBlocks
         this.productivity = trans.productivity
-        this.approval = trans.approval + '%'
+        this.approval = trans.approval < 0 ? '0%' : trans.approval.toFixed(2) + '%'
         this.userName = trans.name
         this.getAccountLeft()
       }
@@ -218,8 +218,12 @@ export default {
       this.$root.$emit('doSearch', str)
     },
     getTableData(data) {
-      const { height, count, fees, timestamp } = data
-
+      const { id, height, timestamp } = data
+      let idField = {
+        label: 'BLOCK_ID',
+        value: id,
+        type: 'id'
+      }
       let heightField = {
         label: 'BLOCK_HEIGHT',
         value: height,
@@ -229,19 +233,19 @@ export default {
         label: 'FORGE_REWARD',
         value: rewardCount(height)
       }
-      let countField = {
-        label: 'TRANS_NUM',
-        value: count
-      }
-      let feeField = {
-        label: 'TRANS_FEE',
-        value: fees
-      }
+      // let countField = {
+      //   label: 'TRANS_NUM',
+      //   value: count
+      // }
+      // let feeField = {
+      //   label: 'TRANS_FEE',
+      //   value: fees
+      // }
       let timeField = {
         label: 'PRODUCER_TIME',
         value: fulltimestamp(timestamp)
       }
-      return [heightField, rewardField, countField, feeField, timeField]
+      return [idField, heightField, rewardField, timeField]
     }
   },
   watch: {

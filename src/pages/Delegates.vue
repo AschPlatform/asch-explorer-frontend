@@ -27,15 +27,15 @@
             <q-tooltip>{{ props.props.address }}</q-tooltip>
           </div>
         </q-td>
-        <q-td key="producedBlocks" >
+        <!-- <q-td key="producedBlocks" >
           <span>{{ props.props.producedBlocks || 0 }}</span>
-        </q-td>
+        </q-td> -->
         <q-td v-if="props.props.productivity" key="productivity" >
           <span>{{ props.props.productivity + ' %' }}</span>
         </q-td>
         <q-td key="approval">
-          <span>{{ props.props.approval.toFixed(2) + ' %' }}</span>
-          <q-tooltip>{{ props.props.approval + '%'}}</q-tooltip>
+          <span>{{ props.props.approval>0?props.props.approval.toFixed(2) + ' %':'0.00%' }}</span>
+          <q-tooltip>{{ props.props.approval>0?props.props.approval + '%':'0.00%'}}</q-tooltip>
         </q-td>
       </template>
       <template class="mobile-only" slot="items" slot-scope="props" v-if="props.props">
@@ -92,12 +92,12 @@ export default {
           field: 'address',
           align: 'center'
         },
-        {
-          name: 'producedBlocks',
-          label: this.$t('BLOCK_NUM'),
-          field: 'producedBlocks',
-          align: 'center'
-        },
+        // {
+        //   name: 'producedBlocks',
+        //   label: this.$t('BLOCK_NUM'),
+        //   field: 'producedBlocks',
+        //   align: 'center'
+        // },
         {
           name: 'productivity',
           label: this.$t('PRODUCTIVITY'),
@@ -127,7 +127,7 @@ export default {
       this.$root.$emit('doSearch', str, type)
     },
     getTableData(data) {
-      const { rate, name, address, producedBlocks, productivity, approval } = data
+      const { rate, name, address, productivity, approval } = data
       let rateField = {
         label: 'RANK',
         value: rate,
@@ -143,11 +143,11 @@ export default {
         value: address,
         type: 'address'
       }
-      let producedBlocksField = {
-        label: 'BLOCK_NUM',
-        value: producedBlocks,
-        type: 'number'
-      }
+      // let producedBlocksField = {
+      //   label: 'BLOCK_NUM',
+      //   value: producedBlocks,
+      //   type: 'number'
+      // }
       let productivityField = {
         label: 'PRODUCTIVITY',
         value: productivity + ' %',
@@ -155,7 +155,7 @@ export default {
       }
       let approvalField = {
         label: 'VOTE_RATE',
-        value: approval + ' %',
+        value: approval > 0 ? approval + ' %' : '0.00%',
         type: 'voteRate'
       }
 
@@ -163,7 +163,7 @@ export default {
         rateField,
         nameField,
         addressField,
-        producedBlocksField,
+        // producedBlocksField,
         productivityField,
         approvalField
       ]
